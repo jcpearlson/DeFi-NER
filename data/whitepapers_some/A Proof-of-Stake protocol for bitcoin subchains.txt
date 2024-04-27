@@ -1,0 +1,430 @@
+
+
+Abstract. Although the transactions on the Bitcoin blockchain have the
+main purpose of recording currency transfers, they can also carry a few
+bytes of metadata. A sequence of transaction metadata forms a subchain
+of the Bitcoin blockchain, and it can be used to store a tamper-proof execution trace of a smart contract. Except for the trivial case of contracts
+which admit any trace, in general there may exist inconsistent subchains
+which represent incorrect contract executions. A crucial issue is how to
+make it difficult, for an adversary, to subvert the execution of a contract
+by making its subchain inconsistent. Existing approaches either postulate that subchains are always consistent, or give weak guarantees about
+their security (for instance, they are susceptible to Sybil attacks). We
+propose a consensus protocol, based on Proof-of-Stake, that incentivizes
+nodes to consistently extend the subchain. We empirically evaluate the
+security of our protocol, and we show how to exploit it as the basis for
+smart contracts on Bitcoin.
+
+
+Recently, cryptocurrencies like Bitcoin [26] have pushed forward the concept of
+decentralization, by ensuring reliable interactions among mutually distrusting
+nodes in the presence of a large number of colluding adversaries. These cryptocurrencies leverage on a public data structure, called blockchain, where they
+permanently store all the transactions exchanged by nodes. Adding new blocks
+to the blockchain (called mining) requires to solve a moderately difficult cryptographic puzzle. The first miner who solves the puzzle earns some virtual currency
+(some fresh coins for the mined block, and a small fee for each transaction included therein). In Bitcoin, miners must invert a hash function whose complexity
+is adjusted dynamically in order to make the average time to solve the puzzle ∼10
+minutes. Instead, removing or modifying existing blocks is computationally unfeasible: roughly, this would require an adversary with more hashing power than
+the rest of all the other nodes. If modifying or removing blocks were computationally easy, an attacker could perform a double-spending attack where he pays
+some amount of coins to a merchant (by publishing a suitable transaction in the
+blockchain) and then, after he has received the item he has paid for, removes the
+block containing the transaction. According to the folklore, Bitcoin would resist
+to attacks unless the adversaries control the majority of total computing power
+of the Bitcoin network. Even though some vulnerabilities have been reported in
+
+
+the literature (see Section 4), in practice Bitcoin has worked surprisingly well
+so far: indeed, the known successful attacks to Bitcoin are standard hacks or
+frauds [19], unrelated to the Bitcoin protocol.
+The idea of using the Bitcoin blockchain and its consensus protocol as foundations for smart contracts — namely, decentralized applications beyond digital currency [29] — has been explored by several recent works. For instance,
+[3,5,7,9,22,23,24] propose protocols for secure multiparty computations and fair
+lotteries; [13] implements decentralised authorization systems on Bitcoin, [28,30]
+allow users to log statements on the blockchain; [10] is a key-value database with
+get/set operations; [14] extends Bitcoin with advanced financial operations (like
+e.g., creation of virtual assets, payment of dividends, etc.), by embedding its
+own messages in Bitcoin transactions.
+Although the Bitcoin blockchain is primarily intended to trade currency, its
+protocol allows clients to embed a few extra bytes as metadata in transactions.
+Many platforms for smart contracts exploit these metadata to store a persistent,
+timestamped and tamper-proof historical record of all their messages [1,6]. Usually, metadata are stored in OP_RETURN transactions [2], making them meaningless to the Bitcoin network and unspendable. With this approach, the sequence
+of platform-dependent messages forms a subchain, whose content can only be
+interpreted by the nodes that execute the platform (we refer to them as metanodes, to distinguish them from Bitcoin nodes). However, since the platform
+logic is separated from the Bitcoin logic, a meta-node can append to the subchain transactions with metadata which are meaningless for the platform — or
+even inconsistent with the intended execution of the smart contract. As far as
+we know, none of the existing platforms use a secure protocol to establish if
+their subchain is consistent. This is a serious issue, because it either limits the
+expressiveness of the smart contracts supported by these platforms (which must
+consider all messages as consistent, so basically losing the notion of state), or
+degrades the security of contracts (because adversaries can manage to publish
+inconsistent messages, so tampering with the execution of smart contracts).
+
+Contributions. We propose a protocol that allows meta-nodes to maintain a
+consistent subchain over the Bitcoin blockchain. Our protocol is based on Proofof-Stake [8,21], since extending the subchain must be endorsed with a money
+deposit. Intuitively, a meta-node which publishes a consistent message gets back
+its deposit once the message is confirmed by the rest of the network. In particular, our protocol provides an economic incentive to honest meta-nodes, while
+disincentivizing the dishonest ones. We empirically validate the security of our
+protocol by simulating it in various attack scenarios. Notably, our protocol can
+be implemented in Bitcoin by only using the so-called standard transactions1 .
+
+
+Bitcoin is a cryptocurrency and a digital open-source payment infrastructure
+that has recently reached a market capitalization of almost $30 billions2 . The
+Bitcoin network is peer-to-peer, not controlled by any central authority [26].
+Each Bitcoin user owns one or more personal wallets, which consist of pairs of
+asymmetric cryptographic keys: the public key uniquely identifies the user address, while the private key is used to authorize payments. Transactions describe
+transfers of bitcoins (B), and the history of all transactions, which recorded on a
+public, immutable and decentralised data structure called blockchain, determines
+how many bitcoins are contained in each address.
+
+The transaction t0 contains v0 B, which can be redeemed by putting on the
+blockchain a transaction (e.g., t1 ), whose in field is the cryptographic hash of
+the whole t0 (for simplicity, just displayed as t0 in the figure). To redeem t0 ,
+the in-script of t1 must contain values making the out-script of t0 (a boolean
+programmable function) evaluate to true. When this happens, the value of t0 is
+transferred to the new transaction t1 , and t0 is no longer redeemable. Similarly,
+a new transaction can then redeem t1 by satisfying its out-script.
+In the example displayed above, the out-script of t0 evaluates to true when
+receiving a digital signature σ on the redeeming transaction t, with a given key
+pair k. We denote with ver k (t, σ) the signature verification, and with sig k (•)
+the signature of the enclosing transaction (t1 in our example), including all the
+parts of the transaction except its in-script.
+Now, assume that the blockchain contains t0 , not yet redeemed, when someone tries to append t1 . To validate this operation, the nodes of the Bitcoin
+network check that v1 ≤ v0 , and then they evaluate the out-script of t0 , by instantiating its formal parameters t and σ, to t1 and to the signature sig k (•),
+respectively. The function ver k verifies that the signature is correct: therefore,
+the out-script succeeds, and t1 redeems t0 .
+Bitcoin transactions may be more general than the ones illustrated by the
+previous example: their general form is displayed in Figure 1. First, there can be
+multiple inputs and outputs (denoted with array notation in the figure). Each
+output has an associated out-script and value, and can be redeemed independently from others. Consequently, in fields must specify which output they are
+redeeming (t0 [out0 ] in the figure). Similarly, a transaction with multiple inputs
+associates an in-script to each of them. To be valid, the sum of the values of all
+the inputs must be greater or equal to the sum of the values of all outputs. In its
+general form, the out-script is a program in a (not Turing-complete) scripting language, featuring a limited set of logic, arithmetic, and cryptographic operators.
+Finally, the lockTime field specifies the earliest moment in time (block number
+or Unix timestamp) when the transaction can appear on the blockchain.
+The Bitcoin network is populated by a large set nodes, called miners, which
+collect transactions from clients, and are in charge of appending the valid ones to
+the blockchain. To this purpose, each miner keeps a local copy of the blockchain,
+and a set of unconfirmed transactions received by clients, which it groups into
+blocks. The goal of miners is to add these blocks to the blockchain, in order to
+get a revenue. Appending a new block Bi to the blockchain requires miners to
+solve a cryptographic puzzle, which involves the hash h(Bi−1 ) of block Bi−1 ,
+a sequence of unconfirmed transactions hTi ii , and some salt R. More precisely,
+miners have to find a value of R such h(h(Bi−1 )khTi ii kR) < µ, where the value µ
+is adjusted dynamically, depending on the current hashing power of the network,
+to ensure that the average mining rate is of 1 block every 10 minutes. The goal
+of miners is to win the “lottery” for publishing the next block, i.e. to solve the
+cryptopuzzle before the others; when this happens, the miner receives a reward
+in newly generated bitcoins, and a small fee for each transaction included in
+the mined block. If a miner claims the solution of the current cryptopuzzle,
+the others discard their attempts, update their local copies of the blockchain
+with the new block Bi , and start mining a new block on top of Bi . In addition,
+miners are asked to verify the validity of the transactions in Bi by executing the
+associated scripts. Although verifying transactions is not mandatory, miners are
+incentivized to do that, because if in any moment a transaction is found invalid,
+they lose the fee earned when the transaction was published in the blockchain.
+If two or more miners solve a cryptopuzzle simultaneously, they create a fork
+in the blockchain (i.e., two or more parallel valid branches). In the presence of
+a fork, miners must choose a branch wherein carrying out the mining process;
+roughly, this divergence is resolved once one of the branches becomes longer
+than the others. When this happens, the other branches are discarded, and all
+the orphan transactions contained therein are nullified.
+Overall, this protocol essentially implements a “Proof-of-Work” system [15].
+
+We define the notions of subchain and consistency in Section 3.1. In Section 3.2
+we describe our protocol to embed consistent subchains on the Bitcoin blockchain;
+we examine some of its properties in Section 3.3. Finally, in Section 3.4 we show
+how to implement our protocol in Bitcoin.
+
+We assume a set A, B, . . . of participants, who want to append messages a, b, . . .
+to the subchain. A label is a pair containing a participant A and a message a,
+written A : a. Subchains are finite sequences of labels, written A1 : a1 · · · An : an ,
+which are embedded in the Bitcoin blockchain. The intuition is that A 1 has
+embedded the message a1 in some transaction t1 of the Bitcoin blockchain, then
+A 2 has appended some transaction t2 embedding a2 , and so on. For a subchain
+η, we write η A : a for the subchain obtained by appending A : a to η.
+In general, labels can also have side effects on the Bitcoin blockchain: we
+represent with A : a(v → B) a label which also transfers vB from A to B. When
+this message is on the subchain, it also acts as a standard currency transfer on
+the Bitcoin blockchain, which makes vB in a transaction of A redeemable by B.
+When the value v is zero or immaterial, we simply write a instead of a(v → B).
+A crucial insight is that not all possible sequences of labels are valid subchains: to define the consistent ones, we interpret subchains as traces of Labelled
+Transition Systems (LTS). Formally, an LTS is a tuple (Q, L, q0 , →), where:
+
+Similarly to Bitcoin, we do not aim at guaranteeing that a subchain is always
+consistent. Indeed, also in Bitcoin a miner could manage to append a block with
+invalid transactions: in this case, as discussed in Section 2, the Bitcoin blockchain
+forks, and the other miners must choose which branch to follow. However, honest
+miners will neglect the branch with invalid transactions, so eventually (since
+honest miners detain the majority of computational power), that branch will be
+abandoned by all miners.
+
+A Proof-of-Stake protocol for consensus on Bitcoin subchains
+
+For subchain consistency we adopt a similar notion: we assume that an adA :a
+versary can append a label A : a such that qn −
+6 −→, so making the subchain
+inconsistent. However, upon receiving such label, honest nodes will discard it.
+To formalise their behaviour, we define below a function Γ that, given a subchain η (possibly inconsistent), filters all the invalid messages. Hence, Γ (η) is a
+consistent subchain.
+
+Assume a network of mutually distrusted nodes N, N0 , . . . , that we call metanodes to distinguish them from the nodes of the Bitcoin network. Meta-nodes
+receive messages from participants (also mutually distrusting) which want to
+extend the subchain. Our goal is to allow honest participants (i.e., those who
+follow the protocol) to perform consistent updates of the subchain, while disincentivizing adversaries who attempt to make the subchain inconsistent.
+To this purpose, we propose a protocol based on Proof-of-Stake (PoS). Namely,
+we rely on the assumption that the overall stake retained by honest participants
+is greater than the stake of dishonest ones4 . The stake is needed by meta-nodes,
+which have to vote for approving messages sent by participants. These messages
+are embedded into Bitcoin transactions, which we call update requests. We denote by UR[A : a] the update request issued by A to append the message a to the
+subchain.
+
+1. Upon receiving an update request UR[A : a], a meta-node checks its consistency, η |= A : a. If so, it votes the request, and adds it to the request pool;
+2. when ∆ expires, the arbiter signs all the well-formed UR in the request pool;
+3. all requests signed by the arbiter are sent to the Bitcoin miners, to be published
+on the blockchain. The first to be mined, indicated with URi , is the i-th label
+of the subchain.
+
+Fig. 2: Summary of a protocol stage i.
+
+η |= A : a 5 . To incentivize meta-nodes to vote their update requests, participants
+pay them a fee (smaller than κ), which can be redeemed by meta-nodes when
+the update request is appended to the subchain.
+We define our protocol in Figure 2. It is organised in stages. The protocol
+ensures that exactly one label A : a is appended to the subchain for each stage i.
+This is implemented by appending a corresponding transaction URi [A : a] to the
+Bitcoin blockchain. To guarantee its uniqueness, the protocol exploits an arbiter
+T, namely a distinguished node of the network which is assumed honest (we
+discuss this hypothesis in Section 3.3). We now describe the main steps of the
+protocol.
+At step 1 of the stage i of the protocol, a meta-node (say, N) votes an update
+request (as detailed in Section 3.4). In order to do this, N must confirm a previous
+update URj in the subchain, by paying κ B (plus the participant’s fee) to the
+meta-node N0 who appended URj to the subchain. To avoid the self-compensation
+attack discussed later on in Section 3.3, the protocol only allows to confirm
+one of the past C updates, where C ≥ 2 is a constant fixed by the protocol
+(called checkpoint offset). Summing up, the value j is such that: (i) j < i; (ii)
+|i − j| < C; (iii) URj [A : a] is consistent. In this way the protocol incentivizes
+meta-nodes to vote consistent updates only, since inconsistent ones are not likely
+to be confirmed. If all the last C updates in the subchain are inconsistent, then
+N chooses the last one. Then, N adds UR[A : a ] to the request pool, i.e. the set of
+all voted requests of the current stage (emptied at the beginning of each stage).
+This voting step has a fixed duration ∆, specified by the protocol (the choice of
+∆ is discussed in Section 5).
+At step 2, which starts when ∆ expires, the arbiter T signs all well-formed
+request transactions, i.e., those respecting the format defined in Section 3.4.
+At step 3, meta-nodes send the requests signed by T to the Bitcoin network.
+The mechanism described in Section 3.4 ensures that, at each stage i, exactly
+one transaction, denoted URi [A : a], is put on the Bitcoin blockchain. When this
+happens, the label A : a is appended to the subchain.
+
+
+We now establish some basic properties of our protocol. Hereafter, we assume
+that honest nodes control the majority of the total stake of the network6 , hereafter denoted by S. Further, we assume that the overall stake required to vote
+pending update requests is greater than the overall stake of honest meta-nodes.
+Adversary power. An honest meta-node votes as many requests as is allowed by
+its stake. Hence, if its stake is h, it votes h/κ requests per stage. Consequently,
+the rest of the network — which may include dishonest meta-nodes not following
+the protocol — can vote at most (S − h)/κ requests. Then:
+Proposition 1. The probability that an honest meta-node with stake h updates
+the subchain is at least h/S at each stage.
+Since we assume that honest meta-nodes control the majority of the stake,
+Proposition 1 also limits the capabilities of the adversary:
+Proposition 2. If the global stake of honest meta-nodes is SH , then dishonest
+ones update the subchain with probability at most (S − SH )/S at each stage.
+Although inconsistent updates are ignored by honest meta-nodes, their side
+effects as standard Bitcoin transactions (i.e. trasfers of vB from A to B in labels
+A : a(v → B)) cannot be revoked once they are included in the Bitcoin blockchain.
+We now show how the incentive system in our protocol reduces the feasibility of
+such inconsistent updates.
+Assume that an adversary M manages to append 2 updates to the subchain:
+an inconsistent update at index j, and a consistent one at index i > j. Since
+M does not follow the protocol, she can exploit URi to redeem the κB she put
+on URj . Later on, the adversary will be able to redeem the κB she put on URi :
+indeed, honest meta-nodes will vote URi , as it is consistent. We call the above
+behaviour of M self-compensation attack.
+Now, according to Proposition 2, if M has stake m, and the other meta-nodes
+are honest, then M has probability at most m/S of extending the subchain in
+a given stage of the protocol. Since stages can be seen as independent events,
+and since M has to publish at least 2 updates over the most recent checkpoint
+to perform the attack, we obtain the following:
+Proposition 3. T
+
+Since the probability to publish inconsistent updates without losing κB grows
+with C, it is crucial to keep this value small. For instance, if µ = 0.1 an adversary
+could perform the attack with probability bounded by (i) 0.01 if C = 2; (ii)
+0.027 if C = 3; (iii) 0.0486 if C = 4.
+Observe that if the attack succeeds once, then the attack probability slightly
+increases, since the stake m is charged by the client fees of the published updates.
+This is not an issue if the fee is small compared to S.
+Trustworthiness of the arbiter. Our protocol uses in arbiter T to ensures that
+exactly one transaction per stage is appended to the blockchain, as well its choice
+is random. In order to simplify the description of the protocol, we have assumed
+the arbiter T to behave honestly. However, our arbiter does not play the role of
+a trusted authority: indeed, the update requests to be voted are chosen by the
+meta-nodes, and once they are added to the request pool, the arbiter is expected
+to sign all of them, without taking part on the validation nor in the voting. Since
+everyone can inspect the request pool, any misbehaviour of the arbiter can be
+detected by the meta-nodes, which can proceed to replace it.
+
+
+In this section we show how our protocol can be implemented in Bitcoin. A
+label A : a(v → B) at position i of the subchain is implemented as the Bitcoin
+transaction URi [A : a(v → B)] in Figure 3a, with the following outputs:
+– the output of index 0 embeds the label A : a. This is implemented through
+an unspendable OP RETURN script [6]7 .
+– the output of index 1 links the transaction to the previous element of the
+subchain, pointed by in[2]. This link requires the arbiter signature. Note that,
+since all the update requests in the same stage redeem the same output,
+exactly one of them can be mined.
+– the output of index 2 implements the incentive mechanism. The script rewards the meta-node N0 which has voted a preceding URj in the subchain.
+Meta-node N0 can redeem from this output κB plus the participant’s fee, by
+providing his signature.
+– the output of index 3 is only relevant for messages a(v → B) where v > 0.
+Participant B can redeem vB from this output by providing his signature.
+All transactions specify a lockTime n + k, where n is the current Bitcoin
+block number, and k is a positive constant. This ensures that a transaction can
+be mined only after k blocks. In this way, even if a transaction is signed by the
+arbiter and sent to miners before the others, it has the same probability as the
+others of being appended to the blockchain.
+
+
+The OP_RETURN instruction allows to save 80 bytes metadata in a transaction; an
+out-script containing OP_RETURN always evaluates to false, hence it is unspendable.
+
+To initialise the subchain, the arbiter puts the Genesis transaction on the Bitcoin blockchain. This transaction secures a small fraction of bitcoin, which can be
+redeemed by UR1 through the arbiter signature. This value is then transferred to
+each subsequent update of the subchain (see Figure 3b). At each protocol stage,
+participants send incomplete UR transactions to the network. These transactions contain only in[0] and out[0], specifying the fee and the message for the
+subchain (including the value to be transferred). To vote, meta-nodes add in[1],
+in[2] and out[2] to these transactions, to, respectively, put the required κ (from
+some transaction Stakei ), declare they want extend the last published update
+Confirmi−1 , and specify the previous update to be rewarded. All the in[1] fields
+in a stage of the protocol must be different, to prevent attackers to vote more
+URs with the same funds.
+
+In this section we evaluate the security of our protocol, providing some experimental results. We also investigate how possible attacks to Bitcoin may affect
+subchains built on top of its blockchain.
+
+Attack scenario. We assume an adversary who can craft any update (consistent
+or not), and controls one meta-node M with stake µS, where µ ∈ [0; 1] and S
+is the total stake of the network8 . We suppose that each meta-node can vote as
+many update requests as possible, spending all its stake, and that the network
+is always saturated with pending updates, which globally amount to the entire
+stake of honest meta-nodes9 . We also assume that M gets an additional extra
+revenue r for each inconsistent update, modelling the case where she manages to
+induce a victim to publish an inconsistent payment a(r → M) . The goal of M is
+to append at least 2 updates to the blockchain (one of which inconsistent) every
+C published updates. She can use any possible strategy to achieve this goal.
+We simulate the protocol under the attack scenario described above. Each
+simulation runs the protocol to generate a subchain with 10, 000 messages, setting the client fee to 0.1κ and the checkpoint offset to 3. To this purpose we use
+Desmo-J [18], a discrete event simulator for Java.
+Experimental results. Figure 4b measures the attacker revenue as µ increases. In
+particular, it shows that if the stake threshold κ is ten times greater than r, M
+gains only if she owns at least ∼40% of the global stake (i.e., µ ≥ 0.4). Therefore,
+under such assumption about the attacker stake, the security of our protocol is
+comparable with that of the Bitcoin Proof-of-Work protocol [17]. Assuming a single adversary is not less general than having many non-colluding
+meta-nodes which carry on individual attacks. Indeed, in this setting meta-nodes do
+not join their funds to increase the stake ratio µ.
+Note that saying the update queue is not always saturated is equivalent to model an
+adversary with a stronger µ: this because honest meta-nodes cannot spend all their
+stake in a single protocol stage, i.e. reducing their actual power. Thus, studying this
+particular case will not give any additional contribution to the analysis. Instead, if
+κ = r, the attacker needs only ∼15% of the global stake to profit from the
+attack. Figure 4a shows that, in the absence of attackers (µ = 0), the revenue of
+honest nodes is essentially the client fee times the number of updates published,
+as expected. Further, µ is below the threshold required to perform a profitable
+attack, the revenue of honest nodes increases: this happens because inconsistent
+updates voted by M reward honest ones, whereas the opposite cannot occur.
+Summing up, our protocol is secure only if, for updates on the form a(r → A),
+we have that r ≤ κ. Hence, if r is close to 0, the behaving dishonestly is not
+economically advantageous.
+Security of the underlying Bitcoin blockchain. So far we have only considered direct attacks to our protocol, assuming the underlying Bitcoin blockchain to be secure. However, although Bitcoin has been secure in practice till now, some works
+have spotted some potential vulnerabilities of its protocol. These vulnerabilities
+could be exploited to execute Sybil attacks [4] and selfish-mining attacks [16],
+which might also affect subchains built on top of the Bitcoin blockchain.
+In Sybil attacks on Bitcoin, honest nodes are induced to believe that the
+network is populated by many distinct participants, which instead are controlled
+by a single malicious entity. This attack is usually exploited to quickly propagate
+malicious information on the network, and to disguise honest participants in a
+consensus/reputation protocol, e.g. by overwhelming the network with votes
+of the adversary. In the selfish-mining attack [16], small groups of colluding
+miners manage to obtain a revenue larger than the one of honest miners. More
+specifically, when a selfish-mining pool finds a new block, it keeps it hidden to
+the rest of the network. In this way, selfish miners gain an advantage over honest
+ones in mining the next block. This is equivalent to keep a private fork of the
+blockchain, which is only known to the selfish-mining pool. Note that honest
+miners still mine on the public branch of the blockchain, and their hash rate
+is greater than selfish miners’ one. Since, in the presence of a fork, the Bitcoin
+protocol requires to keep mining on the longest chain, selfish miners reveal their
+private fork to the network just before being overcome by the honest miners.
+Eyal and Sirer in [16] show that, under certain assumptions, this strategy gives
+better revenues than honest mining: in the worst scenario (for the adversary),
+the attack succeeds if the selfish-mining pool controls at least 1/3 of the total
+hashing power. Rational miners are thus incentivized to join the selfish-mining
+pool. Once the pool manages to control the majority of the hashing power,
+the system loses its decentralized nature. Garay, Kiayias and Leonardos in [17]
+essentially confirm these results: considering a core Bitcoin protocol, they prove
+that if the hashing power γ of honest miners exceeds the hashing power β of the
+adversary pool by a factor λ, then the ratio of adversary blocks in the blockchain
+is bounded by 1/λ (which is strictly greater than β). Thus, as β (the adversary
+pool size) approaches 1/2, they control the blockchain.
+Although these attacks are mainly related to Bitcoin revenues, they can affect
+the consistency of any subchain built on top of its blockchain. In particular,
+suitably adapted versions of these attacks allow adversaries to cheat meta-nodes
+
+about the current subchain state, forcing them to synchronize their local copy of
+the Bitcoin blockchain with invalid forks that will be discarded by the network
+in the future. To protect against such attacks, meta-nodes should consider only
+l-confirmed transactions. Namely, if the last published blockchain block is Bn ,
+they consider only those transactions appearing in blocks Bj with j ≤ n − l.
+This means that an attacker would have to mine at least l blocks to force the
+revocation of a l-confirmed transaction. Rosenfeld [27] shows that, if an attacker
+controls at most the 10% of the network hashing power, l = 6 is sufficient for
+reducing the risk of revoking a transaction to less than 0.1%.
+
+We have proposed a protocol to reach consensus on subchains, i.e. chains of
+platform-dependent messages embedded in the Bitcoin blockchain. Our protocol
+incentivizes nodes to validate messages before appending them to the subchain,
+making economically disadvantageous for an adversary to append inconsistent
+messages. To confirm this intuition we have measured the security of our protocol
+over different attack scenarios. Our simulations show that, under conservative
+assumptions, its security is comparable to that of Bitcoin.
+Performance of the protocol. As seen in Section 3.2, the protocol runs in periods
+of duration ∆. Due to the mechanism for choosing the message to append to the
+subchain from the request pool, the protocol can publish at most one transaction
+per Bitcoin block. This means that a lower bound for ∆ is the Bitcoin block interval (∼10mins). To monitor the arbiter behaviour throughout protocol stages,
+all meta-nodes must share a coherent view of the request pool. Then, ∆ needs
+to be large enough to let each node synchronize the request pool with the rest of
+the network. A possible approach to cope with this issue is to make meta-nodes
+broadcast their voted updates, and to keep a list of other ones (considering only
+those which satisfy the format of transactions, as in Section 3.4). More efficient
+approaches could exploit distributed shared memories [12,20].
+Overcoming the metadata size limit. As noted in Section 3.4, we use OP_RETURN
+unspendable scripts to embed metadata in Bitcoin transactions. Since Bitcoin
+limits the size of such metadata to 80 bytes, this might not be enough to store the
+data needed by platforms. To overcome this issue, one can use distributed hash
+tables [25] maintained by meta-nodes. In this way, instead of storing full message
+data in the blockchain, OP_RETURN scripts would contain only the corresponding
+message digests. The unique identifier of the Bitcoin transaction can be used as
+the key to retrieve the full message data from the hash table.
+Smart contracts over subchains. The model of subchains defined in Section 3.1,
+based on LTSs, can be easily extended to model the computations of smart
+contracts over the Bitcoin blockchains. A platform for smart contracts could
+exploit our model to represent the state of a contract as the state of the subchain,
+and model its possible state updates through the transition relation.
+
+Implementing a platform for smart contracts would require a language for expressing them. To bridge this language with our abstract model, one can provide
+the language with an operational semantics, giving rise to an LTS describing the
+computations. Note that our assumption to model computations as a single LTS
+does not reduce the generality of the system, since a set of LTSs, each one modelling a contract, can be encoded in one LTS as their parallel composition. If the
+language is Turing-complete, an additional problem we would have to face is the
+potential non-termination. This issue has been dealt with in different ways by
+different platforms. E.g., the approach followed by Ethereum [11] is to impose a
+fee for each instruction executed by its virtual machine. If the fee does not cover
+the cost of the whole computation, the execution terminates.
+A usable platform must also allow to create new contracts at run-time. Since
+in our model the LTS representing possible computations is fixed, we would
+need a mechanism to “extend” it. To handle the publication of new contracts,
+we could modify the protocol so that UR may contain its code, and the unique
+identifier of the transaction also identifies the contract. In this extended model,
+update requests would also contain the identifier of the contract to be updated,
+so that meta-nodes can execute the corresponding code.

@@ -1,0 +1,814 @@
+Licences and approvals are not assured in all jurisdictions
+CRO Protocol Labs (“Crypto.com”) intends to operate in full compliance with
+applicable laws and regulations and use its best endeavours to obtain the
+necessary licences and approvals. Regulatory licences and/or approvals are
+likely to be required in a number of relevant jurisdictions in which relevant
+activities may take place. This means that the development and roll-out of
+all the initiatives described in this whitepaper are not guaranteed. It is not
+possible to guarantee, and no person makes any representations, warranties
+or assurances, that any such licences or approvals will be obtained within
+a particular timeframe or at all. As such, the initiatives described in this
+whitepaper may not be available in certain jurisdictions, or at all. This could
+require restructuring of these initiatives and/or its unavailability in all or certain
+respects. In addition, the development of any initiatives is intended to be
+implemented in stages. During certain stages of development, the project may
+rely on relationships with certain licensed third party entities. If these entities
+are no longer properly licensed in the relevant jurisdiction, this will impact the
+ability of Crypto.com to rely on the services of that party.
+No advice
+This whitepaper does not constitute any investment advice, financial
+advice, trading advice or recommendation by Crypto.com, its affiliates, or
+its respective officers, directors, managers, employees, agents, advisors or
+consultants on the merits of purchasing CRO tokens nor should it be relied
+upon in connection with any other contract or purchasing decision.
+Not a sale of security
+This whitepaper does not constitute a prospectus or financial service offering
+document and is not an offer to sell or solicitation of an offer to buy any
+security, investment products, regulated products or financial instruments in
+any jurisdiction. CRO tokens are not being structured or sold as securities in
+Crypto.com. Owners of CRO tokens are not entitled to any rights in Crypto.
+com or any of its affiliates, including any equity, shares, units, royalties to
+capital, profit, returns or income in Crypto.com or any other company or
+intellectual property associated with Crypto.com.
+
+No representations or warranties have been made to the recipient of
+this whitepaper or its advisers as to the accuracy or completeness of the
+information, statements, opinions or matters (express or implied) arising
+out of, contained in or derived from this whitepaper or any omission from
+this document or of any other written or oral information or opinions
+provided now or in the future to any interested party or their advisers. The
+CRO tokens, as envisaged in this whitepaper, are under development and
+are being constantly updated, including but not limited to key governance
+and technical features. If and when the CRO tokens are completed, they
+may differ significantly from the description set out in this whitepaper. No
+representation or warranty is given as to the achievement or reasonableness
+of any plans, future projections or prospects and nothing in this document is
+or should be relied upon as a promise or representation as to the future. To the
+fullest extent possible, all liability for any loss or damage of whatsoever kind
+(whether foreseeable or not and whether or not Crypto.com has been advised
+of the possibility of such loss or damage) which may arise from any person
+acting on any information and opinions contained in this whitepaper or any
+information which is made available in connection with any further enquiries,
+notwithstanding any negligence, default or lack of care, is disclaimed.
+Third party data
+This whitepaper contains data and references obtained from third party
+sources. Whilst the management believes that these data are accurate
+and reliable, they have not been subject to independent audit, verification,
+or analysis by any professional legal, accounting, engineering, or financial
+advisors. There is no assurance as to the accuracy, reliability or completeness
+of the data.
+Translations
+This whitepaper and related materials are issued in English. Any translation is
+for reference purposes only and is not certified by any person. No assurance
+can be made as to the accuracy and completeness of any translations. If there
+is any inconsistency between a translation and the English version of this
+whitepaper, the English version shall prevail.
+This whitepaper must not be taken or transmitted to any jurisdiction where
+distribution or dissemination of this whitepaper is prohibited or restricted.
+Views of Crypto.com
+The views and opinions expressed in this whitepaper are those of Crypto.
+com and do not reflect the official policy or position of any government,
+quasi-government, authority or public body (including but not limited to any
+regulatory body) in any jurisdiction. This whitepaper has not been reviewed
+by any regulatory authority.
+Third party references
+References in this whitepaper to specific companies, networks and/or
+potential use cases are for illustrative purposes only. The use of any company
+and/or platform names and trademarks does not imply any affiliation with, or
+recommendation or endorsement of/by, any of those parties.
+All references to ‘dollars’, USD or ‘$’ are references to the United States Dollars
+unless otherwise stated.
+Graphics
+All graphics included in this whitepaper are for illustrative purposes only. In
+particular, graphics with price references do not translate into actual pricing
+information.
+Risk statements
+Purchasing CRO tokens involves substantial risk and may lead to a loss of a
+substantial or entire amount of the money involved. Prior to purchasing CRO
+tokens, you should carefully assess and take into account the risks, including
+those listed in any other documentation.
+A purchaser should not purchase CRO tokens for speculative or investment
+purposes. Purchasers should only purchase CRO tokens if they fully
+understand the nature of the CRO tokens and accept the risks inherent to the
+CRO tokens.
+Cryptographic tokens may be subject to expropriation and/or theft; hackers
+or other malicious groups or organizations may attempt to interfere with our
+system/network in various ways, including malware attacks, denial of service
+attacks, consensus-based attacks, Sybil attacks, smurfing, and spoofing which
+may result in the loss of your cryptographic tokens or the loss of your ability
+to access or control your cryptographic tokens. In such event, there may be no
+remedy, and holders of cryptographic tokens are not guaranteed any remedy,
+refund, or compensation.
+The regulatory status of cryptographic tokens and digital assets is currently
+unsettled, varies among jurisdictions and subject to significant uncertainty. It
+is possible that in the future, certain laws, regulations, policies or rules relating
+to cryptographic tokens, digital assets, blockchain technology, or blockchain
+applications may be implemented which may directly or indirectly affect or
+restrict cryptographic token holders’ right to acquire, own, hold, sell, convert,
+trade, or use cryptographic tokens.
+The uncertainty in tax legislation relating to cryptographic tokens and
+digital assets may expose cryptographic token holders to tax consequences
+associated with the use or trading of cryptographic token.
+Digital assets and related products and services carry significant risks.
+Potential purchasers should take into account all of the above and assess the
+nature of, and their own appetite for, relevant risks independently and consult
+their advisers before making any decisions.
+Professional advice
+You should consult a lawyer, accountant, tax professional and/or any other
+professional advisors as necessary prior to determining whether to purchase
+CRO tokens.
+This whitepaper contains certain forward-looking statements regarding
+the business we operate that are based on the belief of Crypto.com as well
+as certain assumptions made by and information available to Crypto.com
+Forward-looking statements, by their nature, are subject to significant risks
+and uncertainties.
+Forward-looking statements may involve estimates and assumptions and
+are subject to risks, uncertainties and other factors beyond our control and
+prediction. Accordingly, these factors could cause actual results or outcomes
+that differ materially from those expressed in the forward-looking statements.
+Any forward-looking statement speaks only as of the date of which such
+statement is made, we undertake no obligation to update any forward-looking
+statements to reflect events or circumstances after the date on which such
+statement is made or to reflect the occurrence of unanticipated events.
+
+Crypto.com was founded on the belief that it is your basic human right to
+control your money, data and identity. We believe that decentralization holds
+the key to empowering people around the world to better safeguard their
+rights, and that we are helping the world move in this direction by accelerating
+the transition to adopting cryptocurrency.
+
+Mission:
+Accelerate the World’s Transition to Cryptocurrency
+We believe that by accelerating the transition to adopting cryptocurrency, we
+can help people globally to:
+Control their money - ability to access their funds anytime and anywhere;
+	Safeguard their data - cryptography-secured blockchain makes datatempering highly unlikely;
+Protect their identity - no central entity can compromise your identity.
+
+Vision:
+Cryptocurrency in Every WalletTM.
+In our journey to achieve this vision, we are:
+Redefining how money is being moved, spent and invested, and
+	Democratizing blockchain technology by designing beautiful, simple and
+useful financial services that have a lasting, positive impact on
+people’s lives.
+
+Our strategy is to leverage payment solutions
+as the primary tool for driving adoption
+and user acquisition, while building trading
+and financial services solutions as the major
+sources of revenue. This strategy creates and
+self-sustains a virtuous cycle: payment channels
+bring users onto the platform, whereas trading
+and financial services generate revenue that can
+be reinvested into payment.
+Our product solutions across three verticals are building up a sustainable ecosystem
+that serves our mission: Accelerate the World’s Transition to Cryptocurrency.
+
+Commitment to Security & Compliance
+Building trust is the cornerstone of our commitment to our customers we believe that security and compliance are the foundations of achieving
+mainstream cryptocurrency adoption.
+Crypto.com is the first cryptocurrency company in the world to have ISO/IEC
+27001:2013, ISO/IEC 27701:2019, PCI:DSS 3.2.1 Level 1 compliance.
+ISO/IEC 27701:2019 Certification is the “Gold Standard”
+for privacy risk management (the audit was conducted
+by SGS, a leading inspection verification and certification
+company recognized globally).
+ISO/IEC 27001:2013 Certification is the “Gold Standard”
+for information security management (the audit was led
+by SGS, a global leader in Testing, Inspection
+and Certification).
+PCI:DSS (Payment Card Industry: Data Security Standard)
+outlines a set of strict requirements set by the payment
+card industry and is designed to ensure that organizations
+which process, store or transmit credit card data maintain
+a highly secure environment, and uphold the highest data
+security and privacy standards. Level 1 is the highest level
+of certification.
+We have completed a detailed security
+assessment, which included external
+penetration testing, threat modeling through
+to risk control reviews. In addition to our own
+extensive analysis, we have also engaged the
+Kudelski Blockchain Security Center to conduct a thorough external security
+test and full threat modeling exercise to ensure the completeness of their
+security controls.
+We have also been rated “Adaptive (Tier 4)” – the highest level possible for
+the National Institute of Standards and Technology (NIST) Cybersecurity
+Framework and the latest NIST Privacy Framework, developed by the US
+Department of Commerce. The NIST Cybersecurity Framework, originally
+released in 2014, provides a framework of security guidance for how private
+sector organizations can develop, assess and improve their ability to identify,
+protect, detect, respond and recover from cyber attacks.
+All of users’ cryptocurrencies are held offline in cold storage. Crypto.com
+has secured a total of USD 360M in cold storage insurance against physical
+damage or destruction, and third-party theft.
+For more information on our security & compliance standards,
+please visit our website.
+
+Support of Fiat Institutions
+In our journey to achieve the vision of Cryptocurrency in Every WalletTM, we
+are also actively enlisting the support of fiat institutions and helping them to
+include or involve cryptocurrency in their offerings in a compliant, secure &
+cost-effective manner.
+For example, one of the first products we have launched is the Visa Card as
+an approved VISA program manager. Cardholders can conveniently spend &
+withdraw the fiat equivalent of their cryptocurrency online or offline at 50+
+millions of VISA-approved merchants worldwide.
+As another case in point, our native blockchain solution - Crypto.org Chain
+- not only caters to retail users who want to spend any crypto anywhere
+for free, but also speaks to fiat institutions who face cryptocurrency-related
+challenges. For instance, Crypto.org Chain will help fiat institutions in areas
+such as:
+safe custody of cryptocurrencies;
+control of price volatilities of cryptocurrencies;
+timely and cost-efficient on-chain / off-chain settlement;
+management & support of multiple cryptocurrencies.
+
+Below is an overview of the products we offer along three verticals:
+1. Payment - Crypto.com Pay, Visa Card
+2. Trading - Crypto.com App, Crypto.com Exchange
+3. Financial Services - Decentralized Finance Products, Crypto Earn,
+Crypto Credit
+Crypto.org Chain, our native blockchain solution, is the key tech that powers
+the payment pillar and will later support our trading and financial services
+products. In particular, the Crypto.org Chain blockchain protocol is the
+backbone behind Crypto.com Pay, our mobile payment solution.
+Crypto.com Coin (CRO) - the native token of Chain - will power all of our
+products and offer rich token utility across different use cases (see section on
+Token Utility below).
+
+Crypto.com Pay is a mobile payment service that lets you pay in and/or
+receive cryptocurrency anywhere, anytime for free. This product is powered
+by Crypto.org Chain, our native blockchain solution (see section below for
+details).
+Crypto.com Pay delivers the following value propositions:
+Merchants pay minimal fees for settlements in crypto or fiat,
+saving up to 80% on fees versus typical payment processors;
+Low volatility & low risk offered by letting merchants accept
+cryptocurrency and get paid in their preferred crypto or fiat currency;
+Easy to set up, view and manage payments in a matter of minutes;
+For developers. By developers. We’ve made it easy to start accepting
+cryptocurrencies with just a few lines of code.
+Pay Checkout lets customers check out and pay in crypto and/ or merchants
+to receive crypto as an additional payment option. It delivers the following
+benefits for merchants and customers:
+Pay Checkout is easy and intuitive to use for merchants and customers:
+The customer pays in crypto by choosing “Crypto.com Pay” on the
+checkout page at the merchant’s.
+The customer is presented with a QR code and scans to pay - either
+with Crypto.com App or with a supported decentralized wallet.
+The customer’s account is debited.
+The merchant receives payment instantly in fiat currency or
+cryptocurrency of their choice in their business account with Crypto.com.
+On one hand, the customer experience is
+designed to be effortless, and each payment
+can be completed with a few taps on their
+mobile phone. On the other hand, merchants
+can implement Crypto.com Pay with a few
+lines of code from our SDK and have flexibility
+in accepting both fiat and cryptocurrencies.
+Our team is working to expand the list of merchants that integrate with
+Crypto.com Pay, with our selected partners below:
+
+With Pay Gift Cards, Crypto.com App users can shop at
+worldwide prominent brands with crypto and get cashback in
+CRO with each purchase.
+We offer gift cards from brands in different categories including
+airlines, hotels, games, fashion, food and beverage, general retail,
+telecommunication, gas and diesel, entertainment, taxi services,
+and grocery. Users can find renowned brands such as iTunes,
+Google Play, Amazon, Starbucks, Nike etc.1 with more brands
+around the world being added to the catalogue continuously.
+Pay Airtime Top-Up
+Pay Airtime is a feature that enables Crypto.com App users
+to pay for mobile airtime top-up via Crypto.com Pay in
+cryptocurrencies such as BTC, ETH, LTC and CRO.
+With a few clicks in the Crypto.com App, users can top up
+airtime for mobile numbers offered by over 340 prepaid
+mobile network operators, including T-Mobile, Vodafone,
+Airtel, Orange, Verizon & others, in over 100 countries. Users
+also have options to top up their mobile phone or for the
+others, anytime and anywhere.
+Pay Your Friends allows users to pay back their friends in
+crypto and earn rewards by doing so. Users can pay their
+friends in any cryptocurrency for free. Alternatively, if a user
+pays friends back in CRO tokens, the sender will be rewarded
+with up to 10% cashback on this transaction.2
+What we want to achieve with Pay Your Friends is to give our
+users a reason to bring all their friends into cryptocurrency. The
+user experience is instantaneous & free - the more users get a
+chance to experience it, the closer we get to global adoption.
+The availability of gift card brands varies by jurisdiction. Crypto.com does not have any direct partnership
+with the brands/merchants offered.
+
+Crypto.org Chain is the next-generation public
+blockchain that enables transactions worldwide
+between people and businesses. It is also the
+technology that powers Crypto.com Pay, our
+mobile payment solution (see section above),
+and will be used to revolutionize the world of
+payments, DeFi and NFT.
+Crypto.org Chain has the following key value propositions:
+Secure: Fault-tolerant design making the Chain resilient and safe;
+Instant & Low-Cost: Chain delivers Instant transaction confirmation
+coupled with minimal fees;
+Permissionless: Chain is an open-sourced project that welcomes any
+party to join the network and/ or contribute to the code development.
+
+
+To make payments in
+cryptocurrency
+
+generous cashback funded by the network
+access (time): instant access to cryptocurrency
+access (distribution): ability to spend cryptocurrency
+directly from their customer crypto-exchange
+account / wallet at millions of merchants, both
+online or offline, without moving to fiat
+reduced costs: zero processing fees;
+business growth: acquire high quality customers
+
+
+To receive payments in
+cryptocurrency
+with substantial spending power;
+marketing: offer customers network-funded
+discounts and demonstrate abilityto move with a
+new trend
+To settle between different
+currencies
+
+revenue: earn fees for activities performed
+
+Crypto.org Chain Mainnet launched in March 2021, with Crypto.org Coin (CRO)
+as its native currency.
+Users can stake CRO in Crypto.com DeFi Wallet to join delegated proof-ofstake and earn yield accordingly.
+To better share network information, Crypto.org Chain Explorer 2.0 was unveiled
+together with a revamped Crypto.org Chain website. By allowing anyone to
+review the Croeseid Testnet on-chain activity, including node staking and
+governance, the new Crypto.org Chain Explorer marks an important milestone on
+our road to mainnet and supports our decentralized and permission-less vision
+for the network.
+We have decided to choose Tendermint - a byzantine fault tolerant (BFT)
+consensus protocol3 - as the consensus engine for Crypto.org Chain. We are
+also an active contributor to the Tendermint Rust-abci library.
+The decision to use Tendermint was based on the following reasons among
+others:
+During our internal testing, we have obtained throughputs of
+transactions-per-second (TPS) reaching hundreds;
+An earlier version of Tendermint was rigorously tested by Jepsen.io,
+which sets it apart from newly-proposed algorithms that are yet to
+be thoroughly tested;
+Track record of adoption: Tendermint has been in continuous
+development since 2014, and has been adopted by several high-profile
+projects4;
+Broad use cases: Unlike some blockchain systems that are confined
+to consortium networks, Tendermint caters to both permissioned and
+public network;
+Flexibility: Tendermint has a fairly modular architecture, and offers
+flexibility on which and how applications are developed on top of it.
+
+Crypto.org Chain is being built with complete decentralization in mind - Chain
+is a permissionless network, meaning that anyone can participate in the
+network if they wish to do so. Crypto.org Chain is open-source on Github with
+documentation here.
+In the long-term, Crypto.org Chain will be able to run without CRO Protocol
+Labs entities as we develop the key pieces of architecture and technology to
+enable it:
+Trust-less mechanisms to increase access to transaction validation nodes,
+Built-in and proven security protocols to keep bad actors at bay,
+	Balanced incentives for valued added contributors and disincentives for
+free-riders,
+	Upgradability and flexibility of the chain through community code
+contributions.
+
+No single authority server
+controls the nodes, they all
+have individual entity.
+
+All the nodes are
+connected under a
+single authority
+
+Blockchain technology and cryptocurrencies are relatively new concepts. Since
+Bitcoin’s initial release in 2009, the awareness and acceptance of blockchain
+& cryptocurrencies have been steadily on the rise. We are pleased to see
+that crypto has received the interest and support of established institutions,
+with recent news such as Facebook’s launch of its Libra project and Paypal’s
+confirmation that it is developing cryptocurrency capabilities. We believe
+that such favorable developments in the industry will continue to increase the
+recognition of cryptocurrencies and fuel the growth of the industry.
+On a related note, the accelerated experimentation of Central Bank Digital
+Currencies (CBDCs) by governments around the world indicate a strong
+interest in digital currencies as a whole. Our research & insights team have
+supported The Economist Intelligence Unit (EIU) in a white paper titled
+Digimentality —Fear and Favouring of Digital Currency, which outlines the
+findings from our research on consumer attitudes towards digital currencies.
+We have observed that 85% of survey respondents have owned, used or
+heard of decentralized digital currency (such as a cryptocurrency), indicating
+increased public awareness.
+
+Another indicator on the potential of cryptocurrencies is the exponential
+growth in the number of wallets. Bitcoin and Ethereum wallet creation have
+experienced explosive growth (>10x) respectively from 2013 to 2015 and 2016
+to 2018. We expect wallet creation growth to continue in the future but with
+a significantly more moderate CAGR down to 30-40% in the later years. Our
+research & insights team have used on-chain data to reach the estimate that
+the Bitcoin & Ethereum wallet addresses map to around 66 million crypto
+owners worldwide in 2020 (see this report for details on methodology), which
+is a sizable user-base considering both networks are around or less than a
+decade old at the time of the estimate.
+Leveraging the Bitcoin/Ethereum wallet creation growth forecast, and
+discounting users with multiple wallets as well as overlap between each
+blockchain wallets, we expect crypto users to grow to 250 to 400 millions by
+2025.
+Based on historical growth of Bitcoin and Ethereum wallets (2:1 ratio in contribution) and decreasing
+expected future growth down to 35% in the last year
+
+Total Digital Payments segment expected to be $5+ trillion USD by 2022,
+amongst which crypto payments could represent 2-3%7 of total payment
+volume ($100-150 billion USD).
+Based on historical growth of Bitcoin and Ethereum wallets (2:1 ratio in contribution) and decreasing
+expected future growth down to 35% in the last year
+The Digital Payments market segment is led by consumer transactions and includes payments for products
+and services which are made over the Internet as well as mobile payments at point-of-sale (POS) via
+smartphone applications.
+Similar to the payment market penetration of the first mobile payment player entrant in a large market
+after 4-5 years.
+The Visa Card offers benefits that challenge the world’s best credit cards.
+Users can apply for different tiers of VISA cards that offer different perks:
+100% reimbursement of Netflix, Spotify, and
+Amazon Primememberships, 
+10% reimbursement of Airbnb and
+Expedia expenses.
+
+
+“Stake” or “Staking” means the holding of CRO in your Crypto.com App for 6 months.
+CRO Cashback is paid in CRO token to your wallet in the Crypto.com App. Transactions on digital wallets, digital banking services, crypto
+exchanges, stored value products, money remittance services are excluded from the CRO rewards program.
+Once a user unstakes CRO, the benefits of each tier will be reduced (except for Airport lounge access). 
+
+The Visa Card could be managed via the Crypto.com App (see section below
+for details). In the app, users could complete card application, view card
+details, track card spending records, receive eligible card rewards etc.,
+
+Crypto.com Solutions - Trading
+Crypto.com App
+Value Proposition
+Crypto.com App delivers the following value propositions:
+A.One-stop shop to buy, sell, store, send & track track cryptocurrency in
+a secure and convenient way with a few taps on their mobile phones;
+B.The only place to buy crypto at true cost - Crypto.com’s proprietary
+Vortex Trading Engine pools liquidity from major exchanges globally
+and routes orders to them to ensure the Best Execution Price. Coupled
+with our increasing coverage of fiat top-up channels and convenient
+app interface, this makes Crypto.com App the best place to buy crypto.
+Special promotion: The 3.5% credit/ debit card fee will be waived for
+cryptocurrency purchases for all users until the end of September.
+
+Users can buy crypto with their fiat wallets and/ or with a credit or debit card.
+The Crypto.com App supports 7 fiat and 55 cryptocurrencies.
+Users can send crypto to Crypto.com App users instantly without fees, or
+withdraw crypto to external wallet addresses with minimal fixed fees.
+
+Users can monitor 200+ coins at their fingertips in the coin tracking tab.
+Metrics available include prices, volume, market cap, % change and more that
+are refreshed frequently and up-to-date. The app also presents charts in dual
+currencies (USD, BTC) and different time frames (8H, 1D, 1W, 3M, 6M).
+
+The Crypto.com App enables users to apply for and manage their Visa Card
+and enable spending of their cryptocurrency in the online and offline world
+at more than 40 million VISA merchants worldwide. Supported app functions
+include: Convert cryptocurrency into fiat ready for spending (including USD, EUR,
+GBP, SGD, HKD, JPY, AUD), Enable card withdrawal, freeze/ unfreeze card
+Upgrade card tier etc.
+Crypto.com’s proprietary Vortex Liquidity Engine ensures that customers have
+access to deep liquidity pools and best execution prices on the Crypto.com
+Exchange. Retail & corporate users can trade on the exchange via the desktop
+interface or via the exchange API.
+Crypto.com Exchange supports trading pairs for cryptocurrencies with leading
+market capitalization and volume such as BTC, ETH, LTC, USDC and more,
+as well as CRO token - the native currency of Crypto.org Chain (see section
+below for more details on the CRO token).
+The fees on the exchange are based on trading volume and CRO staking. The
+higher the volume and/ or the higher the amount of CRO staked, the lower the
+trading fees. In addition, users enjoy trading fee discounts if they pay the fees
+in CRO. Please refer to this webpage for our detailed fees & limits schedule.
+
+Margin trading on the Crypto.com Exchange allows you to borrow
+cryptocurrencies on Crypto.com Exchange to trade on the spot market.
+Eligible users can use the margin loan as leverage to open a position that is
+larger than the balance of your account.
+
+The first derivatives product offered on Crypto.com Exchange is perpetuals.
+Perpetuals enable traders to buy or sell the value of their ‘assets’, whereby the
+underlying asset itself is never traded—allowing them to better manage risk.
+Perpetuals do not expire or have a settlement date, and users can hold their
+positions for as long as needed.
+
+Crypto.com Lending allows you to borrow against your cryptocurrencies
+without selling them. You can deposit them as collateral and take out crypto
+loans to fulfill your financial needs, use for Margin Trading on the Crypto.com
+Exchange, or hedge on other exchange platforms.
+
+If you are an institutional user and require more flexible loan terms, you can
+apply for Lending Pro on Crypto.com Lending. Once your application has
+been approved, you can enjoy a higher borrowing limit and apply for loans
+with customised terms when they are available.
+
+The Syndicate is a discounted token offering platform on Crypto.com
+Exchange, powered by the CRO token.
+The Syndicate helps projects raise awareness and drive user education. The
+listing project can provide an allocation of their own token for distribution on
+the Crypto.com Exchange users with up to a 50% discount. All proceeds from
+the sale are passed back to the projects. CRO holders receives priority token
+allocation for these events.
+
+Crypto.com Exchange can enjoy benefits provided by two types of staking
+services. Rewards are offered on a flexible term - no “lock-up” is required. The
+soft-staking maximum limit varies depending on the currency, and users
+with more CRO staked on the Exchange are eligible for higher limits.
+
+Crypto.com Exchange will continuously expand its product offerings for retail
+& institutional users.
+In addition, Crypto.com Exchange offers a stream of new-user promotional
+campaigns. Promotions we have launched include 2% additional deposit bonus
+(for first 30 days), 0% trading fees (for first 90 days) etc.
+
+To take one more step towards letting users better safeguard their money,
+data and identity, we have launched the Crypto.com DeFi Wallet, which is
+a non-custodial wallet app that allows users to gain full ownership of their
+private keys.
+Crypto.com DeFi Wallet offers the following value propositions.
+Note: Crypto.com DeFi Wallet (non-custodial) and Crypto.com App (custodial
+- see section above) are two mobile applications that target different use
+cases.
+You have 100% control over your
+crypto and your private keys
+
+If crypto transfers are made within
+Crypto.com ecosystem, you will not be
+charged any fees
+
+We do not require you to prove
+your identity so risk of data branch
+is lower
+
+No major effect if you lose your private
+keys or recovery phrase, easy to regrain
+access again via our support team
+
+You need to pay transaction fee
+as the transactions are on-chain
+and you have to wait for the
+transaction to be confirmed
+
+You need to prove your identity and
+perform KYC (know your customer,
+ID verification)
+
+If you lose your recovery phrase,
+you will not be able to access your
+wallet and crypto
+
+Your wallet is not fully decentralized as
+Crypto.com is the wallet custodian
+
+Crypto.com De-Fi Wallet is designed for all level of crypto users - beginners
+will feel at ease as they are gently guided towards making their first
+transaction, while experienced users will notice significant improvements
+to common features found on other crypto wallets (in particular, backup
+recovery phrase and sending/receiving crypto). The wallet supports BTC, ETH,
+CRO, LTC, XLM, CRV, and TRU, with more tokens to be progressively added.
+Users can have more than one wallet and change their wallet networks from
+Mainnet to Ethereum Testnets in the Crypto.com DeFi Wallet App.
+
+DeFi Swap is designed to be the best place to swap and farm DeFi coins at
+the best available rate, leveraging proven and audited protocols, while offering
+an outstanding incentive program powered by CRO.
+Liquidity Providers (LPs) are generously incentivized for contributing to
+liquidity pools with Triple Yield through:
+Swap-fee Sharing for LPs;
+CRO DeFi Yield for LPs who also stake CRO;
+Bonus LP Yield for LPs of selected pools.
+DeFi Swap follows a constant product formula, where the product of
+the quantities of two tokens remain the same before and after a swap is
+performed. The price slippage depends on the ratio and quantity of tokens in
+the pool.
+The DeFi Swap is a decentralized protocol deployed on the Ethereum
+blockchain. Each transaction record such as on-chain deposits and
+withdrawals are transparent on the network. The role of Crypto.com is as a
+provider of technology by contributing to the development of the product.
+Crypto.com is open-sourcing the core codebase and welcomes the input and
+decentralized contributions from the community.
+DeFi swap is integrated with the DeFi wallet allowing users to exchange
+tokens directly in the DeFi Wallet app.
+For more information about the DeFi Swap, please consult the DeFi Swap
+whitepaper, and the DeFi Swap FAQ. Users can provide liquidity and / or swap
+tokens via interacting directly with the DeFi Swap Web App.
+
+Other than the products mentioned above, we have also launched DeFi Earn
+that allows users to generate yield on their tokens and DeFi dashboard with
+estimated gas costs.
+In addition, we have a suite of decentralized products planned in our product
+roadmap (see section above), including but are not limited to: decentralized
+borrowing / lending services, decentralized card offerings etc. Some of
+our offerings will be powered by Crypto.org Chain, a decentralized public
+blockchain.
+On a related note, our in-house Research & Insights team are publishing
+articles & reports on decentralized finance (e.g., De-Fi landscape overview,
+project deep-dives), which can be viewed online at this webpage. We are
+continuously publishing more reports to the webpage which can be read by
+anyone for free. Other than the free reports, Crypto.com Private members get
+exclusive access to our proprietary monthly feature articles (see section on
+Crypto.com Private for more details).
+Crypto Earn is a product that lets users who want to capitalize on their holdings
+while retaining ownership. Crypto Earn gives users the freedom to grow their
+crypto assets and earn up to double-digit interest rates annually on different
+cryptocurrencies.
+Crypto Earn is offered within the Crypto.com App.
+Users can deposit cryptocurrencies and earn interest. Supported deposit tokens
+are shown in the picture below and more assets will be added regularly.
+
+There are three holding term options for users to choose at the time of deposit:
+Flexible holding term
+1-month fixed term
+3-month fixed term
+Once the deposit is confirmed, interest will start to accrue immediately. Please
+check the Crypto.com App for the latest rates. Users with CRO staked will
+receive preferential interest rates.
+
+
+Crypto Credit gives users spending power by enabling them to monetize their
+crypto assets without the need to sell it.
+
+
+Crypto Credit is offered within the Crypto.com App.
+Users can deposit cryptocurrencies as collateral to borrow a crypto loan.
+Supported collateral currencies include BTC, ETH, CRO, LTC, XLM, EOS,
+ADA, ALGO, ATOM, VET, LINK, and WBTC, with more currencies to be added
+progressively.
+
+After depositing the required collateral, the user will receive the loan instantly
+in their crypto wallet in the Crypto.com App. Supported loan currencies
+include USDT, TUSD, USDC, PAX
+Users with CRO staked will receive preferential loan interest rates. Please
+check the Crypto.com App for the latest rate information.
+
+Crypto.com NFT is a platform dedicated to delivering unique content from
+popular artists, musicians, athletes, and sports:
+Curated roster of mainstream and digital artists including: Aston Martin
+Cognizant Formula OneTM, Axel Mansoor (the King Of The Clubhouse),
+Bag Raiders, BossLogic, Boy George, Jonathan Monaghan with Nathan
+Evans (of #1 single Sea Shanty ‘Wellerman’ fame), KCamp, Klarens Malluta
+with Lionel Richie, KLOUD, Mr. Brainwash, OPUS, Snoop Dogg,
+among others;
+User-friendly NFT buying experience, allowing users to buy NFTs using
+their credit or debit card;
+Integration with Crypto.com Pay, offering users the ability to pay with over
+20 cryptocurrencies including Bitcoin, Ethereum, and Dogecoin.
+User Experience
+At launch, users will have the option to 1-click buy using their credit or debit
+card or with cryptocurrency via Crypto.com Pay.
+Collectors or fans will be able to acquire and trade (resell) NFTs through
+the platform.
+
+With its intuitive interface and country-specific tax calculation formulas,
+Crypto.com Tax makes it easy to file complicated crypto taxes:
+Full integration with popular exchanges & wallets and easy-to-use interface
+that gets the job done in no time;
+Entirely free services. No matter how many transactions you have in the
+past years, we’ll handle the calculation for you at no cost, making us the
+first free crypto tax product on the market;
+Simple and intuitive interface, aiming to create the best user experience
+when dealing with tax matters. All results are transparent for review prior
+to getting your final results generated.
+User Experience
+Users can import crypto transaction records from supported exchanges
+and wallets by uploading a CSV file, or using API synchronisation with major
+platforms like the Crypto.com App.
+In a matter of minutes, Crypto.com Tax is able to provide users with an
+estimation of taxable gains/losses on relevant crypto transactions, which can
+then be downloaded for tax filing.
+
+Crypto.com Private is a package of premium rewards and benefits tailored for
+our Obsidian, Rose Gold and Icy White VISA cardholders. This builds on our
+existing benefits for these cardholders which include up to 8% cashback on all
+spending, unlimited LoungeKey™ Airport Lounge Access with a guest, Airbnb
+and Expedia rebates among other benefits (see section above on Visa Card
+for detailed description on the card product).
+Benefits for All Private Members
+All Crypto.com Private Members will have access to a set of crypto-related
+services:
+OTC block trades of CRO
+Priority access to research reports published by Crypto.com
+
+Inheritance service i.e., assistance with estate handling related to Crypto.
+com assets
+Top industry events access (with priority access for Obsidian cardholders)
+Priority customer service
+VISA Card-Related Benefits
+Icy White, Rose Gold and Obsidian cardholders will now enjoy:
+Crypto Earn additional interest of 2% annually on fixed-term deposits
+(paid in CRO; not applicable to CRO deposits);
+Crypto Earn increased account limits of USD $2m for Obsidian and
+USD$1m for Icy White/Frosted Rose Gold; US$0.5m for the remaining
+card tiers;
+Amazon Prime rebate of up to US$12.99/month in membership fees;
+Welcome Pack with exclusive Crypto.com branded merchandise.
+In addition, Obsidian cardholders will exclusively enjoy the private jet service
+(special perks when travelling with our preferred private jet partner).
+
+
+Our referral program provides some of the richest rewards ever seen in the
+industry. 
+All eligible Crypto.com App users can
+participate in the referral program, with no
+limits on the number of referrals. Bonuses
+of the referral program are credited instantly - your referred friends can use
+their sign-up bonus immediately after they make a valid transaction.
+Crypto.com Exchange Referral Program
+The Crypto.com Exchange referral program offers rewards to both eligible new
+referred users and the referrers. New users that pass verification and stake a
+certain amount of CRO are eligible to receive up to USD$25 equivalent in CRO.
+Eligible referrers can receive even greater rewards in CRO.
+
+We have an in-house Research & Insights team dedicated to publishing
+articles, reports and research with the aims to educate more people about the
+crypto space and establish thought leadership with insightful analysis. The
+offerings of our research team include:
+Crypto.com University (link here) - educational materials about
+blockchain and cryptocurrencies, suitable for people who are new to the
+industry and/ or are looking to level up their knowledge;
+Crypto.com Research Hub (link here) - free, online repertoire where we
+share our independent views on diverse topic suitable for audiences of
+different levels of knowledge and/ or interest. We offer a wide range
+of materials that cater to industry veterans, trading enthusiasts or new
+joiners alike;
+Crypto.com Private Feature Articles - Crypto.com Private members get
+privileged access to our monthly feature articles, along with other exclusive
+benefits (see the section on Crypto.com Private for more details).
+Our research team conducts in-house research, as well as collaborates
+with research partners on certain topics. For example, we supported The
+Economist Intelligence Unit (EIU) on a piece of research to dig deeper into
+the general public’s behaviors and opinions around digital payments - such
+as drivers, barriers and trust factors - and the evolution of a cashless future.
+A new interactive digital currency hub is now being hosted on The Economist
+(https://digitalcurrency.economist.com/) alongside a white paper titled
+Digimentality —Fear and Favouring of Digital Currency, which outlines the
+findings from our research on consumer attitudes towards digital currencies.
+
+In March 2021, Crypto.com announced a multi-year partnership with Aston
+Martin Cognizant Formula One Team™ to bring exclusive experiences and
+opportunities to traders and F1 fans. The partnership brings together two
+dynamic brands which share a passion for technology and speed, and
+places Aston Martin Cognizant Formula One Team™ at the forefront of
+cryptocurrency innovation.
+
+In March 2021, Crypto.com announced a global partnership with Visa that also
+includes principal membership in Visa’s network in Australia. The partnership
+will advance Crypto.com’s ambition to accelerate the adoption of crypto
+payment solutions around the world by expanding the reach of the
+Crypto.com Visa Card. In addition, Crypto.com is announcing plans to roll out
+fiat lending with crypto collateral via the Crypto.com Visa Card.
+Having been granted Visa principal membership, Crypto.com will begin
+direct-issuance of the Crypto.com Visa Card in Australia, allowing Crypto.com
+to have a direct relationship with cardholders. Crypto.com has also started
+offering virtual cards in Europe, allowing users to instantly start spending
+without waiting for the physical card to be in-hand.
+
+No pre-sale, no public sale, and no ICO
+100% circulating supply, 100% decentralized
+Focused on revolutionizing payments, DeFi and NFTs
+(See section below for details on distribution & planned use)
+Token ERC20 contract and daily distribution smart contract
+were successfully audited by Quantstamp and Certik.
+
+Token Distribution and Planned Use
+In February 2021, Crypto.com announced updates to the CRO token
+distribution, with the goal of 100% decentralization in preparation for Crypto.
+org Mainnet launch.
+Crypto.com has pledged to burn 70 billion CRO (reducing the total supply of
+the token to 30 billion CRO), with the remaining 5.9 billion CRO to be used
+as Mainnet block rewards for Chain validators and allocation to Particle B for
+ecosystem development.
+
+The Crypto.com Coin (CRO) token is the native token of Crypto.org Chain our next-generation public blockchain solution. CRO also powers the overall
+Crypto.com ecosystem, with utility across payment, trading and financial
+services use cases:
+
+Crypto.com was founded and is being led by a team of seasoned management
+with a proven track record and rich experience:
+Formerly Vice President, Quantitative Trading at AP Capital Management
+in Hong Kong, Weiyi led the development of an algorithmic trading
+platform and managed the Asian market arbitrage portfolio. Prior
+to that, Weiyi was Vice President of Electronic Market Making at
+JP Morgan, where he led volatility trading strategy and arbitrage
+strategy development in the automated market making business; and
+Quantitative Trading Strategist of Equity Derivative Trading at Deutsche
+Bank.
+To support us on the path forward, we have invited industry-recognized
+leaders to serve as our Board of Advisers, who bring a track record of success
+and expertise in areas ranging from AI, trading technology, product to
+operations and talent.

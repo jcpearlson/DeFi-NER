@@ -1,0 +1,173 @@
+Abstract—We present a formal model of synchronous processes without distinct identifiers (i.e., anonymous processes) that communicate using one-way public broadcasts.
+Our main contribution is a proof that the Bitcoin protocol achieves consensus in this model, except for a negligible probability, when Byzantine faults make up less than half the network.
+The protocol is scalable, since the running time and message complexity are all independent of the size of the network, instead depending only on the relative computing power of the faulty processes.
+We also introduce a requirement that the protocol must tolerate an arbitrary number of passive clients that receive broadcasts but can not send.
+This leads to a tight 2f + 1 resilience bound.
+We consider the Byzantine consensus problem in a large public peer-to-peer network: all processes in the network must come to unanimous agreement about some value, in spite of a minority of faulty processes that deviate arbitrarily from the protocol.
+Consensus is a powerful tool, enabling distributed applications such as dynamic name resolution [1], certificate revocation [2], mutable file systems [3], and digital currency [4].
+Unfortunately, networks without admission controls are inherently vulnerable to the Sybil attack [5], in which selfish or malicious processes claim multiple fraudulent identities.
+This is detrimental to consensus protocols, which typically involve collecting a majority of votes.
+What stops an attacker from voting several times? In 2009, Satoshi Nakamoto presented Bitcoin [4], a digital currency implemented as a public peer-to-peer network.
+At its core, Bitcoin is based on a novel Byzantine consensus protocol, in which cryptographic puzzles keep a computationally bounded adversary from gaining too much influence.
+We provide the first formal presentation of this protocol.
+Our model assumes synchronous processors and communications, as well as the existence of a random oracle [6] (i.e., an ideal hash function).
+We state the requirements for consensus using Monte Carlo rules: disagreement is permitted with positive but negligible probability and running time must be bounded.
+Our main result is a proof that Bitcoin achieves consensus when the adversary controls less than half the overall computing power (i.e., 2f + 1 resilience).
+The protocol is scalable, in that the running time and total message bits are all independent of the size of the network, instead depending only on the ratio of faulty processes.
+To make the problem more realistic, we introduce an additional requirement that even passive clients of the network must also decide on the same value.
+This requirement leads to a simple impossibility proof, since the clients must distinguish between the actual network and an impostor.
+Specifically, we provide a matching lower bound that shows Bitcoin achieves optimal resilience.
+Monte Carlo Consensus Many consensus protocols use randomization, especially in order to circumvent the well-known FLP impossibility result [7] for deterministic asynchronous networks.
+The nondeterministic restatement of the consensus problem typically involves Las Vegas rules: the network must eventually reach consensus (with probability 1), although the amount of time taken may be unbounded [8]–[10].
+King and Saia [11] suggested this requirement is too strict for large scale networks.
+Since deterministic consensus requires at least O(n2 ) message bits [12], any randomized protocol using fewer than quadratic messages must be a Monte Carlo protocol that fails with nonzero probability [13], [14].
+We therefore introduce a global security parameter, k, and require only that a consensus protocol succeeds except for negligible probability, meaning a probability that approaches zero faster than the inverse of any polynomial function of k.
+This requirement is standard in modern cryptography [6], [15].
+In particular, any instantiation of authenticated communications channels (as in [12]), even using idealized cryptographic primitives, will introduce an equivalent parameter.
+The Bitcoin protocol meets these requirements, using a number of messages independent of the overall size of the network.
+If there are no faults, then the expected number of distinct messages is simply O(k).
+In the worst case, when the number of Byzantine faults is f = b n−1 2 c, the expected message complexity is O(kn2 ).
+Anonymous Networks Traditionally, the Byzantine agreement problem allows processes to be configured with distinct initial states - in particular, the mapping from unique names to processes is a known parameter, and each process knows its own name.
+For a large scale public network, this assumption is too strong.
+Angluin [16] showed that anonymous message passing networks are strictly weaker than traditional eponymous networks.
+Other work has focused on anonymous shared-memory systems [17]–[19].
+Crash-fault tolerant Consensus can be achieved in anonymous networks of unknown size [20].
+Okun  and Barak [21], [22] provided Byzantine agreement protocols for a stronger message-passing model that assumes authenticated channels between each pair of processes have initially been established.
+Delporte-Gallet et al [23] made a unifying effort in considering homonymous (partially anonymous) networks with a limited number of authentic identities.
+Interestingly, they found that deterministic Byzantine agreement depends only on the number of authentic identities, rather than the total number of processes.
+This builds the argument that anonymous (or homonymous) models are important for large networks.
+Moderately Hard Puzzles Aspnes suggested using moderately-hard puzzles to assign identities in an initially anonymous network [24].
+The difficulty of the puzzles prevents a computationally bounded adversary from claiming too many identities.
+This is essentially the same approach taken by Bitcoin [4].
+A moderately-hard computational puzzle can be solved, but only with considerable effort, time, and/or cost, as controlled by an adjustable difficulty parameter.
+Puzzles were first used by Merkle [25] in the development of public-key cryptography.
+Later, Dwork and Naor [26], [27] proposed using puzzles to slow down email spammers.
+Subsequently, puzzles have been used thwart Sybil attacks in a variety of settings [28]–[31].
+Other uses have included timed-release encryption [32] and amortized micropayments [33].
+Computational puzzles are typically constructed using a random oracle (i.e., an ideal hash function) that maps inputs to random outputs.
+The random oracle is a one-way function and can not be inverted.
+The puzzles are designed so that the most efficient way to find a solution is a brute force guessand-check approach.
+Thus, the rate at which an adversary can solve puzzles is limited by the rate at which hashes can be computed.
+The protocol Aspnes described [24] relies on pairwise authenticated communication channels between processes.
+The Bitcoin protocol eliminates this requirement by using noninteractive publicly-verifiable puzzles.
+The processes communicate using only unauthenticated broadcast messages.
+C OMPUTING M ODEL A.
+Message Passing Processes We consider a network to be a set of n identically configured processes, {p1 , p2 , ..., pn }.
+An execution is a sequence of alternating states and transitions, π0 , s0 , π1 , s1 , ..., πi , si , ..., where a mapping from states to sets of available transitions specifies the admissible executions.
+This mapping is described by the following rules: • (Synchronous Processors) Each transition is associated with a monotonic timestamp, ri ≤ ri+1 , each of which is an integer multiple of a real-valued time increment dr.
+The distinct timestamps are called rounds.
+Each process executes its compute procedure exactly once per round, and each must take its turn before any process moves on to the next round.
+We assume the processes have identical computing power with respect to a random oracle: each process may query the oracle (i.e., call the oracle procedure) at most once per round.
+We additionally assume that a common random string, CRS, is announced at the beginning of the protocol (as in [34]).
+This assumption precludes an adversary that takes a head start.
+We will consider the continuous limit of this model as dr → 0.
+(Synchronous Communications) The anonymous processes communicate using a broadcast(m) instruction, which places message m into mailboxes (unordered sets) associated with each process.
+When a message is received, the receiving process has no way of knowing where the message came from.
+Messages in a mailbox may be delivered in any order, and at any time, except there is a maximum delay of ∆.
+If m is broadcast at time r, then every process executes receive(m) at or before r + ∆.
+We do not count the receive procedure against the total number of oracle queries.
+(Nondeterminism) The particular execution order is determined by an explicit adversary, a mapping from partial executions to available transitions.
+Processes may access a coinflip instruction that produces random elements in [0, 1) ⊂ R.
+We also assume that H : [0, 1) → [0, 1) is a random oracle function that maps inputs to outputs uniformly selected in the range.
+The adversary has full information and may depend on the entire execution history including the internal state of each process (our processes have no secrets), although it may not depend on the outcomes of future random events.
+An adversary thus defines a probability distribution over the admissible executions.
+(Byzantine faults) The adversary is given control over f of the processes, which are called faulty processes or pawns.
+The adversary is non-adaptive and must designate its pawns at the outset.
+The adversary is computationally bounded relative to the random oracle; it may only query the oracle via its pawns, once per round per faulty process.
+(Passive clients) In addition to the n processes, we model an arbitrary set of passive clients that represents users of the network.
+They are identical to processes except they cannot send any messages (their broadcast instruction is replaced with a no-op).
+Clients means the union of passive clients and correct processes (but excluding faulty processes).
+Clients use an irrevocable, one-timeuse instruction, decide(v), that outputs v as a final value.
+Problem Statement Each correct process pi is initially provided with an input value, vi ∈ {0, 1}.
+A Monte Carlo consensus protocol must satisfy the following three requirements: • (Termination): All clients must decide in bounded time.
+• (Agreement): Clients must decide on the same value (except with negligible probability).
+• (Unanimity): The decided value must be one of the inputs (with non-negligible probability).
+Our version of the unanimity requirement prevents the adversary from influencing the network too much.
+In particular, if the protocol is repeated, as in a transaction processing system, then the input of a process will be chosen after an expected polynomial number of updates.
+Unanimity also rules out the trivial protocol that has every process decide on a fixed value.
+B ITCOIN C ONSENSUS P ROTOCOL (2f + 1 RESILIENCE ) The Bitcoin network [4] provides an implementation of digital money, modeled as a conserved quantity of arbitrary units.
+Like the stone money of Yap [35], it is unimportant if the currency itself is entirely abstract (or submerged under the sea).
+What really matters is that ownership of the currency is undisputable - everyone can agree on who owns what.
+Ownership in Bitcoin is determined using public key cryptography: the network unanimously agrees on an association between public keys and portions of the money supply.
+Money can be transferred from one public key to another using digitally signed messages.
+Bitcoin is therefore best understood as a distributed state machine, where the state at any given time corresponds to a ledger of account balances.
+We focus our attention the mechanism by which the network establishes consensus about the state for a single time instant.
+In the Bitcoin consensus protocol (Algorithm 1), processes vote for their preferred values by attempting to solve a moderately hard puzzle through brute force effort (i.e., by mining).
+The particular puzzle (Algorithm 6) is based on partial hash collision, similar to HashCash [30].
+When a correct process finds a puzzle solution, it broadcasts it to the rest of the network.
+Each puzzle solution is counted as a vote for a single value, and each process prefers (i.e., mines on), the value that appears to have the most votes.
+Since no strategy for solving the puzzle does better than random guessing, the adversary is forced to compete in a race that it cannot win (similar to the consensus protocols of Chor-Israeli-Li [36] and Bracha-Rachman [37]).
+Our correctness proof extends and formalizes the approach suggested by Nakamoto [4], based on an analysis of Poisson processes.
+Assume without loss of generality that we measure time in units equal to the message delay bound, so ∆ = 1.
+Since no strategy for finding puzzle solution outperforms querying the oracle with random inputs, we restrict our attention to a worst-case adversary that does precisely this.
+Therefore, each of the n processes performs an i.i.d.
+Bernoulli trial with dr .
+As dr approaches zero, the overall success probability p = nµ network produces puzzle solutions according to a Poisson arrival process where the interarrival time between each pair of successive solutions is an i.i.d.
+exponential variable with scale parameter µ.
+Let Ax indicate the time at which the xth puzzle solution is found.
+Let the random variable Mr,i be the number of votes that process pi associates with its preferred value at time r, (i.e., |Votes|).
+Let Mr be the minimum of these variables among the correct processes.
+If Mr̂ ≥ x, then Line 13 of Algorithm 1 implies all clients decide on a value associated with x or more votes.
+If additionally A2x > r̂, then fewer than 2x votes have been cast in total, and hence all clients must have decided on a single unique value.
+It is difficult to describe Mr directly since it depends on the particular adversary.
+Instead, we proceed with an argument by coupling; we construct a random process B related to M such that we can describe B precisely.
+Let B be a subset of n − f correct processes.
+Poisson processes are infinitely divisible, so the subset B finds puzzle solutions according to a Poisson arrival process with expected interarrival time half the overall rate).
+We define B as a sequence of alternating phases: (1) mining and (2) delay.
+In the mining phase, we wait for a process in B to find a puzzle solution.
+When a solution is found, we switch to the delay phase and wait for a constant time ∆ = 1.
+Puzzle solutions found during a delay phase are disregarded.
+Let Bx denote the time at which B has completed x cycles through each phase.
+1 We now have a useful relationship between B and M: 1 A could also be described as an Erlang process, A ∼ Erlang(x, µ).
+x Process B is equivalent to an M/D/1/1 queue (in Kendall notation), where Bx is the time after which x clients have been served (see Chapter 9 of [38]).
+The correct processes have a δ-advantage over half the network.
+We divvy up this advantage by thirds: one third each for deviation bounds on A2x and Bx respectively, and one third to account for the delay phases endured by B.
+Our goal is to make the puzzle difficult enough that on average, the correct processes find and propagate a solution before two solutions are found overall.
+First, we define x in terms of δ and security parameter k,  where DKL (µP kµQ ) is the Kullback-Leibler divergence (KLdivergence) between exponential distributions P and Q with scale parameters µP and µQ respectively.
+The KL-divergence is related to the number of bits needed to distinguish between two probability distributions [39].
+We write out the formulas for two instances we will need later:  Next we state a lemma that these parameters are satisfactory.
+The proof, based on Chernoff bounds, is in the appendix.
+Let k > 0 be a global security parameter, and let parameters µ, r̂, and x be defined as in Equations 1, 4, and 5.
+As described above, let A be a Poisson arrival process with scale parameter µ; A2x is the time of the 2xth arrival.
+Let B be a process with alternating phases of (1) Poisson arrivals (scale parameter 2δ µ) followed by (2) constant time delay ∆ = 1; Bx is the time at which B has completed x cycles through both phases.
+Then A2x > r̂ > Bx except for a negligible probability.
+The Bitcoin protocol (Algorithm 1) achieves consensus, except for negligible probability, in a model with anonymous synchronous processes and a minority of Byzantine faults.
+The use of passive clients in our model leads to a simple impossibility result based on indistinguishability.
+We show that 2f + 1 is the optimal resilience for protocols using random oracles, regardless of the nature of the puzzle.
+If the adversary controls half the network, then it can perfectly simulate the correct processes, querying the oracle an equal number of times.
+Passive clients must distinguish between the correct processes and the impostors.
+In an anonymous network with passive clients, if Byzantine faulty processes make up half the network (i.e., n ≤ 2f ), then no protocol achieves consensus with high probability.
+We analyze the asymptotic complexity of the Bitcoin protocol.
+It follows from Lemma IV.2 that the number of distinct messages sent by correct processes is bounded by x, which is defined in terms of the dimensionless ‘advantage’ parameter δ (see Equation 1).
+Each message contains an entire set of votes, but most are duplicated; we only count the distinct elements.
+Interestingly, this bound is independent of both the total size of the network, n, and the message delay bound ∆.
+In Section V we explained that our model requires passive clients to distinguish between the correct network and a computationally-challenged impostor only by observing broadcast messages.
+We can thus relate the Byzantine consensus problem to a statistical test.
+At each instant, every process prefers the value that is most likely, given the available information, to be preferred by the largest number of processes.
+For the particular puzzle we defined, the only discriminating information is the number of distinct puzzle solutions found.
+Consider the number of bits of certainty obtained per message, (i.e., xk ).
+From Equation 1, this is equal to the KLdivergence between two exponential distributions, where δ is the ratio between the respective scale parameters.
+Since the KL-divergence is a measure of the amount of information gained from a single sample from one of two distributions, our consensus protocol is information-theoretically optimal, at least for puzzles based on Bernoulli trials.
+The Bitcoin consensus protocol is scalable in that message complexity and running time depend on the dimensionless parameter δ, rather than on the overall scale of the network, n.
+In this sense, it may be preferable to replace f with δ in defining the resiliency of a consensus protocol.
+In fact, we could state the problem more generally, using n to refer to the total computational power of the network, rather than a discrete number of processes; neither of our proofs would be affected by this change.
+We would like to be able to assess the overall costeffectiveness of Bitcoin.
+In a peer-to-peer network, the scale, n, is not directly controlled but instead depends on the perceived usefulness and security of the network.
+Instead of bounding the adversary’s computational rate as a fraction of the network size (expressed in oracle queries per second), we may prefer to define an absolute bound A for the adversary’s total work (expressed in oracle queries).
+Our proofs would r̂ be unaffected if we allowed the pawns to perform A = f dr total queries at any time, not necessarily in lockstep with the correct processes.
+Thus, for fixed A, an inverse relationship exists between the size of the network and the running time.
+To proceed further, we would also need to examine the relationship between n and A: should a larger network tolerate a proportionally stronger adversary? It would be preferable if consensus could be achieved without needing to expend so much effort solving otherwiseuseless puzzles.
+This apparent waste of resource may be unavoidable.
+We mentioned earlier that anonymous public networks are inherently vulnerable to the Sybil attack [5].
+A closely related concept is the social cost of cheap pseudonyms [41] incurred when strangers cooperate, e.g., in internet commerce [42].
+This cost must be paid, either through explicit entry fees, or else through dues paying as newcomers gradually build a trustworthy reputation.
+The Bitcoin protocol does not spare the cost of cheap pseudonyms, but rather provides a scalable and decentralized mechanism for paying it using computational resources.
+The protocol we have described relies on parameters set according to correct presumptions about network characteristics, in particular the size of the network and the overall message propagation time.
+In an actual peer-to-peer network, these quantities can expected to change over time.
+Thus, without an internal mechanism to compensate, an instantiation of this network must attain consensus about these quantities through some external mechanism, begging the problem.
+We would prefer a consensus protocol that did not require global configuration of such parameters.
+We leave open the question of whether Bitcoin could be extended to function when the network size and communications delay are unknown (i.e., a protocol for the model of partial synchrony [43]).
+We presented the Bitcoin consensus protocol in a model of anonymous peer-to-peer networks.
+Such a protocol could enable a world wide transaction processor, a wide public network for which any clients will receive consistent view, regardless of their identity and their location in the network.
+We showed that this protocol meets its objectives, at least when knowledge of the network size and communications latency is assumed, as well as that a majority of or processes execute the protocol correctly.
+In future work we will attempt to improve the viability of this approach and avoid these assumptions..

@@ -1,0 +1,528 @@
+Abstract
+Most popular blockchain solutions, like Bitcoin, rely on proof-of-work, guaranteeing that the output of the consensus is
+agreed upon with high probability. However, this probability depends on the delivery of messages and that the computational power of the system is sufficiently scattered among pools of nodes in the network so that no pool can mine more blocks
+faster than the crowd. New approaches, like Ethereum, generalise the proof-of-work approach by letting individuals deploy
+their own private blockchain with high transaction throughput. As companies are starting to deploy private chains, it has
+become crucial to better understand the guarantees blockchains offer in such a small and controlled environment.
+In this paper, we present the Blockchain Anomaly, an execution that we experienced when building our private chain
+at NICTA/Data61. Even though this anomaly has never been acknowledged before, it may translate into dramatic consequences for the user of blockchains. Named after the infamous Paxos anomaly, this anomaly makes dependent transactions,
+like “Bob sends money to Carole after he received money from Alice” impossible. This anomaly relies on the fact that existing blockchains do not ensure consensus safety deterministically: there is no way for Bob to make sure that Alice actually
+sent him coins without Bob using an external mechanism, like converting these coins into a fiat currency that allows him
+to withdraw. We also explore smart contracts as a potential alternative to transactions in order to freeze coins, and show
+implementations of smart contract that can suffer from the Blockchain anomaly and others that may cope with it.
+after a transaction is issued to consider the transaction accepted by the system. Similarly, Ethereum states that five to
+eleven more blocks should be appended after a block for it
+to be accepted [20].
+However, consensus cannot be solved in the general case.
+In particular, foundational results of distributed computing indicate that consensus cannot be reached if there is no
+upper-bound on the time for a message to be delivered and
+if some participant may fail [11]. Consensus is usually expressed with three properties: agreement indicating that if
+two non-faulty participants decide they decide on the same
+block, validity indicating that the decided block should be
+one of the blocks that were proposed and termination indicating that eventually a correct participant decides. The
+common decision that is taken by famous consensus protocols, like Paxos [15] and Raft [17], is to make sure that if
+the messages get delayed, at least validity and agreement
+remain ensured. This is achieved by having the algorithm
+doing nothing in the worst case, hence sacrificing termination to ensure that only correct responses—satisfying both
+validity and agreement—can be returned. These consensus
+algorithms are appealing, because if after some time the network stabilises and messages get delivered in a bounded
+time, then consensus is reached [7].
+We illustrate the Blockchain anomaly and describe a distributed execution where even committed transactions of a
+private chain get reordered so that the latest transaction ends
+up being committed first. We chose Ethereum for our experiments as it is a mainstream blockchain system that allows the
+deployment of private chains. We show how to reproduce
+the Blockchain anomaly by following the same execution,
+where messages get delayed between machines while some
+miner mines new blocks. Despite transactions being already
+committed the eventual delivery of messages produces a reorganisation reordering some of the committed transactions.
+In our execution, miners are setup to dedicate different number of cores to the mining process, hence mining at different
+speeds. We argue that the misconfiguration of a machine
+and the heterogeneous mining capabilities of machines belonging to different companies are sufficiently realistic to allow an attacker to execute a double-spending attack. Finally,
+we discuss the relations of the Blockchain anomaly to other
+problems and observe that it is not confined to the Ethereum
+blockchain but could potentially apply to proof-of-stake private blockchains as well, requiring further investigations.
+Section 2 overviews the blockchain technology, the Paxos
+anomaly and defines the important terms of the paper. In
+Section 3, we present the blockchain anomaly. In Section 4,
+we present our experiments based on an Ethereum private
+chain. In Section 5, we explain how replacing transactions by
+smart contracts could help bypassing the anomaly. Section 6
+discusses the Blockchain anomaly in other settings. Section 7
+presents the related work. And Section 8 concludes.
+
+Mainstream public blockchain systems, like Bitcoin [16] and
+Ethereum [20], require to reach consensus on Internet despite the presence of malicious participants. Yet, it is impossible for a distributed system including a faulty participant
+to reach consensus if messages may not be delivered within
+a bounded time [11]. This contradiction raises interesting research questions regarding the formal properties that are sacrificed in these blockchain systems. Foundational consensus
+algorithms [7] were proposed to never reach a decision in
+case of arbitrary message delays, but to respond only correctly if ever. Surprisingly, these blockchain systems adopt a
+different approach, sometimes responding incorrectly. These
+few last years, the concept of private chain gained traction for
+its ability to offer blockchain among multiple companies in a
+private, controlled environment. Three months ago, eleven
+banks collaborated successfully in deploying an Ethereum
+private chain to perform transactions across North America,
+Europe and Asia.1 To understand the limitations of consensus and its potential consequences in the context of private
+chains, we deployed our own private chain and stress-tested
+the systems in corner-case situations.
+In this paper, we present the Blockchain anomaly, a new
+problem named after the Paxos anomaly [14, 1, 2, 13], that
+prevents Bob from executing a transaction based on the current state of the blockchain. In particular, we identified a
+complex scenario where the agreement on the state of the
+blockchain is not sufficient to guarantee immutability of the
+chain. This anomaly can lead to dramatic consequences, like
+the loss of virtual assets or a double-spending attack. We
+also show that some smart contracts, expressive code snippets that help defining how virtual assets can be owned and
+exchanged in the system, may suffer from the Blockchain
+anomaly. Our results outline the risk of using a blockchain in
+a private context without understanding its complex design
+features. We terminate our experience report by providing
+the source code of a more complex smart contract that can
+circumvent a particular example of the Blockchain anomaly.
+Most blockchain systems track a transaction by including it in a block that gets mined before being appended to
+the chain of existing blocks, hence called blockchain. The consensus algorithm guarantees a total order on these blocks,
+so that the chain does not end up being a tree. This process is actually executed speculatively in that multiple new
+blocks can be appended transiently to the last block of the
+chain—a transient branching process known as a fork. Once
+the fork is discovered, meaning that the participants learn
+about the two branches, the longest branch is adopted as the
+valid one. Blockchain systems usually assume that forks can
+grow up to some limited depth, as extending a branch requires to solve a complex challenge that boils down to spending a long time during which one gets likely notified of the
+longest chain. Bitcoin recommends six blocks to be mined
+1 BMO Financial Group, Credit Suisse, CBA, HSBC, Natixis, Royal
+Bank of Scotland, TD Bank, UBS, UniCredit and Wells Fargo as explained at http://www.ibtimes.co.uk/r3-connects-11-banksdistributed-ledger-using-ethereum-microsoft-azure1539044.
+
+In this section, we present the key concepts of Bitcoin and
+Ethereum consensus protocols, the condition of their termination and the Paxos anomaly before presenting the general
+model.
+
+
+A blockchain can be considered as a replicated state machine [22] where a reversed link between blocks is a pointer
+from a state to its preceding state as depicted in Figure 1.
+Consensus is necessary to totally order the blocks, hence
+maintaining the chain structure. To reach consensus despite
+arbitrary failures, including malicious behaviors, traditional
+blockchain systems adopted a technique based on proofof-work, requiring a proof of computation [8]. Specialised
+peers, called miners, provably solve a hashcash crypto puzzle [3] before a new block can be appended to the blockchain.
+Given a block and a threshold, a miner repeatedly selects a
+nonce and applies a pseudo-random function to this block
+and the selected nonce until it obtains a result lower than the
+threshold. The difficulty of this work limits the rate at which
+new blocks can be generated by the network.
+
+Figure 1: The blockchain structure starts with a genesis
+block at index 0 and links successive blocks in reverse order
+of their index; a new block is decided at index i > 0 when
+the blockchain depth reaches i + k (note that a blockchain of
+depth 0 is a genesis block)
+
+that a block has been decided for the next available block index. We say that all the transactions of a decided block are
+committed.2 This decision upon a block inclusion in the chain
+is necessary for cryptocurrency exchange platforms, for example, to determine that coins of a particular type that are
+newly minted3 within this block can be converted into altcoins (coins of a different type) or fiat currencies (e.g., EUR,
+USD). In particular, observing that a block was mined and
+2.2 From Nakamoto’s Consensus to Smart Con- appended to the chain is not sufficient to guarantee that it is
+decided: this block could be part of one branch of a transient
+tracts
+fork without consensus being reached yet on any of these
+Nakamoto’s consensus [16] is at the core of Bitcoin, the branches.
+Figure 1 depicts the termination of consensus on the inmainstream decentralised digital currency. Interestingly,
+Nakamoto’s consensus does not guarantee agreement deter- dex i of a blockchain. An arrow pointing from left to right inministically. Instead it guarantees that agreement is met with dicates that a block contains a hash of its predecessor block,
+some probability close to 1. The difficulty of the crypto puz- the one located immediately on its left. Newly mined blocks
+zles used in Bitcoin leads to mining a block every 10 min- are added to the right end of the blockchain that may fork
+utes. The advantage of this long period, is that it is relatively transiently if multiple blocks referring to the same prederare for the blockchain to fork due to blocks being simultane- cessor get mined concurrently. Forks are only transient and
+ously mined and Bitcoin resolves these forks by choosing the their resolution depends on the blockchain system in use.
+The consensus for an index i terminates when participants
+longest branch and discarding the other(s).
+Ethereum [21] is a recent open source cryptocurrency decide on the new block to be assigned at index i. The deplatform that also builds upon proof-of-work. As opposed to cision upon the block at index i occurs for all i > 0 when
+Bitcoin’s consensus protocol, Ethereum generates one block the blockchain depth reaches i + k, where k ≥ 0 is a constant
+every 12–15 seconds. While it improves the throughput dependent on the Blockchain system.
+Different blockchain systems adopt different values of
+(transactions per second) it also favours transient forks as
+miners are more likely to propose new blocks simultane- k to define termination. In Bitcoin (btc), k btc = 5, meanously. To avoid frequently wasting mining efforts to resolve ing that the block at index i is decided—consensus for inforks, Ethereum uses the G HOST (Greedy Heaviest Observed dex i terminates—when the k btc + 1 = 6 blocks at indices
+Subtree) protocol that does not necessarily discards all the, i, ..., i + 5 have been successfully mined. As we previously
+so called uncle, blocks of non selected branches. Ethereum mentioned, a new block is decided every 10 minutes in Bitoffers a Turing-complete programming language that can be coin, hence it takes (k btc + 1) ∗ 10 min = 1 hour for a transused to write smart contracts [18] that define new ownership action to be committed in Bitcoin. In Ethereum (eth) since
+verion 1.3.5 Homestead, k eth = 11, meaning that the block
+rules.
+at index i is decided—consensus for index i terminates—
+when the blockchain depth reaches i + 11. Hence it takes
+
+We consider a distributed blockchain system of n peers
+where peers can exchange coins from one to another through
+transactions. The goal is for the system to implement a ledger
+abstraction as a public permanent and auditable records of
+all transactions. The ledger is implemented with a blockchain,
+a series of transaction blocks, starting with a special block
+called the genesis block. Blocks are singly linked one after another up to the genesis block—each non-genesis block containing a hash of the previously accepted block—and define
+the current state of the ledger as the set of transactions that
+ever occurred. The block index or slot increases monotonically from the index 0 of the genesis block.
+Peers can fail arbitrarily, they can stop working and
+can be malicious. Any peer can issue transactions that get
+recorded into the transaction pool. Only miners can bundle a
+subset of the pool of transactions into a block after ensuring
+that there are sufficient funds available on the accounts of the
+ledger and that these transactions do not conflict. The system
+uses consensus to guarantee that no malicious peers are trying to double-spend some coins by issuing two conflicting
+transactions concurrently to different miners. To this end,
+we consider a consensus protocol based on proof-of-work
+so that miners bundle transactions from the transaction pool
+into a block by solving a crypto puzzle in exchange of coins
+for the system to decide on the new block. The difficulty of
+the crypto puzzle determines the rate at which new blocks
+can be mined: the higher the difficulty, the slower the rate.
+At times though the blockchain may fork transiently5 ,
+indicating that multiple blocks were appended to a unique
+block, in which case conflicting transactions could potentially be part of blocks on different branches of the chain.
+If this fork happens, then a reorganisation process eventually
+occurs to resolve the fork by uniquely identifying one of the
+two branches as the right one.
+
+2.4
+
+General Model
+
+The Paxos Anomaly
+
+Paxos is a famous consensus protocol originally guaranteeing agreement and validity despite crash failures [15]. The
+Paxos anomaly [1, 14] stems from the difficulty of implementing conditional requests (or transactions) in Paxos: Paxos decides on individual proposed transactions, potentially violating dependencies between transactions even when proposed
+by the same requester as depicted in Figure 2 where a slot can
+be viewed as the index of the decision. These dependencies
+can be useful to make the execution of a transaction t j dependent on the successful execution of a previous transaction ti :
+for example if Bob wants to transfer an amount of money to
+Carole (t j ) only if he successfully received some money from
+Alice (ti ). In centralised systems, this anomaly can be easily avoided by enforcing an ordering on these transactions
+by simply forwarding all requests to a primary node or coordinator [14]. In Paxos as in fully decentralised systems,
+however, the first transaction may not be decided in favour
+of another proposed transaction in a first consensus instance
+while in a subsequent consensus instance the second transaction may be successfully decided. This results in a violation of the condition that the second transaction should be
+decided only if the first transaction was decided.
+Below we present the Blockchain anomaly due to the decentralised aspects of blockchain systems, like Bitcoin and
+Ethereum. The Blockchain anomaly shares similarities with
+the Paxos anomaly, except that it can occur when transactions, issued by different nodes of the system, are not even
+concurrent.
+
+We present the Blockchain anomaly, an anomaly that affects
+mainstream blockchain systems whose consensus protocol
+does not ensures agreement deterministically.
+
+The problem stems from the asynchrony of the network, in
+which message delays cannot be bounded, and the termination of consensus. Although two miners mine on the same
+chain starting from the same genesis block, a long enough
+delay in messages between them could lead to having the
+miners seemingly agree separately on different branches
+containing more than k blocks each, for any k. This anomaly
+is dramatic as it can lead to simple attacks within any private
+network where users have an incentive to maximise their
+profits—in terms of coins, stock options or arbitrary ownership. Moreover, this scenario is realistic in the context ofpublicises its longer chain without t1 so that the chain gets
+adopted by the rest of network. t2 gets committed in block j
+and after the chain depth reaches j + k, the peer can collect its
+goods for the second time. Note that even if one tries to recommit t1 later, the transaction will be invalidated because
+the balance is insufficient, however, the double-spending already occurred.
+
+Another dramatic aspect of the Blockchain anomaly is that it
+goes undetected. More specifically, the Blockchain anomaly
+relies on a wrongly committed state of the blockchain. Once
+the wrongly committed state gets uncommitted, there is no
+way to a posteriori observe this problematic state and to notice that a blockchain anomaly occurred. Although it is possible to observe that a peer mined several blocks in a row, there
+is no way to track down the beneficiaries of the Blockchain
+anomaly. This dangerously incentivises participants of the
+private chain to leverage the Blockchain anomaly to attack
+the chain.
+
+In this section, we describe a distributed execution involving
+a private chain that results in the Blockchain anomaly.
+
+Figure 3 depicts the Blockchain anomaly, where a transaction
+ti gets committed as part of slot i from the standpoint of some
+nodes. Based on this observation, one proposes a new transaction t j knowing that ti was successfully committed. Again,
+one can imagine a simple scenario where “Bob transfers an
+amount of money to Carole” (t j ) only if “Bob had successfully received some money from Alice” (ti ) before. However,
+once these nodes get notified of another branch of committed
+transactions, they decide to reorganise the branch to resolve
+the fork. The reorganisation removes the committed transaction ti from slot i. Later, the transaction t j is successfully
+committed in slot i.
+The anomaly stems from the violation of the dependency
+between t j and ti : t j occurred meaning that Bob has transferred an amount of money to Carole, however, ti did not
+occur meaning that Bob did not receive money from Alice.
+Note that in Bitcoin, transaction ti gets discarded whereas in
+Ethereum transaction ti may in some cases be committed in
+slot j.
+
+We deployed a private blockchain system in our local area
+network using geth version 1.4.0, which is a Go implementation of the command line interface for running an Ethereum
+node. We setup three machines connected through a 1 Gbps
+network, two consisting of miners, p1 and p3 , generating
+blocks and one consisting of a peer p2 simply submitting
+transactions. Peers p1 and p2 consist of 2 machines with 4 ×
+AMD Opteron 6378 16-core CPU running at 2.40 GHz with
+512 GB DDR3 RAM, each. Peer p3 consists of a machine with
+2 × 6-core Intel Xeon E5-260 running at 2.1 GHz with 32 GB
+DDR3 RAM.
+We artificially created a network delay by transiently annihilating connection points between machines. Note that
+such artificial delays could be reproduced by simply unplugging an ethernet cable connecting a computer to the company network and does not require an employee to access
+physically a switch room.
+Also, we made sure p3 would mine faster than p1 , by
+mining with the 24 hardware threads of p3 and a single hardware thread of p1 . The same speed difference could be obtained between a loaded server and a server that does run
+any other service besides mining. Note that hardware characteristics may also help one machine mine faster than the
+rest of a private chain network. For example, a machine
+equipped with an AMD Radeon R9 290X would mine faster
+in Ethereum than a pool of 25 machines, each of them mining
+with an Intel Core i7.
+
+Facilitating a Double-Spending Attack
+
+One dramatic consequence of the Blockchain anomaly is the
+possibility for an attacker to execute a double-spending attack:
+converting, for example, all his coins into goods twice. The
+scenario consists of the attacker issuing a first transaction t1
+that converts all its coins into goods in block i and starting
+mining blocks after block i − 1 in isolation of the network.
+As part of this mining, the attacker mines another transaction t2 that also converts all its coins into goods. The attacker
+then waits for the blockchain depth to reach i + k after what
+it can collect its goods as a result of transaction t1 , then it
+
+6. Peer p2 receives the notification from p1 that t1 is committed because its block and k subsequent blocks are
+mined; then p2 decides to submit transaction t2 that
+should only execute after t1 .
+
+The default case of the anomaly occurs with a conditional
+transaction. A peer in the system has a condition that it
+will only send money if some other peers transferred him
+some coins successfully. As mentioned previously, for the
+transaction to be committed, there must be at least k blocks
+mined after the block containing the transaction. In our experiment, the client only sends coins once the peer owns a
+verified amount of coins. The peer performs a transaction t2
+only if it was shown by the system that the previous transaction t1 had been committed and the money was successfully
+transferred to its wallet.
+Figure 4 depicts the distributed execution leading to the
+Blockchain anomaly where p1 , p2 and p3 exchange information about the blockchain whose genesis block is denoted ‘G’.
+
+7. The network becomes responsive and p3 who receives
+the information that t2 is submitted, mined t2 in a block
+along with 12 subsequent blocks.
+8. Once peers p1 and p2 receive from p3 the longest chain
+of 45 blocks, they adopt this chain, discarding or postponing the blocks that were at indices 2 to 15, including
+the transaction t1 , of their chain.
+9. All peers agree on the final chain of 45 blocks in which
+t2 is committed and where t1 is finally not committed
+before t2 .
+
+1. Peer p1 mines a first block after the genesis block
+This execution results in a violation of the conditional
+and informs p2 and p3 to update their view of the property of transaction t stating that t should only execute
+2
+2
+blockchain state.
+if t1 executed first. This violation occurred because transac2. Peer p3 mines a second block and informs p1 and p2 of tion t1 had been included in one chain, decided and agreed
+by two of the participants, it was then changed after the mesthis new block.
+sage of the third participant was finally delivered to the rest
+3. A network delay is introduced between peers p1 and of the network.
+p2 on the one hand, and peer p3 on the other hand.
+To illustrate the anomaly, we wrote a script that automated
+the execution depicted in Figure 4. Figure 5 represents
+the execution of a script that execute 8 iterations of the
+Blockchain anomaly over a period of 50 minutes. Again the
+
+5. Peer p1 mines a block that includes transaction t1 and
+mines 12 subsequent blocks; p1 then informs p2 but not
+p3 due to the network delay.
+
+Figure 5: Automated executions of the Blockchain
+anomalies over a period of 50 min, the execution is
+non-determinstic due to the randomness of the mining
+process and the network delay between peers
+
+Figure 6: The proportion of transaction swaps observed
+does not depend on the difficulty, as opposed to the
+consensus termination that increases with the difficulty
+tried reproducing the anomaly by hand (without the script)
+with larger difficulties.
+Figure 6 depicts the average number of blockchain
+anomalies leading to a swap (where both t2 and t1 are eventually committed in reverse order) occurring in our private
+chain for 6 different mining difficulties. Each bar results from
+the average number of anomalies observed during 6 manual
+runs of the scenario depicted in Figure 4. More precisely,
+the figure reports the swap scenarios, where the first transaction t1 gets successfully committed before t2 gets issued,
+and eventually transactions t1 and t2 appear committed in
+reverse order.
+At first, we thought that the occurrence of this Blockchain anomaly was dependent on the difficulty of mining a block: the faster a block could be mined,
+the more likely the anomaly would occur. To validate this,
+we varied the mining difficulties from 0x2000 to 0x40000 and
+measure the frequency of the Blockchain anomaly over 6 executions for each difficulty value. We observe that there was
+no significant correlation between the difficulty and the occurrence of the anomaly and that in average we could observe the swap 6 times out of 10.
+We also measured the time it would take for consensus
+to terminate in these scenarios (upper curve) and observed,
+as expected, that the termination time was proportional to
+the difficulty. This is explained by the fact that the difficulty
+impacts the time needed to mine a block, which in turn, impacts the time it takes to mine k + 1 blocks for termination.
+
+goal is to wait until t1 gets committed before issuing t2 that
+ends up being committed while t1 does not appear to be.
+Note that this is similar to Figure 3 except that t2 is not necessarily included at the index t1 occupied initially. In particular, the block in which t2 gets included varies from one
+iteration to another due to the non-determinism of the execution as indicated by the curve with square points. This
+non-determinism is explained by the randomness of the mining process and the latency of the network that also impacts
+the time it takes for the consensus to terminate (curve with
+triangle points) in each iteration of the experiment. Note that
+we use k = 11 in this experiment, making sure that 12 blocks
+were successfully mined, as recommended since the release
+of Ethereum 1.3.5 Homestead, for the consensus to terminate.
+As expected, in each of these eight cases we observed the
+Blockchain anomaly: even though t2 was issued after t1 was
+successfully observed as committed, if the messages get successfully delivered, then the reorganisation results in t2 being committed while t1 is not. Finally, we can observe that
+the time to disseminate a committed transaction to all the
+peers of the network is much shorter than the termination
+delay. This is due to the time needed to mine a block, which
+is significantly larger than the latency of our network.
+Figure 7: A smart contract written in the Solidity programming language to replace transactions prone to the blockchain
+anomaly: the sendIfReceived function checks that the transfer from A to B occurred before executing the transfer from
+B to C
+In addition we report the time it would take for a transaction
+in a mined block to be disseminated to all the peers of the
+network (bottom curve) and observed that it was not related
+to the difficulty. Finally, we observed that having a network
+delay greater than the time to mine was foundational to the
+observation of the anomaly.
+
+these two steps are executed on-chain, we know that one has
+to be necessarily true for the second to occur.
+However, if the two steps were parts of two separate
+functions of the contract, one checking that the amount had
+been paid and another that would do the payment and be
+invoked upon the returned value of the former then the
+anomaly could arise. For example, consider Figure 8 where
+one function, checkPayment, checks that the payment from
+5 Smart Contracts
+Alice proceeded correctly (Lines 3–7) and the other function, sendIfReceived, is modified to execute the paySmart contracts are a foundational aspect of the Ethereum sys- ment unconditionally (Lines 9–13). Even if Bob invokes
+tem, as they are distributed code execution based on condi- checkPayment and observes that it returns successfully betional aspects. The contracts can be programmed to allow for fore invoking sendIfReceived the anomaly may arise.
+certain conditions to be met in order for the code to be exe- The reason is that the check is made off-chain and nothing
+cuted. What we found was that the anomaly prevention de- guarantees that the payment from Alice was not reorganised
+pended entirely on the programming of the smart contract. while Bob was checking the result off-line.
+This means that if a smart contract was coded so that it did
+To conclude, it looks like the former contract in Fignot properly check the condition that the first transaction had ure 7 has higher chances of not suffering from the Blockchain
+occurred, it would execute as normal, acting like a normal anomaly than the smart contract of Figure 8 as it executes
+transaction and suffering from the anomaly.
+the check and the conditional transfer on-chain, however,
+this does not guarantee that the smart contract of Figure 7
+is immune to the blockchain anomaly. Further investigation
+5.1 On-Chain vs. Off-Chain Computation
+is needed to prove it formally. In addition and just like transIn Figure 7, we illustrate the writing of a smart con- actions, smart contracts must be included in a block that gets
+tract in the Solidity programming language with which we mined and appended to the blockchain. Its inclusion into the
+could not observe the anomaly. The key point is that the blockchain even with k subsequent blocks may suffer from a
+sendIfReceived function groups two steps: the check that reordering as well, and lead to other kind of anomalies.
+the amount has been paid at Line 22 and the payment that results from this successful check at Lines 23 and 24. Because
+work can mine blocks faster than others, could lead to the
+Blockchain anomaly in a public blockchain system. The atEven without the Turing-complete scripting language, there tacker can issue a transaction to convert some bitcoins to
+may be ways in Bitcoin to bypass the Blockchain anomaly. withdraw some money. Once the transaction is mined into
+The idea is to change a conditional transaction into a joint a block at index i, then the attacker can fork the blockchain
+payment that includes both the conditional transaction and from index i − 1, hence excluding his transaction, with a new
+the action enabling its condition. The idea of including the series of blocks that gets eventually longer than the main
+transaction and the action is similar to the idea of grouping chain. As the longest branch gets adopted, the attacker’s
+in the same contract function SendIfReceived of Figure 7, transaction does not appear in the chain so that, in the end,
+the check and the transfer that we described before.
+the attacker withdrew some money while keeping his coins.
+The joint payment will represent the payment of Carole With the same technique, one could easily override the block
+by both Alice and Bob. The payment will thus take two in- containing the transaction from Alice to Bob. The possibilputs, owned by different people, and give one output. Be- ity of such an attack was raised in the context of the Bitcoin
+cause the coins of these two inputs come from different ad- public chain as the mining power was noted as insufficiently
+dresses, the joint payment needs two different signatures. scattered to avoid coalition [10].
+The joint payment can be achieved with a multisig transOne may think that the blockchain anomaly is speaction in Bitcoin so that the multisig transaction requires cific to proof-of-work as there exist blockchain systems not
+either two signatures from Alice, Bob and an arbitrator, Don- based on proof-of-work that would not suffer from this isald, in order to execute. If both Alice and Bob sign the trans- sue because they trade availability for consistency (as disaction, then it executes and Carole gets paid. However, if cussed in Section 7). This is the case of some proof-ofAlice or Bob refuses to sign, then Donald can help resolving stake blockchain systems, like Tendermint, that guarantees
+the transaction by signing. It is important to note that the agreement and validity of consensus deterministically. The
+semantic of the joint payment differs from the conditional blockchain anomaly however applies even to blockchain systransaction though: Bob cannot wait until he gets the money tems based on proof-of-stake. For example, Casper is a
+from Alice to choose what to do, whether to pay Carole.
+proof-of-stake alternative to the G HOST reorganistion protocol used in Ehtereum. It looks like proof-of-stake does not
+necessarily solve the problem, as even Casper favours avail6 Discussion
+ability over consistency.6
+Another problem raised by Gavin Wood, one of the
+An interesting aspect of Nakamoto’s consensus is that if the
+system is large enough and the mining power is sufficiently founder of Ethereum, indicates that reorganisation can imscattered among enough mining pools, then the probability pact the initial order of transactions. This matters in an
+of having a mining pool mining faster than the other can execution where two transactions aim at transfering $100
+be made arbitrarily small. For this reason, the Blockchain from the same account whose initial balance is only $100 bethe transaction that is committed first can be exanomaly has a very low chance of occurring in realistic ex- cause only
+ecutions of a large-scale permissionless blockchain systems ecuted. The Blockchain anomaly is more general than this
+like Bitcoin or Bitcoin-NG [9]. Recent work has shown, how- problem, in particular the Blockchain anomaly allows conever, that incentives exist for miners to not disclose the block flicting transactions to be successfully executed and committhey successfully mine in order to waste the mining efforts ted in two different states of the blockchain. Because the
+more than half of the mining power of the public net9blockchain anomaly is more general, solving the blockchain
+anomaly would also solve this problem.
+As it is known to be impossible to solve consensus in an
+asynchronous system in the presence of failures, researchers
+generally consider that a protocol ensures termination or
+agreement deterministically but not both. In this paper, we
+considered that the blockchain consensus terminates deterministically based on the recommended 6 to 12 mined blocks
+of Bitcoin [16] and Ethereum [21] but sometimes failing at
+ensuring agreement. Note that other formalisations also consider that termination of Nakamoto’s consensus is deterministic and that only its safety property is probabilistic [12], just
+like we did. One may argue however that termination is
+not guaranteed deterministically but rather probabilistically
+and that one can increase the probability of consensus agreement by simply delaying the termination; the characterisation of Nakamoto’s consensus in Bitcoin-NG adopts this definition [9]. In practice, however, blockchain applications assume consensus termination to provide a responsive service,
+as explained in Section 2.3. For example, Vitalik Buterin,
+one of the founder of Ethereum, explained that waiting for
+12 mined blocks is probably sufficient for the first block to
+be irreversible.8 This can be true in large-scale permissionless system where the mining power is sufficiently scattered
+among mining pools, but as the Blockchain anomaly shows,
+it is easy to revert it in a private chain context.
+Proof-of-work has been previously compared to Byzantine
+fault tolerant protocols [5, 19]. Some of this research [5] focuses on comparing experimentally Bitcoin against PBFT [4].
+The Bitcoin blockchain and the PBFT consensus protocol
+were evaluated with nodes scattered at 8 locations around
+the world. As one could expect given the difficulty of the
+crypto puzzle of Bitcoin, the experiments showed that PBFT
+achieves a lower latency and a higher throughput than Bitcoin in serving transactions. However, PBFT suffers from
+scalability limitations and the authors recommend using
+sharding to avoid having to scale to hundreds of nodes.
+Another part of this research [19] discusses the probabilistic guarantees of proof-of-work systems and the deterministic guarantees of Byzantine fault tolerance. The proofof-work consensus is compared to Byzantine agreement protocols along two axes, scalability and performance, where
+proof-of-work consensus protocols are considered as scalable but inefficient while Byzantine agreement protocols are
+considered as efficient but not scalable. For example, Bitcoin
+scales beyond 1000 nodes while achieving a performance
+lower than 100 transactions per second with a high latency,
+whereas standard Byzantine fault tolerant protocols achieve
+more than 10,000 transactions per second but scale only to
+tens of nodes.
+Some solutions immune to the Blockchain anomaly also
+exist.
+components: one to execute a Byzantine agreement protocol
+on top of Bitcoin with a simple voting system and another
+to minimise the effect of Sybil attacks during these votes.
+The latter component makes it difficult for an attacker to
+create multiple identities so as to outnumber the votes with
+its own votes. Using this technique PeerCensus strengthens
+the guarantees of Bitcoin and resolves immediately the forks,
+hence avoiding the Blockchain anomaly.
+Tendermint9 is a blockchain system building upon proofof-stake. It is known to favour consistency over availability,
+taking the opposite view of Casper, the proof-of-stake alternative to the G HOST protocol. The Tendermint consensus
+protocol builds upon the Byzantine agreement protocol with
+authentication [7] and requires strictly more than two third
+of correct processes to ensure agreement and validity deterministically and to guarantee termination when the network
+stabilises and messages between non-faulty nodes get delivered.
+Although the Paxos anomaly was not considered a problem in the original design of Paxos [15], this scenario was
+informally stated as an anomaly during the design of the
+Zookeeper distributed coordination service [14], due to the
+engineers needing to implement conditional concurrent requests: Zookeeper organises nodes into a tree structure and
+it was desirable for the additions of a parent node and its
+child to be made concurrent. The child addition depended
+naturally on the success of the parent addition. Note that
+for other applications that do not need concurrent dependent requests Paxos is sufficient [13]. The Paxos anomaly
+differs from the Blockchain anomaly because it can occur on
+two transactions issued by the same client. In Blockchain
+systems, a timestamp can be used to order the transactions
+issued by the same client. Another major difference between
+the Paxos and the Blockchain anomalies is that if consensus
+is reached, the index of the decision cannot change while the
+Blockchain anomaly precisely stems from the fact that the index of a decided transaction, or the order of its block in the
+chain, can change.
+
+This paper presents the Blockchain anomaly. Named after the Paxos anomaly, it prevents a user of mainstream
+blockchain systems from executing a conditional transaction,
+a transaction that should only execute in the current observable committed state or a later state of the system. Our experience of the use of an Ethereum private chain at NICTA/Data61 revealed the easiness of reproducing the anomaly by
+reordering transactions after they had been committed. A
+possible way to avoid the anomaly could be to write smart
+contracts rather than transactions, yet it adds to the level of
+complexity.
+Our conclusion is that blockchain systems are difficult to
+use properly. This observation should discourage users from
+using blockchain systems unless they fully understand the
+underlying design principles and the guarantees they offer.
+9 http://tendermint.com.
+If we combine the facts that blockchain applications require
+consensus to terminate fast while the underlying blockchain
+protocols guarantee agreement probabilistically then we can
+obtain dramatic results when applied to private chains.
+Besides the prominent blockchain systems we have discussed, namely Bitcoin and Ethereum, there exist many alternatives. Exploring the alternatives that exclusively offer
+deterministic guarantees for private chain are part of future
+work.

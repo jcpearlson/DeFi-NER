@@ -1,0 +1,44 @@
+Banks and financial institutions nowadays often use domain-specific languages (DSLs) for describing complex financial contracts, in particular, for specifying how asset transfers for a specific contract depend on underlying observables, such as interest rates and stock prices.
+The seminal work by Peyton-Jones, Eber, and Seward on financial contracts [7] shows how an algebraic approach to contract specification can be used for valuation of contracts (when combined with a model of the underlying observables) and for managing how contracts evolve under so-called fixings1 and decision-taking, with the contracts eventually evaporating into the empty contract, for which no party have further obligations.
+The ideas have emerged into Eber’s company LexiFi, which has become a leading software provider for a range of financial institutions, with all contract management operations centralised around a domain-specific contract language hosted in MLFi [5], a derivative of the functional programming language OCaml.
+In this paper, we present a small simple contract language, which rigorously relegates any artefacts of modelling and computation from its core.
+The language shares the same vision as the previously mentioned work with the addition that it (a) allows for specifying multi-party contracts [1], such as entire portfolios, (b) has good algebraic properties, well suited for formal and verified reasoning, and yet (c) allows for expressing many interesting contracts appearing in real-world portfolios, such as various variations of so-called barrier options.
+We show that plenty of information can be derived from, and useful manipulations defined on, just the symbolic contract specification, independent of any stochastic aspects of the modelled contracts.
+Contracts modelled in our language are analysed and transformed for management according to a precise cashflow semantics, modelled and checked using the Coq proof assistant.
+Implementations in Haskell and Coq are available online2 together with machine-checkable proofs (in Coq) of the key properties of the contract language.
+Financial contracts essentially define future transactions (cash-flows) between different parties who agree on a contract.
+Amounts in contracts may be scaled using a real-valued expression (ExprR ), which may refer to observable underlying values, such as foreign exchange rates, stock prices, or market indexes.
+Likewise, contracts can contain alternatives depending on Boolean predicates (ExprB ), which may refer to observables, as well as external decisions taken by the parties involved.
+Observables and choices in our contract language are “observed” with a given offset from the current day.
+In general, all definitions use relative time, aiding the compositionality of contracts.
+A common contract structure is to repeat a choice between alternatives until a given end date.
+An important property of the semantics of The checkWithin construct generalises an alternative by iterating the decision (chosenBy) contracts is monotonicity, i.e.
+If X chooses at one day before the C JcKρ1 ⊆ C JcKρ2 if ρ1 ⊆ ρ2 end (90 days), the trade comes into effect, consisting of two transfers (both) between the parties.
+Otherwise, the contract becomes empty where ⊆ denotes the subset inclusion of the graph of two partial functions.
+When dealing with contracts we are interested in a number of semantic properties of contracts, e.g.
+causality (Does the cash-flow at each time t depend only on observables at time ≤ t?), horizon (From which time onwards is The translate combinator simply translates a the cash-flow always zero?) and dependencontract a number of days into the future.
+In cies (Which observables does the cash-flow dethe expression language, we also define a spe- pend on?).
+Such properties can be characcial expression acc which accumulates a value terised precisely using the denotational semantics.
+For example a contract c is causal iff for over a given number of days from today.
+That is, the cash-flows The accumulator can be used to compute avat any time t do not depend on observables erages (for so-called Asian options), or more and decisions after t.
+generally to carry forward a state while comIt is in general undecidable whether a conputing values.
+tract is causal, but we can provide conservative approximations.
+For instance we have an in2.1 Denotational Semantics ductively defined predicate Causal such that The semantics of a contract is given by its cash- if Causal(c), then c is indeed causal.
+This flow, which is a partial mapping from time to is not unlike type checking, which provides a conservative approximation of type safety.
+Apart from a variety of analyses, our frameThe cash-flow is a partial mapping since it may work provides functionality to transform connot be determined due to insufficient knowltracts in meaningful ways.
+The most basic edge about observables and external decisions, form of such transformations are provided by provided by an environment ρ ∈ Env: algebraic laws.
+These laws of the form c1 ≡ c2 state when it is safe to replace a contract c1 by an equivalent contract c2 .
+Using our denoC J·K· : Contr × Env → Flow tational semantics, these algebraic laws can be Note that the environment is a partial map- proved in a straightforward manner: we have ping from Z, i.e.
+it may provide information c1 ≡ c2 iff C Jc1 Kρ = C Jc2 Kρ for all ρ ∈ Env.
+This denotational semantics More interesting are transformations that is the foundation for the formalisation of sym- are based on knowledge about observables and bolic contract analyses, contract management external decisions.
+That is, we transform a and transformations.
+We consider two examples, specialisation and reduction.
+For future work we plan to implement and certify more extensive analyses and transformations, e.g.
+scenario generation and “zoom3.1 ing” (changing the granularity of time).
+MoreA specialisation function f performs a partial over, an important goal is to generate from a evaluation of a contract c under a given en- contract efficient code to calculate its payoff vironment ρ.
+The resulting contract f (c, ρ) is [6].
+The Haskell implementation is translated equivalent to c under the environment ρ.
+More by hand into Coq definitions, which are the bagenerally, we have that C Jf (c, ρ)Kρ0 = C JcKρ sis for the certification.
+This approach is benfor any environment ρ0 ⊆ ρ, including the eficial for rapid prototyping, but our goal is empty environment.
+to turn this process around and automatically extract Haskell code from the Coq definitions.
+Based on the seminal work by Peyton-Jones, [7] Eber, and Seward [7], and even earlier work on contract languages [2], in the last decade, domain specific languages for contract specifi- [8] cations have been widely adopted by the financial industry [4, 5, 8], allowing for more agility, shop on Formal Methods Application in Software Engineering, 1995..

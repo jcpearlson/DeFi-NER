@@ -1,0 +1,8254 @@
+cryptocurrencies: None
+
+products: None
+
+programs: Bitcoin-NG
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: DEX contract
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: Nakamoto consensus protocol
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: TEF, decentralized metalayer
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: proof of stake blockchain protocol
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:bitcoin software
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Ethereum, Bitcoin
+
+products: None
+
+programs: Solidity
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:random oracle model, random oracle functionality FRO
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: FSS
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoins
+
+products:None
+
+programs: LulzSec
+##################
+cryptocurrencies: ether
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Bulletproofs verifier
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Proof of Useful Resources (PoUS)
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin, Luna, Terra
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:PoW, PoS, BFT algorithms, hybrid BFT-based algorithms.
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: BTC
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: EOSIO
+
+programs: PoS protocols, BFT consensus
+##################
+cryptocurrencies: None
+
+products: FTX
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Staker, Ethereum
+##################
+cryptocurrencies: CRO
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: ERC20 tokens, Ethers, ERC721 tokens
+
+products: Matic Network
+
+programs: None
+##################
+cryptocurrencies:Atic Token
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: monitoring and governance mechanisms
+##################
+cryptocurrencies: None
+
+products:None
+
+programs:PoW network
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Hyperledger Fabric, Tendermint, Symbiont Assembly, R3 Corda, Iroha, Kadena, Chain, Quorum, MultiChain
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:light nodes
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: consensus group
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: ASCII
+##################
+cryptocurrencies: TRX
+
+products: None
+
+programs:SR candidates
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: STATUS, Bitcoin Core implementation
+
+programs: None
+##################
+cryptocurrencies: Terra
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: Bitcoin source code, BA
+##################
+cryptocurrencies: None
+
+products: FTX
+
+programs: backstop liquidity provider program
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: proof of stake blockchain
+##################
+cryptocurrencies: Bitcoin, altcoins
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: PoX, BFT
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Nomura
+##################
+cryptocurrencies: FTT
+
+products: white label solutions
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: FDLS
+##################
+cryptocurrencies: None
+
+products: Microsoft Update
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: AMQP
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:TLS
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin, tethers
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Ethereum
+
+products: Matic Network
+
+programs: Plasma framework
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Ouroboros
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs: Frontier release
+##################
+cryptocurrencies: BNB
+
+products: None
+
+programs:ICO
+##################
+cryptocurrencies: None
+
+products: RON protocol
+
+programs:Google Protocol Buffers5
+##################
+cryptocurrencies: None
+
+products: agger, Ethereum
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:UTXOs
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: TRX
+
+products: None
+
+programs: Super Representative Reward
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Tendermint, Practical Byzantine Fault Tolerance (PBFT)
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Matic Token
+
+products: Matic Network
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: TronGrid
+
+programs:AWS servers
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Matic Token
+
+products: Matic Network
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Chainlink
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Ether (ETH)
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:decentralized Oracle Networks
+##################
+cryptocurrencies: None
+
+products: Avalanche
+
+programs:Ethereum virtual machine (EVM), Solidity-based smart contracts
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Chainlink
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:smart contract
+##################
+cryptocurrencies: None
+
+products: Polkadot
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Matic Network
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin, Ethereum
+
+products: None
+
+programs:arachain implementation
+##################
+cryptocurrencies: TRX
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: bitcoin
+
+products: None
+
+programs:miners, blockchain
+##################
+cryptocurrencies: None
+
+products: FTX
+
+programs:None
+##################
+cryptocurrencies: Bitcoin, Ethereum
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: CRO
+
+products: Crypto.com, Mainnet, Chain, Particle B
+
+programs:None
+##################
+cryptocurrencies: Terra currency
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: Tether
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Asynchronous Byzantine consensus
+##################
+cryptocurrencies: None
+
+products: Algorand ledger
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: FDLS, Protocol DLS
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: ETH
+
+products: Uniswap v1
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:BTrust network
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Binance crypto exchange
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:atomic broadcast
+##################
+cryptocurrencies: USD, WBTC, BTC
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: Terra Protocol
+
+products:None
+
+programs:Treasury, stimulus programs
+##################
+cryptocurrencies: Bitcoin
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin, Ethereum
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Nakamoto Consensus
+##################
+cryptocurrencies: Terra
+
+products: Terra Protocol
+
+programs:None
+##################
+cryptocurrencies: eercoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:proof of stake protocols
+##################
+cryptocurrencies: Bitcoin
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: ilecoin
+
+products: None
+
+programs:PoX, PoW
+##################
+cryptocurrencies: None
+
+products: Avalanche
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Nakamoto's consensus
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Bulletproofs
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Bano et al.
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:DON, TEEs
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Proof of Work, Proof of Stake
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Polkadot
+
+programs:None
+##################
+cryptocurrencies: $AVAX
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: FSS, DON framework, Chainlink network
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:blockchain
+##################
+cryptocurrencies: Namecoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: BTC
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:"Sim.cpp"
+##################
+cryptocurrencies: Bitcoin, Ethereum
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Ethereum-like chain
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Avalanche, IOTA
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: ether
+
+products:None
+
+programs:tester
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:DON nodes, main chain
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:yteball nodes
+##################
+cryptocurrencies: bitcoins
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: escrow service
+##################
+cryptocurrencies: Terra
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products:None
+
+programs: Nakamoto protocol
+##################
+cryptocurrencies: ethers, bitcoins
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: SMR-based distributed computing
+##################
+cryptocurrencies: None
+
+products: Ripple Server, Ripple Client
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Chain Core
+
+programs: Federated Consensus
+##################
+cryptocurrencies: Bitcoin
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Prover, Verifier
+##################
+cryptocurrencies: AVAX
+
+products: Default Subnet
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: HoneyBadgerBFT
+
+programs:None
+##################
+cryptocurrencies: ether, tether
+
+products: None
+
+programs: ether Limited
+##################
+cryptocurrencies: TerraSDR, Luna
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Mixicles, SC
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: FFT (Fast Fourier Transform)
+##################
+cryptocurrencies: ERC20 tokens, Ethers, ERC721 tokens
+
+products: Matic Network
+
+programs:None
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs:GHOST
+##################
+cryptocurrencies: ethers
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: Tendermint
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: ECC signature algorithm
+##################
+cryptocurrencies: None
+
+products: GHOST, Ethereum
+
+programs:roof-of-stake
+##################
+cryptocurrencies: amecoin, Namecoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: CRO
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: TronWeb
+
+programs:None
+##################
+cryptocurrencies: LINK
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: πDLS, FDLS, FBB
+##################
+cryptocurrencies: None
+
+products: FTX
+
+programs:None
+##################
+cryptocurrencies: Ethereum
+
+products: new blockchain
+
+programs:None
+##################
+cryptocurrencies:
+WBTC
+
+products:
+None
+
+programs:
+None
+##################
+cryptocurrencies: None
+
+products: SPECTRE Protocol
+
+programs: SPECTRE
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:BFT-based protocols, Nakamoto protocols, virtual mining, hybrid protocols, Byzantine agreement protocols
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: open source community
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: GHOST
+##################
+cryptocurrencies: None
+
+products: DEX contract
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:UTXO
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: TRON
+
+products: TronStudio
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:PV
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: Proof-of-Work
+##################
+cryptocurrencies: CRO
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: OmniLedger
+
+programs:None
+##################
+cryptocurrencies: BTC, ETH
+
+products: Chainlink network
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Ripple Server software, Ripple Client software
+
+programs: Ripple Server software, Ripple Client software, consensus process
+##################
+cryptocurrencies: Matic Token
+
+products: Matic Network
+
+programs: Matic Development team
+##################
+cryptocurrencies: None
+
+products: WalletConnect protocol
+
+programs: Matic Development Team
+##################
+cryptocurrencies: None
+
+products: Matic Chain
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Blockchain concepts
+##################
+cryptocurrencies: Tether
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: validator, collator, parachain
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: BTC, ETH
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Crypto.com
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: FSS
+
+programs: layer-2 services
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:permissioned blockchain network
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: UNL, RPCA
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:ultisignature definitions
+##################
+cryptocurrencies: Bitcoin
+
+products: Bitcoin Foundation
+
+programs:None
+##################
+cryptocurrencies: BTC
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Matic Token
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: AVAX
+
+products: Avalanche network
+
+programs:AWS
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Snow* protocols
+##################
+cryptocurrencies: Terra
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Aurora, PolarFS, POLARDB
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Smart Contract Cover
+
+programs:exus Mutual
+##################
+cryptocurrencies: Bitcoin, Ethereum
+
+products: None
+
+programs:smart contracts
+##################
+cryptocurrencies: None
+
+products: Avalanche, Snowman, Frosty
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: BTC, WBTC
+
+products: None
+
+programs:KYC
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: BA
+##################
+cryptocurrencies: ether
+
+products: ERC20 token standard
+
+programs: IP101
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: Mixing services
+
+programs: None
+##################
+cryptocurrencies: ZeroCoin, ZerCoins
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: X WBTC, Bitcoin, BTC
+
+products: None
+
+programs:atomic swap contract
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Figure 6, CA
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:DLT
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Ouroboros
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Nakamoto protocol
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: DONs, committee-based consensus protocols
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:side-chains
+##################
+cryptocurrencies: None
+
+products:None
+
+programs:SMS protocol
+##################
+cryptocurrencies: None
+
+products: Coinbase, BitPay
+
+programs: BIP70
+##################
+cryptocurrencies: BTC, ETH, LTC, USDC, CRO
+
+products: Crypto.com Exchange, Crypto.org Chain
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Matic Network
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: SHA3-256
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: service-level agreement (SLA)
+##################
+cryptocurrencies: BTrust
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Chain Extension Step
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Matic Network
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: TEF, FSS
+##################
+cryptocurrencies: None
+
+products: Chainlink
+
+programs:None
+##################
+cryptocurrencies: Bitcoin, Ethereum
+
+products: wallet creation
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:DLT
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:distributed consensus system
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: consensus algorithms, node
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: EvaluateE
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Random Oracle, H
+##################
+cryptocurrencies: Bitcoin
+
+products: Bitcoin client
+
+programs: Tor, SOCKS interface
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: miners
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: IP (Decentralized Insurance Protocol), IP (Decentralized Insurance Platform)
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:PID, anonymous identity protocol
+##################
+cryptocurrencies: Bitcoin
+
+products: blockchain
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: BIP70
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:proof of space
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: blockchain-specific development resources
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:Byzantine Generals
+##################
+cryptocurrencies: Terra
+
+products: None
+
+programs: dApp platform
+##################
+cryptocurrencies: None
+
+products: BRTMS
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: DLT
+##################
+cryptocurrencies: Bitcoin Core
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Blockchain
+
+programs:None
+##################
+cryptocurrencies: None
+
+products:None
+
+programs: UNL
+##################
+cryptocurrencies: Bitcoins
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: FTT
+
+products: FTX OTC portal
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs: Root contract
+##################
+cryptocurrencies: None
+
+products: Uniswapv1
+
+programs: None
+##################
+cryptocurrencies: Terra
+
+products: Terra's ecosystem
+
+programs: atomic swap functionality
+##################
+cryptocurrencies: None
+
+products: Intel Enhanced Privacy Identification (EPID)
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Terra
+
+products: dApps
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Tether Holdings Limited
+
+programs: None
+##################
+cryptocurrencies: ETH
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:TRON blockchain
+##################
+cryptocurrencies: None
+
+products:None
+
+programs:Tendermint
+##################
+cryptocurrencies: Byteball
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin, Ethereum, Counterparty, Stellar, Lisk
+
+products: None
+
+programs: Monax
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:DONs
+##################
+cryptocurrencies: None
+
+products:None
+
+programs:eta-nodes
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:DON
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: white paper
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: BTC
+
+products: digital wallet
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Casper FFG
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:BTrust
+##################
+cryptocurrencies: None
+
+products: Matic Network
+
+programs:Proof of Stake, Block Producers
+##################
+cryptocurrencies: Bitcoin, Lightning networks
+
+products: None
+
+programs: 2-of-2 multisignature, specifically designed smart contracts (scripts in Bitcoin)
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: BTC
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: BitLaundry
+
+programs: None
+##################
+cryptocurrencies: bitcoin
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: ether
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:distributed consensus systems, distributed payment networks
+##################
+cryptocurrencies: Bitcoin
+
+products: colored coins protocol
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:SCP
+##################
+cryptocurrencies: Ethereum, Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Uniswap v2
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Binance DEX, Binance Chain
+
+programs: None
+##################
+cryptocurrencies: PoW
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: smart contracts
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: DLT
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Hyperledger Project
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: Proof-of-Stake protocol
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:blockchains
+##################
+cryptocurrencies: None
+
+products:None
+
+programs:BTrust
+##################
+cryptocurrencies: None
+
+products: Eris Industries, Tendermint
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: OKEx
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: BTC, satoshi
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Terra
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Terra, Luna
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products:None
+
+programs: Proof-of-Work (PoW), blockchain
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: ParallefRaft
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:distributed consensus algorithms, deterministically executable contracts
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: ONs
+
+programs: Decentralized Oracle Network Transaction-Execution Framework (DONTEF or TEF)
+##################
+cryptocurrencies: DON
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Matic Network
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:TPM
+##################
+cryptocurrencies: Bitcoin
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: FTX
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Binance
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Luna
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Tether Limited, Tether
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Theorem 1
+##################
+cryptocurrencies: None
+
+products: PolarFS
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin, Ether
+
+products: Instant Karma PKI
+
+programs: None
+##################
+cryptocurrencies: Ethereum, Matic Network, Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: TPM, Verifier
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: SignatureHash()
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: VMe SSD
+
+programs:RDMA
+##################
+cryptocurrencies: None
+
+products: DApp, DON
+
+programs: Ethereum-compatible API
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: SPECTRE
+##################
+cryptocurrencies: Bitcoin
+
+products: "Bitcoin Relay Network"
+
+programs: None
+##################
+cryptocurrencies: RSCoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Chainlink
+
+programs:FFO
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: proof-of-work
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: soft fork
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: FFO
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:secure KNN, reputation mechanism
+##################
+cryptocurrencies: Bitcoin
+
+products:None
+
+programs:IdP-PV
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: FDLS
+##################
+cryptocurrencies: Shiba Inu
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:aft
+##################
+cryptocurrencies: None
+
+products: NVMe SSD, 3D XPoint
+
+programs:None
+##################
+cryptocurrencies: BC
+
+products: None
+
+programs: consensus
+##################
+cryptocurrencies: None
+
+products: 3DS (3-D Secure)
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Luna validators
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs: Ethereum contracts
+##################
+cryptocurrencies: WBTC, bitcoin
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:BFT consensus algorithms
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs:smart contracts, decentralized applications
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: IdP-PV, User
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: STATUS, UTXO analytic tool
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: ASICs (applicationspecific integrated circuits)
+
+programs: None
+##################
+cryptocurrencies: None
+
+products:None
+
+programs: IDP-PV
+##################
+cryptocurrencies: None
+
+products: DONs
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:ASIC attacks, Finality, PoH generator
+##################
+cryptocurrencies: None
+
+products: Uniswap v1
+
+programs: on-chain price oracle
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products:None
+
+programs: PoS-based protocols
+##################
+cryptocurrencies: None
+
+products: Chainlink
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: PoW
+##################
+cryptocurrencies: ether
+
+products: None
+
+programs: Gas relay abstraction
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: attestors, certification authorities, Byteball
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Bespoke Model
+##################
+cryptocurrencies: Terra
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Uniswap v2
+
+programs: "router" contract, pair contract
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: Elliptic Curve Digital Signature Algorithm
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Tendermint
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Matic Network
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Luna
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoins
+
+products: None
+
+programs:PCBE
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:DON
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: DON (program)
+##################
+cryptocurrencies: BTC
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: MDP
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Matic Chain
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: bitcoins
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: ethers, Bitcoin
+
+products: merchants, exchanges, wallets
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:DLT
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:PoS, PoW, blockchain protocol
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: block withholding attack, selfish mining attack
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: ERC-20 tokens
+##################
+cryptocurrencies: None
+
+products: Aston Martin Cognizant Formula One Team™
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: IP50 contract ABI
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: blockchain network implementation stacks
+##################
+cryptocurrencies: Matic Network
+
+products:None
+
+programs:Open-Identity system
+##################
+cryptocurrencies: Terra currency
+
+products: None
+
+programs: oracle votes
+##################
+cryptocurrencies: Chainlink
+
+products: None
+
+programs:Chainlink network
+##################
+cryptocurrencies: Ethereum-based, Bitcoin-based
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: TRX
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Algorand
+
+programs: BFT algorithms
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: FSS, DON, MAINCHAIN
+##################
+cryptocurrencies: Namecoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: aker, Relayer
+##################
+cryptocurrencies: None
+
+products: Tether
+
+programs: RenRenBee
+##################
+cryptocurrencies: Byteball
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:mintettes
+##################
+cryptocurrencies: None
+
+products: FTX
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: TX (cryptocurrency derivatives exchange)
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Stake based systems
+##################
+cryptocurrencies: TRX
+
+products:None
+
+programs: None
+##################
+cryptocurrencies: Ripple
+
+products: None
+
+programs:Ripple Protocol
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs: Turing-complete programming language
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:PoS
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: Bitcoin Fog, BitLaundry
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: PoS, PoH
+##################
+cryptocurrencies: Bitcoin
+
+programs: None
+
+products: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: GHOST
+##################
+cryptocurrencies: Bitcoin, Ethereum
+
+products: None
+
+programs: Raft, distributed consensus algorithm
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Proof of Replication, Proof of History
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Blockstack
+
+programs:None
+##################
+cryptocurrencies: TRON, Ethereum
+
+products: None
+
+programs: Solidity
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: pkO, FSS
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:PoS-based blockchain protocol
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Bulletproofs
+##################
+cryptocurrencies: Luna
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: DNS
+##################
+cryptocurrencies: None
+
+products: Uniswap v2
+
+programs: None
+##################
+cryptocurrencies: Byteball
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: SPECTRE
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: SICBOOST
+
+programs: mining optimization, SHA-256
+##################
+cryptocurrencies: Bitcoins
+
+products: None
+
+programs:BIP32
+##################
+cryptocurrencies: None
+
+products: PancakeSwap
+
+programs: Binance Smart Chain
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Ul, FBB
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: WBTC
+
+products: None
+
+programs: Kyber, Republic Protocol
+##################
+cryptocurrencies: ABC, XYZ
+
+products: Uniswap, Maker, Compound
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: Bitcoin protocol
+##################
+cryptocurrencies: TRON, Ethereum
+
+products: None
+
+programs: Solidity
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Nakamoto consensus protocols
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:ChainAnchor protocol
+##################
+cryptocurrencies: BTC
+
+products: None
+
+programs:UTXO
+##################
+cryptocurrencies: None
+
+products: Decibel.LIVE
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Ripple
+
+products: Ripple Protocol
+
+programs:None
+##################
+cryptocurrencies: ETH
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:DON
+##################
+cryptocurrencies: None
+
+products: ParallelRaft
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: DLS algorithm
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: DAG G
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: amecoin (NMC)
+
+products: namecoin.info
+
+programs:DNS
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: PoH generator
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Decentralized Oracle Networks (DONs)
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: deterministic consensus protocols
+##################
+cryptocurrencies: None
+
+products: ethers
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:ESTful web services
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: PolarFS
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:validators
+##################
+cryptocurrencies: Nakamoto protocol
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: FTX
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: PolarFS
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:UNLs
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:πiSPoS
+##################
+cryptocurrencies: None
+
+products:None
+
+programs:PoW
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: bitcoins
+
+products:None
+
+programs:UTXO
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:FSS
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Byzantine Generals Problem
+##################
+cryptocurrencies: Terra
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Terra currencies
+
+products: oracle
+
+programs:None
+##################
+cryptocurrencies: TRON
+
+products: TRON Developer Hub
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Tendermint BFT, Slasher
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:BFT protocol, PoW-BFT protocols
+##################
+cryptocurrencies: Terra
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: EPID (Enhanced Privacy ID), Verifier
+##################
+cryptocurrencies: None
+
+products:None
+
+programs:miners
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: SHA-256, RIPEMD-160
+##################
+cryptocurrencies: None
+
+products: PancakeSwap, Binance Smart Chain
+
+programs: None
+##################
+cryptocurrencies: cryptographic currency
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: ChainAnchor
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Dai, Basis, Carbon, NuBits
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Filecoin
+
+products: DONs
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: BTrust
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Appendix B
+##################
+cryptocurrencies: None
+
+products: DON protocol
+
+programs:None
+##################
+cryptocurrencies: Ripple Protocol
+
+products: None
+
+programs:Ripple Protocol
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: BNB
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: bitcoins
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: TLS
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: DON
+
+programs:adapters, executables
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Matic Network
+
+programs:None
+##################
+cryptocurrencies: None
+products: None
+programs: None
+##################
+cryptocurrencies: Dogecoin (DOGE)
+
+products: dogecoin.com
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: SHA256
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:PoW, PoS
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Matic Network, Ethereum blockchain
+
+programs:None
+##################
+cryptocurrencies: None
+
+products:None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: permissioned blockchain
+##################
+cryptocurrencies: USDT, TUSD, USDC, PAX, CRO
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: Script 1
+##################
+cryptocurrencies: None
+
+products: TPM version 1.2
+
+programs:DAA protocol
+##################
+cryptocurrencies: None
+
+products: umbers Protocol
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: BTrust
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: consensus mechanism
+##################
+cryptocurrencies: None
+
+products: Bulletproofs
+
+programs: MPC protocol
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs:smart contracts, decentralized applications
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: P2P protocols
+##################
+cryptocurrencies: Ethereum
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: BTC
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: leepy consensus
+##################
+cryptocurrencies: None
+
+products: TUSD, USDC
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:blockchain network
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:BTrust protocol
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: proof-of-work (PoW), proof-of-stake (PoS), proof-of-elapsed-time (POET), proof-of-space-and-time (PoST), proof-of-authority (PoA).
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: git
+##################
+cryptocurrencies: None
+
+products: Ethereum
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: FSS
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: hash function
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Stake Manager
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoins
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Avalanche
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoins
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: BTC
+
+products: None
+
+programs: oracle
+##################
+cryptocurrencies: Ripple
+
+products: Ripple Protocol
+
+programs:None
+##################
+cryptocurrencies: Luna, Terra
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Merkle tree protocol
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:aft, Paxos, Viewstamped Replication
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:DHTs
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Byzantine Generals Problem, distributed payment systems
+##################
+cryptocurrencies: None
+
+products: DAO
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: MAINCHAIN contract SCa, executable execs, DON
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies:
+
+products: GHOST
+
+programs: None
+##################
+cryptocurrencies: bitcoins
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: proof-of-work scheme
+##################
+cryptocurrencies: rapped BTC, ERC20
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Byteball
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Ethereum
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: mining pools
+##################
+cryptocurrencies: TRX
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Matic Network
+
+programs:PoS miners
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Internet-of-Things (IoT) devices
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: TerraSDR, Luna, SDR
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: FO, Chainlink
+
+products: None
+
+programs: Chainlink network
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: relaychain’s consensus mechanism, EVM-like opcodes
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: tethers
+
+programs:None
+##################
+cryptocurrencies:
+Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Byteball
+
+programs:Byteball definition language
+##################
+cryptocurrencies: None
+
+products: Uniswap v2
+
+programs:core contract
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Legal Trust Frameworks, Federated identity management
+##################
+cryptocurrencies: CRO tokens
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: permissionless protocol
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: permissioned-group
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: proof-of-work, consensus mechanism
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: consensus process
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:German Banking Act (Kreditwesengesetz)
+##################
+cryptocurrencies: rimecoin
+
+products: None
+
+programs: Fermat’s primality test
+##################
+cryptocurrencies: None
+
+products: BTrust
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: lightning network
+
+programs:None
+##################
+cryptocurrencies: tethers
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Exponential Information Gathering (EIG)
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Ethereum
+##################
+cryptocurrencies: DON
+
+products: None
+
+programs: smart contract
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Dogecoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: ON, DON
+##################
+cryptocurrencies: Luna
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:classical consensus protocols, Nakamoto consensus, proof-of-work mining
+##################
+cryptocurrencies: None
+
+products: OpenID Authentication 2.0
+
+programs: None
+##################
+cryptocurrencies: ecash, b-money
+
+products: None
+
+programs: Chaum, Dai
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: DON
+##################
+cryptocurrencies: None
+
+products: Blockchain
+
+programs: Big Data, Cloud Computing, Machine learning
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: UNL
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+ 
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Uniswap v1
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: DLT
+##################
+cryptocurrencies: None
+
+products: STATUS
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: TRON platform
+
+programs: None
+##################
+cryptocurrencies: ETH
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin, tether
+
+products: Omni Layer protocol
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: enus, BNB
+
+products: None
+
+programs: DeFi, algorithmic money market protocol
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products:None
+
+programs:meta-protocols
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Tether
+
+programs: Tether Limited, Bitcoin/blockchain wallets
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: DLT
+##################
+cryptocurrencies: None
+
+products: Polkadot
+
+programs:proof-of-authority (PoA), Polkadot
+##################
+cryptocurrencies: None
+
+products: Matic Network
+
+programs: PoS
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:DON, SC, MAINCHAIN
+##################
+cryptocurrencies: TUSD
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: blockchain system
+##################
+cryptocurrencies: Bitcoin
+
+products: BitLaundry, Bitcoin Fog, Blockchain.info
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:MEV
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Chainlink network
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: SO (Simultaneous Authentication)
+##################
+cryptocurrencies: USDT, TUSD, USDC, PAX, CRO
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:FHE
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Pinocchio protocol
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Paxos
+
+programs: multi-Paxos, cheapPaxos, fast-Paxos
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:efund mechanism
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:proof of work mechanism
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Treasury, dApp
+##################
+cryptocurrencies: CHAI, DAI
+
+products: None
+
+programs: EIP-712
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: BTrust
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: PoR
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Terra, Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: BTC
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:MPC
+##################
+cryptocurrencies: Bitcoin
+
+products: Bitcoin Application (BA)
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:Bitcoin software
+##################
+cryptocurrencies: TerraSDR
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: Ethereum, Matic
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products:lockstack
+
+programs:None
+##################
+cryptocurrencies: Bel token, Ethereum (implicitly mentioned as the underlying blockchain)
+
+products: None
+
+programs: DApp platform
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:ParallelRaft, Raft
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: consensus protocols
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: DAG-based consensus schemes
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: xchanges
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Matic Token
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Avalanche
+
+programs: None
+##################
+cryptocurrencies: Bitcoin, Ethereum 
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Tendermint
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: OCR
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: DONs (decentralized organizations)
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: UTXO
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: 3DS
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: hybrid smart contract 3, on-chain component SC 1, off-chain component exec 2, blockchain, DON
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs: smart contract
+##################
+cryptocurrencies: NO, Ethereum, Bitcoin
+
+products: None
+
+programs: BC projects, Ethereum, Bitcoin
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: PoW mechanisms
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: ox, Mt.
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: BIGNUM, mpi
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:DLT applications
+##################
+cryptocurrencies: ether
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Null Data transactions
+##################
+cryptocurrencies: None
+
+products: ENS
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Luna, Terra
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: Mt. Gox (bitcoin exchange)
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: PCBE
+##################
+cryptocurrencies: Matic Token
+
+products: Matic Network
+
+programs: Matic Development team
+##################
+cryptocurrencies: None
+
+products: RON Protocol
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Chainlink oracle network
+
+programs: smart contract SC
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: en protocol
+##################
+cryptocurrencies: Ether
+
+products: None
+
+programs: Matic Development Team, Matic contract
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: NIST
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Ripple
+
+products: None
+
+programs: Ripple Protocol
+##################
+cryptocurrencies: None
+
+products:None
+
+programs: Serenity
+##################
+cryptocurrencies: None
+
+products: Okex
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:blockchain consensus protocols
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Permissioned blockchain, Permissions Verifier, Verified Identities Database
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Haskell, c
+
+
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:blockchain consensus protocols, permissioned systems
+##################
+cryptocurrencies: None
+
+products: Chainlink
+
+programs: None
+##################
+cryptocurrencies: Matic Tokens
+
+products: None
+
+programs: PoS checkpointing layer, root contract
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: EPID, IdP-PI, Permissions Issuer, Membership Verification Public Key, User, Group-Member Keying
+##################
+cryptocurrencies: Terra
+
+products: None
+
+programs:Terra miners
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: pool P1, pool P2
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: circuit protocol
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Uniswap v1
+
+programs: Vyper
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Greedy Heaviest Observed Subtree (GHOST) protocol
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Proof of History generator
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Matic Tokens, Ethereum
+
+products: None
+
+programs:Staker, PoS checkpointing layer
+##################
+cryptocurrencies: None
+
+products:None
+
+programs: EPID, Permissions Verifier, Permissions Issuer
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: PolarFS, CephFS, Ext4
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: SC1, SC2
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Ouroboros
+##################
+cryptocurrencies: None
+
+products: 0x protocol
+
+programs: None
+##################
+cryptocurrencies: Ethereum
+
+products: Ethereum's virtual machine
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Web-based trading client, Android native client, iOS native client, Mobile HTML5 client, PC (Windows) native client, REST API
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Decentralized Oracle Network (DON), MAINCHAIN
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Terra network
+##################
+cryptocurrencies: TRON
+
+products: None
+
+programs:Super Representative (SR), TRON network
+##################
+cryptocurrencies: None
+
+products: PolarFS, CephFS, Ext4
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Solidity
+##################
+cryptocurrencies: CHAI, DAI
+
+products: None
+
+programs:EIP-712
+##################
+cryptocurrencies: None
+
+products: Uniswap v2
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: PoW puzzle
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: ETH
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: ECO
+
+products: Town Crier
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: FTT
+
+products: FTX
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: Coinmux (coinmux.com)
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Tether
+
+programs: None
+##################
+cryptocurrencies: bitcoins
+
+products: None
+
+programs: Turing-complete scripting language
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Pyethereum
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:BlockTree
+##################
+cryptocurrencies: None
+
+products: Ega Protocol
+
+programs: Appchain
+##################
+cryptocurrencies: None
+
+products: Crypto.com Pay
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Merkle tree hash
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:MCI
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:PoW network
+##################
+cryptocurrencies: None
+
+products: SQRL
+
+programs: SSO (Single Sign-On)
+##################
+cryptocurrencies: tethers, Bitcoin
+
+products: None
+
+programs:p2p opensource, Bitcoinbased platform
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoins
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Tendermint, BFT algorithms
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:UTXO
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Ouroboros
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Off-Chain Reporting (OCR), DON activity
+##################
+cryptocurrencies: BNB
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Ripple
+
+products: Ripple Protocol
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Crypto.com Pay
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Crypto.com Exchange
+
+programs: Crypto.com Exchange Referral Program
+##################
+cryptocurrencies: None
+
+products:None
+
+programs: Berkeley Packet Filter bytecode, JIT bytecode
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: oH
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: ECO
+##################
+cryptocurrencies: None
+
+products:None
+
+programs:TMSP message, mempool
+##################
+cryptocurrencies: BTrust
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: HoneyBadgerBFT
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: committee-based PoS
+##################
+cryptocurrencies: Algorand
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: Bitcoin core
+##################
+cryptocurrencies: None
+
+products: Chainlink network
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Kafka
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: πiSPoS
+##################
+cryptocurrencies: None
+
+products: NaCl
+
+programs: ED25519
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: SchellingCoin
+
+programs:oracle, prediction markets, futarchy
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: KYC
+##################
+cryptocurrencies: Ethereum
+
+products:None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: DLT
+##################
+cryptocurrencies: None
+
+products: SchellingCoin
+
+programs:oracle, prediction markets, futarchy
+##################
+cryptocurrencies: None
+
+products: CopperCoin
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: DON
+##################
+cryptocurrencies: Litecoin
+
+products: GPU-based mining
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:PoW-based timestamping mechanism
+##################
+cryptocurrencies: ether, Bitcoin
+
+products: blockchain, public ledger
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Crypto.org Chain, Crypto.com Pay
+
+programs:None
+##################
+cryptocurrencies: TRX
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: CoinJoin
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Matic Network
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:chain-based PoS minter
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:blockchain protocol
+##################
+cryptocurrencies: None
+
+products: Bitfinex, HolyTransaction, Omni Wallet, Poloniex, CCEX
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: chellingCoin
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:PoS consensus
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: oW
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Cachin et al.
+##################
+cryptocurrencies: None
+
+products: MyEtherWallet (MEW)
+
+programs: EW (MyEtherWallet)
+##################
+cryptocurrencies: ethers, Bitcoin
+
+products: Omni Layer protocol, decentralized exchange, wallet encryption
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Avalanche
+
+products: Avalanche Borealis
+
+programs: subnetworks
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: PoS-driven supply expansion
+##################
+cryptocurrencies: TRX
+
+products: None
+
+programs: TRC-10 token transfers
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Serpent
+##################
+cryptocurrencies: None
+
+products: DON
+
+programs:Chainlink nodes
+##################
+cryptocurrencies: None
+
+products: anonymous channel, Tor
+
+programs:None
+##################
+cryptocurrencies: None
+products: None
+programs: ChainAnchor, UMA distributed authorization model, IdP-PV, Native Client
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Denotational Semantics
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: "full node" in the Bitcoin network
+##################
+cryptocurrencies: None
+
+products: openssl
+
+programs:BigNum Class, BIGNUM
+##################
+cryptocurrencies: Bitcoin, Dogeparty
+
+products: Codius, Counterparty, DAML, Dogeparty, Ethereum, Lisk, Monax, Rootstock, Symbiont, Stellar, Tezos
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: asper FFG
+##################
+cryptocurrencies: Ethereum
+
+products:None
+
+programs: Ethereum clients
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: TTA
+
+programs:None
+##################
+cryptocurrencies: ZeroCash
+
+products:None
+
+programs:ZKP, SNARKs
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: TransactionFee
+##################
+cryptocurrencies: Bitcoin
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: BTC
+
+products: Avalanche
+
+programs:DNS seed node, anchors
+##################
+cryptocurrencies: ether, tethers
+
+products: None
+
+programs:ether Limited
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: BTrust
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:lockchain
+##################
+cryptocurrencies: None
+
+products: ERC20
+
+programs:None
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: RSCoin
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:DLT
+##################
+cryptocurrencies: Bitcoin
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Perl, openssl library
+
+programs: None
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs: Ethereum smart contracts, dApp
+##################
+cryptocurrencies: None
+
+products: Avalanche platform services
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:validators
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Uniswap v2
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: BNB
+
+products: None
+
+programs: CO
+##################
+cryptocurrencies: None
+
+products:None
+
+programs: UTXO
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:Blockchain Analysis, Deanonymization
+##################
+cryptocurrencies: None
+
+products:None
+
+programs: Tendermint
+##################
+cryptocurrencies: None
+
+products: Matic Network
+
+programs:PoS, Stakers
+##################
+cryptocurrencies: None
+
+products: DON
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: IdP-PV
+##################
+cryptocurrencies: Bitcoin
+
+products: Master bitcoin
+
+programs: None
+##################
+cryptocurrencies: BTC
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: enus, BNB
+
+products: DeFi algorithmic money market protocol
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: FLS
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Proof of Replication
+##################
+cryptocurrencies: Ethereum
+
+products: Ethereum virtual machine (EVM)
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: EOSIO
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: PolarFS
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:PoS (Proof of Stake)
+##################
+cryptocurrencies: None
+
+products: Uniswap v2 factory contract
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: Bitcoin Fog
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: tethers
+
+products: Bitfinex
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: CoinJoin protocol
+##################
+cryptocurrencies: None
+
+products: Ethereum
+
+programs: Ethereum virtual machine, DAML, WASM
+##################
+cryptocurrencies: ethers
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: onero
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: 3DS
+##################
+cryptocurrencies: BNB
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:blockchain platforms
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:FDLS, Protocol πDLS
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Verifier nodes
+##################
+cryptocurrencies: None
+
+products: Uniswap v1, Uniswap v2
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: FaRM, DrTM, PolarFS
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Tether
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: consensus-creating state-machine
+##################
+cryptocurrencies: Bitcoin
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:oracle network, dependent contract SC
+##################
+cryptocurrencies: None
+
+products: Tangle
+
+programs:None
+##################
+cryptocurrencies: Terra
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: ChainAnchor
+##################
+cryptocurrencies: Matic Network
+
+products: None
+
+programs: Open-Identity system
+##################
+cryptocurrencies: None
+
+products: Uniswap v2
+
+programs:sync(), skim()
+##################
+cryptocurrencies: BTC
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Binance
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: ChainAnchor1, Blockchain
+##################
+cryptocurrencies: None
+
+products: Matic Network
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: yteball's consensus
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: deployment code, contract code, TVM
+##################
+cryptocurrencies: Bitcoin
+
+products:None
+
+programs:permissioned blockchain
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: TRC-10 tokens
+
+programs: smart contracts
+##################
+cryptocurrencies: Ethereum
+
+products: Ethereum protocol
+
+programs: None
+##################
+cryptocurrencies: amecoin, Bitcoin
+
+products: None
+
+programs: Proof of Work, merged mining
+##################
+cryptocurrencies: None
+
+products:None
+
+programs:EncryptE
+##################
+cryptocurrencies: None
+
+products: Tendermint
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: bitcoins
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Tangaroa
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:UTXO, script
+##################
+cryptocurrencies: CRO tokens
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:main.h CTransaction
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Byzantine Fault Tolerant (BFT) consensus protocols
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: PoW mining
+##################
+cryptocurrencies: Ethereum Serenity, Cosmos, Polkadot, Ontology, QuarkChain
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin, Omni Layer protocol
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: 0x protocol
+
+programs:Token Registry, ERC20
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: FDLS, Ui
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:TEE, enclave program
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:PoW
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Auxdata
+##################
+cryptocurrencies: None
+
+products: x, Ethereum blockchain
+
+programs: None
+##################
+cryptocurrencies: tethers
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: FTT
+
+products: spot exchange
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: probe
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: somewhat homomorphic encryption, encryption scheme E
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:DNS seed nodes
+##################
+cryptocurrencies: None
+
+products: DECO, Town Crier
+
+programs: Prover, Verifier
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: password, TiQR
+##################
+cryptocurrencies: None
+
+products: BTrust smart contracts
+
+programs:None
+##################
+cryptocurrencies: ether, tethers
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: Terra currencies
+
+products:None
+
+programs: IMF SDR
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: aker, Relayer
+##################
+cryptocurrencies: None
+
+products: Chainlink network
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: FTX
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: blockchain mining rewards
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: OpenID
+
+programs: enrolment handler, authentication handler
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: ECO, cryptographic protocols
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: permissioned blockchain
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: permissioned blockchains
+##################
+cryptocurrencies: tethers
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: ETH, WETH
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Eris Industries, Tendermint
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: UXTOs
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: blockDAG, txDAG
+##################
+cryptocurrencies: None
+
+products: FTX
+
+programs: eve
+##################
+cryptocurrencies: bitcoins
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: TEF
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: EvalScript()
+##################
+cryptocurrencies: Matic Token
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: PoW
+##################
+cryptocurrencies: Bitcoin
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: DON (oracle networks)
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: distributed algorithms
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: FTX ecosystem
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Hyperledger Fabric V1
+
+programs:Kafka-based orderer
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:BFT protocols
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: public blockchain network
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Federated Consensus
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: EPID, DAA
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: SchellingCoin
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: PoA
+##################
+cryptocurrencies: None
+
+products:None
+
+programs:Ethash
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Nonce, Mid states
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: PBFT
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Avalanche platform
+
+programs: consensus engine
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: consensus protocol
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:FSS
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: PCBE
+
+programs: None
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs: Ethereum virtual machine code, EVM code
+##################
+cryptocurrencies: Ethereum
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: blockchain network
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: main chain smart contract SC, DON's transaction monitoring
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Slot
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products:None
+
+programs:PoW network
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: access control smart contract (ASC), DO (unknown entity)
+##################
+cryptocurrencies: Bitcoin
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: LooneyLottery, Dice, Roulette, RockPaperScissors, Etherization
+
+programs:None
+##################
+cryptocurrencies: ethers
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Nakamoto protocol
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Tendermint
+##################
+cryptocurrencies: BTC
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Maker
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: hybrid consensus protocols
+##################
+cryptocurrencies: None
+
+products: Algorand
+
+programs: recovery protocol
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:DLS
+##################
+cryptocurrencies: None
+
+products:None
+
+programs:OSNs
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:TEE hardware vendor
+##################
+cryptocurrencies: Bitcoin
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Dagger
+
+programs:None
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs: Ethereum smart contracts language
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: ECDSA, Schnorr signatures
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:DON (Decentralized Operating Network)
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:Nakamoto consensus
+##################
+cryptocurrencies: Bitcoins
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Uniswap v1
+
+programs:None
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs: smart contract
+##################
+cryptocurrencies: None
+
+products:None
+
+programs:Nakamoto protocol
+##################
+cryptocurrencies: None
+
+products: Visa Card, Crypto.com App
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Byteball
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: mining rigs
+
+programs:Proof of Work
+##################
+cryptocurrencies: None
+
+products: Thomson Reuters, IHS Markit, Capco (part of FIS), Axoni
+
+programs: blockchain technology, smart contracts
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: governance in a consensus system
+##################
+cryptocurrencies: None
+
+products: Tangle
+
+programs:The MCMCbased scheme, highest-accumulated-weight strategy, weighted random walk algorithm
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Tangle DAG
+##################
+cryptocurrencies: None
+
+products:None
+
+programs: PBFT protocol
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:PBFT protocol
+##################
+cryptocurrencies: ether
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Avalanche
+
+programs: txDAG-based Avalanche protocol, Snowflake, Snowball
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: DON
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:validators, parachain block
+##################
+cryptocurrencies: None
+
+products: Matic Network, Dharma protocol
+
+programs:None
+##################
+cryptocurrencies: Matic Tokens
+
+products: None
+
+programs: PoS checkpointing layer
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Mnemonic Code Technique, Secret Sharing Technique, DSS Attack Technique
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: blockchain consensus protocol
+##################
+cryptocurrencies: None
+
+products: Byteball
+
+programs:None
+##################
+cryptocurrencies: Bitcoin, Ethereum
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: RON network
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Nakamoto’s protocol
+##################
+cryptocurrencies: Bitcoin, Ethereum
+
+products: Blockchain
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: ADO
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: Tethers
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:FSS
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: MinGW
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Blockfreight™ blockchain
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: ETH
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: blockchain consensus mechanism
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: racle nodes
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoins
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: lgorand
+##################
+cryptocurrencies: None
+
+products: Binance ICO 
+
+programs: BijieTech
+##################
+cryptocurrencies: Terra
+
+products: None
+
+programs: Terra network
+##################
+cryptocurrencies: Matic Token
+
+products: Matic Network
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: ONs
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:uroboros
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:UTXO
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:DON (oracle)
+##################
+cryptocurrencies: Bitcoin
+
+products: blockchain
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Ouroboros
+##################
+cryptocurrencies: BTC
+
+products: None
+
+programs:SC (smart contract)
+##################
+cryptocurrencies: None
+
+products: Matic Networks
+
+programs:Blockchain applications
+##################
+cryptocurrencies: Matic Network
+
+products: None
+
+programs: Block Producers
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: DAO contract
+##################
+cryptocurrencies: None
+
+products: Matic Network
+
+programs:Proof of Stake, Block Producers
+##################
+cryptocurrencies: FTT
+
+products: FTX
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Matic Network
+
+programs:None
+##################
+cryptocurrencies: bitcoin
+
+products: None
+
+programs:Nakamoto consensus, Bare-bones blockchain protocol
+##################
+cryptocurrencies: BTC
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:FSS
+##################
+cryptocurrencies: None
+
+products: FTX
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: ON (minority reports), DON
+##################
+cryptocurrencies: None
+
+products: Kyber Network, BitGo Inc, Republic Protocol
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Uniswap v2
+
+programs:None
+##################
+cryptocurrencies: BTC
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products:ave (liquidity protocol)
+
+programs: None
+##################
+cryptocurrencies: bitcoins
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: READDATA(), WRITEDATA(), CDataStream::read(), CDataStream::write()
+##################
+cryptocurrencies: NB, Ethereum
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: blockchain
+
+programs: None
+##################
+cryptocurrencies: Luna, Terra
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Tangaroa
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Luna
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Uniswap v2
+
+programs: Uniswap v2 core pair contract
+##################
+cryptocurrencies: Bitcoins
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: tethers
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:BFT consensus
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:rust-minimized governance
+##################
+cryptocurrencies: None
+
+products: cloud platforms
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:German Banking Act
+##################
+cryptocurrencies: None
+
+products:None
+
+programs: PKI
+##################
+cryptocurrencies: None
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: PoS
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:state-of-the-art protocols
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:SPECTRE
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Ripple Network
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: PoW network
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: threshold signatures, P2PKH
+##################
+cryptocurrencies: None
+
+products:None
+
+programs:smart contract (SC)
+##################
+cryptocurrencies: None
+
+products: Chainlink
+
+programs: None
+##################
+cryptocurrencies: Ethereum
+
+products:None
+
+programs: Ethereum virtual machine
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: RiskTxReject
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:BFT consensus protocol
+##################
+cryptocurrencies: None
+
+products: PolarFS
+
+programs: ParallelRaft
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Mango Markets
+
+programs:None
+##################
+cryptocurrencies: Maker
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: ETH, DAI
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Luna
+
+products: None
+
+programs: dApp, Treasury
+##################
+cryptocurrencies: None
+
+products: DON
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Byzantine agreement protocol
+##################
+cryptocurrencies: bitcoin
+
+products: None
+
+programs:Nakamoto's analysis
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:FDLS, FLS
+##################
+cryptocurrencies: None
+
+products:None
+
+programs: permissioned consensus protocol
+##################
+cryptocurrencies: Bitcoin
+
+products: software wallets
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: Bitcoin core client
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Uniswap v2, ERC-20, ETH
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:state transaction system, consensus system
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products:	None
+
+programs: None
+##################
+cryptocurrencies: BTC
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs: Ethereum multisig
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:DON
+##################
+cryptocurrencies: Luna
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:blockchain analysis procedure
+##################
+cryptocurrencies: BNB
+
+products: None
+
+programs:CO
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: ERC-20s
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Proof of History
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: BIP70
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: mixing services for Bitcoin transactions
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Raft protocol
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:PBFT consensus
+##################
+cryptocurrencies: None
+
+products:None
+
+programs:blockchain
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Nakamoto Consensus Protocol, GHOST (block finalization rule)
+##################
+cryptocurrencies: bitcoin
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:SGX
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:PoW
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Ripple
+##################
+cryptocurrencies: None
+
+products: Bulletproofs
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: UTXO script
+##################
+cryptocurrencies: None
+
+products: TEF (Transaction Execution Fabric)
+
+programs: None
+##################
+cryptocurrencies: None
+
+products:None
+
+programs: FLS
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: FTX
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:mining pool
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: BTC
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:consensus protocols
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:UTXO set analysis
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Open Directory Project
+##################
+cryptocurrencies: None
+
+products: BitLaundry
+
+programs:None
+##################
+cryptocurrencies: WBTC
+
+products:None
+
+programs:WBTC DAO
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Ethereum
+
+products: geth
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: electronic card payment system
+
+programs: PoW network
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: DON, MAINCHAIN
+
+programs: MS
+##################
+cryptocurrencies: None
+
+products: FLS
+
+programs:None
+##################
+cryptocurrencies: Ethereum
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:consensus protocols
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: PolarFS
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: UTXO
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: DAG ledger structure, Nakamoto’s blockchain design
+##################
+cryptocurrencies: None
+
+products: DAO
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Avalanche platform
+
+programs:None
+##################
+cryptocurrencies: Ether, BTC
+
+products: Ethereum, Mastercoin, NXT
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: RPCA
+##################
+cryptocurrencies: None
+
+products: BTrust
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:blockchain protocol, Nakamoto
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:state transaction system, consensus system
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:blockchain consensus protocols
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Proof of Stake protocol
+##################
+cryptocurrencies: Bitcoin, Bitcoin Cash
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: RPCA
+##################
+cryptocurrencies: Luna
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:PoH algorithm
+##################
+cryptocurrencies: None
+
+products: Paxos algorithm
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Microsoft Passport, U-Prove, Microsoft InfoCard
+
+programs: Credentica's U-Prove, Microsoft InfoCard framework
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Nakamoto consensus
+##################
+cryptocurrencies: None
+
+products: FSS
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: bitcoin mixing services
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: TVM, TRON
+
+programs:None
+##################
+cryptocurrencies: BTC, Wrapped Bitcoin
+
+products: ERC20 token
+
+programs: Ethereum
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Algorand protocol
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Poisson distribution
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: bitcoins
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products:None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: Proof of Work
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: DLT, tokenization
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Uniswapv1, Ethereum
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: Nakamoto consensus protocol
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:distributed consensus protocol
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Proof of History
+##################
+cryptocurrencies: bitcoins
+
+products: blockchain
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Ether, ERC20
+
+products: Matic contract
+
+programs: Matic Development Team
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Chainlink
+
+programs: None
+##################
+cryptocurrencies: Algorand
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: rust, SC (smart contracts)
+##################
+cryptocurrencies: None
+
+products:None
+
+programs: amport's original consensus algorithm
+##################
+cryptocurrencies: Terra
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: Blockchain
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:proof-of-work
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: mapKeys
+##################
+cryptocurrencies: None
+
+products:None
+
+programs:erkleeyes, CheckTx
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:BSD license
+##################
+cryptocurrencies: None
+
+products: Algorand ledger
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: Tendermint
+
+programs: Jepsen.io
+##################
+cryptocurrencies: None
+
+products: distributed storage system
+
+programs: consensus protocol
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: TX
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:BTrust model
+##################
+cryptocurrencies: Bitcoin
+
+products: Tor, BitMessage
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Unanimity
+##################
+cryptocurrencies: IOTA
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: BTC
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Matic Network, 0x liquidity pool
+
+programs: None
+##################
+cryptocurrencies: TRON
+
+products: None
+
+programs: Shasta testnet, TRON Mainnet
+##################
+cryptocurrencies: bitcoin
+
+products: None
+
+programs: proof of work (PoW)
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs:Bitcoin miners, centralized mining pool
+##################
+cryptocurrencies: Bitcoin
+
+products: Bitcoin Core
+
+programs:None
+##################
+cryptocurrencies: CRO
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Blockchain, permissionless consensus, Byzantine fault tolerance, mining, incentive mechanisms, game theory, P2P networks
+##################
+cryptocurrencies:
+Ripple
+Stellar
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Uniswap v2
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Tendermint, PBFT
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: ether
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Bloom filter
+##################
+cryptocurrencies: Bitcoin
+
+products: Blockchain
+
+programs: None
+##################
+cryptocurrencies: BNB
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: CoSi protocol, Schnorr signatures
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Ethereum virtual machine
+##################
+cryptocurrencies: IOTA
+
+products: None
+
+programs: Ethereum smart contracts, Coordicide
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Smart contract
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:blockchain system
+
+
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: consensus node
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:TXs, Alamedas backstop market maker
+##################
+cryptocurrencies: None
+
+products: Matic Network
+
+programs: bounty program
+##################
+cryptocurrencies: Bitcoin, Ethereum
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: DON, V
+##################
+cryptocurrencies: bitcoins
+
+products: None
+
+programs: communimixing service
+##################
+cryptocurrencies: bitcoins
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Tendermint Rust-abci library
+##################
+cryptocurrencies: Ethereum
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: DON
+##################
+cryptocurrencies: Peercoin, bitcoins
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: CoinJoin
+##################
+cryptocurrencies: Byteball
+
+products:None
+
+programs:None
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: BFT, PoW, blockchain scalability
+##################
+cryptocurrencies:
+- Bitcoin
+- Ethereum
+
+products: None
+
+programs:
+- MAINCHAIN(1)
+- MAINCHAIN(2)
+##################
+cryptocurrencies: ERC20 ether
+
+products: None
+
+programs: "wrapper" smart contract
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Ouroboros, distributed ledgers based on PoS
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: Uniswap
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: RSCoin
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: Luna, Terra
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: Ethereum
+
+products: None
+
+programs:None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: TRC-10 tokens, TRC-20 tokens, APIs
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Ouroboros
+##################
+cryptocurrencies: None
+
+products: Ethereum
+
+programs:Smart Contracts
+##################
+cryptocurrencies: Bitcoin
+
+products: TXO (Bitcoin transaction outputs)
+
+programs: stack-based programming language
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: Public Key Infrastructure (PKI)
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Tendermint algorithm
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:Byzantine agreement protocol
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:State Machine Safety
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: PoH generator
+##################
+cryptocurrencies: None
+
+products: None
+
+programs:MAINCHAIN, DON
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: blockchain
+##################
+cryptocurrencies: Bitcoin
+
+products: None
+
+programs: None
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: DONs
+##################
+cryptocurrencies: TRX
+
+products:None
+
+programs:SRs
+##################
+cryptocurrencies: None
+
+products: None
+
+programs: P2P OSNs
+##################
+cryptocurrencies: Luna, Terra
+
+products: None
+
+programs: None
+##################

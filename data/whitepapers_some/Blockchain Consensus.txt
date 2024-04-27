@@ -1,0 +1,105 @@
+In this paper, we present a new definition of Byzantine consensus that applies to blockchains, applications that allow to
+transfer digital assets through transactions. More precisely, a blockchain is a distributed abstraction where participants
+must reach a consensus on a unique block of transactions to be appended to the chain. This new consensus definition
+requires a validity property based on an application-specific predicate but does not require a decided value to be proposed as long as it is valid. Its novelty is to allow to reach consensus on a value even if this value was proposed only
+by Byzantine processes, provided that it is considered valid by the application. The advantage of differentiating the
+validation of a proposed value and the nature of the proposing participant is to make the system progress by appending
+blocks with transactions, where other algorithms would typically abort.
+
+Blockchain, as originally coined in the seminal Bitcoin paper [13], is a promising technology to track
+ownerships of digital assets within a distributed ledger. This technology aims at allowing processes to
+agree on a series of consecutive blocks of transactions that may invoke contract functions to exchange
+these assets. While the first instances of these distributed ledgers were accessed by Internet users with
+no specific permissions, companies have since then successfully deployed other instances in a consortium
+context, restricting the task of deciding blocks to a set of n (among others) carefully selected institutions
+with appropriate permissions.
+For the distributed computing community, a blockchain may seem like the application of classical state
+machine replication [14], where processes can be Byzantine [12], to the cryptocurrency context. A major
+distinction between blockchain and state machine replication is, however, the relation between consecutive
+consensus instances. A blockchain requires each of its consensus instances to be explicitly related to the
+previous one. To be decided, a block proposed in consensus instance number x must embed the hash of
+the block decided at instance number (x − 1). By contrast, the classical state machine replication simply
+concatenates consensus instances one after the other without relating the input of a consensus instance to
+the previous consensus instance : the result of a command may depend on the previous commands, but not
+the fact that it can be applied.
+This relation between instances is interesting as it entails a natural mechanism during a consensus instance for discarding fake proposals or, instead, considering that a proposal is valid and could potentially be
+decided. Provided that processes have a copy of the blockchain and the hashing function, they can locally
+evaluate whether each new block they receive is a valid candidate for a consensus instance : they simply
+have to re-hash a block and compare the result to the hash embedded in the new proposed block. If the
+two hashes differ, the new block is considered an invalid proposal and is simply ignored. If the hashes are
+identical, then the block could potentially be decided. (Whether this block is eventually decided depends
+on additional well-formedness properties of the block and the execution of the consensus instance.) This
+validity generalizes common definitions of Byzantine consensus, that either assume that no value proposed
+only by Byzantine processes can be decided [6], or, in the case where not all non-faulty processes propose
+the same value, that any value can be decided (i.e., possibly a value proposed by a Byzantine process) [7].
+As it is impossible to solve consensus in asynchronous message-passing systems where even a single
+process may crash (unexpected premature stop) [8], it follows that it is also impossible to solve this generalized definition of consensus. We propose a reduction of the problem of blockchain consensus to the
+Byzantine binary consensus that works in an asynchronous model. This reduction is similar to the reduction from asynchronous secure computation [2] with explicit validation. When combined with our binary
+consensus [5], it offers a blockchain consensus with no randomization, no leader, and no signatures. The
+reduction spawns concurrent instances of racing reliable broadcast followed by racing binary consensus : It
+only waits for the fastest of the concurrent reliable broadcast instances to terminate before spawning binary
+consensus instances. As it assumes t < n/3, where n is the number of processes and t is an upper bound on
+the number of faulty processes, this reduction is resilience optimal. While our consensus is presented for n
+permitted processes, its blockchain could be publicly readable by more processes.
+Section 2 presents the model. Section 3 presents the blockchain consensus problem. Section 4 presents
+the reduction of blockchain consensus to binary consensus.
+The processes communicate by exchanging messages through an asynchronous reliable point-to-point
+network. “Asynchronous” means that there is no bound on message transfer delays, but these delays are
+finite. “Reliable” means that the network does not lose, duplicate, modify, or create messages. “Point-topoint” means that any pair of processes is connected by a bidirectional channel. Hence, when a process
+receives a message, it can identify its sender. A process pi sends a message to a process p j by invoking the
+primitive “send TAG(m) to p j ”, where TAG is the type of the message and m its content. To simplify the
+presentation, it is assumed that a process can send messages to itself. A process pi receives a message by
+executing the primitive “receive()”.
+Up to t processes can exhibit a Byzantine behavior. A Byzantine process is a process that behaves arbitrarily : it can crash, fail to send or receive messages, send arbitrary messages, start in an arbitrary state,
+perform arbitrary state transitions, etc. A process that exhibits a Byzantine behavior is called faulty. Otherwise, it is non-faulty.
+
+— RB-Validity. If a non-faulty process RB-delivers a message m from a non-faulty process px , then px
+RB-broadcast m.
+— RB-Unicity. A non-faulty process RB-delivers at most one message from px .
+— RB-Termination-1. If px is non-faulty and RB-broadcasts a message m, all the non-faulty processes
+eventually RB-deliver m from px .
+— RB-Termination-2. If a non-faulty process RB-delivers a message m from px (possibly faulty) then
+all the non-faulty processes eventually RB-deliver the same message m from px .
+As in all message-passing consensus algorithms, it is assumed (in both the multivalued and binary consensus algorithms presented below) that all non-faulty processes propose a value.
+
+Multivalued Byzantine consensus with predicate-based validity In this paper we consider an adaptation of the classical Byzantine consensus problem to Blockchain. Note that an important novelty is that
+a decided value does not have to be one of the proposed value. As its validity requirement relies on an
+application-specific valid() predicate to indicate whether a value is valid, we call this problem the Validity
+Predicate-based Byzantine Consensus (denoted VPBC) and define it as follows. Assuming that each nonfaulty process proposes a valid value, each of them has to decide on a value in such a way that the following
+properties are satisfied.
+— VPBC-Termination. Every non-faulty process eventually decides on a value.
+— VPBC-Agreement. No two non-faulty processes decide on different values.
+— VPBC-Validity. A decided value is valid, it satisfies the predefined predicate denoted valid().
+This definition generalizes the classical definition of Byzantine consensus, which does not include the
+predicate valid().
+Binary Byzantine consensus validity The validity property of the underlying binary Byzantine consensus is the following : if all non-faulty processes propose the same value, no other value can be decided.
+
+This section describes a reduction of multivalued blockchain Byzantine consensus to the binary Byzantine consensus similar to the reduction from asynchronous secure computation [2] but with an explicit
+validation, and based on the RB-broadcast communication abstraction and underlying instances of binary
+Byzantine consensus. 
+The algorithm. The algorithm reducing multivalued Byzantine consensus to binary Byzantine consensus is
+described in Figure 1. In this algorithm, a process invokes the operation mv propose(v), where v is the value
+it proposes to the multivalued consensus. The behavior of a process pi can be decomposed into four phases.
+Phase 1 : pi disseminates its value (lines 01 and 11). A process pi first sends its value to all the processes
+Note that our consensus definition decouples the validity of a value from the nature (faulty or non-faulty) of the process proposing it. We assume that every non-faulty process proposes a valid value for the sake of simplicity. However, if we assume that the
+Byzantine behavior of a process is related only to its code and not to its input value (which is application-dependent), our algorithm
+remains correct as long as at least one non-faulty process proposes a valid value.
+by invoking the RB-broadcast operation (line 01). When a process RB-delivers the value v RB-broadcast
+by a process p j , it stores it in proposalsi [ j] if v is valid (line 11).
+Phase 2 : pi starts participating in a first set of binary consensus instances (lines 02-04). Then, pi enters a
+loop in which it starts participating in the binary consensus instances BINC[k], to which it proposes the value
+1, associated with each process pk from which it has RB-delivered the proposed value (lines 02-03). 
+
+Our validated predicate-based consensus differs from previous definitions in the way validity is defined.
+The seminal paper on the agreement between Byzantine generals considers a single source ; its validity
+requires that if the source proposes only one value, then only this value can be decided [12]. In the case
+where multiple, potentially Byzantine, processes propose values, validity often requires that if all non-faulty
+processes propose the same value then this value should be decided [7]. The classic validity used in the
+crash model is sometimes used in the Byzantine model requiring that a decided value is proposed by some
+process [4] but the notion of valid value proposed by a Byzantine process can be unclear. A predicate was
+previously used to assess whether a value is valid, however, the resulting predicate-based validity requires
+that if all non-faulty processes propose the same valid value then this value should be decided [10]. A variant
+requires the decided value to be value that was proposed [3]. When values are not necessarily binary, the
+decided value may either be a special value ⊥ or a value proposed by a non-faulty process [6]. As ⊥ is a
+predefined value, deciding this value is similar to aborting [9]. Our validity property allows for a valid value
+proposed only by Byzantine processes to be decided rather than aborting.

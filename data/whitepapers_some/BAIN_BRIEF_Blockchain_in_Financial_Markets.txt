@@ -1,0 +1,394 @@
+Blockchain in Financial Markets:
+How to Gain an Edge
+By taking a systematic approach, companies can manage
+through the uncertainty surrounding distributed ledger
+technology—and achieve a strategic advantage.
+
+With all the noise surrounding distributed ledger technology (DLT), you’d expect participants in ﬁnancial markets to be racing full-bore to get ready for it. But many
+are not. Part of the reason is concern about the scope
+and cost of the challenge. Presented almost daily with
+new claims about blockchain’s disruptive and revolutionary potential, many executives have begun to wonder how much beneﬁt they’ll actually see from DLT in
+the near, or even medium, term.
+
+Nonetheless, it is hard to predict exactly when and
+where DLT applications will reach scale and what kind
+of impact they will have across markets. It’s unclear
+how the regulatory environment will evolve in different
+jurisdictions. Getting ready for DLT requires substantial
+investment at a time when many ﬁrms are facing ﬁnancial
+constraints, and it can involve working through tricky and
+expensive issues with legacy IT systems and processes.
+
+Business leaders now confront a seemingly impossible
+and contradictory situation. They’re dealing with a technology that has been simultaneously overhyped and
+underestimated. While DLT is making inroads into some
+areas of banking, such as cross-border remittances, the
+path to implementation across broad and diverse ﬁnancial markets is less clear.
+
+Financial executives interviewed by Bain say they are
+under pressure to show near-term results, and they must
+gain the attention, understanding and commitment of
+top management. Some ﬁrms have embraced the technology, while others have opted to do nothing, or very
+little, given all the uncertainties about DLT. “Everyone
+is struggling with business cases and exactly where
+to apply their efforts,” said one executive Bain interviewed. Among the market participants Bain surveyed,
+38% said they’ve adopted a wait-and-see approach to
+the technology.
+Financial market participants know DLT is coming. About
+80% of executives at ﬁnancial institutions surveyed by
+Bain & Company believe DLT will be transformative and
+
+Other ﬁrms are deliberately trying to slow some things
+down, not just for themselves, but for the whole industry. Some companies have an incentive to try to preserve the status quo—and their place in it—for as long
+as possible. One senior executive Bain interviewed
+who represented his ﬁrm on a blockchain consortium
+working group said, “Half of the people in the group
+are looking for a solution; the other half are there
+uniquely to obstruct progress.”
+
+For companies considering the use of DLT, an important
+ﬁrst step is to establish a clear view of the technology
+and the scope of its likely impact on the market. Once a
+company has a perspective on how DLT is likely to evolve
+in the areas in which it does business, it can develop a systematic approach and a multiyear roadmap to manage
+the uncertainty to its advantage.
+DLT is likely to arrive ﬁrst in those markets that are
+“primed” for it. DLT-ready jurisdictions include those
+in Asia-Paciﬁc and Latin America that have a centralized and integrated infrastructure run by a single exchange and a proactive regulator who can work together to drive innovation.
+
+Sizing up DLT opportunities: The use cases
+and market archetypes
+In this kind of competitive landscape, where some
+ﬁrms have invested aggressively, others struggle with
+near-term business cases and still others resist change,
+companies willing to be proactive and strategic can gain
+an edge. These ﬁrms understand the need to be ready to
+take advantage of a potentially revolutionary technology,
+one that may upend a broad array of ﬁnancial activities.
+
+Markets are likely to develop into four distinct archetypes, each with distinct implications for how and when
+individual ﬁrms should adopt DLT (see Figure 3).
+First, in large, complex, but mostly domestic markets
+such as Japan and China, DLT is more likely to reinforce a relatively integrated structure for cash securities.
+By contrast, DLT may have the opposite effect in the second archetype, large ﬁnancial hubs, such as the US and
+major European markets. In these jurisdictions, DLT
+could foster an even more unbundled and fragmented
+market structure, with multiple exchanges and utilities.
+
+The ﬁnancial executives surveyed by Bain expect DLT
+to have a big impact on ﬁnancial markets—particularly
+on those activities that take place after a trade is made.
+In the Bain survey, 81% said they expected DLT’s impact
+on clearing and settlement to be “transformative.”
+In the same survey, 49% said they have entered into
+partnerships with other ﬁrms, often ﬁntech start-ups,
+to develop DLT projects, and 32% have joined an industry
+consortium. Roughly one-third of the ﬁrms are conducting small, isolated experiments in particular locations
+or asset classes—an innovation lab approach. Some
+have carved out niches where they can invest a modest
+amount in DLT and pursue an early, if limited, return
+on their investment.
+
+Among the four archetypes, it is the third one—smaller,
+domestically focused markets like Australia, Canada
+and Brazil—where DLT could have the earliest impact
+in cash securities. These markets, which are already
+integrated and centralized, face fewer obstacles than
+the other archetypes. They can evolve holistically, with
+participants and regulators working closely together.
+The fourth archetype—small markets with international connections, including Singapore and Hong
+Kong—is likely to remain integrated for cash securities
+but more subject to global market practices and links
+in derivatives and OTC.
+
+With DLT, the ledger has one shared and constantly
+updated version of the truth, changing the need for a
+central intermediary. DLT generates a secure, immutable historical record and a full audit trail. There are
+many potential use cases for DLT along the ﬁnancial
+could be based on actual traded spot transactions rather
+than surveys—a development that would be of keen
+interest to asset managers.
+
+Across jurisdictions, DLT has the potential to transform settlement and clearing. While a trader can now
+execute a transaction at lightning speed, it can take as
+long as three days for that transaction to settle. With
+DLT, execution, clearing and settlement could occur
+simultaneously, minimizing liquidity and credit risks.
+This move from net to gross settlement, however,
+would require signiﬁcant changes in the mechanics of
+funding and represents one of the biggest questions
+facing the use of DLT.
+
+Beyond trading, DLT has the potential to change the way
+ﬁrms interact with their clients in areas such as proxy
+voting, digital identity management and Know Your
+Customer (KYC). Broadridge, a global leader in proxy
+communication services, invested $135 million to acquire the technology assets of Inveshare. Broadridge is
+using that technology to help make US proxy voting become more efﬁcient, secure and transparent. The state
+of Delaware, where many US companies are registered,
+is working on legislation that would allow the issuance
+of digital shares using DLT and smart contracts. The
+Monetary Authority of Singapore is sponsoring the formation of a KYC utility. Using DLT, banks can embed
+KYC information required by regulators into the record
+of a transaction, avoiding costly duplication of efforts.
+A KYC utility, by lowering and mutualizing the cost of
+compliance, can eliminate barriers of entry, making
+KYC affordable for new, smaller participants.
+
+Certain asset classes and activities are ripe for early
+DLT adoption. Among the most promising areas are
+complex OTC derivatives, such as renewable energy
+contracts. These markets have a relatively small number
+of participants, making it easier to reach a consensus
+on systems and policies. Because volumes are relatively low, less investment is required—especially in replacing legacy IT—so the risks are contained.
+Several DLT projects focused on these types of products
+are well under way. Euroclear and Paxos have piloted a
+blockchain settlement service for gold bullion trading
+in London, which they plan to roll out in 2017. The
+Royal Mint and CME Group have also announced plans
+to launch a blockchain-based gold trading platform this
+year. In the US, NASDAQ is using DLT on its Private
+Market platform to help with the issuance, transfer and
+management of private company securities.
+
+All told, DLT has the potential to signiﬁcantly beneﬁt
+ﬁnancial markets. Bain research estimates annual cost
+and capital savings could amount to 1 to 3 basis points
+of total global assets under management, or about
+$15 billion–$35 billion. Much of these savings will
+come from the ability of firms to replace manual,
+redundant and error-prone processing methods. Firms
+will also be able to quickly and less expensively harness
+reference data that is both richer in detail and more
+fully reconciled. That should create opportunities for
+growth and product innovation.
+
+The Depository Trust & Clearing Corporation (DTCC)
+and a consortium that includes IBM, Axoni and R3
+have successfully tested a system using DLT and smart
+contracts to manage post-trade services in the $11 trillion
+OTC market for cleared and bilateral credit derivatives.
+
+The gains from DLT won’t be evenly distributed. In
+some cases, DLT will enable some ﬁrms to become
+more efﬁcient and increase proﬁtability, but in other
+cases these productivity gains may not boost margins.
+As with any cost-reduction initiative, exchanges, banks,
+securities ﬁrms, asset managers and other intermediaries will face competitive pressure to pass the savings
+on to their customers, meaning the main beneﬁciaries
+of DLT efﬁciencies are likely, ultimately, to be issuers
+and end-investors. In fact, the executives surveyed by
+
+DLT can also play a role in improving reference data, including benchmark interest rates like Libor and physical
+commodity prices, replacing existing survey processes
+that are opaque and subject to abuse. With a DLT-based
+benchmark-setting mechanism, possibly administered
+by an industry-wide utility, data from spot transactions
+could be directly captured. This means reference prices
+to embrace DLT, they run the risk of being left behind.
+“No one wants to be ﬁrst,” said one executive Bain interviewed, “but no one wants to be last either.” This dilemma
+is exacerbated by the fact that the biggest impact from
+DLT will be achieved only when a critical mass of the ecosystem participates.
+
+Bain say DLT is likely to have a negative effect on both
+the revenues and proﬁts of clearinghouses and custodians (see Figure 4).
+Across the board, market participants will need to adjust
+to falling industrywide cost structures and new uses of
+reference data and analytics. Those ﬁrms able to reduce
+their own costs and develop better reference data ahead
+of the curve should gain signiﬁcant advantages that
+can be translated into near-term proﬁtability, enabling
+them to pay down their investments. Over time, they
+should have the ability to gain share as parts of the
+industry consolidate.
+
+The most valuable DLT innovations can’t be developed
+in isolation; they require collaboration among participants, exchanges and regulators. Along the way,
+there will be winners and losers, generating friction
+and conﬂict. With so many participants involved across
+so many jurisdictions and asset classes, the adoption
+process will be messy and piecemeal—and this is the
+heart of the challenge.
+
+As ﬁnancial markets evolve with respect to DLT, companies will face game-theory-type decisions. If they promote
+the early adoption of DLT across the ecosystem, they may
+beneﬁt, but they may also end up disrupting their own
+economics and competitive positions. Yet if they’re slow
+
+As executives develop a strategy for DLT, they may want
+to keep in mind the 18th-century adage popularized by
+Benjamin Franklin: “We must, indeed, all hang together, or most assuredly we shall all hang separately.” Going
+it alone on DLT can be expensive and risky. It may
+lead the way on utilities. The Monetary Authority of
+Singapore, for example, in addition to the KYC utility
+initiative, is sponsoring the development of open
+Application Program Interface (API) guidelines for the
+ﬁnancial sector that will help encourage the formation
+of utilities. In larger, more complex and more unbundled markets, by contrast, early DLT innovation is likely
+to develop in pockets, such as corporate actions and
+OTC products, as third parties ﬁnd niches where they
+can make the ecosystem more efﬁcient.
+
+make more sense to share the costs as well as the beneﬁts
+through industry utilities. They can be run by market
+participants themselves or outsourced to a technology
+company or other third-party providers.
+IT vendors and business-process outsourcing ﬁrms
+(BPOs) are pushing ahead to help clients use DLT to
+address market inefﬁciencies. IBM, for example, as part
+of its work with the Linux Foundation’s Hyperledger
+project, has teamed up with the Japan Exchange Group
+to test DLT applications in low-volume securities trading.
+Broadridge, in addition to its proxy effort, is working on
+various DLT projects in securities lending and processing
+and collaborating with ﬁntech ﬁrms through its minority
+stake in Digital Asset Holdings (DAH) and participation in the Hyperledger Project. Thomson Reuters, IHS
+Markit, Capco (part of FIS) and a multibank working
+group organized by blockchain provider Axoni have
+successfully tested blockchain technology and smart
+contracts to manage afﬁrmations and post-trade lifecycle
+processing for OTC equity swaps.
+
+Getting ready for DLT
+One way or another, ﬁrms that want to reap the beneﬁts
+of DLT will have to make signiﬁcant changes to their
+processes, policies and IT architecture. Leading ﬁnancial
+ﬁrms around the world have already embarked on major
+efforts to overhaul their IT systems to make them ready
+for digital. As part of their efforts to modernize their
+IT, these companies are taking some of the preparatory
+steps that will be necessary for DLT. These moves may
+put them years ahead of rivals who have not made as
+much progress in addressing legacy issues.
+
+Service and infrastructure providers are working to help
+ﬁrms migrate their current processes to more efﬁcient,
+DLT-enabled operating models. However, even if these
+third-party solutions can help mutualize part of the investments in infrastructure, the transition will not be
+trivial and represents one of the biggest obstacles to
+widespread DLT adoption. In most cases, legacy and DLT
+processes will need to run in parallel during a migration
+period—at least across some asset classes, processes
+and geographies.
+
+Even though there is as yet no set timetable for when clear
+standards and regulations on the use of DLT in ﬁnancial
+services will be developed, ﬁrms can take steps now to
+get their IT systems and processes ready. For example,
+they can develop an end-to-end IT security framework
+that will work with a technology as disruptive as DLT.
+Test labs and trial use cases are particularly valuable for
+learning about the security challenges of DLT, and thirdparty providers can provide meaningful assistance.
+
+In highly competitive markets, banks and other participants whose proﬁts are already under pressure will
+often resist investing in a technology with beneﬁts still
+unproven. Given that reluctance, the leading DLT disrupters are likely to be the big IT vendors and BPO
+providers, along with blockchain technology companies such as Axoni, R3 and DAH, which are able to
+mutualize development and implementation costs
+across participants.
+
+Another aspect of getting IT ready for DLT is open
+APIs, which will be critical to successful adoption of
+many blockchain and smart contract protocols. The
+European Union, for instance, will require banks to
+have open APIs for some functions as early as 2018.
+Many questions remain unresolved, including how the
+eventual role of digital ﬁat currencies will be included,
+how ledgers will be managed and which cases could
+require an administrator to have the right to amend
+them. Open APIs have the potential to radically shift
+the dynamics of how ﬁrms interact with customers
+
+Centralized and integrated markets, where there are a
+relatively small number of major competitors, may
+a vertically and horizontally integrated market infrastructure? Finally, the fundamental strategic questions
+need to include an assessment of DLT impacts on cost
+structure, weighed against the development of new
+products and enhancements of reference data.
+
+and with each other. The pace of preparation has been
+uneven, with some ﬁrms adapting their processes and
+operating models much faster than others.
+
+Based on the answers to questions like these, ﬁrms can
+devise customized strategies for different locations, asset
+classes and activities. They can evaluate their options
+along a continuum, ranging from DLT investments
+that are internal or fairly independent to those that
+depend heavily on the cooperation of other participants in the ecosystem.
+
+Whether a company prospers or ﬂounders in the DLTdominated markets of the future will depend, in large
+measure, on strategic decisions it makes today. The
+emerging leaders in this nascent technology take a systematic top-down and bottom-up approach to building
+a roadmap. They carefully tailor their focus based on
+who they are (e.g., bank, securities ﬁrm, asset manager
+or exchange), their size and position in the market, what
+kind of assets they handle, which clients they serve and
+the jurisdictions in which they do business.
+
+Firms have four basic strategic options regarding individual DLT use cases: become a leader in innovation;
+be a fast follower; watch, wait and prepare; or opt out
+altogether (see Figure 5).
+
+As they develop a roadmap, ﬁrms evaluate potential
+scenarios for how different markets will evolve, in the
+context of each market’s current structure. Is the market
+consolidated or fragmented? How innovative and proactive is the regulator? Does the local exchange operate
+
+Take the example of a bank operating in a smaller, integrated and centralized market, such as Australia or
+Brazil. The bank could decide to prioritize KYC use
+where they operate. By taking a more strategic approach
+during the evolution of this new technology, they’ll be
+able to tune out the hype and focus on deﬁning their role
+in an evolving ﬁnancial ecosystem. Those ﬁrms that are
+less systematic and more shortsighted are likely to see
+their businesses disrupted as they become less competitive. The winners will be those that push the pace
+of change, rather than resist it.
+
+cases, helping to form an industrywide utility, perhaps
+operated by a third-party provider. The bank could also
+be an early advocate for tokenization of syndicated loans,
+which would help bring more consistency, speed and
+liquidity to the market. Tokenization, which uses DLT
+to embed transaction and ownership information onto
+the asset, can increase efﬁciency and decrease costs. The
+firm could also prioritize application of DLT to OTC
+swap contracts that have a small set of counterparties.
+In other areas of cash securities trading, clearing and settlement, the bank could choose to be a fast follower, ready
+to move as the positions of exchanges and regulators take
+shape. Some participants in these types of markets are
+already considering the idea of merging local custodians to
+form a joint-venture utility in advance of DLT disruption.
+
+Taking a strategic approach to DLT
+The data informing a ﬁ rm’s decision on where,
+when and how to use DLT across use cases should
+ﬂow from the bottom up, but the process should be
+managed from the top down. Priorities need to be set
+strategically by top management and not left to percolate up from researchers in innovation labs. Once a
+ﬁrm comes up with a roadmap, it should deﬁne a DLTreadiness posture. Many of these priorities will be noregret investments—namely, steps that stand to beneﬁt
+the ﬁrm regardless of the pace or shape of DLT adoption.
+These no-regret moves include modernizing IT architecture; strengthening the framework for dealing with
+utilities, BPOs and other third parties; and evaluating
+outsourcing opportunities.
+As a ﬁrm follows the roadmap it has created, it will
+need to monitor signposts and be prepared to shift
+speeds and make adjustments based on regulatory evolution, moves by competitors and shifts in technology.
+In an arena marked by uncertainty, proactive ﬂexibility
+will be key.
+Those market participants who win in DLT will spend
+less energy on excuses for inaction and more on developing a strategic and longer-term approach, focused on
+driving toward a more efﬁcient ecosystem and plotting a
+course consistent with who they are, what they do.Shared Ambit ion, True Results
+Bain & Company is the management consulting ﬁrm that the world’s business leaders come
+to when they want results.
+Bain advises clients on strategy, operations, technology, organization, private equity and mergers and acquisitions.
+We develop practical, customized insights that clients act on and transfer skills that make change stick. Founded
+in 1973, Bain has 53 ofﬁces in 34 countries, and our deep expertise and client roster cross every industry and
+economic sector. Our clients have outperformed the stock market 4 to 1.
+
+What sets us apart
+We believe a consulting ﬁrm should be more than an adviser. So we put ourselves in our clients’ shoes, selling
+outcomes, not projects. We align our incentives with our clients’ by linking our fees to their results and collaborate
+to unlock the full potential of their business. Our Results Delivery® process builds our clients’ capabilities, and
+our True North values mean we do the right thing for our clients, people and communities—always.

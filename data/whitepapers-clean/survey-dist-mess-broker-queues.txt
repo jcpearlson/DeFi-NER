@@ -1,0 +1,89 @@
+ABSTRACT This paper surveys the message brokers that are in vogue today for distributed communication.
+Their primary goal is to facilitate the construction of decentralized topologies without single points of failure, enabling fault tolerance and high availability.
+These characteristics make them optimal for usage within distributed architectures.
+However, there are multiple protocols built to achieve this, and it would be beneficial to have a empirical comparison between their features and performance to determine their real-world applicability.
+This paper focuses on two popular protocols (Kafka and AMQP) and explores the divergence in their features as well as their performance under varied testing workloads.
+Figure 1: Kafka Architecture RQ0 What are the message broker implementations commonly in use today? RQ1 What are the common requirements for the implementation of message queues? RQ2 What are the divergent functionalities in the current message queue offerings? RQ3 How do each of the implementations offer reliability, partitioning and fault tolerance?  Distributed Message Brokers are typically used to decouple separate stages of a software architecture.
+They permit communication between these stages asynchronously, by using the publish-subscribe paradigm.[1].
+These message brokers are also finding new applications in the domain of IoT devices and may also be used as method to implement an event-driven processing architecture.
+A few of the current offerings of this architectural paradigm include Apache Kafka[2], AMQP[6], ActiveMQ[4].
+Kafka was developed at LinkedIn and primarily used for log processing.
+This worked well for Kafka’s user engagement metrics collection use-case.
+The fundamental features behind Kafka are performance over reliability and it offers high throughput, low latency message queuing.
+Kafka can be used either for online or offline log processing.
+The fact that reliability of message reception is traded off to some extent implies the loss of a single record among a multitude is not a huge deal-breaker.
+The rationale behind this is, for log aggregated data, delivery guarantees are unnecessary.
+The general architecture for Kafka is illustrated in Figure 1.
+Data is divided into topics, which resemble streams of messages.
+Topics are further divided into partitions and each broker can possess one or more such partitions.
+Producers publish to topics and brokers store messages received from the producers.
+Messages are payloads of bytes that consumers use iterators to consume.
+Kafka employs the pull model for consumer message receipt, which permits consumers to consume messages at their own pace.
+Kafka supports 2 models for topic subscription: • Point-to-point: A single message copy is read by an arbitrary consumer.
+• Pub-sub: Each consumer has it’s own copy of each message.
+It is an asynchronous message queuing protocol, aiming to create an open standard for passing messages between applications and systems regardless of internal design.
+It was initially designed for financial transaction processing systems, such as trading and banking systems, which require high guarantees of reliability, scalability, and manageability.
+This use-case greatly influences the design of AMQP.
+The testbed utilized to perform the benchmarking is comprised of 5 nodes, each with a similar hardware configuration: 12 cores @ 2300.13Mhz, 16GB memory, with an HDD for persistent storage, and a network interface capacity of 1Gbps.
+There were 2 types of tests run for Kafka and RabbitMQ (which is the implementation used to proxy the behavior of AMQP).
+The single producer/consumer test keeps the overall test workload constant (1 million messages, 50B each) and scales the queue deployment from 1 to 5 nodes.
+The multiple producer/consumer setup keeps the number of nodes constant and scales the number of producers/consumers connecting from each node.
+All the benchmarks were run using a modified version of Flotilla1 , which is a message broker benchmarking tool written in Go.
+Figures 3, 4, 5 and 6 illustrate the throughput and latency of Kafka under the aforementioned workloads.
+Similar benchmark results for RabbitMQ are shown in figures 7, 8 and 9.
+Figure 2 shows the architecture of AMQP.
+There are several concepts in AMQP need to be listed and explained before illustrating how an AMQP broker works.
+These terms are elaborated upon in the Appendix (Section 9C.1).
+Instead of sending messages to queues directly, producers send messages to exchanges.
+Exchanges then send messages to queues whose binding key matches the messages’ routing key.
+The queue, in turn, sends messages to consumers who are subscribed to it.
+This design of exchanges and queues in AMQP makes the message passing transparent.
+A producer does not need to maintain any state about its messages’ consumers.
+Similarly, a consumer does not need to maintain state about the producers.
+The decisions of which queue the message should be routed to is decided by the exchange instead of the application, which makes changing message-routing and delivery logic easier compared to a messaging system where the application makes such decisions.
+The results of benchmarking Kafka while keeping the same payload and scaling to multiple nodes (Fig.
+5) shows a latency drop by a factor of about 3x, in comparison to only a nominal penalty on throughput (1.06x).
+This just goes to demonstrate the effectiveness of Kafka being deployed in a cluster setup in handling large log-aggregation-like workloads.
+The corresponding results while keeping the number of nodes constant and increasing the payload by using additional producers and consumers causes the performance metrics to degrade in a more pronounced manner.
+This is especially visible due to the huge disparity between the producer throughput and the consumer throughput.
+This could be attributed to an increased number of accesses of the metadata layer i.e.
+Zookeeper becoming a focus point of resource contention on a single node, causing context switching and resulting in additional overhead.
+Figure 7 describes RabbitMQ clients’ throughput when each node runs single producer and consumer, similar In particular, the latency increases by about 2 orders of magnitude with a 5x increase in payload coming from a 5x increase in publishers and consumers.
+This also corroborates the 29x drop in consumer throughput, meaning that messages stay in the Kafka log partitions (queues) a lot longer and remain unconsumed, than if there was only a single publisher/subscriber perto the setup for Kafka.
+The reason for this stable producer throughput could be attributed to a high exchange routing speed.
+The rate at which the exchange processes messages is faster than the rate of producers producing and sending messages.
+Another cause could be that the broker is capable of matching this rate resulting in a consumer throughput that is almost the same as producer throughput.
+Consumers consume messages faster than producers are able to publish messages to the exchanges.
+Therefore, queues can be empty, and consumers have to wait for messages from producers.
+As a result, producer throughput is a ceiling for consumer throughput in this experiment.
+Figure 8 shows RabbitMQ clients’ throughput with the rapid growth of clients.
+In general, scaling the number of producers and consumers resulting in a reduction in throughput, while consumers throughput is not limited by a single producer anymore and can consume messages sourced from multiple producers at a higher rate.
+The overall reduction in throughput can be attributed to resource contention, similar to what Kafka encounters.
+Figure 9 illustrates the consumer latency with the increasing number of total clients.
+The latency remain low for benchmarks using a single producer and consumer per node.
+The main reason for low latency at the beginning and sharp increased latency is due to the queues being backed-up with messages from multiple producers as opposed to almost empty.
+RabbitMQ, and all distributed queues in general, operate at optimal latency when queues are relatively empty.
+When the number of producers increase to 15, the exchange is saturated with message traffic, and messages start queuing for longer durations, thereby increasing the latency.
+In terms of latency, the consumer push-model option results better mean latency in AMQP; while Kafka uses the pull-model where consumers have to fetch messages from broker.
+Another reason is that AMQP’s default configuration doesn’t persist messages to disk at the broker, but Kafka does, resulting in a longer intermediate delay before message consumption.
+Based on the experimental results and comparisons in sections 5 and 6, a distinct contrast between each of the message queue offerings can be made.
+Two key aspects should be considered making a choice of message broker protocol, namely throughput and reliability.
+If reliability for the application is not critical, Kafka is the better choice, as evidenced by the experimental results.
+For example, for an application that needs to process a large amount of messages is tolerant to losing a few.
+Usage examples include page view counters, advertisement clicks and social media reactions.
+On the other hand, if messages are important, such as financial transactions, the cost of losing any of messages is far higher that not achieving an optimal throughput and the application is encouraged to use AMQP.
+In addition, AMQP can encrypt messages out-of-the-box.
+Therefore, applications requiring security should also consider using AMQP.
+Moreover, four types of exchanges in AMQP allow AMQP broker work in peer-to-peer, publisher/consumer and broadcasting models.
+The last two models are suitable for instant messaging and notification services.
+This concludes the study of two popular distributed message broker queuing protocols, Kafka and AMQP.
+Future work would entail exploring other implementations such as ZeroMQ, ActiveMQ and Qpid in depth.
+For the purposes of this paper, these implementations have been summarized at a high level in the Appendix (Section 9D).
+The results of Kafka and AMQP benchmarking test reveal that Kafka has higher throughput while AMQP has lower latency.
+There are a few potential reasons for why Kafka provides a higher throughput, explained by its inherent optimizations:  • The SendFile API in Kafka helps bypass kernel buffers to write data directly from the file channel to the socket.
+• Writing to a message broker in Kafka uses sequential disk writes and page-level caching also help to maximize throughout.
+• Batching in Kafka is available out-of-the-box, and this helps minimize communication overhead.
+A FEATURE COMPARISON  Message Reliability  Table 1 summarizes, at a high-level, the differences between Kafka and AMQP.
+These differences illustrate that the goal for Kafka is to focus on high throughput while AMQP tries to achieve better reliability.
+For example, AMQP can use consumer ACKs to ensure reliability; while, Kafka’s highest guarantee is an ACK for whether the message was written persistently to the broker log.
+This option increases AMQP reliability, but decreases its throughput..

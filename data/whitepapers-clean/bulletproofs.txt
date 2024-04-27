@@ -1,0 +1,368 @@
+We propose Bulletproofs, a new non-interactive zero-knowledge proof protocol with very short proofs and without a trusted setup; the proof size is only logarithmic in the witness size.
+Bulletproofs are especially well suited for efficient range proofs on committed values: they enable proving that a committed value is in a range using only 2 log2 pnq ` 9 group and field elements, where n is the bit length of the range.
+Proof generation and verification times are linear in n.
+Bulletproofs greatly improve on the linear (in n) sized range proofs currently used to implement Confidential Transactions (CT) in Bitcoin and other cryptocurrencies.
+Moreover, Bulletproofs supports aggregation of range proofs, so that a party can prove that m commitments lie within a given range by providing only an additive Oplogpmqq group elements over the length of a single proof.
+To aggregate proofs from multiple parties, we enable the parties to generate a single proof without revealing their inputs to each other via a simple multi-party computation (MPC) protocol for constructing Bulletproofs.
+This MPC protocol uses either a constant number of rounds and linear communication, or a logarithmic number of rounds and logarithmic communication.
+Bulletproofs build on the techniques of Bootle et al.
+Beyond range proofs, Bulletproofs provide short zero-knowledge proofs for general arithmetic circuits while only relying on the discrete logarithm assumption and without requiring a trusted setup.
+We discuss many applications that would benefit from Bulletproofs, primarily in thearea of cryptocurrencies.
+The efficiency of Bulletproofs is particularly well suited for the distributed and trustless nature of blockchains.
+Blockchain-based cryptocurrencies enable peer-to-peer electronic transfer of value by maintaining a global distributed but synchronized ledger, the blockchain.
+Any independent observer can verify both the current state of the blockchain as well as the validity of all transactions on the ledger.
+In Bitcoin, this innovation requires that all details of a transaction are public: the sender, the receiver, and the amount transferred.
+In general, we separate privacy for payments into two properties: (1) anonymity, hiding the identities of sender and receiver in a transaction and (2) confidentiality, hiding the amount transferred.
+While Bitcoin provides some weak anonymity through the unlinkability of Bitcoin addresses to real world identities, it lacks any confidentiality.
+This is a serious limitation for Bitcoin and could be prohibitive for many use cases.
+Would employees want to receive their salaries in bitcoin if it meant that their salaries were publicly visible? To address the confidentiality of transaction amounts, Maxwell [Max16] introduced confidential transactions (CT), in which every transaction amount involved is hidden from public view using a commitment to the amount.
+This approach seems to prevent public validation of the blockchain; an observer can no longer check that the sum of transaction inputs is greater than the sum of transaction outputs, and that all transaction values are positive.
+This can be addressed by including a zero-knowledge proof of the validity of each confidential transaction.
+Current proposals for CT zero-knowledge proofs [PBF` ] have either been prohibitively large or required a trusted setup.
+While one could use succinct zero-knowledge proofs (SNARKs) [BSCG` 13], they all require a trusted setup, which means that everyone needs to trust that the setup was performed correctly.
+Short non-interactive zero-knowledge proofs without a trusted setup, as described in this paper, have many applications in the realm of cryptocurrencies.
+In any distributed system where proofs are transmitted over a network or stored for a long time, short proofs reduce overall cost.
+We present Bulletproofs, a new zero-knowledge argument of knowledge1 system, to prove that a secret committed value lies in a given interval.
+Bulletproofs do not require a trusted setup.
+They rely only on the discrete logarithm assumption and are made non-interactive using the Fiat-Shamir heuristic.
+Proof systems with computational soundness like Bulletproofs are sometimes called argument systems.
+We will use the terms proof and argument interchangeably.
+Bulletproofs builds on the techniques of Bootle et al.
+[BCC` 16], which yield communication-efficient zero-knowledge proofs.
+We present a replacement for their inner-product argument that reduces overall communication by a factor of 3.
+We make Bulletproofs suitable for proving statements on committed values.
+Examples include a range proof, a verifiable shuffle, and other applications discussed below.
+We note that a range proof using the protocol of [BCC` 16] would have required implementing the commitment opening algorithm as part of the verification circuit.
+Further, we give a simple and efficient multi-party computation (MPC) protocol that allows multiple parties with secret committed values to generate a single small range proof for all their values.
+One version of our MPC protocol is constant-round but with linear communication.
+Another variant requires only logarithmic communication, but uses a logarithmic number of rounds.
+This MPC protocol can be used to aggregate the proofs needed for a confidential transaction constructed by multiple parties, into a single short proof.
+While we focus on confidential transactions, where our work translates to significant practical savings, we stress that the improvements are not limited to CT.
+We present Bulletproofs for general NP languages.
+The proof size is logarithmic in the number of multiplication gates in the arithmetic circuit for verifying a witness.
+The proofs are much shorter than [BCC` 16] and allow inputs to be Pedersen commitments to elements of the witness.
+Finally, we provide a complete implementation of Bulletproofs.
+In Section 6 we provide efficiency comparisons with the range proofs currently used for confidential transactions [Max16, Poe] and with other systems.
+Our implementation includes a general tool for constructing Bulletproofs for any NP language.
+The tool reads in arithmetic circuits in the Pinocchio [PHGR13] format which lets users use their toolchain.
+This toolchain includes a compiler from C to the circuit format.
+We expect this to be of great use to implementers who want to use Bulletproofs.
+We first discuss several applications for Bulletproofs along with related work specific to these applications.
+Additional related work is discussed in Section 1.3.
+Bitcoin and other similar cryptocurrencies use a transaction-output-based system where each transaction fully spends the outputs of one or more previously unspent transactions.
+These unspent transaction outputs are called UTXOs.
+Bitcoin allows a single UTXO to be spent to many distinct outputs, each associated with a different address.
+To spend a UTXO a user must provide a signature, or more precisely a scriptSig, that enables the transaction SCRIPT to evaluate to true [BMC` 15].
+Apart from the validity of the scriptSig, miners verify that the transaction spends previously unspent outputs, and that the sum of the inputs is greater than the sum of the outputs.
+Maxwell [Max16] introduced the notion of a confidential transaction, where the input and output amounts in a transaction are hidden in a Pedersen commitment [P` 91].
+To enable public validation, the transaction contains a zeroknowledge proof that the sum of the committed inputs is greater than the sum of the committed outputs, and that all the outputs are positive, namely they lie in the interval r0, 2n s, where 2n is much smaller than the group size.
+All current implementations of confidential transactions [Max16, MP15, PBF` , NM` 16] use range proofs over committed values, where the proof size is linear in n.
+These range proofs are the main contributor to the size of a confidential transaction.
+In current implementations, a confidential transaction with only two outputs and 32 bits of precision is 5.5kB bytes, of which 5.3kB are allocated to the range proof.
+We show in Section 6 that Bulletproofs greatly improve on this, even for a single range proof.
+The logarithmic proof size additionally enables the prover to aggregate multiple range proofs, e.g.
+for multiple outputs, into a single short proof.
+With Bulletproofs, m range proofs are merely Oplogpmqq additional group elements over a single range proof.
+This is already useful for confidential transactions in their current form as most Bitcoin transactions have two or more outputs.
+It also presents an intriguing opportunity to aggregate multiple range proofs from different parties into one proof, as would be needed, for example, in a CoinJoin transaction [Max13].
+To do so, we present an MPC protocol that lets parties efficiently combine proofs without compromising confidentiality.
+Confidential transaction implementations are available in side-chains [PBF` ], private blockchains [And17], and in the popular privacy-focused cryptocurrency Monero [NM` 16].
+All these implementations would benefit from Bulletproofs.
+At the time of writing, Bitcoin has roughly 50 million UTXOs from 22 million transactions (see statoshi.info).
+Using a 52-bit representation of bitcoin that can cover all values from 1 satoshi up to 21 million bitcoins, this results in roughly 160GB of range proof data using the current systems.
+Using aggregated Bulletproofs, the range proofs for all UTXOs would take less than 17GB, about a factor 10 reduction in size.
+Recently an improvement to confidential transactions, called Mimblewimble [Jed16, Poe], provides further savings.
+Jedusor [Jed16] realized that a Pedersen commitment to 0 can be viewed as a public key and that for a valid confidential transaction the difference between outputs, inputs and transaction fees must be 0.
+A prover constructing a confidential transaction can therefore sign the transaction with the difference of the outputs and inputs as the public key.
+This small change removes the need for a scriptSig which greatly simplifies the structure of confidential transactions.
+Poelstra [Poe] further refined and improved Mimblewimble and showed that these improvements enable a greatly simplified blockchain in which all spent transactions can be pruned and new nodes can efficiently validate the entire blockchain without downloading any old and spent transactions.
+Using aggregatable signatures, the blockchain can be compressed to a small subset of the block-headers as well as the remaining unspent transaction outputs andthe accompanying range proofs.
+Mimblewimble also allows transactions to be aggregated before sending them to the blockchain.
+A Mimblewimble blockchain only grows with the size of the UTXO set.
+Using Bulletproofs, it would only grow with the number of transactions that have unspent outputs.
+Overall, Bulletproofs can not only act as a drop-in replacement for the range proofs in confidential transactions, but it can also help make Mimblewimble a practical scheme with a blockchain that is significantly smaller than the current Bitcoin blockchain.
+[DBB` 15] introduced the Provisions protocol which allows Bitcoin exchanges to prove that they are solvent without revealing any additional information.
+The protocol crucially relies on range proofs to prevent an exchange from inserting fake accounts with negative balances.
+These range proofs, which take up over 13GB, are the main contributors to the proof sizes of almost 18GB for a large exchange with 2 million customers.
+The proof size is in fact linear in the number of customers.
+Since in this protocol, one party (the exchange) has to construct many range proofs at once, the general Bulletproofs protocol from Section 4.3 is a natural replacement for the NIZK proof used in Provisions.
+With the proof size listed in Section 6, we obtain that the range proofs would take up less than 2kB with our protocol.
+Additionally, the other parts of the proof could be similarly compressed using the protocol from Section 5.
+The proof would then be dominated by one commitment per customer, with size 62 MB.
+This is roughly 300 times smaller then the current implementation.
+Consider two lists of committed values x1 , .
+, xn and y1 , .
+The goal is to prove that the second list is a permutation of the first.
+This problem is called a verifiable shuffle.
+It has many applications in voting [FS01, Nef01], mix-nets [Cha82], and solvency proofs [DBB` 15].
+Neff [Nef01] gave a practical implementation of a verifiable shuffle and later work improved on it [Gro03, GI08a].
+Currently the most efficient shuffle [BG12] has size n.
+Bulletproofs can be used to create a verifiable shuffle of size Oplog nq.
+The two lists of commitments are given as inputs to the circuit protocol from Section 5.
+The circuit can implement a shuffle by sorting the two lists and then checking that they are equal.
+A sorting circuit can be implemented using Opn ¨ logpnqq multiplications which means that the proof size will be only Oplogpnqq.
+This is much smaller than previously proposed protocols.
+Given the concrete efficiency of Bulletproofs, a verifiable shuffle using Bulletproofs would be very efficient in practice.
+The Ethereum [Woo14] system uses highly expressive smart contracts to enable complex transactions.
+Smart contracts, like any other blockchain transaction, are public and provide no inherent privacy.
+To bring privacy to smart contracts, non-interactive zero-knowledge (NIZK) proofs have been proposed as a tool to enable complex smart contracts that do not leak the user inputs [KMS` 16, MSH17].
+However, these protocols are limited as the NIZK proof itself is not suitable for verification by a smart contract.
+The reason is that communication over the blockchain with a smart contract is expensive, and the smart contract’s own computational power is highly limited.
+SNARKs, which have succinct proofs and efficient verifiers, seem like a natural choice, but current practical SNARKs [BSCG` 13] require a complex trusted setup.
+The resulting common reference strings (CRS) are long, specific to each application, and possess trapdoors.
+In Hawk [KMS` 16], for instance, a different CRS is needed for each smart contract, and either a trusted party is needed to generate it, or an expensive multi-party computation is needed to distribute the trust among a few parties.
+On the other hand, for small applications like boardroom voting, one can use classical sigma protocols [MSH17], but the proof-sizes and expensive verification costs are prohibitive for more complicated applications.
+Bulletproofs improves on this by enabling small proofs which do not need a trusted setup.
+The Bulletproofs verifier is still expensive, but there are multiple ways to work around this.
+First, a smart contract may act optimistically and only verify a proof if some party challenges its validity.
+Incentives can be used to ensure that rational parties never create an incorrect proof nor challenge a correct proof.
+This can be further improved by using an interactive referee delegation model [CRR11], previously proposed for other blockchain applications [BGB17, TR].
+In this model, the prover provides a proof along with a succinct commitment to the verifier’s execution trace.
+A challenger that disagrees with the computation also commits to his computation trace and the two parties engage in an interactive binary search to find the first point of divergence in the computation.
+The smart contract can then execute this single computation step and punish the party which provided a faulty execution trace.
+The intriguing property of this protocol is that even when a proof is challenged, the smart contract only needs to execute a single computation step, i.e.
+a single gate of the verification circuit.
+In combination with small Bulletproofs, this can enable more complex but privacy preserving smart contracts.
+Like other applications these NIZK proofs would benefit from the MPC protocol that we present in Section 4.5.
+For example, in an auction contract, where each bidder needs to prove some properties of their bids, the protocol can be used to combine the Bulletproofs into a single proof.
+Furthermore, the proof will hide which bidder submitted which bid.
+Non-interactive zero-knowledge protocols for general statements are not possible without using a common reference string, which should be known by both the prover and the verifier.
+Many efficient non-interactive zero-knowledge proofs and arguments for arithmetic circuit satisfiability have been developed[Mic94, KP95, GS08, BSCG` 13], and highly efficient protocols are known.
+However, aside from their performance, these protocols differ in the complexity of their common reference strings.
+Some, such as those in [BSCG` 13], are highly structured, and sometimes feature a trapdoor, while some are simply chosen uniformly at random.
+Security proofs assume that the common reference string was honestly generated.
+In practice, the common reference string can be generated by a trusted third party, or using a secure multi-party computation protocol, in which case, uniformly-random common reference strings are significantly easier to generate.
+This helps to alleviate concerns about embedded trapdoors, as with the trusted setup ceremony used to generate the public parameters for [BSCG` 14].
+Zero-knowledge SNARKs have been the subject of extensive research [Gro10, BCCT12,GGPR13,BCCT13,PHGR16,BSCG` 13,Gro16].
+They generate constantsized proofs for any statement, and have extremely fast verification time.
+However, they have highly complex common reference strings which require lengthy and computationally intensive protocols [BGG17] to generate distributively.
+They also rely on strong unfalsifiable assumptions such as the knowledge-ofexponent assumption.
+Examples of non-interactive protocols that do not require a trusted setup include [Mic94, BCC` 16, BCG` 17b, BSBC` 17].
+present a proof system [BCG` 17a] and implementation [BSBC` 17] called Scalable Computational Integrity (SCI).
+While SCI has a simple setup, and relies only on collision-resistant hash functions, the system is not zero-knowledge and still experiences worse performance than [BSCG` 13, BCC` 16].
+The proof sizes are roughly 42 MB large in practice.
+In subsequent work Ben-Sasson presented STARKs [BSBTHR17], which are zero-knowledge and more efficient than SCI.
+However even with these improvements the proof size is still 1.8MB and constructing a proof is very costly (about 7 minutes and 130 GB of RAM for a circuit of size 216 ).
+In later work, Bootle et al.
+[BCG` 17b] present an argument for arithmetic circuit satisfiability based on collision-resistant hash functions.
+The cost for the prover scales linearly in the circuit size, and the verifier is slightly sublinear, meaning that the protocol is asymptotically more efficient than [BCC` 16, BCG` 17a].
+However, while sub-linear, the proof size is much larger, scaling with the square root of the circuit size, and furthermore, the computational costs hide large constants which prevent the argument from being practical.
+Much of the research related to electronic payments that predates Bitcoin [Nak08] focused on efficient anonymous and confidential payments [CHL05, Cha82] .
+With the advent of blockchain-based cryptocurrencies, the question of privacy and confidentiality in transactions has gained a new relevance.
+While the original Bitcoin paper [Nak08] claimed that Bitcoin would provide anonymity through pseudonymous addresses early work on Bitcoin showed that the anonymity is limited [MPJ` 13, AKR` 13].
+Given these limitations various methods havebeen proposed to help improve the privacy of Bitcoin transactions.
+CoinJoin [Max13], proposed by Maxwell, allows users to hide information about the amounts of transactions by merging two or more transactions.
+This ensures that among the participants who join their transactions, it is impossible to tell which transaction inputs correspond to which transaction outputs.
+However, users do require some way of searching for other users, and furthermore, should be able to do so without relying on a trusted third party.
+CoinShuffle [RMSK14] tried to fulfill this requirement by taking developing the ideas of CoinJoin and proposing a new Bitcoin mixing protocol which is completely decentralized.
+Monero [Mon] is a cryptocurrency which employs cryptographic techniques to achieve strong privacy guarantees.
+These include stealth addresses, ringsignatures [vS13], and ring confidential transactions [NM` 16].
+Range proofs are proofs that a secret value, which has been encrypted or committed to, lies in a certain interval.
+Range proofs do not leak any information about the secret value, other than the fact that they lie in the interval.
+Lipmaa [Lip03] presents a range proof which uses integer commitments, and Lagrange’s foursquare theorem which states that every positive integer y can be expressed as a sum of four squares.
+Groth [Gro05] notes that the argument can be optimized by considering 4y ` 1, since integers of this form only require three squares.
+The arguments require only a constant number of commitments.
+However, each commitment is large, as the security of the argument relies on the Strong RSA assumption.
+Additionally, a trusted setup is required to generate the RSA modulus or a prohibitively large modulus needs to be used [San99].
+[CCS08] use a different approach.
+The verifier provides signatures on a small set of digits.
+The prover commits to the digits of the secret value, and then proves in zero-knowledge that the value matches the digits, and that each commitment corresponds to one of the signatures.
+They show that their scheme can be instantiated securely using both RSA accumulators [BdM93] and the weak Boneh-Boyen signature scheme [BB04].
+Before we present Bulletproofs, we first review some of the underlying tools.
+A non-interactive commitment scheme consists of a pair of probabilistic polynomial time algorithms pSetup, Comq.
+The setupalgorithm pp Ð Setupp1λ q generates public parameters pp for the scheme, for security parameter λ.
+The commitment algorithm Compp defines a function Mpp ˆ Rpp Ñ Cpp for message space Mpp , randomness space Rpp and commitment space Cpp determined by pp.
+For a message x P Mpp , the algorithm draws Ý Rpp uniformly at random, and computes commitment com “ Compp px; rq.
+A homomorphic commitment scheme is a non-interactive commitment scheme such that Mpp , Rpp and Cpp are all abelian groups, and for all x1 , x2 P Mpp , r1 , r2 P Rpp , we have Compx1 ; r1 q ` Compx2 ; r2 q “ Compx1 ` x2 ; r1 ` r2 q Definition 3 (Hiding Commitment).
+A commitment scheme is said to be hiding if for all PPT adversaries AHiding,1λ there exists a negligible function µpλq such that.
+In this paper the common reference string will always be a public key ck for the Pedersen commitment scheme.
+We can also define computational witness-extended emulation by restricting to non-uniform polynomial time adversaries A.
+We use witness-extended emulation to define knowledge-soundness as used for example in [BCC` 16] and defined in [GI08b,Lin03].
+Informally, whenever an adversary produces an argument which satisfies the verifier with some probability, then there exists an emulator producing an identically distributed argumentwith the same probability, but also a witness.
+The value s can be considered to be the internal state of P ˚ , including randomness.
+The emulator is permitted to rewind the interaction between the prover and verifier to any move, and resume with the same internal state for the prover, but with fresh randomness for the verifier.
+Whenever P ˚ makes a convincing argument when in state s, E can extract a witness, and therefore, we have an argument of knowledge of w such that pσ, u, wq P R.
+An argument pP, Vq is called public coin if all messages sent from the verifier to the prover are chosen uniformly at random and independently of the prover’s messages, i.e., the challenges correspond to the verifier’s randomness ρ.
+An argument is zero knowledge if it does not leak information about w apart from what can be deduced from the fact that pσ, x, wq P R.
+We will present arguments that have special honest-verifier zero-knowledge.
+This means that given the verifier’s challenge values, it is possible to efficiently simulate the entire argument without knowing the witness.
+Definition 11 (Perfect Special Honest-Verifier Zero-Knowledge).
+A public coin argument pP, Vq is a perfect special honest verifier zero knowledge (SHVZK) argument for R if there exists a probabilistic polynomial time simulator S such that for all interactive non-uniform polynomial time adversaries A.
+[BCC` 16] introduced an efficient inner-product argument and show how it can be leveraged to construct zero-knowledge proofs for arithmetic circuit satisfiability with low communication complexity.
+The argument is an argument of knowledge of openings to two Pedersen vector commitments satisfying an inner product relation.
+We demonstrate how the communication complexity of the argument can be further reduced from 6 log2 pnq in [BCC` 16] to only 2 log2 pnq where n is the size of the two vectors.
+To achieve this improvement, we modify the relation that is proved.
+We then explain how this protocol can be used to construct an efficient range proof and a proof system for arbitrary arithmetic circuits in Sections 4 and 5.
+The protocol takes as input a Pedersen vector commitment (see Definition 6) to the two vectors a and b as well as c and proves that c “ xa, by.
+The logarithmic complexity is achieved by halving the size of the vector base for the commitment in every iteration.
+Consider the following observation: Additionally, we show in Protocol 1 that this can also be done for two vectors in parallel such that the inner product of the two vectors does only changes by a correction factor which the verifier again can compute himself from the challenge.
+More formally, the input to the inner product argument are independent generators g, h P Gn a scalar c P Zp and the commitment P such that P “ ga hb .
+The argument demonstrates that xa, by “ c given pairwise hardness of computing discrete logarithm relations between each pair of two distinct group elements from g, h.
+that n is a power of 2, since this can always beachieved by padding g, h, a, and b.
+Protocol 2 is, therefore, an efficient proof system for the following relation.
+The protocol requires the communication of 2 ¨ rlog2 pnqs elements in G as well as 2 elements in Zp .
+The prover’s work is dominated by 4 ¨ n group exponentiations.
+The verifier’s work by 2 ¨ n exponentiations.
+For more details on our implementation see Section 6.
+We split the protocol into two parts.
+Then we show that we can use our proof system for Relation (2) to build a new proof system for Relation (1) using Protocol 2.
+The argument presented in Protocol 1 and 2 has perfect completeness and statistical witness-extended-emulation for either extracting a non-trivial discrete logarithm relation or a valid witness.
+The proof for Theorem 2 is in Appendix A.
+We now present a novel protocol for conducting short and aggregatable range proofs.
+The protocol makes uses of an improved version of the inner product argument from Protocol 2.
+First, in Section 4.1, we describe how to construct a range proof that requires the verifier to check an inner product between two vectors.
+Then, in Section 4.2, we show that this check can be replaced with an efficient inner-product argument.
+In Section 4.3, we show how to efficiently prove knowledge of m numbers that are all within a given range.
+In Section 4.4, we discuss how interactive public coin protocols can be made non-interactive by using the Fiat-Shamir heuristic, in the random oracle model.
+In Section 4.5 we present an efficient MPC protocol that allows multiple parties to construct a single aggregate range proof.
+Finally, in Section 4.6, we discuss an extension that enables a switch to quantum-secure range proofs in the future.
+We present a protocol which uses the improved inner-product argument to construct a range proof.
+The proof convinces the verifier that a commitment V contains a number v that is in a certain range, without revealing v.
+[BCC` 16] presents a proof system for arbitrary arithmetic circuits, and in Section 5, we demonstrate that our improvements to the inner product argument also transfer to this proof system.
+It is of course possible to prove that a commitment is in a given range using an arithmetic circuit and asymptotically [BCC` 16] could be used to construct logarithmically (in the length of v)  However, the circuit would need to implement the commitment function, e.g.
+a multi-exponentiation for Pedersen commitments, leading to a large and complex circuit.
+We, therefore, demonstrate that we can construct a range proof more directly.
+The range proof takes advantage of the fact that if V is a Pedersen commitment, then it is an element in the same group that is used to perform the inner product argument.
+We extend this idea in Section 5 to show that our circuit can take an arbitrary number of commitments as input.
+The proof system uses the homomorphic property of Vector Pedersen Commitments to construct commitments to two polynomials lpXq and rpXq in Znp rXs, i.e.
+the coefficients of lpXq and rpXq are vectors in Znp .
+Using these vector-polynomial commitments, the prover and verifier engage in an inner product argument to verifiably compute the inner product of lpXq and rpXq.
+These polynomials are carefully constructed such that the zero-coefficient of xlpXq, rpXqy P Zp rXs has a special form if and only if v is in the range.
+This can be viewed as encoding the range proof circuit in the zero-coefficient of xlpxq, rpxqy.
+For simplicity, we describe the product as an interactive protocol where all the verifiers messages are random elements in Zp .
+As discussed in Section 4.4, this protocol can be turned into a non-interactive range proof using the Fiat-Shamir heuristic.
+In Section 4.2 we show how to use the inner product argument to turn the range proof into a highly efficient proof whose size only grows logarithmically in the bits of the range proven.
+The range proof presented in Section 4.1 has perfect completeness, perfect honest verifier zero-knowledge and computational special soundness.
+The range proof is a special case of the aggregated range proof from section 4.3 with m “ 1.
+This is therefore a direct corollary of Theorem 3.
+4.2  Logarithmic Range Proof  Finally, we can describe the efficient range proof that uses the improved inner product argument.
+In the range proof protocol from Section 4.1, P transmits l and r, which are already linear in n.
+We can omit this transfer by using the inner-product argument from Section 3.
+In many of the range proof applications described in Section 1.2, a single prover needs to perform multiple range proofs at the same time.
+For example, a confidential transaction often contains multiple outputs, and in fact, most transactions require a so-called change output to send any unspent funds back to the sender.
+In Provisions [DBB` 15] the proof of solvency requires the exchange to conduct a range proof for every single account.
+Given the logarithmic size of the range proof presented in Section 4.2, there is some hope that we can perform a proof for m values which is more efficient than conducting m individual range proofs.
+In this section, we show that this can be achieved with a slight modification to the proof system from Section 4.1.
+The aggregate range proof presented in Section 4.3 has perfect completeness, perfect honest verifier zero-knowledge and computational special soundness.
+The proof for Theorem 3 is presented in Appendix B.
+It is analogous to the proof of Theorem 4 which is described in greater detail in Appendix C.
+For the purpose of a simpler analysis, the proof was presented as an interactive protocol with a logarithmic number of rounds.
+The verifier is a public coin verifier, as all the honest verifier’s messages are simply random elements from Z‹p .
+It is therefore possible to turn the protocol into a non-interactive protocol that is secure and full zero-knowledge in the random oracle model using the Fiat-Shamir heuristic [BR93].
+All random challenges are replaced by hashes of the transcript up to that point.
+For instance y “ HpA, Sq and z “ HpA, S, yq To avoid a trusted setup we can use such a hash function to generate g, h, g, h, i.e.
+the public parameters from a common random string.
+The hash functions needs to map from t0, 1u˚ to Gz12 .
+This also makes it possible to provide a random access into the public parameters.
+In several of the applications described in Section 1.2, the prover could potentially consist of multiple parties who each want to do a single range proof.
+For instance, multiple parties may want to create a single joined confidential transaction, where each party knows some of the inputs and outputs and needs to create range proofs for their known outputs.
+The joint transaction would not only be smaller than the sum of multiple transactions.
+It would also hide which inputs correspond to which outputs and provide some level of anonymity.
+These kinds of transactions are called CoinJoin transactions [Max13].
+In Provisions, an exchange may distribute the private keys to multiple servers and split the customer database into separate chunks, but it still needs to produce a single short proof of solvency.
+Can these parties generate one Bulletproof without sharing the entire witness with each other? The parties could certainly use generic multi-party computation techniques to generate a single proof, but this might be too expensive and incur significant communication costs.
+This motivates the search for a simple MPC protocol specifically designed for Bulletproofs which requires little modification to the prover and is still efficient.Note that for aggregate range proofs, the inputs of one range proof do not affect the output of another range proof.
+Given the composable structure of Bulletproofs, it turns out that m parties each having a Pedersen commitment can generate a single Bulletproof that each Vk commits to a number in some range fixed range.
+The protocol either uses a constant number of rounds but communication that is linear in both m and the binary encoding of the range, or it uses a logarithmic number of rounds and communication that is only linear in m.
+We assume for simplicity that m is a power of 2, but the protocol could be easily adapted for other m.
+We use the same notation as in the aggregate range proof protocol, but use k as an index to denote the kth party’s message.
+That is Apkq is generated just like A but using only the inputs of party k.
+In each round, the dealer generates the challenges using the Fiat-Shamir heuristic and the combined proof components and sends them to each party.
+Finally, each party sends lpkq , rpkq to the dealer who computes l, r as the interleaved concatenation of the shares.
+The dealer runs the inner product argument and generates the final proof.
+The protocol is complete as each proof component is simply the (homomorphic) sum of each parties’ proof components, and the challenges are generated as in the original protocol.
+It is also secure against honest but curious adversaries as each share constitutes part of a separate zero-knowledge proof.
+The communication can be reduced by running a second MPC protocol for the inner product argument.
+The generators were selected in such a way that up to the last log2 plq rounds each parties’ witnesses are independent and the overall witness is simply the interleaved concatenation of the parties’ witnesses.
+Therefore, parties simply compute Lpkq , Rpkq in each round and a dealer computes L, R as the homomorphic sum of the shares.
+The dealer then again generates the challenge and sends it to each party.
+In the final round the parties send their witness to the dealer who finishes the protocol and constructs the final proof.
+A similar protocol can be used for arithmetic circuits if the circuit is decomposable into separate independent circuits.
+Whether an efficient custom MPC protocol can be constructed for more complicated circuits remains an open problem.
+Bulletproofs, like the range proofs currently used in confidential transactions, are computationally binding.
+An adversary that could break the discrete logarithm assumption could generate acceptable range proofs for a value outside the correct range.
+On the other hand, the commitments are perfectly hiding and Bulletproofs are perfect zero-knowledge, so that even an all powerful adversary cannot learn which value was committed to.
+Commitment schemes which are simultaneously perfectly-binding and perfectly-hiding commitments are impossible, so when designing commitment schemes and proof systems, we need to decide which properties are more important.
+For cryptocurrencies, the binding property is more important than the hiding property [RM].
+An adversary that can break the binding property of the commitment scheme or the soundness of the proof system can generate coins out of thin air and thus create uncontrolled but undetectable inflation rendering the currency useless.
+Giving up the privacy of a transaction is much less harmful as the sender of the transaction or the owner of an account is harmed at worst.
+Unfortunately, it seems difficult to create Bulletproofs from binding commitments.
+The efficiency of the system relies on vector commitments which allow the commitment to a long vector in a single group element.
+By definition, for perfectly binding commitment schemes, the size of the commitment must be at least the size of the message and compression is thus impossible.
+The works [GH98, GVW02] show that in general, interactive proofs cannot have communication costs smaller than the witness size, unless some very surprising results in complexity theory hold.
+While the discrete logarithm assumption is believed to hold for classical computers, it does not hold against a quantum adversary.
+It is especially problematic that an adversary can create a perfectly hiding UTXO at any time, planning to open to an arbitrary value later when quantum computers are available.
+To defend against this, we can use the technique from Ruffing and Malatova [RM] to ensure that even though the proof is only computationally binding, it is later possible to switch to a proof system that is perfectly binding and secure against quantum adversaries.
+In order to do this, the prover simply publishes g γ , which turns the Pedersen commitment to v into an ElGamal commitment.
+Ruffing and Matalova also show that given a small message space, e.g.
+numbers in the range r0, 2n s, it is impossible for a computationally bounded prover to construct a commitment that an unbounded adversary could open to a different message in the small message space.
+Note that the commitment is now only computationally hiding, but that switching to quantum-secure range proofs is possible.
+Succinct quantum-secure range proofs remain an open problem, but with a slight modification, the scheme from Poelstra et al.
+[PBF` ] can achieve statistical soundness.
+Instead of using Pedersen commitments, we propose using ElGamal commitments in every step of the protocol.
+An ElGamal commitment is a Pedersen commitment with an additional commitment g r to the randomness used.
+The scheme can be improved slightly if the same g r is used in multiple range proofs.
+In order to retain the hiding property, a different h must be used for every proof.
+[BCC` 16] present an efficient zero-knowledge argument for arbitrary arithmetic circuits using 6 log2 pnq ` 13 elements, where n is the multiplicative complexity of the circuit.
+We can use our improved inner product argument to get a proof of size 2 log2 pnq ` 13 elements, while simultaneously generalizing to include committed values as inputs to the arithmetic circuit.
+Including committed input wires is important for many applications (notably range proofs) as otherwise the circuit would need to implement a commitment algorithm.
+Concretely a statement about Pedersen commitments would need to implement the group exponentiation for the group that the commitment is an element of.
+Following [BCC` 16], we present a proof for a Hadamard-product relation.
+We think of a multiplication gate of fan-in 2 as having three wires; ‘left’ and ‘right’ for the input wires, and ‘output’ for the output wire.
+In the relation, aL is the vector of left inputs for each multiplication gate.
+We include additional commitments Vi as part of our statement, and give a protocol for a more general relation, where the linear consistency constraints include the openings vj of the commitments Vj .
+As with the range proof we first present a linear proof system where the prover sends two vectors that have to satisfy some inner product relation.
+In Section 5.2 we show that the inner product relation can be replaced with an efficient inner product argument which yields short proofs for arbitrary circuits where input wires can come from Pedersen commitments.
+Formally we present a proof system for the following relation.
+The proof system presented in Protocol 3 has perfect completeness, perfect honest verifier zero-knowledge and computational special soundness.
+As for the range proof, we can reduce the communication cost of the protocol by using the inner product argument.
+Using the Fiat-Shamir heuristic as in 4.4 the protocol can be turned into an efficient non interactive proof.
+We report implementation details and evaluations in Section 6.
+The arithmetic circuit protocol using the improved inner product argument (Protocol 1) has perfect completeness, statistical zero-knowledge and computational soundness under the discrete logarithm assumption.
+Completeness follows from the completeness of the underlying protocols.
+Zero-knowledge follows from the fact that l and r can be efficiently simulated, and because the simulator can simply run Protocol 1 given the simulated witness pl, rq.
+The protocol also has a knowledge-extractor, as the extractor of the range proof can be extended to extract l and r by calling the extractor of Protocol 1.
+However, if the generators g, h, g, h are independently generated, then finding a discrete logarithm relation between them is as hard as breaking the discrete log problem.
+If the discrete log assumption holds in G then a computationally bounded P cannot produce discrete-logarithm relations between independent generators.
+The proof system is therefore computationally sound.
+In Table 1 we give analytical measurements for the proof size of different range proof protocols.
+We compare both the proof sizes for a single proof.
+The table shows that Bulletproofs have a significant advantage when providing multiple range proofs at once.
+The proof size for the protocol presented in Section 4.3 only grows by an additive logarithmic factor when conducting m range-proofs, while all other solutions grow mulltiplicately in m.
+To evaluate the performance of Bulletproofs in practice we give a reference implementation in Java 8.
+For the group G we use the elliptic curve SECP256K13 which has 128 bit security.
+In their compressed form, elliptic curve points can be stored as 32 bytes.
+All cryptographic operations are implemented using Bouncy Castle 1.5.74 .
+Performance could be further increased by implementing multi-exponentiation algorithms as described in [Möl01].
+Table 2 shows that Bulletproofs brings a significant improvement over [PBF` ], even for a single range proof, and that the proof size hardly grows when multiple range proofs are constructed.
+We do not directly compare against the arithmetic circuit protocol by Bootle et al.
+[BCC` 16] because their scheme would require implementing the commitment function in the circuit, i.e.
+This would not only blow up the prover and verifier time but even at an optimistic estimate of ten thousand gates5 for such a circuit, a 52 bit range proof would exceed 3KB.
+To aid future use of Bulletproofs we also implemented Protocol 3 for arithmetic circuits and provide a parser for circuits in the Pinocchio [PHGR13] format.
+This hooks Bulletproofs up to the Pinocchio toolchain which contains a compiler from a subset of C to the circuit format.
+We intent to release an open source version.
+Perfect completeness follows directly because Protocol 2 converts the relation into a relation for Protocol 1.
+For witness extended emulation we show that there exists an efficient extractor E.
+First we show how to construct an extractor E1 for Protocol 1 which on input pg, h, u, P q, either extracts a witness a, b, c such that the relation holds, or discovers a non-trivial discrete logarithm relation between g, h, u.
+First note that the hardness of computing a discrete log relation between g1 , h1 , u implies the hardness of computing one between g, h, u as defined in Protocol 1.
+We will, therefore, use a recursive argument showing that in each step we either extract a witness or a discrete log relation.
+If n “ |g| “ 1, then the prover reveals the witness and the relation can simply be checked directly.
+Now, we show for each recursive step that on input pg, h, u, P q, we can efficiently extract a witness a, b or a non-trivial discrete logarithm relation between g, h, u.
+The extractor runs the prover to get L and R.
+If the implications do not hold, we directly obtain a non-trivial discrete logarithm relation between the generators pg1 , .
+, gn , h1 , .
+If the implications do hold, we can deduce that the following two equalities hold.Finally, the simulator runs the inner-product argument with the simulated witness pl, rq.
+All elements in the proof are either independently randomly distributed or their relationship is fully defined by the verification equations.
+The inner product argument remains zero knowledge as we can successfully simulate the witness, thus revealing the witness or leaking information about it does not change the zero-knowledge property of the overall protocol.
+The simulator runs in time OpV ` PInnerProduct q and is thus efficient.
+In order to prove special soundness, we construct an extractor E as follows.
+The extractor E runs the prover with n different values of y, pQ ` 1q different values of z, and 7 different values of the challenge x.
+This results in 14 ¨ pQ ` 1q ¨ n valid proof transcripts.
+The extractor E first runs the extractor EInnerProduct for the inner-product argument to extract a witness l, r to the inner product argument such that gl hr “ P ^ xl, ry “ t.
+Using this witness and 3 valid transcripts with different x challenges, E can compute linear combinations of (63) in order to extract α, ρ, aL , aR , sL , sR such that A “ hα gaL haR , as well as S “ hρ gsL hsR .
+If for any other set of challenges px, y, zq the extractor can compute a different representation of A or S, then this yields a non-trivial discrete logarithm relation between independent generators h, g, h which contradicts the discrete logarithm assumption.
+If these equalities do not hold for all challenges and l, r from the transcript, then we have two distinct representations of the same group element using a set of independent generators.
+This would be a non-trivial discrete logarithm relation.
+If these equalities do not hold for all challenges and l, r from the transcript, then we have two distinct representations of the same group element using a set of independent generators.
+This would be a non-trivial discrete log relation.
+We now show that t2 indeed has the form described in (93).

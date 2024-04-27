@@ -1,0 +1,698 @@
+The binding between a physical identity and a public key is an important building block in computer security.
+This is typically done through digital documents following the X.509 standard, named X.509 certificates.
+These certificates are signed with the private key of a trusted intermediary called a certificate authority, who is responsible for checking the identity of the customer before issuing the certificate.
+Unfortunately, certificate authorities sometimes fail in their duty and issue fraudulent certificates.
+This violates the centralised trust model and makes it hard to trust any certificates issued by such certificate authority.
+One way of solving this problem is to adapt a decentralised model, where each user crosssigns their certificate with their private key.
+In such a system, a problem of consensus arises: How can we know which key is associated with a certain user? The emergence of the blockchain, originally used to store transactions for the Bitcoin cryptocurrency, offers a possibility to solve this problem without relying solely on a certificate authority.
+The aim of the thesis is to investigate how a blockchain can be used to build a decentralised public key infrastructure for the web, by proposing a custom federation blockchain which stores digital identities in an authenticated tree structure.
+Our main contribution is the design of a Proof of Stake protocol based on a stake tree which builds upon an idea called followthe-satoshi used in previous papers.
+Our back-of-the-envelope calculations based on the size of the domain name system suggest a block size of at least 5.2 MB, while each blockchain node with a one-month transaction history need to store about 243 GB.
+Thin clients would have to synchronise about 13.6 MB of block headers per year, and download an additional 3.7 KB of proof data for every leaf certificate which is to be checked.
+There are countless of electronic devices around us, ranging from desktop computers and servers to smartphones and ePassports.
+Many of these devices need a digital identity which can be verified as legitimate.
+Without a trusted digital identity, there is no way of authenticating the remote party, and it becomes impossible to establish a secure communication channel.
+Digital identity is most commonly managed using something called certificates, a digital document containing an identifier, a public key and a digital signature created by a trusted Certificate Authority (CA).
+If the communication is facilitated over the Internet, the identifier is usually an IP-address or a domain name which can be resolved through DNS.
+The validity of the information in the certificate can be checked by inspecting the signature of the CA using the CA’s public key.
+The CA’s public key is stored in a file (which is typically bundled with the operating system or the web browser) containing a list of trusted CAs and their corresponding public keys.
+531 fraudulent certificates had been issued.
+The fraudulent certificates were used to perform man-in-the-middle attacks on Google’s services [21].
+A server can be linked to several digital identities, which makes it more difficult to differentiate between a legitimate identity and a counterfeit one.
+Several attempts to fix this problem has been made.
+One such attempt is public key pinning where a server sends a fingerprint of its public key, or the public key of the CA certificate to the client.
+The fingerprint is stored by the client, which makes it possible to detect if the key changes in the future.
+Pinning has unfortunately not been widely adopted, possibly because it requires configuration of the web server, and because pinning poses a risk to domain holder.
+Customers who are not visiting the domain for the first time expects the certificate to contain a previously pinned key.
+If the domain holder loses access to these keys, or if the keys become compromised, the browser rejects the connection, and the customer is unable to visit the site.
+Similarly, pinning the public key of the CA acts as a lock-in mechanism since it makes it more difficult for the domain holder to switch CA.
+Another approach is Certificate Transparency (CT), which aims to detect fraudulently issued certificates by forcing CAs to append certificates being issued to a certificate transparency log.
+These logs can then be monitored by a third party such as the domain holder.
+While certificate transparency has indeed helped to detect malicious certificates in some cases, the lack of incentive for third parties to audit the logs raises concerns for how efficient certificate logs are for average users.
+But more importantly, Certificate Transparency does not prevent a fraudulent certificate from being issued in the first place.
+An alternative to a Public Key Infrastructure (PKI) based on CAs is Web of Trust.
+In Web of Trust, there is no central authority which is vouching for an identity, and thus there is no central point of failure.
+Instead, users are responsible for verifying the identity of the people they want to communicate with or trust other people to do so.
+After asserting the validity of a certain public key, it is imported to the user’s keyring.
+Keys might be posted on the web or exchanged in person.
+Web of Trust is standardised in the OpenPGP standard [12] and is integrated into Linux package managers and some email programs.
+Unfortunately, Web Of Trust might be somewhat cumbersome to use.
+Each key must be verified  There are some problems with this centralised trust model.
+The use of a CA introduces a single point of failure, and history has shown us that we put too much trust in the CAs.
+A CA might issue the wrong type of certificate by mistake, as shown by the TürkTrust incident in mid 2011, where the Turkish certificate authority TürkTrust issued two intermediary CA certificates instead of regular certificates.
+One of these certificates was revoked immediately after a request from the customer, but the other certificate issued to EGO, a public transport company in Ankara, was not revoked.
+EGO now had the power to act as a CA by signing certificates on behalf of TürkTrust.
+At the end of 2012, EGO implemented an HTTP proxy for outgoing HTTPS traffic, where they used their intermediary certificate for key bridging.
+The fraudulent intermediary certificate was detected after users started to get warnings when visiting google.com, a domain which used public key pinning, a technique which allows a web browser to detect if the public key used by a domain has changed [49].
+A CA might also be compromised by an adversary, which happened in March 2011 when a self-proclaimed Iranian hacker compromised two resellers of Comodo certificates.
+The hacker successfully signed nine different certificates for seven different domains, including Skype, Yahoo, Mozilla’s web store and Google’s Gmail [28].
+In September the same year, the Dutch CA DigiNotar was declared bankrupt after at leastbefore being inserted into the keyring, and a compromised X Offers consensus It provides a robust mechanism for key must be manually removed.
+Similar to public key pinning, consensus, even in the presence of malicious adversaries.
+Web of Trust also fails to offer any built-in mechanism for key X Incentive based There is a possibility for incentivising recovery and lacks some restriction metadata that certificates participation in the network.
+can provide like extended key usages and name constraints.
+A blockchain, an append-only, public ledger, originally X Transparent All transactions are public and can be designed to store transactions for the Bitcoin cryptocurrency verified independently by all nodes in the network.
+[46], has been used to implement a wide variety of decentralised applications, such as smart contracts [59], X Programmable Built-in support for scripts, which decentralised cloud storage [58], asset tracking [50], and allows for advanced key recovery mechanisms.
+Another potential use case for blockchains could be as a distributed PKI, and this is what X Censorship resistant Direct node communication is investigated in this thesis.
+A blockchain could offer builtmakes the network resilient against denial of service.
+in certificate transparency, and allow pinning of both public keys and certificates.
+Each computer in a large P2P-network has its own copy of the blockchain, which allows each client 1.3 Delimitation to independently verify each transaction, removing the single point of failure.
+This thesis is supposed to act as a blueprint, similar to that of an Internet draft, for the design of a distributed PKI aimed for the web.
+As such, our work is mostly theoretical.
+Focus 1.1 Problem Statement is on the design of the blockchain, the consensus process and the format of transactions.
+Procedures for issuance and Are blockchains suitable as a building block for a revocation of digital identities, and how clients can verify distributed public key infrastructure and what could such certificates in our system, are only covered very briefly.
+The a public key infrastructure look like? blockchain network protocol is not be discussed.
+The choice of stakeholders (the entities responsible for maintaining the blockchain), or under what circumstances stakeholders should 1.2 Motivation and Aim be excluded from the consensus process is considered beyond the scope of this thesis.
+The motivation behind this thesis is to secure digital communications by improving identity retention in the current PKI.
+This is an important problem, since the 1.4 Thesis Content and Contribution current PKI based on CAs is the technology underpinning many security critical applications on the Internet, such as Chapter 2 contains a background study about PKIs and electronic commerce, online banking and software updates.
+Chapters 3 and 4 describes the design of the Improvement in this area is of great interest for anyone blockchain, including a two-phase Proof of Stake protocol relying on, or otherwise dealing with certificates, perhaps which selects block leaders from a stake tree, and the use most notably CAs and domain owners.
+We believe that the of an account tree which stores the public keys of domain problem of fraudulent certificates, which has been plaguing owners.
+Chapter 5 focuses on approval and issuance of new users for years, stems from the inherent centralisation of the identities.
+To achieve our goal, two new certificate extensions current system based on trusted certificate authorities, which are proposed.
+The first certificate extension, the CA proof, have the power to issue certificates on behalf of users without contains the information needed by blockchain nodes to verify their consent.
+Although the need for trusted entities which new accounts which should be added to the account tree.
+bind a physical identity to a digital one is recognised, we The second certificate extension contains a server signature believe CAs have been given an unfavourable role with too produced by the domain owner’s public key, and is used by much responsibility.
+With this in mind, a complementary compatible clients to verify certificates presented to them.
+solution is proposed where identities are stored in a public Chapter 6 contains a security and performance analysis of ledger, which is maintained by an honest majority instead of this blockchain scheme, where we look at different security a central authority, with the aim of creating a versatile and threats and how our scheme would scale if deployed on the more robust PKI.
+Finally, we conclude and identify future We believe a blockchain in a P2P-setting, similar to Bitcoin, work in Chapter 7.
+to be a suitable building block for a public ledger, for multiple reasons:  The hash of the zonefile is written in an OP_RETURN transaction on the Bitcoin blockchain, while the zonefiles themselves are stored in a distributed filesystem maintained • Define objectives for a solution This is done by by Blockstack nodes.
+Blockstack is blockchain-agnostic which identifying limitations of existing solutions based on the means that it is possible to migrate to another blockchain if background study.
+Blockstack achieves this by the use of a virtualchain, created by Blockstack nodes by filtering and parsing the • Design a solution Propose a distributed PKI which aims underlying blockchain.
+to satisfy the previously defined objectives.
+• Evaluate the solution Discuss and analyse the solution and identify weaknesses and areas of future work.
+Instant-Karma PKI (IKP) [39] is an attempt to improve Certificate Transparency by incentivising participants to look for and report fraudulent certificates.
+The goal of IKP 1.6 Related Work is to incentivise, decentralise and automate processes for Previous work on the use of blockchains in distributed PKIs handling CA misbehaviour.
+This is done by leveraging the is sparse, although there are several approaches to log-based Ethereum’s support for smart contracts2 .
+An IKP contract certificate management without an underlying blockchain takes a certificate as input, provided by a monitor, and [6, 32, 61, 37].
+The works discussed in this section are checks this certificate against a Domain Certificate Policy Namecoin - a distributed DNS based on Bitcoin, Blockstack - which specifies a list of CAs allowed to issue certificates for a blockchain-agnostic PKI and DNS currently running on top this particular domain.
+If the certificate is issued by a CA of the Bitcoin blockchain, Instant Karma PKI - a certificate not present in this list, a Reaction Policy is executed which transparency log powered by smart contracts, and coloured performs the escrow operation transferring Ether (Ethereum’s coins - a way of tracking digital assets on a blockchain.
+cryptocurrency) from the misbehaving CA to the affected user and the monitor who reported the violation.
+The use of a blockchain as a storage medium for digital identities was introduced together with Namecoin [29], which became the first fork of the Bitcoin software.
+It was the first secure, distributed naming system to offer human-memorable names, which was conjectured to be impossible1 .
+Namecoin runs its own blockchain using Proof of Work as consensus mechanism, but lends some of its hashing power from other Bitcoin miners via a mechanism called merged mining.
+Namecoin administers its own .bit top domain independently from The Internet Corporation for Assigned Names and Numbers (ICANN).
+New names are registered in this namespace by posting a message to the Namecoin blockchain.
+Names expire after 36000 blocks (about 250 days) but once a name is registered, it can only be transferred or renewed by the person or organisation who currently owns it.
+Thus, Namecoin is completely censor-resistant and no central authority has the power to remove existing names.
+Blockchain nodes enforce fees associated with name registration and renewals, and any name can be registered as long as it is vacant.
+Coloured coins is a family of protocols used for tracking ownership of digital or physical assets on a blockchain.
+Coloured coins can be used to build tamper-proof land registers [22], reduce counterfeits in for example the sneaker, wine and medical industries, track ownership of diamonds, and secure the integrity of trade documents [8].
+There are several implementations of the coloured coins concept, for example Open Assets, ChromaWallet, CoinSpark and Colu.
+The idea behind coloured coins is as follows: An asset is represented by a set of coins on the blockchain which are equipped with some metadata, or more specifically by a transaction output as described in Section 2.4.1.
+By traversing the blockchain, one can follow the chain of ownership for these coins, and establish consensus for the current owner of an asset.
+The asset can then be transferred between owners by spending the coins.
+This transaction of ownership can be done without involving any central authority, since the blockchain is completely decentralised.
+If the transfer of ownership is made between two people who do not trust each other, one typically employs a trusted intermediary, such as a broker which carries out an escrow.
+However, blockchains do not require an intermediary to facilitate a trusted escrow, even if the participants are malicious.
+Bitcoin’s script support, or the use of more sophisticated smart contracts allows the   Blockstack [1] works as both a PKI and a DNS, and allows users to register zonefiles which contains a public key and a pointer to the user’s profile.
+The profile is a signed JSON document which can contain any type of information associated with the specific user.
+The profile can be stored attransfer of ownership to be executed in a single atomic transaction, which makes it impossible to cheat [50].
+If a physical asset is to be associated with a digital identity, one typically needs a trusted authority, for example a CA, responsible for maintaining a mapping between an asset and the corresponding output on the blockchain.
+This mapping can be stored in a file, signed with a notary’s private key, and the integrity of the file can be ensured by storing a hash of the file on the blockchain [43].
+Existing blockchain-based PKIs such as Namecoin and Blockstack have their shortcomings: they lack integration with the existing PKI and are not ownership consistent with DNS which makes them difficult to adapt.
+It is also doubtful whether a system such as Namecoin or IKP could be deployed on a global scale due to scalability issues.
+The team behind Blockstack has considered the use of autonomous subdomains maintained off-chain to improve scalability, but this is may not be a viable solution for many domain holders.
+Existing blockchains based on Proof of Work are also facing issues with poor distribution of hashing power in the network.
+Blockstack was originally deployed on top of the Namecoin blockchain, but they switched to the Bitcoin blockchain after a security problem was detected where a single miner controlled more than half the hashing power in the network for an extended period of time [1].
+Although coloured coins can be used to track certificates or domain name ownership, they require a client to verify the transaction history of the coin which can be impractical for low-powered devices.
+This chapter establishes a firm theoretical foundation for the rest of the thesis.
+Topics covered include Merkle trees, the basics of X.509 certificates, as well as the role of CAs in the PKI ecosystem and some attempts to improve the transparency and security of the current PKI.
+Finally we move on to the main topic of this thesis, namely blockchains, where Bitcoin’s transaction model, some consensus algorithms, and proposals for improving the scalability and efficiency of the blockchain are explained.
+Our starting point is the Bitcoin blockchain, which is the most influential blockchain today.
+hashes stored in the sibling nodes for the nodes traversed along the path down to a particular leaf.
+Additionally, one needs to know whether each hash was stored in a left sibling node (0) or a right sibling node (1).
+The cryptographic proof is called a Merkle proof and is used to prove membership of a record without large storage or bandwidth requirements.
+Some variants of Merkle trees, such as Sparse Merkle trees [16] also allows for efficient nonmembership proofs.
+Merkle trees, also known as Merkle hash trees or binary hash trees, were first described in [42] in the context of digital signatures.
+A Merkle tree is a useful cryptographic primitive when one wants to prove the existence of a record within a set.
+One can construct a (static) Merkle tree from a set of records by hashing each record in the set and let these hashes be the leafs in a binary tree.
+Each parent node is constructed by combining the hashes of its two child nodes, usually by hashing the concatenation of the two.
+Thus, the hash of each parent node comprises a compact representation of its two child nodes.
+Given a (trusted) hash for the root of the Merkle tree, known as a Merkle root hash, one can prove that a certain leaf node is present in the tree by providing the O(log n) hashes needed to reconstruct the Merkle root hash.
+To give a proof for a leaf node not in the tree is as hard as finding a collision in the underlying hash function [14].
+Figure 2.1 shows an example of a static Merkle tree.
+More formally, consider a tree of depth d, where each of the Ni nodes contains a hash Ni .hash.
+Given a list of records L with size |L| = 2d , d ∈ Z+ we create a static Merkle tree from a collision resistant hash function H as follows: Create a list of hashed records LH = [H(x), x ∈ L] and put these hashes in the 2d leaf nodes N2d .
+N2d+1 −1 of the tree.
+Then construct the rest of the tree in a bottom-up fashion, using the following rule.
+To obtain a Merkle tree which can be efficiently updated when new nodes are added or removed, it may be advantageous to associate not only the leaves, but also interior nodes of the tree with a record.
+Each node Ni in this tree contains two hashes instead of one, the Merkle hash Ni .merkleHash and the hash Ni .dataHash of the associated data record.
+The Merkle hash of every touched node is then recomputed when the tree is rotated as follows.
+The Merkle hash of a non-existent child node (for example if Ni is a leaf) can be set to 0 or some other fixed hash denoting the end of a branch.
+To prove the existence of a record in the tree, one need to provide the dataHash and the merkleHash of the correct child node for each level in the tree.
+An example of a dynamic Merkle tree is the IAVL+ Tree which is rotated on updates using a variant of the AVL algorithm [35].
+Public Key Infrastructure  In this section we cover the basics of an X.509 public key To prove the existence of a record, one should provide the infrastructure (X.509 PKI), a PKI with one or more trusted certificate authorities who are binding names to keys by issuing certificates in the X.509 format.
+For clarity, we start this chapter by repeating two definitions from the glossary.
+authorities, with different trust levels, issuing different types of certificates.
+For all intermediary CAs acting on behalf of the same root CA, only one certificate needs to be stored in the client’s truststore, namely the certificate of the root Definition 1 (Public key infrastructure).
+A public key CA, called the root certificate.
+The root CA is typically infrastructure is a set of entities, policies and procedures kept offline, unless it is needed to create or revoke an used to issue, manage and revoke (name, key) pairs used for intermediary CA.
+This adds an extra layer of security, since if authentication.
+the intermediary CA gets compromised, which could happen if Definition 2 (Certificate).
+A certificate is a signed digital an adversary gets hold of their private key, the root CA can go online and revoke trust in the intermediary CA, without each document which binds a name to a public key.
+client having to switch out a certificate in their truststore.
+2.2.1  Certificate Authorities 2.2.2  The certificate authority (CA) is the entity responsible for issuing certificates.
+These certificates are signed by the CA, and relying parties can check the validity of the signature using the corresponding public key stored in a file, called the truststore.
+Certificate authorities can usually be either a root CA or an intermediary CA.
+The root CA issues a certificate to the intermediary CA, which allows the intermediary CA to sign certificates on behalf of the root CA.
+This is a common practice, and is done both for practical and security reasons.
+There are typically many different intermediary certificate  Certificate Issuance  When a certificate is to be issued, the client creates a Certificate Signing Request (CSR) containing the information which is to be signed by the CA, such as Common Name (CN), email address, company name, department, address and public key, and sends this information to a Registration Authority (RA).
+The RA is an entity approved by the CA, which helps to apply for, approve, reject and revoke certificates [20].
+There are different types of certificates, each having its 8  own policy.
+A Domain Validated (DV) certificate, sometimes known as a class 1 or class 2 certificate, involves the least scrutiny and typically requires the client to prove control over the domain specified in the CSR, usually by responding to a request sent via email to the domain owner [20].
+This process can be automated using a protocol called Automatic Certificate Management Environment (ACME) [5].
+Organisation Validated (OV) certificates and Extended Validation (EV) certificates, sometimes known as class 3 certificates, involve more scrutiny and are linked to a physical entity, such as a company.
+In order to get an EV or an OV certificate, the RA may ensure that the company is registered in the country specified, is active and is available at the specified address.
+If an EV certificate is requested, the RA is also responsible for ensuring that the CSR is authorised by the company, typically by requesting paperwork, making a phone call or perform some other “out-of-band communication”.
+Once the RA has asserted the validity of the information in the CSR, it contacts the CA which in turn stamps the certificate with a date of expiry and signs the certificate with its private key.
+The certificate is then sent back to the client [20].
+2.2.3  contact the OCSP responder, speeding up the establishment of a secure connection.
+A problem occurs when an OCSP responder is unresponsive, since the status of the certificate cannot be checked.
+This is a plausible scenario during a man-in-the-middle attack since the adversary controls the traffic to the victim’s computer and has the possibility to drop the connection to the OCSP responder.
+Some clients simply ignore a failure to check the revocation status of a certificate instead of terminating the connection, which can be exploited by an adversary to bypass revocation checks altogether.
+However, this problem can partly be solved with OCSP stapling, and a certificate can enforce OCSP stapling through a X.509 v3 extension [25].
+Another issue with OCSP is that there is no mechanism for revoking trust in an OCSP responder.
+If an OCSP responder becomes compromised by an adversary, each client relying on this OCSP responder must be manually reconfigured [56].
+2.2.4  Certificate Chains  A certificate chain, or chain of trust, is a list of certificates provided by a server.
+To determine if the content of a leaf certificate (the first certificate in the certificate chain) can be trusted, the verifier needs to detect the chain (or path) of issuance from the leaf certificate to a trusted issuer.
+This is normally known as building a certificate chain and the trusted certificate is normally (but does not have to be) a root certificate in the computer’s local truststore.
+In Mozilla’s truststore, shipped with the web browser Mozilla Firefox, there are roughly 170 different root certificates [45] corresponding to different root CAs, where each root CA has the authority to sign certificates for any domain or create additional intermediary CAs.
+A certificate is validated by checking the signature of the certificate against the public key of the next certificate in the chain.
+An example of a certificate chain with one intermediary CA is shown in Figure 2.2.
+To validate this certificate chain, the client has to check the signature of the client certificate using the public key of the intermediary CA, and check the signature of the intermediary CA using the public key of the root CA.
+The certificate of the root CA is always self-signed.
+Revoking Certificates  A certificate can be revoked by the CA who issued the certificate after a request from an authorised person, such as the domain owner.
+A certificate can be revoked for multiple reasons, for example if the certificate belongs to a company which has gone out of business, or if the private key of the certificate has leaked.
+A certificate can also be revoked without authorisation from the owner of the certificate, which might happen if the certificate was issued by accident.
+When a certificate has been revoked, it is important to notify clients to no longer trust the certificate.
+This is usually done through one of two mechanisms: a Certificate Revocation List (CRL) [13] or through the Online Certificate Status Protocol (OCSP) [51].
+Revocation services are provided directly by the CA or by contacting an external entity called a Validation Authority (VA), authorised to inform about the revocation status of certificates on behalf of the CA.
+A CRL is a time-stamped list of revoked certificates signed by a CA.
+The list is uploaded to a public repository, such as an FTP directory.
+Certificates in the CRL are identified using their serial numbers.
+When a client wants to check if a certificate is revoked, it obtains a recent CRL and checks if the serial number of the certificate is in this list.
+The drawback with CRLs is their size, some CRLs can be very large since they are directly proportional to the number of revoked certificates.
+OCSP is a protocol which is used to ask for the revocation status of a particular certificate.
+A server, called OCSP responder answers with an OCSP response, a time-stamped data structure signed by the CA, which reveals the revocation status of the certificate at a given point in time.
+This response can be sent with the certificate during the TLS handshake, called OCSP stapling.
+This eliminates the need for a client to  2.2.5  X.509 Certificates  The most common format for certificates is defined in the X.509 standard and certificates following this format are called X.509 certificates [20].
+The format is shown in Figure 2.3.
+The fields of a certificate are: • Certificate Serial Number Uniquely identifies a certificate issued by the CA.
+• Signature Algorithm Identifier Contains the name and parameters of the signature algorithm used by the CA to construct the CA signature.
+• Issuer The X.500 name of the certificate authority who has signed the certificate.
+9  Figure 2.2: A certificate chain with three certificates consisting of a root certificate (green), an intermediary certificate (blue) and a leaf certificate (red).
+The public key for the Distinguished Name (DN) in the certificate is trusted 4 if the signatures in the chain are valid.
+To validate the certificate chain, the client has to check the signature of the leaf certificate using the public key of the intermediary CA 1 , and check the signature of the intermediary CA using the public key of the root CA 2 .
+The root certificate is self-signed.
+In this section we look at two mechanisms for improving identity retention in the X.509 PKI and make it easier to detect fraudulent or misissued certificates.
+• Subject The distinguished name (DN) of the entity who owns the private key corresponding to the public key in the certificate.
+• Public key information Contains the public key of the 2.3.1 Public Key Pinning subject together with the algorithm and parameters used While the purpose of the certificate is to bind a public key to construct the key.
+to a name, if an adversary succeeds in issuing a fraudulent • Extensions Added in X.509 version 3 and contains a list certificate to themselves with their own key, they could mount a man-in-the-middle attack and decrypt the traffic en route of certificate extensions.
+before reencrypting and forwarding the traffic to the victim.
+For the purpose of this thesis, we are mostly be interested To prevent this from happening, a client could remember the in certificate extensions which allow us to add additional key which was used the last time it connected and terminate functionality to a certificate.
+A certificate extension contains the connection if the key suddenly changes.
+This is the three fields: the type field, a critical bit, and a value field.
+idea behind public key pinning, a mechanism implemented The type field tells software, processing the certificate, what in all major web browsers, used to enforce reuse of the same kind of certificate extension it is.
+The critical bit (if set) tells keypair for a specific domain.
+A server with pinning enabled clients to reject the certificate, if support for the particular sends SHA2 hashes of its public keys (pins) in a specially certificate extension is not yet implemented, and the value crafted HTTP header, after a secure connection has been field contains the actual data of the certificate extension.
+The pins are cached the first time a site is visited, There are currently 14 standardised certificate extensions, and stored for the period of time specified in by the max − age among them the basic constraints extension which allows a header value.
+The next time the site is visited, the browser certificate to be used as a CA certificate [56].
+There is no expects one of the pins to match one of the public keys in the official limit on the size of a certificate extension, although certificate chain.
+Windows imposes a 4 KB limit on the field value, due to According to the specification, two keys must be pinned for its CA database schema definition [53].
+A CA typically does security in case the first key gets lost.
+If both keys are lost, not sign off on certificate extensions it does not understand, clients are no longer able to connect [11].
+It is possible to which means that any new certificate extensions must be pin either the public key of the certificate authority, or the implemented in the CA software.
+public key of the server certificate.
+Pinning the public keyof the server certificate is safer, in the sense that it protects against certificate misissuance, but its presumably easier to accidentally lose the private key of the server certificate.
+Public key pinning is a powerful weapon against a manin-the-middle attack if implemented correctly.
+However, it has not gained much popularity.
+In a survey by Netcraft from 2016 [47] only 0.09% of all websites had public key pinning enabled and one third of those websites deployed it incorrectly.
+One reason for why websites have been shy to adopt public key pinning might be that it can backfire if the server keys gets compromised.
+Since public key pinning does not offer any key recovery mechanisms apart from a backup key, it is almost impossible to recover from such a situation.
+Pinning the key of the certificate authority avoids this problem, but makes it harder to migrate from one CA to another and does not prevent misissuance for this CA.
+Public key pinning would also be unpractical in an environment where there are multiple servers, each with its own certificate and keypair, operating behind a load balancer serving requests.
+The CA was previously the only entity who knew which certificates it had issued, which made it difficult to detect fraudulent certificates.
+Google’s Certificate Transparency (CT) project [37] tries to address this problem by providing publicly auditable, append-only logs, called Certificate Transparency logs (CT logs) which contain certificates issued by a particular set of CAs.
+Third parties, called monitors and auditors, are making sure new certificates are appended to the log correctly, no certificates are being removed, and that logs are consistent.
+If a fraudulent certificate is detected, it can be reported by a monitor and revoked by the CA.
+The logs are structured as Merkle trees, described in Section 2.1.
+The use of Merkle trees allows log operators to provide a succinct proof that a particular certificate is present in the log, called an audit proof, and that a log has been correctly updated with a new set of certificates, called a consistency proof.
+The URL of the CT log is publicly advertised and anyone can interact with the log server through a REST API.
+When the CA posts a new certificate to the log, the log operator responds with a Signed Certificate Timestamp (SCT), which is a promise from the log operator to include the certificate before the time indicated in the SCT.
+The SCT itself is bundled with the certificate as a proof that the certificate has been submitted to a CT log.
+This is done either by requesting the SCT from the CA over OCSP using an OCSP extension, and then stapling this response with the certificate during the TLS handshake, or alternatively, the CA could include the SCT in the certificate itself, using an X.509 v3 certificate extension.
+Another option is to let the domain owner submit the certificate to the CT log, and then provide the SCT through a TLS extension during the TLS handshake.
+Although CT makes it easier to find fraudulent certificates, it does not prevent fraudulent certificates from being issued in the first place.
+Domain owners are typically responsible for auditing and monitoring the logs themselves, which they are forced to do since there is no incentive structure in place for monitors to detect and report certificates for domains they do not own.
+There are also no procedures in place for automatically reporting fraudulent certificates, and it can take up to 24 hours before a certificate appears in the log.
+Domain owners relying on CT need to trust the log operator, and the log operator is typically decided by the issuer.
+A blockchain is an append-only public ledger replicated among all nodes in a large P2P-network, originally designed to store financial transactions for the Bitcoin cryptocurrency.
+The design of the Bitcoin blockchain was proposed by a pseudonym named Satoshi Nakamoto in 2009 [46], and since then several blockchains designed for different purposes have emerged.
+The blockchain offers consensus among entities in a decentralised network, effectively solving the problem of double spending explained in Section 2.4.5.
+Physical money, such as bank notes, cannot be spent twice since they can only be in one place at a time.
+With the introduction of digital money in the form of credit cards, the double spending problem was solved by a clearing house, a central authority which approves transactions and keeps track of the balances for each account.
+Blockchains solves the double spending problem for digital money without a central authority.
+Instead, the central authority is replaced by an open, dynamic and decentralised P2P-network, where each node in the network keeps its own copy of the blockchain.
+Transactions are broadcast on this network and recorded on the blockchain, which can be thought of as a digital billboard, used by each participating party, to independently verify that a person has coverage for their expenditures.
+Due to the way blocks are added to the blockchain, once a block has been added it cannot easily be removed, hence it is hard to revert or change a transaction after it has been sent to the network.
+A blockchain, in its original design, is a ledger which consists of blocks, each block contains a block header and a list of transactions.
+The list of transactions is linked to the block header through the root hash of a Merkle tree with the transactions as leaves.
+Each block header also contains a hash of the previous block, which links blocks to its predecessor in an ever-growing chain.
+Transactions are packaged and included in a block which is appended to the chain by a node in the network selected according to a consensus algorithm.
+When a new block is created it is broadcast over the network, and participating nodes update their own local copy of the blockchain with the new block.
+Transactions are confirmed by consecutive blocks being appended, and a fork may be created if two blocks are added at approximately the same time.
+How to resolve a fork is determined by the underlying consensus algorithm.
+More generally, a blockchain provides a practical solution to the Byzantine Generals’ Problem [36] where a set of decisionmakers try to a agree on a course of action through messagepassing over an unreliable medium.
+More informally, a blockchain can be used to establish what “truth” is, which in the context of a PKI is to agree on a mapping between keys and their owners.
+Bitcoin features a sequential transaction model which is used to transfer money between users in the system.
+Each transaction contains of a list of inputs I, and a list of outputs O.
+An output o ∈ O consists of an amount |o| of coins bundled with a locking script σL which puts an encumbrance on the output which has to be fulfilled in order to spend it.
+The most common encumbrance is to present a public key and signature with the corresponding private key, referred by hash in the locking script, which is called a Pay to Public Key Hash (P2PKH) transaction depicted in Figure 2.4.
+An input i ∈ I consists of a reference to an output, and an unlocking script σU which fulfills the encumbrance defined in the referred locking script, more formally σL (σU ) = TRUE.
+The difference between the sum P of coins Pin the input and the sum of coins in the output i∈I |i| − o∈O |o|, is indirectly interpreted as a transaction fee collected by the miner who includes the transaction into the blockchain.
+An output is considered spent if it has been referred by a valid input a subsequent transaction.
+A node who keeps track of all transactions on the blockchain maintains a set of outputs which has not been spent yet, called Unspent Transaction Outputs (UTXO), determining the distribution of money in the system [3].
+Amounts for inputs and outputs are specified in satoshi, the smallest unit of money which can be transferred in the system.
+Locking and unlocking scripts are typically written in a special-purpose scripting language which only supports the operations needed to perform a transaction.
+In Bitcoin, this scripting language is called Script, a Forth-like reverse polish notation stack-based execution language.
+Script has two desirable properties which makes it suitable as a scripting language for programmable money.
+Firstly, it is a very simple language which requires little resources to execute, and cannot get stuck in for example an infinite loop or otherwise act maliciously, possibly crashing the host computer.
+As a consequence, Script is not Turing complete and does not have the expressiveness of a full programming language.
+Secondly, Script offers stateless verification, meaning all the information needed to execute the script is in the script itself.
+This guarantees that the execution of a script is consistent among all nodes participating in the network [3].
+thin client typically only downloads and verifies the block headers, which are small in size and can be verified quickly.
+Block headers belonging to the longest chain are assumed to be hard to fabricate since they require Proof of Work, and are used as a trusted source of information, which is used to verify transactions.
+A thin client verifies the existence of a set of transactions T, by submitting a Bloom filter containing T to the network.
+The network answers with a set of transactions matching the Bloom filter, together with a set of Merkle proofs, which proves that a transaction was included in a specific block [26, 3].
+Since a Merkle proof is as hard to fabricate as creating a collision in the underlying hash function [14], a thin client cannot be fooled into believing a transaction has been confirmed by the network, when in fact it has not.
+However, thin clients do have two other significant drawbacks in terms of security: Firstly, it is possible to hide the existence of a transaction, which has been confirmed by the network in a subsequent block.
+The only way for a thin client to counteract this, is to request Merkle proofs from many different nodes, hoping they are not all malicious.
+This assumption may prove problematic if a large portion of the network consists of malicious nodes, which might be the case if the network falls victim for a sybil attack.
+Secondly, since thin clients do not verify transaction history, they cannot detect a double spend in the past.
+Thin clients do instead rely on block leaders to not confirm blocks with conflicting transactions.
+Proof of Work, also called Nakamoto consensus is the consensus algorithm which is used by a number of blockchains including Bitcoin, Lightcoin and Ethereum.
+In Proof of Work, there are machines working on solving a time puzzle, called miners.
+The next block leader becomes the machine who first solves the puzzle.
+The puzzle is constructed in such a way that it is hard to solve but easy to verify, which in cryptography is called a trapdoor function.
+Bitcoin uses a variant of hashcash, which originally was intended to be used to limit spam in email systems.
+In Bitcoin, the puzzle to solve is to find a SHA2 hash value SHA22 (block header) such that SHA22 (block header) < 2(n−k) , where n = 256 is the number of output bits in the SHA2 hash function and k is a difficulty factor, collectively determined by the nodes in the network every 2016 blocks, such that on average a new block in appended to the blockchain every 10 minutes [3].
+The longest chain in Bitcoin’s Proof of Work is considered to P be the blockchain with the most accumulated difficulty k.
+When a fork is created, a copy of both chains are kept, until the fork is resolved which typically happens when the 2.4.2 Simple Payment Verification next block is added, making one of the chains longer than the Simple Payment Verification (SPV) is a method used to verify other [3].
+transactions without storing the whole blockchain.
+Clients Miners are incentivised to add new blocks to the blockchain relying on SPV are called SPV clients or thin clients.
+SPV by collecting transaction costs, and by the block reward is important for low-powered devices with limited processing which is paid to the address found in the first transaction and storage capabilities such as smartphones and laptops.
+A in the block, called the coinbase transaction.
+The coinbase replaces the value on top of the stack with its hash.
+Next, the public key hash of the locking script is pushed on the stack and the EQUALVERIFY instruction pops the two elements on top of the stack if they are equal.
+Finally CHECKSIG pops the public key and the signature from the stack and pushes TRUE if the signature is correct.
+While this might be a feature easy to add, it might be harder to remove at a later stage if needed, since the user base is more spread out and not likely to abandon the additional revenue stream from the auxiliary blockchain.
+Since consensus based on Proof of Work requires miners Thirdly, due to size constraints on the coinbase transaction, to buy expensive hardware and consume large amount of there is a limitation on the number of auxiliary chains which electricity, adding a new block to the blockchain becomes can be merged mined at the same time [41].
+Estimates shows a net cost between $6 and $10 per transaction [17, 15], while the actual transaction costs paid today are significantly lower.
+Bitcoin 2.4.4 Proof of Stake users are currently shielded against these costs through the Proof of Stake is another way of reaching consensus within block reward which pays for the electricity consumed by the a decentralised network.
+Instead of utilising miners, Proof miners.
+But since this block reward is halved every 210000 of Stake based systems selects a block leader based on how blocks, there is a risk for transaction fees to going up over many coins they put at stake.
+The idea is that, someone time, or miners dropping out when mining no longer becomes who is rich would have incentive to be benevolent, since any profitable [30].
+malicious behaviour is undermining their own wealth.
+To take transaction does not transfer money from anyone, but creates new money which can be spent after the block has enough confirmations [3].
+Another problem with Proof of Work is its environmental impact.
+A study from 2014 estimates the electricity consumption of the whole Bitcoin network to be on par with Ireland [48].
+Furthermore, since chip manufacturers are in a constant “electronics arms race” competing in producing cheaper and more resource efficient ASICs, it forces miners to constantly upgrade and replace their equipment to stay competitive.
+This results in a large amount of electronic waste.
+Highly specialised mining rigs such as ASICs used for Bitcoin mining, are useless for anything else than computing SHA2 hashes and has little to none second-hand value.
+Some altcoins tries to combine or replace seemingly useless hash computations with something more meaningful.
+As an example, Gridcoin combines the hash function scrypt with participation in the BOINC grid computing network, which harnesses the computing resources of its participants for scientific research, and Curecoin combines SHA2 with proteinfolding research through the Folding@Home project [3].
+New blockchains based on Proof of Work would require a large amount of hashing power to be secure.
+This would either require a huge investment in equipment or persuading existing miners to join the network.
+The latter could be addressed with merged mining where a miner is able to mine on two chains at the same time, without splitting their hashing power in two.
+The idea is to piggyback an auxiliary chain onto another parent chain (such as the Bitcoin blockchain).
+A miner doing merged mining would create a block for the auxiliary chain, hash the block header and include this hash in the coinbase transaction of the parent chain.
+A block header for the auxiliary chain contains some additional data, such as the coinbase transaction of the parent chain, and a Merkle proof which proves that the coinbase transaction is in the parent block.
+This information can then be used to validate the block in the auxiliary chain using the block headers of the parent chain.
+There are financial incentives for miners to do merged mining since they can get rewards from mining on the auxiliary chain without additional expenses.
+However, merged mining comes with a couple of caveats: Firstly, a large mining pool which suddenly decides to start to merge mine another blockchain can end up controlling a large part of the chain’s hashing power.
+Secondly, merged mining requires a  control over the system, one needs to acquire a large portion of the coins in circulation, which might be more expensive than buying large amounts of mining equipment.
+Proof of Stake is more cost effective than Proof of Work since it does not rely on miners consuming large amount of electricity.
+The first cryptocurrency based on Proof of Stake was Peercoin [33] which uses a hybrid between Proof of Work and Proof of Stake.
+Peercoin introduced the notion of coinage which is the time a coin has been idle.
+A coin’s coinage is being consumed and set to zero when the coin is put at stake to generate a block or when transferred to another wallet.
+The longest chain is then considered to be the chain with the most coinage consumed, and forks are resolved in the same way as in Bitcoin’s Proof of Work.
+To create a new block, one needs to control a set S of unspent coins which have been idle for a minimum time period, called minimum stake age, and find a block header fulfilling the Peercoin mining formula: where k is a difficulty factor adjusted by the network after every block and age(coin) is the coinage of a coin [17].
+The first transaction in the block, called coinstake transaction (the equivalence to Bitcoin’s coinbase transaction), pays the miner the coins at stake back to himself which effectively destroys some (or all) of their coinage.
+In order to provide incentive for stakeholders to stake money, they are awarded with 1% interest rate per coin year consumed.
+Proof of Activity [7] tries to extend the Proof of Work scheme used in Bitcoin through a Proof of Stake mechanism where a miner creates an “empty” block with no transactions meeting the current Proof of Work difficulty target.
+A list of N stakeholders is derived from this block header through a process called follow-the-satoshi.
+The first N − 1 stakeholders signs the block with their private key and the last stakeholder finalises the block by collecting a list of transactions, signing the result and broadcasting it to the network.
+Follow-the-satoshi is a deterministic, psuedo-random process which can be seen as a lottery, where the winner of the lottery is the owner of a satoshi chosen uniformly at random using a cryptographically secure psuedo-random number generator (CSPRNG) seeded with information found on the blockchain.
+The seed can be derived from a secure multiparty computation, for example by allowing each block leader to put some randomness in the block header of their block.
+One such approach is Ouroboros [31] which is a provably secure Proof of Stake model based on a commitment scheme.
+In Ouroboros, time is divided into epochs, and an epoch is divided into timeslots.
+The CSPRNG is reseeded after every epoch, and used to derive a set of lucky stakeholders which are allowed to generate a new block during their designated timeslot.
+To generate the randomness, Ouroboros features a coin flipping protocol with guaranteed output delivery.
+Stakeholders participating in the coin tossing protocol commits to a value using a commitment scheme.
+Shares of the committed value are distributed to the other entities using Verifiable Secret Sharing (VSS).
+When all stakeholders have committed and received their shares, they can reveal the committed value.
+The revealed values are then mixed together and used to derive new stakeholders for the next epoch using follow-the-satoshi.
+If a malicious stakeholder refuses to reveal their commitment, the other stakeholders can cooperate to reconstruct the committed value using the shares they received when the commitment was made.
+The longest chain is defined as the chain with the most blocks, and accidental forks are not possible since follow-the-satoshi uniquely determines the next stakeholder allowed to generate a new block.
+2.4.5  Blockchain Security  Blockchains used for financial transactions are designed to mitigate double spending attacks where an adversary is trying to spend the same coin twice, for example by buying different goods using the same coin.
+To succeed with this attack, an adversary A must create two conflicting transactions by forking the main chain and then make the network accept the fork.
+Suppose we have a merchant M who waits for c confirmations before shipping a product.
+Bitcoin and other cryptocurrencies based on Proof of Work protects against this kind of attack by making it computationally expensive to produce a new block.
+This means that an adversary A have to spend a lot of money on electricity and equipment to perform a double spend, and if a merchant waits for enough confirmations, it becomes more expensive to create a fork and double spend the money than to simply spend the money twice.
+We say that Bitcoin is economically secure.
+With this in mind, a common argument against Bitcoin and other blockchains based on Proof of Work, is that an adversary can buy themselves power by purchasing mining rigs.
+An adversary, or a colluding group of adversaries, controlling a majority of the hashing power, can then execute a 51%-attack, where an adversary can deny, or even double spend some transactions.
+However, even an adversary with a majority of the mining power will be unable to revert transactions with enough confirmations, since the probability of an adversary overwriting a transaction within a block, drops exponentially with the number of confirmations [46].
+Any blockchain with an open consensus process might potentially be a victim for a 51%-attack, since there is no authority which can deny participation.
+A perhaps more serious threat against blockchains based on Proof of Work, is selfish mining [19] which dictates a strategy for a colluding group of adversaries, controlling at least 25% of the mining power in the network, to mine on their own “private blockchain” and selectively publish blocks to decrease the profits for the honest miners.
+Thus, honest miners are incentivised to join the group of colluding adversaries, which at some point might grow large enough to mount a 51% attack.
+Another type of attack is a denial of service attack where an adversary tries to disrupt the operation of the network by sending spam transactions with low transaction fees, called dust.
+We refer the reader to [4] for more information.
+Blockchains based on Proof of Stake, such as Peercoin, raises some additional security concerns which has to be addressed.
+Firstly, an adversary could build on its own fork without additional mining equipment, which can undermine the ability for the network to reach consensus.
+Secondly, an adversary could try to use the private keys acquired from old wallets to rewrite the transaction history.
+Such wallets could presumably be bought cheaply from people who no longer have any stake in the system.
+Thirdly, an attacker could try to use their computing power to grind through a lot of different block headers until they find a block header which improves the performance of their stakes, called stake grinding.
+These issues are investigated in more detail in [17].
+To provide an additional security guarantee against these kind of attacks, the Peercoin blockchain offers regular checkpoints, where the Peercoin creator Sunny King digitally signs the blockchain [33].
+A system which intends to be global and process a large amount of transactions needs to scale in order to function correctly.
+Unfortunately, most blockchains are quite inefficient in terms of transaction throughput and storage requirements.
+As an example, consider the Bitcoin blockchain, which is the most popular blockchain to date.
+It processes on average 1.57 transactions per second with a theoretical maximum throughput of 3.3 to 7 transactions per second [15].
+This is about as many transactions per second, as processed by Let’s Encrypt CA, which issued on average 4 certificates per second in December 2016 [38].
+Considering Let’s Encrypt had a market share of 0.1% during this time period [57] it is clear, that in order to use blockchains for a distributed PKI on a large scale, major improvements are needed.
+Furthermore, the Bitcoin blockchain had a total ledger size of about 96 GB as per Februari 2017, growing linearly over time at a rate of about 4 GB per month [9].
+Although a node could prune the transactions after they have been buried under enough blocks and only store the UTXO permanently (which is about 1.6 GB in size [52]), a new node needs to download and validate all transactions before booting up.
+This process, called bootstrap time takes about four days [15], and increases with time as new blocks are appended to the blockchain.
+increases the probability of a fork.
+Forks incur a security risk since it gives an opportunity to submit two conflicting transactions in two different blocks, which can lead to a double spend (see Section 2.4.5).
+Forks are also lowering the security of the blockchain, since the mining power is split in half, making it easier to attack the network.
+Furthermore, storage and communication costs of the individual nodes goes up, which might lead to centralisation when smaller nodes cannot afford the equipment required to run a full node, and decide to drop out of the network.
+Forks can also lead to inefficiencies owing to transactions belonging to orphaned blocks being moved back into the mempool.
+There have been discussions about an increase of the current 1 MB block size in Bitcoin [24, 2, 23, 60], all requiring a hard fork of the Bitcoin software, but at the time of writing none of these proposals have taken effect.
+Transaction Throughput  The rate at which the Bitcoin network can confirm transactions is mostly due to Bitcoin’s leader election rather than limited by the speed of the individual network links.
+Bitcoin’s block leader is chosen by Proof of Work (as discussed in Section 2.4.3) seemingly arbitrarily every 10 minutes.
+As a consequence, the network traffic in Bitcoin becomes rather bursty: A chunk of transactions move from the mempool to the blockchain only when a new block leader is elected, while the network remains almost idle the rest of the time.
+As a consequence, the link capacity of the network is not fully utilised, which reduces throughput.
+Bitcoin-NG [18] tries to solve this problem by decoupling leader election with transaction serialisation.
+In Bitcoin-NG,  The keyblock contains a single coinbase transaction with the leader’s public key.
+Once a leader has found a keyblock, they are eligible to process transactions, which are packed into microblocks and signed by the leader’s private key.
+A microblock is valid when all transactions are valid, and the block is correctly signed by the key of the block leader as specified by the most recent keyblock.
+Microblocks require no Proof of Work and can be produced as fast as they can be propagated and processed by the block leader.
+As a consequence, the available bandwidth in the network is used more evenly which results in a higher throughput.
+Transactions can also be confirmed much faster, since they do not need to be cached in the mempool until a miner finds the next keyblock.
+A benefit of Bicoin-NG is that it shares the same, solid trust model as in Bitcoin.
+Transaction fees are split 40/60, that is 40% of the fees are given to the current block leader, and the remaining 60% procent are given to the next block leader.
+Some concerns regarding double spending has been raised: A malicious block leader could try to double spend within their epoch, by generating a fork of microblocks containing a conflicting transaction.
+To discourage such behavior, BitcoinNG features a poison transaction which invalidates the block leaders revenue if a fork is detected.
+The poison transaction must be placed after the subsequent keyblock, but before the malicious block leader has spent their transaction, and can only be submitted once.
+Since all microblocks are signed by the block leader, one can provide a proof of malice by including the header of the first microblock in the fork.
+This information is put in the poison transaction together with an address which receives a 5% compensation of the confiscated revenue.
+ByzCoin and the CoSi Protocol ByzCoin [34] combines a Practical Byzantine Fault Tolerance (PBFT) algorithm with Bitcoin’s Proof of Work.
+Each microblock must be co-signed by a two-thirds supermajority of nodes in a consensus group before being appended to the blockchain.
+Hash power-proportionate consensus groups are formed after each keyblock, by taking the N most recent block leaders and placing them in a tree with the current block leader as the root.
+Blocks are co-signed with Schnorr’s signature scheme using the CoSi protocol.
+The CoSi protocol allows for efficient distribution and computation of signatures, by leveraging the ability to aggregate Schnorr signatures.
+We refer the reader to [54] for a detailed description of the CoSi protocol.
+Cryptonite Apart from throughput, one should also consider the size of the blockchain itself.
+The mini blockchain scheme [10], implemented in the Cryptonite cryptocurrency, addresses this problem by leveraging the possibility of completely pruning  old transactions from the blockchain, and only keep the block headers, called a proof chain.
+Since pruning makes it impossible to verify transaction history, the database of unspent coins is replaced with an account tree and transactions becomes operations on this account tree.
+A drawback with Cryptonite is the lack of support for scripts, all operations on Cryptonite’s account tree are similar to Bitcoin’s P2PK transactions.
+Chapter 3  Methodology This chapter contains the design goals we attempt to achieve, explains our approach for solving the problem and defines the entities in our proposed PKI.
+3.1  Design Goals  • Scalability The system needs to scale in a reasonable way when more and more identities are registered.
+Namely, storage and bandwidth requirements should be met by consumer off-the-shelf hardware, and the system should be able to handle enough transactions to scale globally.
+• Backward compatible Processes for issuance, revocation and verification of names and public keys should be compatible with the current PKI if possible.
+In choosing how to proceed, we need to consider the design goals we want to achieve.
+• Identity retention An identity should, to the furthest extent possible, only be able to be issued, changed or revoked after permission from the person or organisation owning the identity.
+The current PKI achieves this through strict vetting rules where a CA requires proof in form of paperwork, or physical presence of an employee acting on behalf of the organisation before a certificate is produced.
+These procedures occasionally fail, due to not being carried out properly or not at all, which can result in impersonation.
+We believe a stronger guarantee for identity retention of already existing identities can be enforced by public key cryptography, where new certificates need to be signed by the organisation’s private key.
+• Expiration of old identities There should be a mechanism where identities are renewed on a regular basis, and old identities are purged.
+This reduces storage requirements, since identities which are no longer active can be forgotten, and avoids “locking up” names in our naming system.
+• Key recovery If a private key not known to the CA is required to issue new certificates, what happens if this key is lost? In a naive setting, no new certificates would be able to be signed until the identity expires.
+To avoid such a situation, key recovery mechanisms are required where servers can specify backup keys which can be kept in cold storage or distributed to a trusted third party.
+• Transparency Anyone should be able to connect and retrieve a “global” view of the all identities in the system, and being able to verify every transaction.
+This is important to be able to detect fraudulent behavior, without relying on a central authority.
+• Thin client support The system should support thin clients, to permit certificate verification for low-powered devices such as smartphones.
+3.2  Our Approach  Our approach is to assign a public key to each domain holder.
+The public keys are stored in a Merkle tree, whose root hash is stored in a block on the blockchain.
+Thin client support is achieved by the use of Merkle proofs, which can prove the existence of public key mapping without requiring a client to download the whole tree.
+To keep the system compatible with the current PKI, we use certificates as usual, but ensure these are cross-signed by the domain holder’s private key.
+Key recovery mechanisms can be built into the system, by locking each public key in the tree with a Bitcoin script.
+To ensure the Merkle tree is updated properly, custom-built blockchain nodes are needed.
+Thus, a decision was made to build our own blockchain, which also avoids us the limitations in throughput, present in some of the public blockchains in use today.
+A custom Proof of Stake protocol is proposed which is based on a set of semi-trusted stakeholders who take turns in adding blocks to the blockchain.
+3.3  System Model  The entities involved in our distributed PKI are clients and servers trying to establish secure connections among themselves, and a set of blockchain nodes operating a large P2P-network.
+Some of these blockchain nodes are stakeholders, and may be chosen to approve transactions sent to the network.
+• Stakeholder A semi-trusted entity such as a government, CA or browser vendor authorised to maintain the blockchain.
+• Blockchain CA A CA approved by the stakeholders eligible to approve new transactions processed by the stakeholders.
+• Validator A third party who monitors the blockchain network to ensure everyone follows the protocol.
+• Thin client The client of an end-user (such as a web browser) with limited processing, storage and bandwidth abilities.
+• Domain owner An owner of a DNS domain name, running a web service.
+3.4  Choice of signature scheme  Unless otherwise specified, keys are assumed to be a point on a 256-bit elliptic curve.
+Such keys can be represented with 32 bytes using point compression [27].
+Chapter 4  Blockchain Design This chapter covers the design of our blockchain scheme.
+This includes a description of the format of transactions, blocks and accounts, and the design of the account tree, the stake tree and the consensus process.
+4.1  intervals, called a synchronisation point.
+The purpose of synchronisation points is to allow quick bootstrapping of new clients.
+4.2  Overview  We start with a strawman design based on Bitcoin.
+This design is transformed into a distributed PKI, in the form of a rolling log with Proof of Stake, through a number of innovations.
+Some touchpoints are: • Accounts and account tree We begin by introducing the notion of an account, which is a container for a blockchain identity.
+Each account is identified by a unique hash, and contains a signing key used to sign certificates and a CA proof which determines the account’s expiration date.
+The accounts are stored in a data structure backed by a Merkle tree, called the account tree.
+Bitcoin transactions are replaced by operations on this account tree.
+• Blockchain truststore We introduce the notion of a blockchain truststore, consisting of an append-only file secured by the blockchain network.
+• Proof of Stake Bitcoins Proof of Work is replaced by Proof of Stake, and instead of miners we have stakeholders controlling an amount of coins in the system.
+The stakeholders and their coins are stored in a separate stake tree, and consensus is achieved by doing a followthe-satoshi in this tree.
+Naming System  Our distributed PKI need a naming system to identify the owner of an identity.
+Since our PKI is supposed to store identities corresponding to domain holders in the DNS system, a name in our proposed naming system is simply a DNS domain name on the form domain.topdomain.
+The characters allowed in the domain and topdomain are of no great interest in this thesis as long as they are compatible with the traditional DNS system, and for simplicity they should follow the same format as ARPANET host names as explained in RFC 883.
+These names are case insensitive, must start with a letter, end with a letter or a digit and and interior characters can be either a letter, a digit or a hyphen.
+The total length of a label is not allowed to exceed 63 characters [44].
+If we encode the name in ASCII it is sufficient to reserve 128 bytes for the whole name, including the dot separator and null byte at the end.
+Blockchain nodes are responsible for validating names of new identities, to make sure they conform to the specified format and are not already registered on the blockchain.
+A restriction imposed by our naming system is that subdomains cannot be registered.
+This simplifies transactions and operations on the account tree, since each subdomain would have to be cross-signed by the domain owner to avoid violation of the identity retention principle.
+The benefit of having subdomains directly registered on the blockchain is unclear, considering the fact that all subdomains for a domain are effectively controlled by the same entity.
+Subdomains for an organisation is likely to be handled more efficiently by a locally administered PKI.
+• Pruning To reduce the amount of data to be stored, old transactions are discarded and expired accounts in the account tree are pruned.
+Thus, we alleviate the need for blockchain nodes to store all of the transaction history and every single account ever created, which would lead Stakeholders to centralisation because of high storage requirements.
+4.3 While Bitcoin scales linearly with time, our distributed PKI scales almost linearly with the number of accounts A stakeholder is an organisation, government, or individual, responsible for maintaining blockchain identities, confirm currently in the account tree.
+Stakeholders need to be • Synchronisation points We let some blockchain nodes trustworthy since a colluding group of malicious stakeholders, store a snapshot of the blockchain’s state at regular controlling a majority of the coins, can endanger the reliability 21  and trust in the system.
+Unlike Bitcoin, stakeholders are not performing Proof of Work, and they cannot buy themselves any influence by purchasing mining rigs.
+Instead, a new stakeholder must be given stake from the other stakeholders by receiving coins from the other stakeholders as explained in Section 4.5.
+Once a stakeholder controls coins in this tree, they are automatically participating in the consensus process and may be chosen as the next block leader.
+4.4  Accounts  order of a few hundreds at maximum, and such a small tree can easily be stored and updated in memory.
+The Merkle hash of a wallet is, similarly to the Merkle hash of an account in the account tree, divided into two pieces, a body and a header.
+To prove that a wallet with a specific block signing key KB , is in the stake tree, which is done when a client is validating the block headers, one only needs to provide the block signing key KB and a hash of the remaining fields instead of specifying all the fields explicitly, which saves bandwidth.
+Definition 4 (Merkle hash of a wallet).
+The Merkle hash of An account is a container for a blockchain identity which a wallet W in the stake tree consisting of the wallet header acts as trust anchor in our distributed PKI.
+Each account, Wh = KB and the wallet body Wb = (N , Lscr , x, bl ) is the following the format in Table 4.1, contains a name N , as hash H(Wh | H(Wb )).
+explained in Section 4.2, a signing key KS , an update script Uscr , an optional revocation script Rscr , and a CA proof PCA .
+4.5.1 Follow-the-satoshi in the Stake Tree The account can be divided into two pieces, the account header and the account body.
+The account header contains We can do a follow-the-satoshi in the stake tree, as in the information required by clients to verify certificates issued Algorithm 1 from Appendix A, by traversing the tree down under the identity.
+To be able to detect expired accounts and remove them from the tree, it is accompanied Operations on the stake tree, allow stakeholders to transfer with a min-heap, ordered by date of expiry found in the CA coins between each other, change the public keys, create new proof as shown in Figure 4.2.
+The account tree must be stakeholders, confiscate the coins of a malicious stakeholder updated equally by all nodes, such that everyone arrives at and lock individual wallets as specified in Appendix B.
+the same Merkle root hash.
+Locking wallets and confiscating coins of another stakeholder Our account tree should implement the following methods: is done through voting.
+Each stakeholder has a voting power proportional to the amount of coins they own.
+A vote takes • Lookup(N ) → (A, P) performs a lookup for an account effect once a coalition of stakeholders controlling a majority with account name N , and returns the account A and of the coins has confirmed the vote.
+Each vote is timestamped Merkle proof P for a particular block or ⊥ if the account to prevent an adversary from replaying an old vote.
+4.6  • Insert(A) inserts a new account A into the account tree, iff the account does not already exist.
+The Account Tree  The account tree is an authenticated, disk-based data structure which keeps track of all accounts at a certain block number.
+The account tree should fulfill the following requirements:  • Delete(N ) deletes the account with account name N .
+• Prune(Dnow ) Delete accounts from the account tree whose expiration date D ≥ Dnow .
+• Update(A) updates an account with the new information contained in A.
+• It should be as compact as possible to store on disk, to minimise the storage requirements for a full node.
+• There should be mechanism for detecting expired accounts, to remove them from the tree and reclaim disk space.
+4.6.1  Operations on the Account Tree  Operations on the account tree allow users to manage their • Insertions and deletions in the account tree should be digital identity in our distributed PKI, namely to add new fast, something like O(log n), in order to quickly process identities and renew, revoke and change the keys of existing operations on the account tree, such as purging expired identities as specified in Appendix C.
+Each operation is a transaction which must contain a valid unlocking script accounts, add new accounts and perform key updates.
+fulfilling the conditions specified in the update or revocation • The data structure should offer a small (no more than a script.
+In addition, adding a new identity or changing an few KB) proof of existence for an account in the tree.
+existing identity requires a signature produced by a CA.
+As a consequence, an adversary trying to impersonate a user in A common way of storing ordered sets is by the use of trees our system, must not only be in control of a CA, but also which offers fast removal and insertion.
+Such data structure have access to the private keys of the user.
+can easily be converted into an authenticated data structure using a dynamic Merkle tree as explained in Section 2.1.1.
+To keep the Merkle proofs small, one should use trees with 4.7 The Blockchain Truststore bounded depth and a small branching factor, ideally some sort of binary self-balancing tree.
+Thus, we suggest the account The blockchain truststore is a truststore on the blockchain, tree to be based on a dynamic Merkle tree, ordered by account containing the names and public keys of all CAs eligible to name hash H(N ).
+The signatures in the CA proofs, submitted The accounts are put in interior nodes and the rotations of when accounts are added or updated, are then checked by the tree dictates how the Merkle tree should be modified when blockchain nodes against this truststore, to determine the validity of the CA proof.
+If a blockchain node is unable to verify a signature using the specified public key, or if the signature is produced by a CA not active in the blockchain truststore, the CA proof must be rejected and the transaction should be dropped.
+The blockchain truststore is an append-only file whose hash is stored in the block header of each keyblock.
+The integrity of the truststore can be checked by comparing the hash of the truststore to the hash stored in the block header of the last keyblock.
+The truststore can be updated by adding new CAs, or revoke trust in existing CAs as specified in Appendix D.
+Any such change must be confirmed by a coalition of stakeholders, controlling a majority of the coins in the stake tree.
+When a CA is added, it is assigned an unused ID, and a timestamp of creation together with the public key of the CA is recorded in the truststore.
+If the CA is revoked, the time of revocation is recorded, but the entry is kept in the truststore to make it possible for blockchain nodes to validate old CA proofs.
+Since entries are never removed from the truststore, the size of the file is going to grow over time.
+However, considering revocation of a CA is an unusual event, we do not anticipate this to be a problem.
+4.8  Keyblocks and Microblocks  We distinguish between keyblocks and microblocks, specified in Appendix E.
+Keyblocks contains transactions for the stake tree and blockchain truststore and microblocks contains transactions for the account tree.
+Like in Bitcoin-NG [18], a keyblock signals the change of a block leader and is followed by one or more microblocks.
+Since consensus is based on Proof of Stake instead of Proof of Work, both keyblocks and microblocks are signed with the private key of the stakeholder and each keyblock contains an output from Algorithm 1 in Appendix A which can be used to validate the block without downloading the stake tree.
+The nonce and difficulty target fields are removed since they are not needed, and a reference to the previous keyblock is added in addition to a reference of the previous block.
+This makes it possible for thin clients to drop intermediary microblocks and only validate the keyblocks.
+Unlike Bitcoin, each keyblock also contains a hash of the blockchain truststore, and a Merkle root hash of the account tree.
+The coinbase transaction is removed since no block reward is given for creating new blocks.
+To elect a new block leader, we use an approach inheriting many of its features from the Ouroboros Proof of Stake protocol.
+Time is divided into epochs, where each epoch consists of 2n consecutive keyblocks.
+An epoch is further split into timeslots.
+Before starting a new epoch, Algorithm 1 is used as explained in Section 4.5.1 to sample a list of n lucky stakeholders, eligible to produce blocks during their designated timeslot.
+When a new timeslot starts, the next stakeholder (as chosen by Algorithm 1) broadcasts a new keyblock to the network.
+This stakeholder is then allowed to confirm transactions by producing microblocks until the timeslot ends and another stakeholder takes over.
+A timeslot can be seen as the equivalent to Bitcoin’s block interval, but is always fixed to say 10 minutes.
+See Appendix F for details.
+The longest chain in our distributed PKI is the chain with the most keyblocks.
+An epoch is divided into a commit phase and a reveal phase as shown in Figure 4.3.
+The block leaders are the same in both the commit and reveal phase, and one could think of the reveal phase as a repetition of the commit phase with only one small difference as follows: In the commit phase, each keyblock should contain a commitment H(R) to a 128 bit random value R which is put into the block header.
+In the reveal phase the same block leader reveals the committed value by putting R0 in the block header of the keyblock, such that H(R0 ) = H(R).
+The revealed values R1 , R2 .
+R n2 are then mixed together, to produce a seed for the CSPRNG used as input to Algorithm 1.
+Our protocol uses a single block leader at a time, meaning the blockchain network would be unable to confirm transactions if a stakeholder is offline during their timeslot.
+This problem does not occur in Bitcoin where all miners are competing against each other to create the next block.
+To mitigate this problem, one could have a more complex protocol with multiple block leaders, but this is not investigated in this thesis.
+Instead, we instead rely on stakeholders to be online when their timeslot arrives, and a few instances of unavailability could be corrected by using a flexible block size.
+Dynamic Block Size  Bitcoin features a hard-capped 1 MB block size limit, which would require a hard fork to change.
+Such a hard fork would be inconvenient to do since it would require all participants in the network to upgrade their software.
+A hard fork might also lead to a consensus failure if some stakeholders refuse to update.
+To avoid waiting for several confirmations before the content of a block is accepted, which inevitably leads to delays in the system, each keyblock must be co-signed by a quorum of block leaders elected during an epoch.
+As a consequence, it also becomes more difficult to create a fork or sign an invalid keyblock.
+To achieve this, two additional fields are required   Identity Management This chapter explains the issuance, revocation and verification process of accounts in the account tree and certificates issued by CAs, using the blockchain in the previous chapter.
+A client can verify a certificate in two ways, either by running its own blockchain node which maintains a complete keystore, or by running a thin client which retrieves the correct public key when required.
+To request a new certificate, the domain owner signs the CN and the certificate’s public key using KS and includes this information in the CSR sent to the CA.
+This signature is then included in a custom certificate extension before the certificate is sealed by the CA.
+If the certificate extension is set as non-critical it may be ignored by older clients while more modern clients can use the domain owner’s signature as an additional guarantee that the certificate was issued with the consent of the domain owner.
+5.1 Manage Accounts in the Account All previously issued certificates for a domain are automatically revoked once a domain owner changes its Tree signing key KS on the blockchain, since this invalidates the Accounts are added, updated or removed by transactions domain owner’s signatures found in the old certificates.
+Thus, posted to the blockchain network, as specified in Appendix C.
+protocols such as OCSP may be considered redundant since Each such transaction must be signed by a blockchain CA revocation information is already included in the certificate.
+active in the blockchain truststore.
+This acts as an additional We refer the reader to Chapter 7 for further discussion on this security barrier which makes it more difficult for an adversary topic.
+to impersonate a domain owner whose private keys have been exposed.
+An account in the account tree is created after a request 5.3 Certificate Verification from a domain owner, who sends the DNS domain name N to be registered on the blockchain, together with the account’s A client receiving a certificate chain from a server, must not update script Uscr , revocation script Rscr and signing key KS only check the signature produced by the CA, but also the to their favourite blockchain CA.
+The domain owner must signature produced by the domain owner.
+To do this, the trust this blockchain CA to carry out the registration properly client need to retrieve the domain owner’s public key along on their behalf.
+When the blockchain CA has convinced itself with an additional Merkle proof which proves that the public that the domain owner is the lawful owner of the claimed key belongs to the top domain in the certificate.
+This is done domain name and that the information submitted is correct, by checking the Merkle proof against the “Account tree hash” it creates a CA proof containing a CA identifier CAOID , a field found in the most recent keyblock on the blockchain as creation date TC , a date of expiry TE , and a CA signature described in Appendix G.
+The Merkle proof changes whenever a new keyblock is SigCA as specified in Table 5.1.
+This CA proof is then bundled with the information submitted by the domain owner and a added to the blockchain, which means this information cannot transaction is broadcast to the blockchain network.
+At this be included in the certificate itself.
+Instead, the Merkle proof point, no part of the transaction can be changed since this needs to be downloaded separately.
+This can be done in two ways: Either the client runs its own validator node which would break the CA signature.
+verifies every transaction and stores a complete copy of the account tree.
+This would be very impractical for most home 5.2 Issuing and Revoking Certificates users, although a company may run its own local validator node which can be accessed on the company’s intranet.
+Certificates can be issued by any CA as long as they Instead, a client may run its own thin client which only are running software which supports our custom certificate downloads and verifies the block headers of the keyblocks.
+Each certificate should be crossWhen a thin client receives a certificate, it connects to signed by the domain holder’s signing key KS found on the the blockchain network and requests a Merkle proof from 1 Assuming ECDSA with a 256-bit elliptic curve is used.
+At any time instant, we assume that there are two coalitions of stakeholders, a malicious coalition controlling a p fraction Identity retention Each identity can only be updated of the coins and an honest coalition controlling a 1−p fraction or revoked by presenting a solution to the accounts of the coins.
+The stakeholders within a coalition are assumed locking script defined by the owner, and each certificate to cooperate with each other, but not necessarily with the is cross-signed with a key residing in this account.
+This stakeholders from the other coalition if they can benefit from makes it very difficult to impersonate someone, since it not doing so.
+We furthermore assume that a stakeholder is would require an adversary to gain access to both a CA operational during the whole epoch in which they have been and the private keys of the domain holder.
+Thus, the possibility of denial of service against individual stakeholders is largely neglected.
+Expiration of old identities The date of expiry for an account is set via a timestamp in the CA proof.
+Account which have expired according to this timestamp 6.1.2 51%-attack are removed from the account tree and can be forgotten Clearly, security cannot be achieved when p > 12 since a by blockchain nodes.
+malicious majority can confiscate the coins of the honest stakeholders and take complete control over the system.
+Key recovery Any number of backup keys can be Thus, a 51%-attack would be fatal to our blockchain PKI.
+specified using a Bitcoin multisignature script.
+To mitigate this type of attack, it is important to make a good initial selection of stakeholders, where the coins in the Transparency All transactions on the blockchain are stake tree are spread out among several different participants public and anyone can connect to the blockchain network who are unlikely to cooperate maliciously.
+and start to audit transactions.
+X Backward compatible Cross-signed certificates are 6.1.3 Censor Transactions breaking older clients if the server signature is put in The malicious coalition of stakeholders could try to censor a non-critical certificate extension.
+certain transactions, such that certain domain owners are unable to renew their account or update their keys.
+Since X Thin client support Clients who want to verify a stakeholders take turns in processing transactions, this should certificate only need to synchronise the block headers to not constitute a big problem.
+If transactions are approved in do so.
+They can then request the additional information a first-come, first-served fashion, any lingering transactions required to verify the signature of a certificate by are the first to be approved by an honest stakeholder, unless querying the blockchain network.
+there is congestion in the network.
+Tricking an end-user running a thin client into accepting a counterfeit public key controlled by an adversary can be done by creating a blockchain with more keyblocks than the blockchain created by the honest coalition, where the last keyblock has signed a fraudulent Merkle root containing the adversary’s public key.
+Security for blockchain nodes looks different depending on how they operate.
+We distinguish between stakeholders and validators which enforce all rules of the protocol and thin clients which only validates the block headers of the longest blockchain.
+An end-user is typically running a thin client, and must to some extent rely on the honesty of the stakeholders.
+The (invalid) substitution of the domain owner’s public key would be detected by a stakeholder  or validator, but not by a thin client since they do not check every transaction on the network.
+Assume each keyblock must be signed by a two-third quorum (a common threshold in Byzantine fault tolerant systems) of stakeholders elected during an epoch for the blockchain network to accept it.
+If Algorithm 1 elects n stakeholders during an epoch, then the malicious coalition is said to be winning at any time instant if and only if the number of malicious stakeholders elected > 2n 3 .
+This probability can be modeled using a binomial distribution.
+If the malicious stakeholders control p fraction of the coins as explained in Section 6.1.1, then we may view one execution of Algorithm 1 as a Bernoulli trial with adversary success probability p.
+Let X0 ∈ [0, 1] be the stochastic variable denoting the outcome of aforementioned Bernoulli test, where 1 means success (malicious stakeholder chosen) and 0 denotes failure (honest stakeholder chosen).
+If a block signing key is compromised, it can be changed by posting a SetSigningKey transaction to the blockchain, signed by the keys referred in the stakeholder’s locking script.
+If the keys referred in the stakeholder’s locking script are compromised, an honest coalition of stakeholders can cooperate to revoke trust in the compromised stakeholder by posting a ConfiscateStakes transaction on the blockchain.
+An adversary who gets access to the private signing key of a domain holder can trick (any) CA to sign a fraudulent certificate on behalf of the adversary.
+However, this certificate can only be used until the domain owner detects the leak (for example by monitoring the CT logs) and changes its signing key by posting an UpdateTransaction on the blockchain.
+If the private keys referred in the domain owner’s locking script are leaked and they trick a blockchain CA into approving a new locking script for the domain owner containing private keys controlled by an adversary, access to the domain is irrevocably (6.1) lost.
+The domain owner must then wait until the account expires, and then re-register the account.
+However, this assumes The reason we choose to look at DNS, is because there is Algorithm 1 is fair, which might not be the case if the seed one-to-one mapping between domain names and accounts in to the CSPRNG is controlled by an adversary.
+The malicious the account tree.
+This means that the size of the account tree, coalition can mount a stake grinding attack where they ignore and the number of transactions in the blockchain network is the keyblocks produced by the honest coalition which gives directly proportional to the number of domains.
+It should them complete control over the input to the mixing function.
+be noted that far from all domains utilise HTTPS today, but They can then test many different xi∈Z128 such that the considering HTTPS is being more and more of a requirement, seed Mix(x0≤i<2128 ) gives them an advantage during the next this is likely to change.
+This type of attack can be alleviated in different ways: • Make the mixing function time or memory consuming to 6.2.1 Block Size compute.
+However, this may also lead to slow verification Based on statistics collected by VeriSign, there were a total of of blocks, which is undesirable.
+327 million registered domain names across all top domains, • Make the mixing function hard to precompute, for at the end of the third quarter 2016, with an average yearly increase of about 23 million domain names per year between example by using a hash of the block headers as salt.
+the years 2011 to 2016 [55].
+Domains are typically registered and renewed on a yearly • Increase the number of timeslots during an epoch.
+However, this would also lead to slower updates to the basis, and under the assumption that each registered domain name is either renewed or revoked once per year, a total of stake tree.
+327 million transactions must be processed every year, or • Automatically lock the wallet of stakeholders who create 6000 transactions during a 10 minute timeslot.
+Assuming an an invalid keyblock.
+average transaction size of 864 bytes (an update transaction   A sudden increase of the number of transactions in the short run can be handled by queuing transactions in the mempool.
+However, once the mempool is full, one would have to drop transactions in the network.
+This is why renewals of domains have to be somewhat evenly spread out.
+To have everyone renewing their blockchain identity at the beginning of a new year would not work.
+Not all nodes need to store this information, since it is only needed to bootstrap new nodes.
+Say for example, that each epoch consists of 160 keyblocks, and by convention each blockchain node stores the transactions of the last 30 epochs.
+With a block interval of 10 minutes as in Bitcoin, this is all transactions during a onemonth period.
+This would occupy an additional 22 GB for the transactions and another 216 GB for the account tree and the database.
+Storage requirements would increase over time when more and more accounts are added.
+Assuming linear growth with 23 million accounts every year, the size of the database would increase with about 13 GB/year, the one-month transaction set would increase with 1.65 GB/year and the account tree would increase with 2.5 GB/year.
+A summary is available in Section 6.2.2.
+Assuming each node in the account tree contains a 564-byte account (consisting of 128-byte account name, 32-byte signing key, 84-byte CA proof, 160-byte revocation script and 160byte update script): a database with all 327 million accounts would have a size of ≈ 185 GB.
+Blockchain nodes would also 6.2.3 Bandwidth Requirements for Thin have to store the account tree, consisting of the min-heap and Clients self-balancing tree discussed in Section 4.6.
+If each disk block for this account tree is 109 byte large, the whole account tree Thin clients need to download a copy of the stake tree and structure would occupy another 36 GB.
+the block headers of the keyblocks.
+They can then request a Additionally each node may have to store a synchronisation Merkle proof from a validator or stakeholder when required, 1 A multisignature script with five public keys is about 160 bytes large.
+to convince themselves that a certain account is present in This script should be versatile enough for most users.
+The size of a keyblock is 251 bytes during the commit phase and 267 bytes during the reveal phase as specified in Appendix E.
+With a block interval of 10 minutes, this yields about 13.6 MB of block headers every year, which has to be downloaded by new clients.
+The size of the stake tree grows over time when new stakeholders are added and removed, but unless this happens very often, the size of the stake tree should remain negligible.
+In addition to the bandwidth required to download the block headers and the stake tree, which is only done once, a thin client also need to download the server’s public key and some proof data for each certificate it want to validate.
+More specifically, they need to download the blockchain account for a domain holder together with a Merkle proof which proves that the account is present in the account tree.
+If the account tree is implemented using a red-black tree, the Merkle proof will be of bounded size as follows: Lemma 2 (Maximum depth of a red-black tree).
+The depth of a red-black tree with n nodes is bounded by O(log n + 1).
+Hence, the depth of an account tree containing all 327 million domains is at most 57.
+For each level in the tree, two hashes are needed to recreate the Merkle hash of the parent node (the Merkle hash of the sibling node and the hash of the account stored in the parent node).
+If each hash is 32 bytes, this means that the maximum size of any Merkle proof will be ≈ 3.7 KB.
+Additionally, one would have to send the domain owner’s public key and a hash of the account body, which can be used to compute the Merkle hash of the account (see Definition 3).
+A new blockchain node which is booting up needs to synchronise with the network before it can start to validate new transactions.
+This involves downloading and verifying the block headers of the longest available blockchain B1 , B2 .
+BN , downloading the accounts and the account tree for block Bi , 0 < i < N and all transactions for the most recent N − i blocks Bi , Bi+1 .
+To download the account tree (≈ 36 GB), the account database (≈ 185 GB) and one month of transaction history (≈ 22 GB) would take about 11 hours with a 50 Mb/s internet connection.
+Since we always keep a window of only the last N − i transactions, the time to bootstrap new nodes will not increase significantly over time.
+Chapter 7  Discussion The proposed design has mainly been motivated by scalability, which was deemed to be the largest obstacle for our blockchain-based solution to work.
+Although it appears as storage requirements are not going to be a large problem if pruning is used, the number of transactions which can processed is still a bottleneck.
+This could potentially be rectified by sharding the blockchain, meaning a transaction is only validated and stored by a subset of stakeholders.
+Sharding is a topic of ongoing research, and will probably have to be investigated in more detail before deploying our blockchain scheme at scale.
+Apart from throughput, we also faced issues with large block headers, mainly due to the use of Merkle proofs in our Proof of Stake scheme.
+Our block headers are significantly heavier than Bitcoin’s, and occupies about 13.6 MB yearly, compared to Bitcoin’s 4.2 MB.
+For full security, a client must synchronise these headers along with a copy of the stake tree before any certificates can be validated, which may prove cumbersome in practice.
+It should be noted that the Bitcoin blockchain is almost trustless, while our system requires some trust in the stakeholders who maintain the blockchain.
+In particular, a majority of stakeholders can collude in order to subvert the integrity of the blockchain.
+We would argue that such an attack is unlikely to happen on purpose, since it most likely will be detected and the stakeholders involved may face legislative action as a result.
+Our system also requires some trust in the CAs responsible for signing CA proofs.
+A malicious blockchain CA could try to swap the keys of the domain owner before registering the identity.
+This would not pose a threat to already registered identities, but could still prove to be problematic since existing identities cannot be revoked.
+The owner of an identity is the owner to the keys referred in the account’s locking script.
+If these keys are stolen or lost, there may be no way of recovering the account and one would have to wait until the account has expired and can be registered again.
+Ironically, this is also the strength of the blockchain since it is impossible to take control over someone’s account without having access to their keys.
+However, one always have the opportunity to specify a separate revocation script, which can be used by for example a CA to re-register the account.
+Techniques such as Verifiable Secret Sharing where a key is split among several people, or the use of multisignature scripts containing backup keys can be used to ensure an account can be recovered even if some keys are lost.
+In this way, it is up to the domain owner to adjust the level of security to fit their needs.
+A benefit of a distributed PKI is that it may have the potential to improve certificate revocation.
+In a distributed PKI, each domain owner would be able to attest to the validity of their own certificates.
+This eliminates the need for a centrally administered OCSP servers run by CAs, which can be a targets for denial of service attacks.
+However, it is doubtful whether our blockchain solution could provide reliable revocation services due to limited transaction throughput.
+Further work on the use of distributed PKIs for certificate revocation is a good topic for future research.
+Although the use of a blockchain as an authoritative source of information for the web sounds tempting, mainly due to its strong security guarantees, it is not without drawbacks.
+Most notably, a client must synchronise the block headers of the longest chain before it can start to verify the server signatures found in certificates, and the limited number of transactions which can be processed may limit its usability.
+Although a block size of 5.2 MB is perfectly feasible, it assumes renewal of identities are evenly spread out during the year, which is somewhat unrealistic.
+A blockchain design would also discourage domain holders from using the blockchain as a tool for revocation, since this would lead to an increase in the number of transactions which has to be processed.
+In the unlikely event of a new Heartbleed bug, where millions of servers may need to rotate their keys at the same time, the system would simply grind to a halt.
+Identities which are lost, would also be unavailable until they expire which may discourage some people from putting their identity on the blockchain.
+These drawbacks indicate that a distributed PKI backed by a blockchain is not a silver bullet in its current form, but rather a complement to existing security solutions.
+At this stage, it is hard to predict whether a blockchain-based solution for the web will succeed.
+Success is largely going to depend on the participation of CAs, browser vendors and other stakeholders, and whether they can agree on a standard which can be widely adopted and implemented.
+About PrimeKey This thesis was written at PrimeKey Solutions AB.
+PrimeKey provides businesses and organisations around the world with the ability to implement security solutions such as e-Passports, authentication, digital signatures, unified digital identities and validation using EJBCA Enterprise, SignServer Enterprise and PrimeKey PKI Appliance.
+PrimeKey has its head office in Stockholm, Sweden..

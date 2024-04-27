@@ -1,0 +1,1120 @@
+SPECTRE:
+A Fast and Scalable Cryptocurrency Protocol
+
+A growing body of research on Bitcoin and other permissionless
+cryptocurrencies that utilize Nakamoto’s blockchain has shown that they do
+not easily scale to process a high throughput of transactions, or to quickly
+approve individual transactions; blocks must be kept small, and their creation
+rates must be kept low in order to allow nodes to reach consensus securely. As
+of today, Bitcoin processes a mere 3-7 transactions per second, and transaction
+conﬁrmation takes at least several minutes.
+We present SPECTRE, a new protocol for the consensus core of
+crypto-currencies that remains secure even under high throughput and fast
+conﬁrmation times. At any throughput, SPECTRE is resilient to attackers
+with up to 50% of the computational power (up until the limit deﬁned by
+network congestion and bandwidth constraints). SPECTRE can operate at
+high block creation rates, which implies that its transactions conﬁrm in mere
+seconds (limited mostly by the round-trip-time in the network).
+Key to SPECTRE’s achievements is the fact that it satisﬁes weaker
+properties than classic consensus requires. In the conventional paradigm, the
+order between any two transactions must be decided and agreed upon by all
+non-corrupt nodes. In contrast, SPECTRE only satisﬁes this with respect to
+transactions performed by honest users. We observe that in the context of
+money, two conﬂicting payments that are published concurrently could only
+have been created by a dishonest user, hence we can aﬀord to delay the
+acceptance of such transactions without harming the usability of the system.
+Our framework formalizes this weaker set of requirements for a crypto-currency’s
+distributed ledger. We then provide a formal proof that SPECTRE satisﬁes
+these requirements.
+
+Bitcoin is an open crypto-currency system that was invented and later deployed by
+Satoshi Nakamoto [14]. The main challenge in creating an open P2P system that
+handles money is making the system resilient to Sybil attacks. In a Sybil attack,
+the attacker joins the system under multiple identities, and subverts its operation
+from within [4]. The main tool that Nakamoto used to overcome this problem
+is Proof-of-Work (PoW) – a cryptographic primitive that allows one machine to
+validate that another had invested some large amount of computational power [5].
+While attackers can spawn additional identities, their constrained computational
+resources prevent them from solving too many PoW puzzles [10]. Nakamoto utilizes
+this primitive to maintain a consistent transaction ledger, called the blockchain.
+The blockchain is composed of individual blocks, which are essentially collections
+of transactions that are included in the ledger.
+The Bitcoin system follows the replicated state machine approach [18]: nodes have
+local replicas of the ledger, and they reach agreement on the full order of blocks (and
+by extension on the full order of transactions) via the Nakamoto protocol. This allows
+nodes to agree on a consistent set of transactions by accepting only the ﬁrst of any
+conﬂicting set.
+Unfortunately, recent research has shown that the Nakamoto consensus has severe
+scalability limitations [3, 19, 7, 15]. If honest nodes do not synchronize fast enough,
+consensus cannot be achieved, and the irreversibility of transactions cannot be
+assured. To avoid this, Bitcoin was set to operate at extremely low rates. The
+protocol enforces a slow block creation rate, extending the blockchain only once every
+10 minutes in expectation. Users must thus wait a long while to receive approval for
+their transfers.1
+In addition to the restriction that this requirement places on the block creation
+rate, it also places a limit on the block size: blocks that are very large would take
+too long to propagate to other nodes. The combined limit on block creation rate and
+on block size eﬀectively imposes a limit on the throughput of transactions that the
+system can process. If the throughput grows (either via an increase in block size or
+block creation rate), Nakamoto’s original guarantee no longer holds—attackers with
+less than 50% of the computational power can disrupt the system.
+Disruptions to the consensus core of crypto-currency systems generally take one
+of two forms: attackers either compromise the liveness property of the system,
+which implies that they can ensure that transactions are not accepted into the
+system, or they compromise the safety property, which implies that transactions
+can be reversed and money can be double-spent. Indeed, as Bitcoin’s throughput is
+increased both attacks become feasible for attackers with less computational power;
+they can postpone the acceptance of any transaction indefinitely, and double spend
+any transaction they issue, regardless of the amount of time that has elapsed since its
+publication.
+Our contribution. In this paper we present SPECTRE, a PoW-based protocol that
+can process a high throughput of transactions and maintain fast conﬁrmation times
+while remaining secure from attackers with up to 50% of the computational power.
+SPECTRE relies on a data structure that generalizes Nakamoto’s blockchain into a
+direct acyclic graph (a block DAG). We provide extensive theoretical analysis of the
+1 Other cryptocurrencies that run slightly modiﬁed versions of Bitcoin’s code have sometimes
+opted for higher block creation rates. These come at some cost to their security
+protocol, its security and scalability. We additionally provide simulation results that
+demonstrate SPECTRE’s advanced capabilities.
+The name SPECTRE stands for “Serialization of Proof-of-work Events:
+Conﬁrming Transactions via Recursive Elections”.
+Properties of SPECTRE. SPECTRE’s design is intended to avoid the need for
+nodes to reconcile their diﬀerent world views regarding the identity of a selected chain
+at the time of block creation. By maintaining a full DAG of blocks, SPECTRE can
+allow miners to create blocks concurrently and much more frequently. Agreement
+on the main chain is not required when a block is created,2 nor is any knowledge
+of the propagation delay in the network required to run a mining node. Instead,
+the decision on which transactions have been approved by the system is made after
+the fact, by anyone that observes a recent version of the block DAG. SPECTRE
+guarantees that such decisions will be consistent and that transfers remain secure
+from double spending or delays.
+The block creation rate in SPECTRE is not constrained by network propagation
+delays, implying that large and fast blocks can be created, up to the limit imposed by
+network congestion and bandwidth that is required from nodes to receive a full copy
+of all transactions.3 This results in fast conﬁrmation times of transactions, especially
+so for small sized attackers.4 Below are some conﬁrmation times that can be achieved
+with SPECTRE, by creating 10 blocks per second. These numbers assume that blocks
+(e.g., of size 100 KB) propagate to the vast majority of mining nodes within 5 seconds.
+
+In Section 6 we show that the acceptance times in SPECTRE can be further
+accelerated by tightening the analysis. We additionally show that conﬁrmation times
+are highly aﬀected by the delay diameter; we believe that 5 seconds for 100 KB
+blocks represents a suﬃciently conservative estimate (for example, the “Bitcoin Relay
+Network” performs much better with 1 MB blocks).
+An additional beneﬁt of SPECTRE’s high block creation rate is that mining
+rewards have signiﬁcantly lower variance compared to Bitcoin: if the block creation
+rate is set to 10 blocks per second then a solo-miner will receive rewards 6,000 times
+more often. This will reduce the need for large mining pools, and will therefore
+contribute to the system’s decentralization.
+2 In
+contrast, Bitcoin nodes must choose a single chain to extend when building blocks at the
+moment of block creation.
+3 We note that these limits are not too restrictive: 2,000 bitcoin transactions take up roughly 1MB,
+which implies that a 10MBps connection could transmit 20,000 transactions per second, rivaling the
+global transaction rate of Visa at peak times.
+4 Merchants conducting transactions at a physical point of sale are mostly concerned with fast
+conﬁrmation times while securing themselves against small attackers (hence their willingness to settle
+for 0-conﬁrmation transcations in Bitcoin).
+The resilience of SPECTRE to attackers with up to 50% of computational power
+comes at a cost. While Nakamoto’s protocol resolves conﬂicts between any pair of
+transactions (by deciding their order), SPECTRE only guarantees this with respect
+to some pairs of transactions. In SPECTRE, if two conﬂicting transactions were
+published at about the same time, the identity of the prevailing transaction might
+remain undetermined for arbitrarily long periods of time. Our key insight is that
+in the context of crypto-currencies transactions only conﬂict if they move the exact
+same funds to two diﬀerent locations, which implies that they were both generated by
+the original owner of the funds (cryptographic signatures ensure that only the owner
+may move his funds). Hence, an honest participant will never create such conﬂicts,
+and we can aﬀord to delay the decision regarding transactions that have been visibly
+double spent.
+The Requirements from Distributed Ledgers (RDL) framework. To
+make our arguments precise we provide a formal framework to reason about the
+required properties of distributed ledger protocols for crypto-currencies, which is
+of independent interest. By specifying weaker properties that distributed ledgers
+must satisfy, we include solutions such as SPECTRE that provide better security and
+performance.
+According to the RDL-framework, a distributed ledger protocol must provide a
+pair of procedures GetAccepted and ChkRobustAccept. The GetAccepted procedure
+takes as input a user’s current world view (in our case, this is in the form of the
+block DAG that it observes locally) and outputs a consistent subset of accepted
+transactions.5 ChkRobustAccept enables the user to determine whether he can safely
+consider funds to have been transferred. For example, a merchant receiving payments
+will only deliver the good or service to the buyer once he had determined that the
+funds are securely his. ChkRobustAccept takes as input the user’s world view, a
+transaction from the accepted subset, and ϵ; it returns ACCEPT if the user can
+safely consider funds to have been received with probability of transaction reversal
+that is smaller than ϵ, or WAIT otherwise. In the former case we say that the user
+has ϵ-accepted the transaction. We require that the following properties be satisﬁed:
+• Consistency: GetAccepted returns a consistent set.
+• Safety: if an honest user ϵ-accepted a transaction (using ChkRobustAccept)
+then w.h.p. eventually any honest user will do the same.
+• Progress: if an honest user ϵ-accepted a transaction then w.h.p.
+eventually ϵ′ -accept it (for any ϵ′ ).
+• Weak Liveness: if a transaction is contained in a published block, then as
+long as its inputs remain ϵ-accepted, and as long as no conﬂicting transactions
+are published, eventually an honest node will ϵ-accept it.
+We formalize these properties in Section 4.
+The highlight of this work is the SPECTRE protocol, whose GetAccepted and
+ChkRobustAccept procedures satisfy these requirements:
+5 The consistency notion depends on the system of transactions that the ledger serves. In Bitcoin
+for example, two transactions are in conﬂict if they spend the same outputs.
+Theorem (informal). If honest nodes possess a majority of the computational
+power, then regardless of the network’s communication delay, SPECTRE satisfies
+Consistency, Safety, Progress, and Weak Liveness.
+Fast acceptance times and scalability. A scalable protocol is one in which waiting
+times for transaction processing remain short even under
+( high transaction
+) throughput.
+ln(1/ϵ)
+d
+In SPECTRE, we achieve waiting times that are O λ(1−2α) + 1−2α , where d is a
+bound on the time it takes to reach honest nodes that have at least 1−α fraction of the
+computation power (and α is the fraction of computational power of the attacker along
+with additional distant nodes), ϵ is a bound on the probability that nodes are willing
+to tolerate of transaction reversal, and λ is the rate of block creation. Considering the
+expression above, it is easy to see that SPECTRE operates best with low propagation
+delays, and high block creation rates. As block creation rates are increased, the
+ﬁrst term becomes negligible, and the dominating term is O (d/(1 − 2α)), which is
+essentially a measure of the propagation delay to reach a large amount of honest nodes
+in the network.
+Simulations. In addition to the theoretical analysis, we provide the results obtained
+by running the protocol on a simulated network topology. We show how waiting times
+change in practice as parameters are adjusted, and provide evidence for the protocol’s
+applicability.
+Organization of the paper. The remainder of this paper is organized as follows: In
+the subsequent subsection we discuss related work. We describe the basic operation
+of SPECTRE in Section 2. Next, in Section 3, we provide examples of attacks
+and provide intuition for why they fail to disrupt the protocol. A formal model is
+provided in Section 4. We then return to present SPECTRE’s procedures formally in
+Section 5. In Section 6 we present our simulation results for the protocol and evaluate
+its performance. We discuss some implementation details in Section 7, including more
+details about minting, denial-of-service attacks, and re-targeting. In Section 8 we
+outline the proof of the main theorem that we have stated above. We conclude in
+Section 9. Finally, we provide the full proof in Section 10.
+Previous research has produced several suggestions for protocols that attempt to
+address the security-scalability challenge, but all protocols still provide a total order
+over blocks:
+The GHOST protocol is an alternative chain selection rule that gradually chooses
+a tree of blocks until converging on a single chain [19]. GHOST utilizes pointers
+from oﬀ-chain blocks in an attempt to overcome the disadvantage of honest nodes
+compared to a centralized attacker. It can be shown that the Liveness property of
+GHOST can be attacked in several ways, as was demonstrated by [11].
+The use of block DAGs was proposed in the Inclusive protocol [13], in which
+throughput was increased by combining discarded blocks into the ledger. However,
+the protocol modiﬁcation of Inclusive [13] still relies internally on a simple chain-based
+protocol to provide a total order over blocks. As such, it mitigates but does notavoid the security-scalability trade-oﬀ. The Inclusive paper further includes a game
+theoretic analysis of the incentives of nodes to embed diﬀerent transactions in their
+blocks (without the ability to coordinate).6
+Bitcoin-NG [6] provides a clever chain structure that is composed of two type of
+blocks key blocks that require PoW but contain no transactions and mini-blocks that
+do not require proof of work but do contain transactions. Indeed, Bitcoin-NG manages
+to obtain a signiﬁcant scalability increase, but its key blocks are still generated slowly,
+hence, conﬁrmation times remain high.
+The work of Pass and Shi [16] constructs an interesting hybrid model that combines
+consensus protocols, building on a previous work by [12, 2]. In Hybrid Consensus, the
+Nakamoto consensus is used only to select a subset of nodes out of the entire (a priori
+unknown) set of nodes. The selected committee then communicates internally and
+runs some conventional consensus algorithm to conﬁrm new transactions. Arguably,
+the consensus protocol run by Hybrid Consensus’s rotating committee has its own
+scalability limitations. Concretely, committee members must remain available online
+for some period after they are chosen, and need to directly communicate with one
+another, which introduces a new set of considerations, e.g., availability, DoS attacks,
+and anonymity concerns. In contrast, SPECTRE only relies on miner nodes to
+create blocks of transactions that extend their local DAGs, and to publish them.
+Miners in SPECTRE are not directly involved in any explicit consensus protocol
+and moreover can operate with little regard of other nodes’ synchronization status.
+Lastly, Hybrid Consensus is only resilient to attackers that control less than 33% of
+the total computational power, whereas SPECTRE is resilient to any attacker up to
+50%. This gap is inevitable, as Hybrid Consensus satisﬁes stronger properties than
+SPECTRE and the RDL-framework set out to meet: It achieves regular (rather than
+weak) Liveness and ensures a full order of transactions.7
+To the best of our knowledge, this is the ﬁrst work to propose a native PoW-based
+protocol for crypto-currencies that does not rely on the selection of a main chain.
+
+A block DAG is typically denoted by G = (C, E), where C represents blocks E
+represents the hash references. For a block z ∈ C we will frequently abuse notation
+and write z ∈ G. past (z, G) ⊂ C denotes the subset of blocks reachable from z, and
+similarly f uture (z, G) ⊂ C denotes the subset of blocks from which z is reachable
+(these are blocks that are provably created before and after z, correspondingly). Note
+that an edge in the DAG points back in time, from the new block to previously created
+6 We build on this argument, and indeed assume that nodes will maximize their proﬁts by avoiding
+transaction “collisions” and will try to embed unique content in their blocks.
+7 The 33% is tight when aiming at classic consensus properties [16].
+blocks which it extends. We denote by anticone (z, G) the set of blocks that the DAG
+does not directly order compared to z, that is: G \ (past (z, G) ∪ {z} ∪ f uture (z, G)).
+The unique block genesis is the block created at the inception of the system, and
+every valid block must have it in its past set. The set past (b, G), in sharp contrast
+to f uture (z, G) and anticone (z, G), is ﬁxed once and for all at the creation of b,
+and does not require specifying the “context” G. Finally, we relate to a hypothetical
+block, virtual (G). This block satisﬁes past (virtual (G)) = G. While its role is merely
+methodological, virtual (G) can also be thought of as representing the next block that
+a node whose current observed DAG is G attempts to create.
+
+We begin by reiterating the extremely simple instructions of SPECTRE to miners,
+described in Section 4:
+1. When creating or receiving a block, transmit the block to all peers.
+2. When creating a block, embed in its header a list containing the hash of all
+leaf-blocks in the locally-observed DAG.
+In particular, all blocks are incorporated into the DAG. Note that these instructions
+allow miners to operate concurrently irrespective of potential conﬂicts in the contents
+of their blocks. The
+
+
+SPECTRE is composed of two layers: interpreting the blcok DAG, and estimating
+the robustness of this interpretation. Its layout can be summarized as follows:
+1. GetAccepted(G):
+(a) Calculate pairwise relation ≺ on blocks in G (Alg. 1)
+(b) Accept transactions that defeat all conﬂicts (Alg. 2)
+2. ChkRobustAccept(G, tx, ϵ):
+(a) Estimate robustness of the relation ≺ for relevant pairs of blocks
+(Algs. 3, 7)
+(b) ϵ-accept tx if the block that contains it robustly precedes all
+counterparts (Algs. 4,5,6)
+The ﬁrst layer is an implementation of GetAccepted. Given a block DAG, this
+procedure outputs a consistent subset of its transactions. This is done by ﬁrst
+computing a pairwise relation ≺ over the blocks (in the context of some G, we
+informally say that block x precedes or defeats block y if x ≺ y). Then, any transaction
+is accepted if its blocks defeats the blocks of all conﬂicting transactions in its anticone.
+The relation ≺ is generated by a pairwise vote procedure that occurs independently
+for every pair of blocks.
+Although we may at times refer to ≺ as though it orders blocks, we stress that ≺
+is not necessarily a transitive relation. It is possible to have a series of blocks that
+defeat each other cyclically.8 This is in fact the way SPECTRE utilizes the weaker
+requirements in the RDL-framework (the lack of total ordering over blocks).
+The next layer implements ChkRobustAccept. Here, similarly, we ﬁrst estimate
+the robustness of ≺ regarding certain pairs of blocks, namely, the one containing the
+given transaction vs blocks containing possible conﬂicts; then we ϵ-accept the given
+transaction if its containing block indeed defeats all of these blocks with a suﬃcient
+margin of safety.
+
+The basic layer of SPECTRE involves deciding on a pairwise order over the block
+DAG, which we denote ≺ informally. Fix two blocks x, y ∈ G. In order to decide if
+x ≺ y or y ≺ x, we interpret the structure of the DAG as representing an abstract vote.
+Every block z ∈ G is considered a voter with respect to the pair (x, y), and its vote is
+inferred from its location in the DAG. We represent a vote by a number in {−1, 0, +1},
+and we denote its voting-proﬁle on all pairs by vote (z, G). votex,y (z, G) = −1
+represents x preceding y (x ≺ y), votex,y (z, G) = +1 represents y preceding x, and
+votex,y (z, G) = 0 represents a tie. Importantly, vote (z, G) is an asymmetric relation:
+votey,x (z, G) = −votex,y (z, G).
+To simplify presentation, we associate a vote with virtual (G) as well. Recall
+that the virtual block of G is a hypothetical block which satisﬁes past (virtual (G)) =
+past (G) (Section 4). The vote of virtual (G) represents essentially the aggregated vote
+of the entire block DAG. The basic rules of z’s vote, for any z ∈ G ∪ {virtual (G)},
+are as follows:
+• if z is in f uture (x) but not in f uture (y) then it will vote in favour of x (i.e.,
+for x ≺ y).
+• if z is in f uture (x) ∩ f uture (y) then z’s vote will be determined recursively
+according to the DAG that is reduced to its past. If the result of this vote is a
+tie, z breaks it arbitrarily.9
+• if z is not in the future of either blocks then it will vote the same way as the
+vote of the majority of blocks in its own future.
+• if z is the virtual block of G then it will vote the same way as the vote of the
+majority of blocks in G.
+Additionally, z will vote for itself to succeed any block in past (z) and to precede any
+block outsize past (z).
+Figure 1 illustrates the voting procedure with regards to a single pair of blocks
+(x,y). Additional examples along with intuition regarding this key algorithm are
+provided in Section 3.
+
+Figure 1: An example of the voting procedure on a simple DAG. Blocks x and 6-8
+vote x ≺ y as they only see x in their past, and not y. Similarly, blocks y and 9-11
+vote y ≺ x. Any block from 1-5 votes x ≺ y, because it sees more x ≺ y voters in its
+future than y ≺ x voters. Block 12 votes according to a recursive call on the DAG
+that does not contain blocks 10,11,12.
+It is easy to see that all votes respect the DAG’s topology: If x is reachable from
+y then all blocks vote unanimously x ≺ y. Observe further that the vote of any z that
+has either x or y in past (z) is fully determined by past (z, G), a set which is ﬁxed
+at z’s creation. Accordingly, we refer to such a z as a strong voter w.r.t. the pair x
+and y. In contrast, other z’s are called weak voters, as their vote can be changed by
+future events: their votes depend on votes of blocks in their future sets (which grow
+over time).
+The pairwise ordering of SPECTRE has the following highly valuable property:
+Once a block is published, the set of blocks that precede it in the pairwise ordering
+closes fast—w.h.p. it only consists of blocks that were published before or right after
+its publication.
+The implications of this guarantee to the security of transactions is immediate, at
+least at the intuitive level: A user whose transaction is embedded in some published
+block x can guarantee its safety by waiting some time after x’s publication before
+accepting it; he is then guaranteed that any block published later on – and that
+might contain a conﬂicting transaction – will be defeated by x hence will not threaten
+the acceptance of his transaction. In Section 3 we will explain how this guarantee is
+achieved.
+
+2.5
+
+Accepting transactions
+
+Equipped with the pairwise relation over blocks, we now turn to construct the set
+of accepted transactions. Basically, we mark a transaction as accepted iﬀ all threeconditions below hold true:
+• all of its inputs have been accepted.
+• all conﬂicting transactions that are in its anticone set (i.e., that are not related to
+it topologically) are contained in blocks that are defeated by the block containing
+the transaction.
+• all conﬂicting transactions that are in its past set (i.e., that precede it in the
+DAG, topologically) have been rejected.
+
+In this section we provide some basic explanations and intuitions regarding the
+operation of SPECTRE. We focus primarily on explaining the ideas underlying
+Algorithm 1 that is at the core of the protocol. We later go on to present examples
+for simple attacks that shed some light on how resilience is achieved.
+Intuition 1 (Vote in favour of visible blocks). If a block x is known by honest
+participants, their blocks will include it in their past. Given that blocks vote in
+favour of blocks in their past (over other unknown blocks), and given that honest
+nodes publish their blocks quickly, hidden attacker blocks lose votes.
+Intuition 2 (Majority ampliﬁcation). Given blocks x, y that contain potential
+conﬂicts, blocks that are generated by honest participants after their publication
+reference both of them in the DAG. According to Algorithm 1, these new blocks
+adopt the vote of the sub-DAG in their past with regards to x and y. Thus, if block
+x defeats block y, additional votes that support this decision are added, and the
+attacker will ﬁnd it more diﬃcult to reverse the vote.
+Intuition 3 (Referencing recent blocks is beneﬁcial). Blocks from the past vote
+according to their future. Thus if an attacker creates a block that does not reference
+recent blocks, it is at a disadvantage compared to other blocks that do (it loses votes
+from recent blocks it did not reference and did not “convince”).
+Intuition 4 (Votes from the past counter pre-mining attacks). Consider an attacker
+that creates a block y, withholds it, and constructs many blocks on top of it over an
+extended period of time. After a long while, a conﬂicting transaction is released to
+the network, and eventually ends up in some block x. Block y has many blocks (built
+by the attacker) that reference it. Thus, if only votes from the future are counted,
+block y would prevail even if x is allowed to accumulate some votes. In SPECTRE,
+blocks that were created by honest nodes while y was withheld, look to their future
+for their votes. These will usually vote in favour of x and will usually outnumber the
+attacker blocks that were created when y was withheld (an example of pre-mining
+appears in Figure 3).
+Figure 2: SPECTRE coincides with the longest-chain rule when it is applied to
+“simple” chains of blocks. In the depicted DAG, the chain ending at block 8 is
+longer and would be selected in the longest chain protocol. In SPECTRE each one of
+the blocks 5,6,7,8 defeats each of the blocks in 9,10,11. Consider for instance blocks
+6 and 10 and the pairwise vote that involves them. Blocks 6-8 vote strongly 6 ≺ 10,
+as they see block 6 in their past but not block 10. Block 5 is a weak voter, as it sees
+neither 6 nor 10 in its past, hence it votes as the majority of its future (thus voting
+6 ≺ 10 as well). For similar reasons, blocks 9-11 all vote 10 ≺ 6. Block 4, at the
+fork of the two chains, is a weak voters as well, as it sees neither 6 nor 10 in its past;
+it therefore votes according to the majority of future blocks. As block 4 sees four
+votes in favour of 6 ≺ 10, and three votes in favour of 10 ≺ 6, it will vote in favour
+of 6 ≺ 10. Blocks 1-3 similarly vote according to their future, and see an increasing
+number of votes for 6 ≺ 10, adding their own vote to the result. Thus, the end result
+is that 6 defeats 10.
+
+We ﬁrst demonstrate how SPECTRE coincides with Bitcoin’s longest-chain rule, in
+the case of a “simple” fork between two chains. Consider the DAG illustrated in
+Fig. 2. In Bitcoin, the longer chain would be selected. Similarly, in the pairwise
+ordering of SPECTRE, each of the blocks in the longest chain 5,6,7,8 would defeat
+each of the blocks in the shorter one 9,10,11. To see why this is true refer to the
+caption of the ﬁgure.
+We now turn to examine two diﬀerent attack scenarios, which we name
+double-spending, and censorship. Recall the requirement from our miner protocol:
+each miner is required to (i) reference recent blocks, and to (ii) publish his blocks
+immediately. Each attack is basically a violation of one of these requirements. In the
+double-spending attack, the attacker delays the publication of a set of blocks (that
+includes a conﬂicting transaction), and in the censorship attack he publishes blocks
+but “ignores” a certain block and transactions inside it, hoping to convince nodes
+that it did not secure enough votes, and thus cannot be accepted.
+Figure 3: An example of the voting procedure on a DAG in which a double spending
+attack is (unsuccessfully) attempted. Blocks x and 6-8 vote strongly x ≺ y as they
+only see x in their past, and not y. Similarly, blocks y and 9-11 vote strongly y ≺ x.
+Blocks 1-5 vote x ≺ y. This is because they see more x ≺ y voters in their future than
+y ≺ x voters. Block 12 votes according to a recursive call on the DAG that does not
+contain blocks 12,19.
+withholding them from the network. The ﬁrst block that is constructed (named
+block y) contains a transaction that will later conﬂict with the transaction sent to the
+honest nodes. Blocks built by the attacker ideally form a chain, and due to the voting
+rules in SPECTRE, will all vote y ≺ x (blocks y,13,14). Blocks built by the honest
+node are unaware of y (and also of x that is yet to be created), and will eventually vote
+according to the majority of future votes. During this phase, attacker blocks reference
+honest blocks that are built (in hopes of later convincing them to vote y ≺ x). After
+some time, the attacker transmits the transaction to the network, and proceeds to
+phase II.
+Notice that at the exact time that phase I ends, the attacker has more blocks
+above block 4 than honest nodes have, so it starts at an advantage: it will more easily
+sway the vote of block 4 towards y ≺ x (this advantage later disappears as honest
+nodes typically build blocks faster than the attacker).
+Phase II: Waiting for acceptance. The attacker now continues to build blocks
+in secret. If he publishes his blocks, then his conﬂicting transaction will be visible to
+all, and the double-spend will be detected. Instead, he waits for block x to receive
+suﬃcient weight (in the form of blocks built on top of it) so that the recipient of the
+transaction in x accepts it, and provides the attacker with some service or product.
+During this phase, attacker blocks that are created (blocks 15-17) vote y ≺ x, as the
+attacker is careful to have them reference only his secret chain, and never indirectly
+reference block x. Honest blocks created during this phase will typically vote x ≺
+y since y is hidden from them. Some small number of blocks (created before x
+propagated to the whole network – block 5 in this example) do not reference x, andso will vote according to the result of future votes.
+Phase III: Race to overtake. Once x was ϵ-accepted by the victim, the attacker
+wishes to publish his secret blocks in hopes of causing his conﬂicting transaction in
+y to precede x. In this case, the transaction in x will be considered rejected, and the
+payment will be canceled (leaving the attacker with an item he did not pay for). He
+publishes his secret chain (which from this point on is referenced by honest nodes),
+and continues to build upon it. Blocks that he builds, again do not reference x, and
+so they vote y ≺ x, supporting his goal. New honest nodes are for the ﬁrst time
+exposed to the conﬂicting transaction y, and thus vote according to the result in the
+sub-DAG in their past.
+Why the attack fails. First, notice that the attacker in the above example creates
+fewer blocks in each phase than the honest nodes. This will usually be the case if
+attackers have less computational power than all honest nodes. “Poisson bursts” in
+block creation by the attacker are possible, and this will allow him to overtake the
+network, but these are less likely if the attack lasts for a long period of time. The
+defender can control the length of phase II by waiting a long while before accepting
+the transaction, which decreases the probability of such bursts. If phase II is long
+enough, x will have more votes in this period than y. Weak blocks in the past of x
+will then vote in favour of x, according to this majority. Such blocks that look at their
+future begin a cascade: each block further in the past adds a vote that agrees with the
+majority of future blocks and thus strengthens the decision. The greater the majority
+obtained in Phase II, the less likely it is that the attacker will be able to catch up from
+behind in Phase III. The attack therefore depends heavily on successfully swaying the
+votes of blocks that were created just before x (e.g., block 4).
+It is important to note that an attacker that creates more blocks in expectation
+than the honest network will succeed in carrying out this attack. The blocks voting
+y ≺ x would outnumber those who vote to the contrary. Hence the 50% threshold in
+Theorem 1.
+
+Figure 4 depicts an (unsuccessful) censorship attack. The attack is composed of a
+single main phase during which an attacker creates his own blocks, publishes them
+instantly, but also ignores (and does not reference) recent blocks created by the honest
+network. The ﬁgure depicts (in stage I on the left side) the current state of the
+blockchain (where all blocks are published at this point). An honest participant that
+then observes the network and wishes to tell if a transaction in block x is secure, can
+see a large number of blocks that do not reference x. These blocks are not guaranteed
+to vote in favour of x. An attacker may later insert a conﬂicting transaction y and add
+blocks atop it (this projected attack is depicted on the right-hand side of the ﬁgure).
+These may potentially sway previously created attacker blocks to vote against x.
+The main risk from the censorship attack is that merchants, upon seeing the
+attacker’s blocks, will consider transactions in block x not suﬃciently secure. This
+could potentially delay the acceptance of transactions forever. Our analysis of
+SPECTRE shows that even in this case the merchants accept transactions quickly
+
+Figure 4: An example of the voting procedure on DAG in which an unsuccessful
+censorship attack is depicted. The left side depicts the current state of the block
+DAG. The right-hand side depicts its likely future development. Blocks 12-16 do not
+add strong votes to x. Can they be convinced to vote for block y when it appears? Will
+they further sway other blocks in their past? The vote of each block in this projected
+future are depicted: Blocks 2-9 vote strongly for x as they see it in their past (but not
+y). Blocks 17-18 similarly vote strongly for y. Block 16 is indeed convinced to vote for
+y as more blocks in its future vote for y than for x. Blocks 1, 12-15 vote for x. They
+each see more votes in favour of x than votes in favour of y in their future. Blocks
+10-11 see more x ≺ y voters in their past when they make a recursive call.
+(and securely).
+
+Below we provide the model for this paper. The familiar reader will notice that we
+share most of the primitives and features of the Nakamoto consensus and Bitcoin,
+e.g., PoW, blocks of transactions, etc.
+Miners and network. The system is operated by nodes (also called miners),
+connected by a P2P network N . We denote by honest ⊂ N the set of nodes that
+always follow the protocol (in a manner that will become precise later). We assume
+that the honest nodes make up a connected component in the network graph, and that
+messages that they send are forwarded to their peers via gossip algorithms (networking
+attacks that disrupt or slow such connectivity were considered in Bitcoin before [9, 8]).
+Transactions. Users create, sign, and publish transactions. As several copies of the
+very same transaction may appear in the system, we denote by [tx] the equivalence
+class of tx, containing all of the diﬀerent copies of the same transactions. The
+consistency of a transaction tx is governed by two relations: First, the inputs of
+a transaction denoted inputs (tx) are the (equivalence classes of) transactions that
+must be accepted before tx can be accepted (these are essentially the transactionsthat have provided the money that is being spent in tx).
+Second, two transactions tx1 and tx2 that are not equivalent may be in conﬂict,
+i.e., they cannot be accepted by the system at the same time (this is if they are
+conﬂicting orders to move the same money to diﬀerent destinations). We denote by
+conf lict (tx1 ) the set of transactions that conﬂict transaction tx1 (this is a symmetric
+relation, and we assume that copies of tx1 do not mutually conﬂict).
+Blocks and the block DAG. We denote the creator of block b by node(b) and
+the time it was created by time(b). Every block obtains a unique id (in the form
+of the cryptographic hash of its header). The body of a block contains a subset
+of transactions (that were already created by time(b)), chosen freely by node(b).10
+The notation ZG (tx) stands for all blocks in G that contain tx. We slightly abuse
+notation and denote tx ∈ G where it should read ∃b : tx ∈ b ∈ G. The block size is
+limited by some constant B. The block header contains an ordered list of references
+to other blocks (that were already created by time(b)), by simply listing their ID (a
+cryptographic hash). As a result, blocks are formed in the structure of a DAG—a
+Directed Acyclic Graph whose edges correspond to the references between blocks (in
+contrast, the Nakamoto consensus utilizes a block chain with only one pointer to a
+single predecessor).
+A block DAG is typically denoted by G = (C, E), where the vertex-set C represents
+the blocks and the edge-set E represents the hash references. The DAG is essentially
+a representation of the causal order between block creation events. For any z ∈
+C, past (z, G) ⊂ C denotes the subset of blocks reachable from z, and similarly
+f uture (z, G) ⊂ C denotes the subset of blocks from which z is reachable (these are
+blocks that are provably created before after after z correspondingly). Note that an
+edge in the DAG points back in time, from the more recently created block to the one it
+extends. We denote by anticone (z, G) the set of blocks that the DAG does not directly
+ordered compared to z, that is: G \ (past (z, G) ∪ {z} ∪ f uture (z, G)). Additional
+notation includes: past (z, G) := past (z, G) ∪ {z}, antipast (z, G) := C \ past (z, G),
+and similarly for the future and anticone sets. To avoid cumbersome notation we
+will frequently abuse notation and write z ∈ G instead of z ∈ C. The notation |G|
+represents the number of blocks in C. The unique block genesis is the block created
+at the inception of the system, and every valid block must have it in its past set.
+An honest node v does not consider block b as valid (or as received by it) if
+it hasn’t received ﬁrst past (z, G). Moreover, no one can modify the contents of a
+block or of its header once it has been created (as these will invalidate the PoW, and
+the block’s hash). These two facts imply that the set past (b, G), in sharp contrast
+to f uture (z, G) and anticone (z, G), is fully determined by b and does not require
+specifying a “context” G. Accordingly, we will most of the time omit G and simply
+write past (b) (we may also write f uture (z), if the context is of no importance).
+Finally, for any DAG G we relate to a hypothetical block, which we denote
+virtual (G). This block satisﬁes past (virtual (G)) = G. While its role is merely
+methodological, the virtual block of G can also be thought of as representing the next
+10 To avoid cumbersome notation, we assume a valid block does not contain two conﬂicting
+transactions. In practice, the order between such two transaction can be decided by the order
+in which they appear in the block.block that an honest node whose current observed DAG is G attempts to create.
+Message broadcasting. Nodes are instructed to send to their network peers all
+blocks that they have created as well as blocks they have received from other peers.
+We denote by publication(b) the time at which some node had begun the transmission
+of b to some other honest node. We denote by receivedv (b) the time at which node
+v received b. We assume the existence of a constant D > 0 such that any message
+(of size ≤ B) transmitted by an honest node arrives after at most D seconds at
+nodes that possess together at least (1 − α) of the computational power, regardless
+of any manipulation of the attacker. Every time a user estimates the robustness
+of transactions in the ledger, SPECTRE’s ChkRobustAccept procedure requires he
+speciﬁes an upper bound on the recent D in the network. In the analysis below we
+denote this estimate by d (see Footnote 12). Miners, however, do not require any
+knowledge of the value of D.
+The miner protocol. Denote by Gvt the DAG that node v ∈ N observes at time
+t. The requirement from a given node v to broadcast all blocks upon receiving or
+creating them, is given formally as: ∀u ∈ N : Gut+D ⊇ Gvt . The requirement that v
+list in its new block all leaf-blocks of its current DAG is given formally as: ∀b with
+v = node(b): past (b) = Gvtime(b) . To avoid redundancy, we additionally require that
+the list of pointers in b’s header will include only leaf-blocks of past (b). The set
+honest is deﬁned formally by all nodes that at any time satisfy these requirements,
+and the set attacker consists of the rest of the nodes. We will occasionally abuse
+notation and use these sets to denote blocks created by these types of nodes (e.g.,
+b ∈ honest reads node(b) ∈ honest). The DAG Gpub
+is deﬁned by ∪u∈honest Gut , and
+t
+oracle
+u
+the DAG Gt
+is deﬁned by ∪u∈N Gt .
+Proof-of-work. In order to be considered valid, a block must contain a proof-of-work
+in the form of a valid nonce, as is used in Bitcoin. This nonce should have the property
+that it concatenates together with the block header into a string whose cryptographic
+hash is smaller than some predeﬁned constant TARGET . This task is assumed to
+be solvable only by brute force, hence requires considerable computational power.
+Ordinary machines perform countless hashes per second, and the probability that the
+next guess of a nonce would be valid follows a memoryless distribution. Accordingly,
+the block creation process is well-approximated by a Poisson distribution. We denote
+by λ the rate of block creation in the system, when all nodes in the network participate.
+In addition to d, ChkRobustAccept requires that the user specify α – the fraction
+of computational power controlled by the attacker. Formally, d should be the time it
+takes messages to propagate to honest nodes that control at least a fraction 1 − α of
+the total hashrate.11 The implication of the user’s beliefs regarding d and α is that
+the guarantees provided by our algorithms hold only if the parameters it provides as
+inputs are indeed upper bounds on their actual (unknown) values.12
+We stress, again, that the miners operate irrespective of any assumption on the
+network’s propagation delay, its total hashrate, or the hashrate of dishonest nodes.
+11 The remaining hash rate by more distant honest nodes is attributed to the attacker in this
+manner as a form of worst-case assumption.
+12 In fact, it is suﬃcient that the recent value of D ·λ is upper bounded by the user’s belief regarding
+this product. This parameter captures the average number of blocks created per unit of delay.
+Desired properties of a distributed ledger. The GetAccepted procedure takes
+as input a block DAG G and returns a consistent subset of the transactions contained
+within it.
+
+The SPECTRE Protocol (formal)
+
+We turn to describe the formal procedures of SPECTRE. In Section 2 we described
+informally the way SPECTRE pairwise orders blocks, and how this order is used to
+construct the subset of accepted transactions. We describe this construction formally
+in the ﬁrst subsection below, thereby implementing the GetAccepted procedure. In
+the second subsection we implement the ChkRobustAccept procedure, which measures
+how robustly is a given transaction accepted.
+
+The accepted set of transactions. We begin with a precise implementation of the
+pairwise ordering of blocks, described informally in Section 2.
+
+The accepted set of transactions. Algorithm 2 outputs a set of accepted
+transactions.
+It operates recursively, and should be initially called with
+GetAccepted(G, G) (we later denote this simply by GetAccepted(G)). In the
+algorithm, the notation ZG (tx) stands for all blocks in G that contain tx. Some
+complexity arises due to possible multiple copies of the same transactions, which
+requires dealing with equivalence classes of transactions (see Section 4).
+
+We now turn to analyze how robustly a given transaction can be considered accepted.
+Identifying the robustly-accepted-transaction set is done similarly to the construction
+of the accepted-transaction set, as outlined in Subsection 2.3: First, we analyze the
+robustness of the block ordering; then, we use this to verify that a given transaction
+is robustly accepted.
+Robustness of the block pairwise ordering. Algorithm 3 outputs an upper
+bound on the probability that an attacker will be able to reverse the relation
+x ≺ y. When the argument y is unspeciﬁed, the interpretation of the algorithm’s
+output is x’s robustness against an unseen block (withheld by an attacker or
+yet to be created). In the algorithm, gap (b, G) denotes the size of the set
+{z ∈ anticone (b, G) : votez,b (virtual (G)) ≥ 0}. The notation ⟨G, z, K⟩ will be
+explained in the paragraphs that follow.
+Explanations about the operation of Algorithm 3. In line 13 the algorithms
+Intuitively, the function fpre mine upper bounds the probability that the attacker
+has gained an advantage larger than l during the pre-mining phase (i.e., up until
+the creation of x). The function fpost mine upper bounds the probability that the
+attacker will ever be able to create enough blocks so as to reverse the relation x ≺ y.
+In essence, fpost mine is an adaptation of a formula from [17]. According to our version
+of the formula, if during the interval [time(x),
+t represents the current time)
+The combined expressions produce
+an upper bound on the success-probability of an attack.13
+The main challenge here is to correctly measure n. This is a diﬃcult task, as
+Algorithm 3 uses only structural information,14 and does not rely on measurements
+of blocks’ timings. Naı̈vely one would use n ≈ |f uture (x, G)| to upper bound blocks
+created after publication(x). However, there are two main diﬃculties:
+• The block x might have been created by a dishonest node and withheld by
+it. In this case, there might have passed a long time between its creation and
+its publication, which implies that |f uture (x, G)| alone may be well below n.
+To avoid underestimating n, we upper bound the number of honest blocks in
+anticone (x, G), by the variable j, and add it to our count (the addition is done
+inside fpost mine (nx , g, j, l, M )).
+The function fpre pub upper bounds the probability that we have underestimated
+j.
+• By publishing his attack blocks, the attacker can increase the size of
+f uture (x, G) and cause us to overestimate n. This in turn result in an upper
+bound on the success-probability of an attack that is not tight enough, which
+would allow an attacker with a large value of α to delay acceptance indeﬁnitely.
+Risk overcomes this problem, by recognizing attacker blocks and excluding them
+from the count of n. This is done as follows.
+Let G be a block DAG, b a block in G, and K a whole number. The DAG
+⟨G, b, K⟩ is obtained by creating a new chain z1 , ..., zK of K hypothetical blocks,
+connecting an edge from z1 to b and replacing every edge (z, b) ∈ G with
+(z, zK ) ∈ G. Essentially, this adds to the DAG K artiﬁcial voters which vote
+strongly x ≺ y, against any y ∈ antipast (x, G). In line 9, the algorithm checks
+whether gap (z, ⟨G, z, K⟩) = 0, i.e., whether there exists a block in anticone (z)
+13 The calculations we use are quite more involved, as will be detailed later on. In particular, the
+reason why we aggregate in g votes from f uture (x, G) alone – rather than votes from the entire DAG
+– will become clearer in Sections 8 and 10. For now, observe that counting all votes – including weak
+votes – is not meaningful, as weak voters might reverse their vote as future events unfold. Rather,
+it is useful to measure how robustly weak voters support x ≺ y, which is captured by our following
+procedure.
+Indeed, SPECTRE admits the following property: If we add k voters in favour
+of an honest block, for some small k, then no other block will precede it in the
+pairwise ordering (apart from its past set). This property is stated formally and
+proven in Lemma 28.
+The function fpost pub upper bounds the probability that we have
+underestimated the number of honest blocks in f uture (x, G).
+We refer the reader to Section 8 for further understanding of the operation of
+Risk.
+Robustness of transaction acceptance. The next step is to translate robustness
+of blocks (calculated by Risk) to robustness of transactions. This transition is
+implemented similarly to the transition from the (non-robust) ordering of blocks
+(Algorithm 1) to the (non-robust) accepted set of transactions (Algorithm 2).
+The main procedure in this layer is RiskT xAccept. It takes as input G and tx
+(and an additional argument) and returns an upper bound on the probability that
+some honest node will not ϵ-accept tx.
+We now describe the main procedure of the second layer, RiskT xAccept, which
+utilizes and translates the robustness of blocks into robustness of transactions. The
+main task of RiskT xAccept is to properly account and aggregate the error bounds
+that Risk induces. As can be easily recognized, RiskT xAccept and RiskT xReject
+are mirror images of each other. While RiskT xAccept upper bounds the probability
+that a given transaction will ever be removed from the accepted transaction subset,
+RiskT xReject upper bounds the probability that a given transaction will ever be
+included in this subset. This is particularly vital for the case where two conﬂicting
+transactions are related topologically, i.e., tx2 ∈ y and tx1 ∈ x ∈ f uture (y), but tx2
+is not in the accepted set (due to some previous conﬂict). In this case, although the
+block containing tx2 precedes that containing tx1 , we accept tx1 . It can be further
+ϵ-accepted if the rejection-status of tx2 is robust, as calculated by RiskT xReject.
+
+Building on these procedures, we now present the ϵ-accpetance policy of
+SPECTRE. The user should provide as input the entire DAG that it currently
+observes.
+We now present an alternative implementation of Risk, which requires that the user
+be online at the time when his block gains conﬁrmations. This assumption is highly
+reasonable for many practical scenarios, e.g., a cashier serving a continuous line of
+customers. The main beneﬁt of the online version is that it relies on a tighter analysis,
+and therefore accepts transactions slightly faster. We now conﬁne ourselves to the
+case where there is no visible double-spend (i.e., y = N U LL).
+The fact that the user is online can be utilized in two ways: First, any block that
+the user receives after receivedv (b) + 2 · d and does not belong to f uture (x) can be
+marked by him as an attacker block. Second, the user can estimate the number of
+hidden attacker blocks by measuring the time that passed since the creation of x.
+Below we describe the online version of Risk. The algorithm takes as input node
+v’s DAG and the block x to defend, and returns an upper bound on the probability
+pub
+that some block y ∈ Gpub
+will ever precede it.
+∞ \ Gt
+
+The deﬁnition of risk hidden appears in (45)-(46). In practice, as node v may
+pub
+have a partial view of Gpub
+∞ \ Gt , in order to use Algorithm 7 the user must wait
+additional d seconds and verify that conf lict (tx) ∩ Gvt+d = ∅, i.e., that the attacker
+did not publish a double-spend in the interval [t − d, t]. The correctness of the online
+policy modiﬁcation is proven in Corollary 26.
+
+6
+
+Simulation results
+
+We implemented the SPECTRE protocol in Python along with an event-driven
+simulator of network dynamics. For each experiment we generated an Erdős-Rényi
+random network topology with 20 nodes. Each node forms 5 outgoing links, in
+expectation. The delay on each link was unifromly distributed and later scaled linearly
+so that the diameter of the graph is d (for the given d). Every point represents the
+average outcome over at least 500 experiments.
+The main beneﬁt of SPECTRE is fast transaction conﬁrmation. In order to
+measure the waiting times in SPECTRE, we utilized the online acceptance policy
+derived by Algorithm 7. Accordingly, we stress that the merchant needs to wait
+additional d seconds in order to verify that no double-spend has been released in the
+past d seconds, as explained at the end of Section 5.
+How does the delay diameter aﬀect acceptance times? Given that block
+creation rate is high, most of the waiting time for acceptance is dominated by the block
+propagation delay. Fig. 5 depicts the transaction acceptance times of SPECTRE, for
+various values of the delay diameter d, and for diﬀerent security thresholds ϵ. Note
+that, unlike the Nakamoto consensus, d aﬀects the acceptance time of transactions
+but not their security.
+
+Figure 5: The average time for ChkRobustAccept to return ACCEPT, assuming
+there’s no visible double-spending, for λ = 10 blocks per second and α = 0.25.
+How does the block creation rate aﬀect acceptance times? Fig. 6 depicts
+the acceptance times for various values of the block creation rate λ, under a constant
+delay d = 5 seconds. The graph reaﬃrms the role of λ in our asymptotic bound:
+accelerating the block creation process allows for faster acceptance times. For
+comparison, Bitcoin’s block creation rate of 1/600 implies waiting times that are
+orders of magnitudes higher (not plotted).
+
+Figure 6: The average time for ChkRobustAccept to return ACCEPT, assuming
+there’s no visible double-spending, for d = 5 seconds and α = 0.25.
+Can an attacker delay acceptance? We now turn to demonstrate the eﬀect
+of censorship attacks in which some dishonest nodes publish blocks that do not
+reference other miners’ blocks. Recall that the Weak Liveness property of SPECTRE
+(Proposition 5) guarantees fast acceptance of transactions that are not visibly
+double-spent–even in the presence of a censorship attack. However, such an attack
+still causes some delay in transaction acceptance, but this delay is minor for small
+attackers. In Fig. 7 we quantify this eﬀect, by comparing the acceptance times in
+“peace days” to those under an active censorship attack. The parameters here are
+d = 5 seconds, λ = 10 blocks per second, and ϵ = 0.01. The results display a modest
+eﬀect of the attack, and they show that in order to delay transaction acceptance
+by more than 5 to 10 seconds an attacker must possess a signiﬁcant share of the
+computational power in the network.
+
+
+Figure 7: The average time for ChkRobustAccept to return ACCEPT, assuming
+there’s no visible double-spending, for d = 5 seconds, λ = 10 blocks per second, and
+ϵ = 0.01, in the presence and in the absence of a censorship attack.
+How does ϵ decrease for various sizes of the attacker? Once an honest
+node ϵ-accepts a transaction, there’s still a small risk (ϵ) that it would eventually
+be rejected. We show that the probability of this event vanishes quickly, even for an
+extremely capable attacker (e.g., with α = 0.4 of the hashrate). This is illustrated in
+Fig. 8, assuming d = 5 seconds and λ = 10 blocks per second (notice that the y-axis
+is in log scale).
+How tight is our security analysis? The analysis on which Algorithm 3 relies
+makes several worst-case assumptions in order to bound the probability of a successful
+attack, e.g., that the attacker can broadcast blocks to and receive blocks from all nodes
+without any delay (see Section 10, mainly Lemmas 12 and 19). Accordingly, the
+analysis is not tight, and in reality attacks are in fact less likely to succeed. In Fig. 9,
+we depict the comparison between the analytical bound and two diﬀerent empirical
+simulations. In these simulations we explicitly generate blocks for the attacker and
+simulate the optimal double-spending attack. We repeat the experiment 10,000 times
+for each point in the graph, and measure the empirical success rate. The simulations
+assume two types of attackers: a worst-case attacker that is able to transmit and
+receive blocks with no delays, and a more realistic attacker that is connected to other
+nodes with typical delays. We compared the fraction of successful attacks under these
+setups to the analytical risk calculated by SPECTRE’s policy (Algorithm 7).
+The results show that the risk considered by SPECTRE’s ChkRobustAccept
+indeed upper bounds the actual risk, and that transactions are even safer than we
+guarantee formally.
+
+
+Figure 8: The probability of a successful double-spending attack, as a function of the
+waiting time before acceptance, under d = 5 seconds and λ = 10 blocks per second, for
+α = 0.1, 0.25, and 0.4. The probability here is the result of the calculation performed
+by Algorithm 3.
+
+Figure 9: The analytical vs. empirical probabilities of a successful double-spending
+attack, as a function of the waiting time before acceptance, under d = 5 seconds,
+λ = 10, and α = 0.25.
+
+Minting. In SPECTRE, any block whose target meets the required value TARGET
+– as will be deﬁned below – receives the same minting reward. If its target is higher
+than TARGET (i.e., it is solved with an easier diﬃculty) by a factor of (1 + δ) at
+most, then its reward is reduced by the same factor. The parameter δ represents the
+protocol’s tolerance to blocks mined with an outdated diﬃculty. Thus, if for instance
+δ is chosen to equal 2, then blocks with a target value of 2 · TARGET or 3 · TARGET
+are valid, and their minting rewards are reduced by a factor of 2 or 3, respectively;
+blocks with a target higher than 3 · TARGET are invalid and discarded. We now
+explain how TARGET is deﬁned and readjusted.
+Retargeting. Similarly to Bitcoin and other PoW-based systems, the diﬃculty of
+block creation, represented by TARGET (Section 4), must be occasionally adapted.
+Varying network conditions, and changes in the amount of computational resources
+invested in the system, require we limit the number of blocks created per second, to
+avoid network congestion. In Bitcoin this is done as follows: Every 2016 blocks, the
+next block – which we call the reference block – is mined according to an adjusted
+diﬃculty. The new diﬃculty is obtained by taking the time that elapsed since the
+previous reference block (using the timestamps written inside each block) and plugging
+it into the retargeting formula. The output of this formula is the new value of
+TARGET that the new reference block should be mined with.
+We adapt this scheme to SPECTRE: Let xn−1 be the previous reference block.
+Every new block xn that has the property that past (xn ) ∩ f uture (xn−1 ) = 2016, is
+a candidate to become the new reference block. In case additional candidates exist, we
+choose the one with the minimal dist gap with some arbitrary tie-breaking (recall that
+dist gap(b, G) is the minimal k such that adding k votes in favour of b makes its gap
+equal zero, i.e., gap (b, ⟨G, b, k⟩) = 0). Thus, for xn satisfying the above property, one
+and only block from anticone (xn ) would be chosen as the reference block succeeding
+xn−1 . In particular, as explained in Section 3, an attacker block that was withheld
+for a while will have a large dist gap and will not be eligible as a reference block.
+Furthermore, an attacker block that was mined before xn−1 will not aﬀect the next
+retargeting, as it cannot belong to f uture (xn−1 ).
+The new diﬃculty, with which the new reference block should be mined, is given
+again through the formula that uses the time that elapsed between xn−1 and xn to
+update TARGET . The formula should aim for a predeﬁned λ for which nodes
+are believed to have suﬃcient bandwidth, e.g., 1 MB per second. This diﬃculty
+dictates the diﬃculty for every block in antipast (xn ) \ anticone (xn+1 ), where xn+1
+is the next reference block. Every block in this set should be mined according to the
+same diﬃculty as xn .
+If block b ∈ antipast (xn ) \ anticone (xn+1 ) was solved with an easier diﬃculty
+than that dictated by the reference block xn , then b is still considered valid, provided
+that its outdated target is at most (1 + δ) of the target of xn (i.e., a diﬃculty easier by
+at most (1 + δ)). The parameter δ is the protocol’s tolerance threshold. The minting
+reward of b is reduced by the corresponding factor, as explained above. Blocks whose
+target exceeds the required one by a factor higher of (1+δ) are ignored and discarded.
+Block headers. In order to incorporate all blocks into the DAG, every block embeds
+in its header pointers to the hash of previous blocks. No redundancies are permitted,
+hence only leaf-blocks of past (b) should be pointed at by the header of b. The
+implication of this is that a block’s header is of size ≈ 50 + d · λ · 32 Byte. Therefore,there is a limit to the extent at which block size could be reduced and block creation
+rates increased – at extremely high rates, the overhead of the block header becomes
+signiﬁcant relative to the number of included transactions. We note, additionally,
+that in case the current observable DAG has too many leaves (whether by a rare
+burst in block creations or by an attacker releasing many outdated blocks), the next
+block creator can cap the number of leaf-blocks it points at. Blocks left out by this
+block will later integrate into the DAG, as future blocks will have available space in
+their headers and will be able to point at these blocks and include them.
+Eﬃcient implementation. Our current implementation of SPECTRE uses naı̈ve
+calculations which are usually ineﬃcient, speciﬁcally, cascading the votes all the way
+to the genesis block. Several eﬃcient implementations are possible. Designing such
+an eﬃcient implementation requires attention to CPU attacks, in which the attacker
+exposes peculiar structures of outdated blocks in order to cause other nodes to perform
+extensive computation. It can be shown that these attacks are highly costly to the
+attacker. We leave the speciﬁcation of an eﬃcient implementation, and a proof of the
+cost of CPU attacks, to future work.
+Transaction fees. The body of a transaction speciﬁes the amount transferred from
+the payer to the payee. The transaction-fee speciﬁes the payment from the payer
+to the miner whose block contains the transaction. We regard these two parts as
+separate transactions, in the following sense. Assume that tx ∈ x, and denote by
+f ee(tx, x) the transaction representing the fee-payment of tx to the creator of block
+x. Assume now that two copies of tx appear in two diﬀerent blocks x, y. Then the
+body is considered simply as a copy of the same transaction (recall the notation [tx]
+from Section 4), whereas the transactions f ee(tx, x) and f ee(tx, y) are considered a
+conﬂict, i.e., a double-spend. Accordingly, as in the ordinary scheme of SPECTRE,
+the fee is granted to (the creator of) block x iﬀ tx ∈ GetAccepted(G) and x defeats
+all other blocks that contain tx as well.
+This rule can potentially harm miners, in the special case when the relation
+between x and y does not become robust (SPECTRE does not guarantee robustness
+if these blocks were published in time proximity). We address this problem
+by introducing settlement transactions. A settlement transaction is a voluntary
+transaction which both the creators of x and y sign after they observe that their
+blocks conﬂict. We denote it settlement(x, y). The interpretation of settlement(x, y)
+is that the fees from all of (or part of, if the parties involved so choose) the transactions
+in x ∩ y should be divided evenly between blocks x and y. settlement(x, y) essentially
+overrides f ee(tx, x) and f ee(tx, y). When settlement(x, y) appears in some block
+z in the DAG G, it is considered accepted (i.e., a member of GetAccepted(G))
+iﬀ x, y ∈ past (z) and z precedes every block that contains a transaction spending
+f ee(tx, x) or f ee(tx, y). Therefore, once one party has spent its fee before it belonged
+to it robustly, it won’t be able to settle later (w.h.p.). Miners are therefore advised
+to wait for their transaction-fee rewards to become robust, or to initiate a settlement,
+before spending these rewards.
+Note that this scheme can be used to settle conﬂicts between blocks of multiple
+parties simultaneously. Furthermore, the settlement scheme need not be conﬁned to
+conﬂicts regarding fees, and can be applied to any double-spending.
+
+Outline of the Proof
+
+The proof of SPECTRE’s correctness is involved and occasionally technical. In this
+section we outline the structure of the proof and state the propositions and lemmas
+we use. These are proved formally in Section 10.
+
+
+We now take apart Theorem 1 and write a separate proposition for each of the security
+properties Safety, Progress, and Weak Liveness, and for Consistency. By deﬁnition,
+proving Theorem 1 entails proving the following propositions:
+Proposition 2 (Consistency). For any DAG G,
+1. if tx ∈ GetAccepted(G) and tx2 ∈ inputs (tx) then tx2 ∈ GetAccepted(G).
+2. if tx ∈ GetAccepted(G) and tx2 ∈ conf lict (tx) then tx2 ∈
+/ GetAccepted(G).
+Proposition 3 (Safety). For any v ∈ honest, if ChkRobustAccept (tx, ϵ, Gvt ) =
+ACCEP T then, with probability of (1−ϵ) at least, there exists a τ of finite expectation
+such that ∀u ∈ honest, ∀s ≥ τ : ChkRobustAccept (tx, ϵ, Gus ) = ACCEP T .
+Proposition 4 (Progress). For any v ∈ honest, if ChkRobustAccept (tx, ϵ, Gvt ) =
+ACCEP T then, with probability of (1 − ϵ) at least, for any ϵ′ < ϵ there exists a ϕ of
+finite expectation such that ∀s ≥ ϕ : ChkRobustAccept (tx, ϵ, Gus ) = ACCEP T .
+Proposition 5 (Weak Liveness). Let t be the current time, and assume that tx ∈
+x ∈ Gpub
+t . Let ψ be the first time at which an honest node ϵ-accepts tx. Then,
+conditioned on the event where conf lict (tx) ∩ Gpub
+= ∅ and on the event where
+ψ
+for all tx2 ∈ inputs (tx), tx2 remains ϵ-accepted forever (by some honest node), the
+expectation of ψ is finite.
+
+These proposition assume an arbitrary behaviour of the attacker. To each of the
+last three propositions we write a matching one which regards robustness of blocks
+(rather than that of transactions).
+Proposition 6 (Safety (blocks)). For any v ∈ honest, if Risk (x, y, Gvt ) < ϵ then,
+with probability of (1 − ϵ) at least, there exists a τ of finite expectation such that
+∀u ∈ honest, ∀s ≥ τ : Risk (x, y, Gus ) < ϵ.
+Proposition 7 (Progress (blocks)). For any v ∈ honest, if Risk (x, y, Gvt ) < ϵ then,
+with probability of (1 − ϵ) at least, for any ϵ′ < ϵ there exists a ϕ of finite expectation
+such that ∀s ≥ ϕ : Risk (x, y, Gus ) < ϵ.
+Proposition 8 (Weak Liveness (blocks)). Let t be the current time, and assume that
+v
+x ∈ Gpub
+t . Let ψ be the first time s at which for some honest node v: Risk (x, y, Gs ) <
+pub
+ϵ. Then, conditioned on the event where y ∈
+/ Gψ , the expectation of ψ is finite.
+
+The two following lemmas are immediate from lines 7-14 of Algorithm 1.
+Lemma 9. Topological relations are unanimously agreed: If G = (C, E) is a block
+DAG, and (y, x) ∈ E, then ∀z ∈ G : votex,y (z, G) = −1.
+Lemma 10. A block’s vote regarding block(s) in its past depends only on its past,
+hence remains fixed forever: Let G1 and G2 be two block DAGs, and assume x, y, z ∈
+G1 ∩ G2 . If {x, y} ∩ past (z) ̸= ∅ then votex,y (z, G1 ) = votex,y (z, G2 ).
+Accordingly, as mentioned in Section 2, we say that z is a strong voter w.r.t the
+pair (x, y) if z ∈ f uture (x) ∪ f uture (y), and otherwise it is a weak voter.
+The following Lemma shows that the vote of the genesis coincides with the vote
+of the virtual block. Intuitively, the genesis votes according to the majority vote
+in the DAG excluding itself, and ampliﬁes this majority, which in turn dictates the
+virtual block’s vote.
+Lemma 11. genesis’s vote is the final vote: vote (virtual (G)) = vote (genesis, G).
+
+We turn to the proof of Proposition 6, namely, the claim that all nodes will forever
+agree on the (robustness of) the order x ≺ y, provided that it was suﬃciently robust
+in the DAG observed by some honest node. This is the main (and most involved)
+part of the proof. The rest of the propositions follow from it, and their proofs are
+rather self explanatory.
+In order to simplify the analysis, we need to make some worst case assumptions
+regarding the behaviour of the attacker. Lemma 19 proves that these are indeed worst
+case assumptions, namely, that they indeed represent the optimal attack. The vote
+of each block under our modiﬁcation is denoted p vote (), a notion which we describe
+formally in Subsection 10.3.
+In the next central lemma we show that, provided that the aggregate vote in
+f uture (x) is suﬃciently biased in favour of x ≺ y, the genesis block – hence the
+virtual block (by Lemma 11) – will vote x ≺ y. This proves that, roughly speaking,
+the vote of recent weak voters cascades through the DAG and convinces older weak
+blocks, forming thus the genesis’s vote. The way we prove this is by choosing a
+speciﬁc weak voter zlate (in case x is an honest block, zlate = x), and making sure
+that its vote is suﬃciently robust so as to guarantee that (i) it will not be reversed,
+and (ii) it will cascade all the way to the genesis. Consequently, a successful attack
+(namely, a reversal of x ≺ y in the DAG observed by some honest node) requires that
+the attacker add more blocks to f uture (zlate ) than the honest network adds (up to
+some additive term), in some time interval.
+The following lemma formalizes these observations. It uses some parameters (h,
+j, etc.) that only an oracle can have full knowledge of. We will later show how in
+reality a node can infer the robustness of block relations without having access to
+these parameters.
+
+An ordinary node does not typically know for sure the values of the parameters
+assumed in Lemma 12. The next corollary shows that the result of that lemma (and
+the one that follows) applies when replacing these parameters with proper bounds
+thereof. We will later discuss how a node can obtain such bounds.
+Corollary 14. 
+We adjust the above results to the case where some blocks in f uture (x, G) are
+known to belong to the attacker. Here we assume that this knowledge is granted to
+us by a hypothetical oracle. Later on, we will see how attacker blocks are recognized
+by Algorithm 3, w.h.p.
+Corollary 15. If in addition to the assumptions of Corollary 14 we assume that
+
+
+We denote the RHS of this inequality by fpost mine (nx , g, j, l, M ).
+So far, our analysis assumed that we are given some proper bounds over the
+parameters from Lemma 12. Lemmas 23, 28, and 30 show how to appropriately bound
+these parameters. For each of these parameters, a separate error function is deﬁned,
+which upper bounds the probability that it does not serve as a correct bound. These
+error functions deteriorate exponentially fast, by Lemmas 24, 29, and 31. Algorithm 3
+aggregates these error functions into the total risk that it outputs.
+The parameters are:
+• l – the pre-mining lead that the attacker obtained before the publication of x,
+with error function fpre mine (l(Gvt )), calculated numerically in Subsection 10.3.1
+• nx – the number of honest blocks in f uture (x, Gvt ), with error function
+fpost pub (|f uture (x, Gvt )|), deﬁned in Corollary 28 (Inequality (52)), and
+• j – the number of honest blocks created after time(x), with error function
+fpre pub (nj (Gvt )), deﬁned in Lemma 30 (Inequality (54)).
+While we have previously shown that nx properly counts all honest blocks, we
+now show that it does successfully exclude almost all attack blocks. Without such a
+guarantee, weaker attackers would have been able to publish their blocks and delay
+acceptance indeﬁnitely.
+all
+
+
+The above analysis (particularly Lemma 12) has upper bounded the probability
+that the attacker would be able to reverse the relation x ≺ y. We now show that,
+conditioned on the order remaining x ≺ y, the error function fpost mine (which upper
+bounds the probability of this order ever reversing) vanishes as well, which in turn
+implies that their order would be considered robust by all honest nodes.
+
+We have thus shown that if the output of Algorithm 3, as run by some honest node,
+was smaller than ϵ then with probability of at least 1 − ϵ, any honest node running
+Algorithm 3 (after some time) will get a result smaller than ϵ.15 This completes the
+proof of Safety w.r.t. blocks.
+The same technique used in the proof of Lemma 17 is used to prove the Progress
+property (Proposition 7); indeed, in the proof we see that the term that aggregates all
+the error functions vanishes as time develops, w.h.p., in the perspective of all honest
+nodes. In particular, for v (the node that originally ϵ-accepted the transaction), it
+becomes smaller than ϵ′ w.h.p. A similar usage of this argument is used to prove
+Weak Liveness (Proposition 8); indeed, in the latter we only need to regard the case
+where y = N U LL. In this case, all published blocks are strong voters in favour of x,
+and so we can guarantee the convergence of the error functions without going through
+Lemma 12 and the analysis that follows.
+The proofs of the Safety, Weak Liveness, and Progress w.r.t. transactions rely
+directly on their block-variants. We refer the reader to Section 10 to ﬁll in these gaps.
+
+
+In this work we presented SPECTRE, a new protocol for fast and scalable distributed
+ledgers. We have shown SPECTRE’s ability to process a high rate of block creation,
+as well as to handle large blocks securely. Our results demonstrate that SPECTRE
+can achieve incredibly low conﬁrmation times, especially compared to the Nakamoto
+consensus. Further work to improve and tighten the acceptance policy we derived can
+lower conﬁrmation times further.
+SPECTRE thus shows the feasibility of creating open, permissionless distributed
+ledgers that will work successfully at large scale. SPECTRE achieves these properties
+due to the fact that it is willing to delay double-spent transactions (possibly forever).
+This fact also makes SPECTRE less suitable for systems like Ethereum, where a total
+order over transactions is required (still, SPECTRE will work, but will provide a lower
+throughput for transactions that must be ordered).
+Additional analysis on the protocol is required from the perspective of incentives.
+While we suggested to reward all miners of blocks with block reward, which implies
+selﬁsh miners would not be able to reduce the block rewards of others, it still remains
+to be seen how well SPECTRE performs when miners try to selﬁshly maximize
+transaction rewards, even at the expense of others (some work in this direction was
+done in [13]).
+
+In order to simplify the analysis, we need to make some worst case assumptions
+regarding the behaviour of the attacker, namely, that it publishes all of its blocks
+immediately after time t (which represents the time at which some honest node
+accepted the transaction), and that before time(x) its blocks point at all available
+blocks. These assumptions essentially modify the DAG (in case the attacker does
+not carry out the optimal attack scheme). We need to prove that these modiﬁcations
+indeed represent the worst case. To this end we use the notion of a pseudo-vote.
+A pseudo-vote begins by ﬁrst explicitly deﬁning and fixing the pseudo-vote of some
+blocks, which we call the initial pseudo-voters. Then we deﬁne the pseudo-vote of
+the rest of the blocks as in Algorithm 1. In more detail, we replace in Algorithm 1
+the vote () notation by the p vote () notation, and whenever the algorithm references
+p vote (c) of an initial pseudo-voter c, we refer to its ﬁxed predetermined value. Thus,
+the pseudo-vote of an initial pseudo-voter might change the pseudo-vote of other
+blocks.
+
+Proof. Part I: Assume by way of negation that votex,y (virtual (G) , G) = +1 yet
+nonetheless p votex,y (virtual (G) , G′ ) = −1 (observe that this is the only case in
+which the claim can fail, by deﬁnition, as a virtual vote cannot take the value of 0).
+Let b be a block in f uture (x, G) ∪ {virtual (G)} such that p votex,y (b, G′ ) = −1.
+b cannot belong to G \ Gvt or to G ∩ bef ore(time(x)) ∩ attacker, because blocks
+in these sets have a pseudo-vote of +1. Let z be a block in past (b, G). Since b ∈
+
+The last equality follows from f uture (z, past (b, G)) ⊆ f uture (z, past (b, G′ )), which
+holds because E ⊆ E ′ . The inequality in (7) holds because if some z ′ has been added
+(by transforming G into G′ ) to the future of some honest block, then z ′ must belong
+to the attacker, hence p votex,y (z ′ , past (b, G′ )) = +1 > 0.
+Part IV: Consequently, since z is a weak voter with respect to (x, y), (6)-(9)
+imply that votex,y (z, past (b, G)) ≤ p votex,y (z, past (b, G′ )), which contradicts the
+choice of z.
+
+
+If the attacker is creating blocks in secret, it needs to decide upon a strategy
+regarding which blocks should its new block point at, for every new block it creates.
+Consider the following strategy: The attacker’s new block b, created at time(b),
+points at Goracle time(b) (except itself, of course). While we have already argued why this is
+a worst case assumption (Lemma
+is here
+
+Proof. First, observe that the variable g used in Corollary 21 could be replaced (here
+and in that corollary) with minx′ ∈anticoneh (x,Gvt ) |f uture (x′ , Gvt )|, because all blocks
+in f uture (x, Gvt ) vote in favour of x, by the assumption on y. The value assigned to
+g, in line 5 of Algorithm 7, is upper bounded by minx′ ∈anticone(x,Gx ) |f uture (x′ , Gx )|,
+because Gx includes all honest blocks in Gvt . Next, T is assigned the value time now−
+receivedv (x) = t − receivedv (x), in line 3. Observe that m is distributed according to
+Poiss (m, (t − time(x)) · α · λ).23 As time(x) ≥ receivedv (x) + d, we can upper bound
+this by a Poisson variable with parameter (T + d) · α · λ. We then adjust the result of
+the second term in Corollary 25; we combine the distrbituions over h and m (where
+h is taken from (42), to conclude that.

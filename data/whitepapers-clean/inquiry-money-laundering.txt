@@ -1,0 +1,401 @@
+The recent crackdown on Liberty Reserve, supposedly the numbers and thus open one or many Bitcoin accounts.
+Although largest case of cross-border money laundering in history [1], has the relation between Bitcoin accounts and civil identities put a spotlight on other digital currencies as potential vehicles of their owners is a priori unknown, Bitcoin transactions for money laundering.
+This includes Bitcoin, a decentralized are not anonymous.
+A simple abstraction for Bitcoin is to cryptographic currency which emerged over the past three think of it as a public distributed ledger which records all years and has been regarded with suspicion for its allegedly transactions between valid Bitcoin accounts.
+This information anonymous and irreversible transactions [2], its popularity in is securely stored in a constantly growing data structure called underground markets [3], and its association with several cases block chain and remains visible for everyone, forever.
+Bitcoin of investment fraud [4], [5].
+As Bitcoin is not controlled by any attracted media attention for allegedly being an anonymous central entity, the core system defies regulation and enforcement digital currency (e.
+g., [7]), especially when organizations like efforts, which adds to the worries of financial regulators and WikiLeaks described it as a “secure and anonymous digital cybercrime fighters.
+Indeed, Bitcoin is very different from many currency”, that “cannot be easily traced back to you” [8].
+However, because all transactions are recorded in the public Liberty Reserve was essentially a financial intermediary ledger, the anonymity of a user relies on the pseudonym (i.
+e., offering online banking to international customers from its base the account number or public key) not being associated with in Costa Rica (though without having a bank license there), and his or her true identity.
+Meanwhile also the Bitcoin community interfacing with various payment systems.
+Customer accounts officially acknowledges that “the current implementation is were denominated in dollar, euro, or gold, all relabeled to not very anonymous” [9].
+The lesson for cybercrime fighters appear like new currencies by adding the prefix “Liberty”.
+is: AML in Bitcoin has to deal with imperfect knowledge of What made it susceptible to money laundering was the – identities, but may exploit perfect knowledge of all transactions.
+intentionally, some say – lax enforcement of the Know- This calls for new strategies.
+Abstract—We provide a first systematic account of opportunities and limitations of anti-money laundering (AML) in Bitcoin, a decentralized cryptographic currency proliferating on the Internet.
+Our starting point is the observation that Bitcoin attracts criminal activity as many say it is an anonymous transaction system.
+While this claim does not stand up to scrutiny, several services offering increased transaction anonymization have emerged in the Bitcoin ecosystem – such as Bitcoin Fog, BitLaundry, and the Send Shared functionality of Blockchain.info.
+Some of these services routinely handle the equivalent of 6-digit dollar amounts.
+In a series of experiments, we use reverse-engineering methods to understand the mode of operation and try to trace anonymized transactions back to our probe accounts.
+While Bitcoin Fog and Blockchain.info successfully anonymize our test transactions, we can link the input and output transactions of BitLaundry.
+Against the backdrop of these findings, it appears unlikely that a Know-Your-Customer principle can be enforced in the Bitcoin system.
+Hence, we sketch alternative AML strategies accounting for imperfect knowledge of true identities but exploiting public information in the transaction graph, and discuss the implications for Bitcoin as a decentralized currency.In principle, if KYC could be enforced at the edges of encryption scheme.
+Knowledge of the corresponding private the Bitcoin system, that is where bitcoins are exchanged key allows account holders to create digital signatures, thereby for conventional currencies or products and services, then proving their eligibility to access that account.
+A core concept of the Bitcoin system is a transaction, useful it becomes possible to identify suspicious activities in the public transaction ledger and hold the perpetrators accountable to transfer money between accounts.
+Every transaction consists when and where they interact with the real world.
+Recent of a list of outputs, that are tuples of monetary amounts and initiatives towards better customer identification by the major public keys identifying the destination account; and a list of Bitcoin exchanges are encouraging signals to this end.
+Mt.Gox, inputs, which are references to outputs of previous transactions.
+a popular exchange, for instance, requires scans of national The semantics of a transaction is that the inputs completely identity documents for transactions involving conventional consume the referenced outputs (from previous transactions).
+However, the endeavor towards stronger Inputs lower the balance of the sender’s account(s), whereas identities at the periphery of the Bitcoin system is thwarted outputs (of the current transaction) increase the balance of by intermediaries who offer services to anonymize the relation the receiver’s account(s).
+To ensure that only the owner can between senders and recipients of transactions within the withdraw from an account, any transaction is combined with Bitcoin system.
+These services are also known as Bitcoin mixes.
+digital signatures corresponding to the public keys referenced The term alludes to David Chaum’s [11] concept of mixes in the inputs.
+for anonymous communication systems (although they are The protocol stipulates that any output referenced by an input technically different, as we will explain below).
+Some of these is used up and cannot be referenced again.
+This prevents users services trade under indicative names, such as “BitLaundry.” from double-spending their money by referencing an output in Of course, other use-cases for Bitcoin mixes than money two different transactions.
+A difficulty in enforcing this rule laundering are conceivable.
+For example, donors may have is that Bitcoin is a distributed system.
+Hence, a recipient of a legitimate interest in financial privacy.
+They may use transaction transaction may not be aware that the sender has referenced a anonymizers to evade being observed by attackers monitoring particular output in another transaction before.
+incoming transactions to publicly known Bitcoin addresses of For this reason, Bitcoin maintains a (probabilistically) organizations who advocate, say, a political mission.
+In the consistent record of all transactions, the so-called block chain.
+context of this work, however, we focus on the threat of money Blocks are data structures encapsulating transactions as well laundering and options to track it down.
+as a reference to the previous block, thereby forming a chain.
+The purpose of this paper is to give a systematic account of Conflicts, such as forks (i.
+e., blocks referenced by two or more the available money laundering tools in the Bitcoin ecosystem, blocks), are resolved using a proof-of-work scheme.
+Blocks to understand their modes of operation, and to draw conclu- are considered valid only if all of their transactions are valid sions on the effectiveness of AML efforts in Bitcoin.
+More and if they come with a solution of a computational intensive specifically, we evaluate whether currently available Bitcoin problem parameterized by this block.
+While the solution is mixes can increase the anonymity of its users; and if so, at hard to find, its validity can easily be verified.
+We test three services and try to trace the A large number of so-called miners permanently try to anonymized transactions in the public ledger.
+We find that while find such solutions at the expense of computing power.
+The the service BitLaundry does not provide sufficient anonymity, difficulty of the problem regularly adapts such that all miners both Bitcoin Fog and Blockchain.info make it impossible for taken together find a solution on average every ten minutes.
+The us to find any direct connections in the transaction graph.
+finder of a solution receives a monetary reward that is payed The remainder of this paper is organized as follows.
+Sec- out in form of a new transaction that has no inputs: a coinbase tion II recalls essentials of the Bitcoin protocol with special transaction.
+This reward is halved every 210,000 blocks and emphasis on anonymization services and their implications amounts to 25 BTC at the time of writing.
+In addition to for the traceability of money flows.
+Section III documents this reward, the finder can also claim transaction fees for all our experimental approach and the selection of services under transactions he included in the block (by increasing the coinbase analysis.
+Section IV presents the results, Section V briefly transaction’s value).
+Whenever the combined monetary value reviews related work; and the final Section VI concludes with of all a transaction’s outputs is lower than that of its inputs, a critical discussion of our results, suggested regulatory options the difference determines the transaction fee.
+to aid AML, as well as their implications for Bitcoin as a whole.
+Any user of the Bitcoin system may maintain a local copy of the block chain and will resolve conflicts by believing in II.
+T RACEABILITY OF B ITCOIN T RANSACTIONS the longest chain.
+The rationale is that the longest chain must A.
+The Bitcoin Protocol have been created by the majority of all miners.
+Hence, no Bitcoin is a digital, distributed, cryptographic currency single attacker can gain control over the block chain unless he developed by an open source community.
+The idea behind manages to gain control over more computing power than all it was proposed in 2008 by an unknown author using the other miners taken together.
+In short, Bitcoin can be In the experiments conducted in this paper, we use the public described as a decentralized accounting system in which information in the Bitcoin block chain to explore anonymization accounts are associated with public keys of an asymmetric services.
+In particular, we will explore parts of the Bitcoin transaction graph.
+To illustrate these graphs, we use the notation Bob, as she transferred 3 bitcoins to it.
+The fact that outputs of Figure 1.
+A directed edge belonging to both Bob1 and Bob2 are referenced as inputs from one node to another denotes that an output of the source in the same transaction t3 could be interpreted as evidence transaction is referenced by an input of the target transaction that Bob1 and Bob2 belong to the same person.
+Hence, Alice (i.e., if bitcoins from the source transaction are spent in the can say with high certainty that also Bob2 is owned by Bob.
+Directed edges not having a target node Moreover, the fact that a transaction usually has two outputs – correspond to outputs not yet referenced by an input.
+Edges the actual output and the change – suggests that one of t3 ’s may be annotated with addresses and/or values if needed.
+outputs belongs to the same person who owns Bob1 and Bob2 .
+The example in Figure 1 should be read as follows.
+Alice As bitcoins from two addresses have been combined to finance sends 3 bitcoins to Bob using transaction tA .
+To do so, she a larger output of 4 bitcoins, chances are good that the small references an output with a value of 5 from an (unnamed) output of only 1 bitcoin is the change.
+Hence, Alice may previous transaction and creates two outputs of tA , one sending conclude that also Bob3 belongs to Bob.
+3 bitcoins to Bob, the other one returning 2 bitcoins to her.
+This simple example demonstrates that context information Returning bitcoins to oneself is common practice.
+The amount may be useful to reason about identities behind Bitcoin of bitcoins referenced by all inputs will usually not equal the addresses.
+More comprehensive attempts to identify users have amount one actually wants to send.
+As inputs may only be been undertaken in [12], [13].
+Hence, it is wrong to state that used once, a new output must be created to return the change.
+Bitcoin is an anonymous digital currency.
+As a consequence, Continuing the description of Figure 1, Bob now wants to services offering more anonymous transactions are proliferating send 4 bitcoins to Charlie.
+Instead of one, he actually owns in the Bitcoin ecosystem.
+They are often referred to as mixing three different accounts and received 3 bitcoins from Alice to services.
+In order to send the 4 bitcoins to Charlie, he The idea of such a service can be sketched as follows (cf.
+needs to create a transaction tC with two inputs.
+One references the output of tA , in which Bob1 received 3 bitcoins, the other Figure 2).
+Suppose Alice, Bob, and Charlie all have 1 bitcoin at one references an output of another transaction tB , in which addresses Alice1 , Bob1 , and Charlie1 .
+They all fear they have Bob2 received 2 bitcoins.
+Together, the referenced outputs sum been identified and prefer to use a mixing service.
+Each of them up to 5, allowing Bob to send 4 of them to Charlie and the generates a new address (Alice2 , Bob2 , and Charlie2 ), sends change back to him (by creating corresponding outputs in tC ).
+the bitcoin to an address of the service, and asks the service These outputs are not referenced yet.
+Hence, it can be seen to send a bitcoin to their respective new address.
+The service that Bob owns at least 1 bitcoin, and Charlie owns at least 4.
+has now 3 bitcoins at three addresses: Mix1 , Mix2 , and Mix3 .
+Alice, Bob, and Charlie do not care which address the mixing B.
+Transaction Anonymization Services service uses to send a bitcoin back.
+Hence, the service may Although Figure 1 may suggest that Bitcoin addresses choose them at random.
+As long as it keeps this information can be identified with actual individuals, it is in general private, no external observer can know the persons behind not so easy.
+Any user may create as many addresses as he addresses after mixing, even if the observer knew them before wants.
+Thus, situations such as Bob using three addresses are mixing.
+Given a particular person, e.
+g., Alice, all addresses pervasive.
+Without further information, nobody can link the Alice2 , Bob2 , and Charlie2 appear equally likely.
+three addresses Bob1 , Bob2 , and Bob3 to his real identity.
+At Currently, a number of different mixing services for bitcoins first sight, they may even belong to many instead of one person.
+As they disguise the origin of bitcoins, they can be Identifying the people behind addresses can nevertheless be perceived as money laundering tools.
+such as “BitLaundry” indicate the application scenarios the Consider again the example of Figure 1 and assume Alice is service operators have in mind.
+The primary motivation for a Bitcoin exchange requiring its business partners to identify providing these services is making profit.
+Hence, she knows that address Bob1 belongs to back to their users only what has been payed in minus a fee.
+This fee varies between the services and may consist of a fixed of an anonymization service, possibly by using multiple fake and a variable part.
+While such a sybil attack would be costly, it In terms of the anonymity literature, and with respect to the could give other users a false sense of anonymity.
+terminology put forth by Pfitzmann and Köhntopp [14], the Mixes for messages must ensure that the timing of incoming anonymity these services try to provide can be characterized and outgoing messages does not reveal their relationships.
+If the as relationship anonymity.
+The goal is to make sender and mixing service would send all messages to their recipients in recipient of mixed bitcoins unlinkable.
+Unlinkability means that the same order the senders have provided them to the mix, the all pairs of senders and recipients must as likely be related after relationships between senders and recipients would be obvious.
+the attacker makes his observations than they were before the One way of avoiding this is to delay message forwarding by observation.
+The mixing service must not leak any information random amounts of time.
+Transaction anonymization services about their relatedness.
+will have to provide similar features to ensure that the timing Note that this terminology is borrowed from the literature of incoming and outgoing transactions provides as little on mix networks designed for anonymous communication.
+information as possible about relations between transactions.
+Consequently, the items of interest in this literature are mesYet another threat to anonymity is a transaction’s value.
+These services may provide relationship Similar to the unique size of a message in a communication anonymity, but may also offer stronger forms of anonymity.
+network, the transaction value in a transaction system like Sender anonymity refers to a service rendering attackers Bitcoin could serve as a fingerprint, revealing the origin of a unable to link senders to their messages.
+For example, if an attacker monitors the addresses anonymity prevents the identification of a message’s recipient.
+of a user and knows how many bitcoins he transferred into For instance, the latter can be achieved by broadcasting a the service, he could try to search for an output transaction message to many parties.
+The message must be prepared in of equal size (minus the predictable fee) in the subsequent such a way that only the intended recipient recognizes that the blocks.
+This is why many services advise their users not to message is for him, e.
+pay out the full amount of bitcoins they previously paid in Clearly, an anonymization service for Bitcoin transaction [17].
+Furthermore, users are encouraged to split the outgoing cannot provide these stronger notions of anonymity.
+A transac- transaction into multiple smaller transactions and to spread tion is valid only if it is documented correctly in the public them over a period of time, making it harder for an attacker block chain, including addresses of both senders and recipients.
+Transactions are required to send bitcoins in and out of the Another weakness of these services could be the communimixing service.
+Hence, there is no hope of completely hiding cation between users and the service.
+A user must provide the a relation, e.
+g., between a sender and the corresponding service with all information regarding the bitcoins he wants to transaction he uses to send bitcoins to a mixing service.
+pay in and out of the service.
+This information includes the addresses.
+Hence, if the traffic can be intercepted, an attacker C.
+Attacking Transaction Anonymizers would get all information he needs.
+In analogy to mixes for communication networks (e.
+g., [15]), In this paper, we focus only on attacks that can be done exa number of attack scenarios on transaction anonymization post, i.
+e., attacks based only on publicly available information services for the Bitcoin system are conceivable.
+First and from the Bitcoin block chain.
+That means, we do not consider foremost, an attacker could take over the service or may any form of attacks involving taking over mixing services, even set it up.
+As the service has to keep logs for a certain monitoring their communication infrastructure, etc.
+time span in order to route the bitcoins through the system, full knowledge about all relationships between senders and D.
+Measuring Anonymity recipients could be acquired.
+A remedy is to use not just one While the literature offers a number of approaches to quantify but multiple independent services in a row.
+In this scenario, a the anonymity a mixing service can provide (e.
+g., [18], [19]), user does not have to trust a single service.
+A single trustworthy their adaptation for transaction systems like Bitcoin leave many service among all services used would be sufficient to provide open research questions.
+We are not aware of any rigorous anonymity.
+Unfortunately, this solution comes at higher cost model to quantify the degree of anonymity Bitcoin mixes and risk as each service will charge a fee and the availability provide.
+of the chain depends on its weakest link.
+One tool that can help to evaluate the anonymity is the Another requirement for anonymization is a sufficient taint analysis1 of Blockchain.info.
+As previously mentioned, number of independent users.
+Anonymity means that a user is a Bitcoin mix can swap bitcoins between different users anonymous with respect to a set of users, the anonymity set and thereby remove the link between the identity and the [14].
+That is, the user is not identifiable and could be any of transactions.
+By following the transaction graph, the taint the users in the anonymity set.
+If this set is small, the degree analysis tool analyzes which bitcoin addresses have been used of anonymity will be small too.
+Consequently, if the number in previous transactions leading to the current one and thus of users is very small, they may either have to wait long until might be an origin of the bitcoins.
+The higher the taint value, sufficiently many users have been found, or accept low degrees 1 http://blockchain.info/de/taint/_ADDRESS_ of anonymity.
+An attacker could also try to make heavy usethe more likely is the connection between the transaction and an address.
+We can use this metric to evaluate the anonymity by searching for addresses related to our input transactions.
+If we find a match, this means that a service did not successfully unlink the bitcoins from our identity and thus does not reliably increase our anonymity.
+Similar to taint analysis, we try to identify direct connections in the transaction graph.
+However, the transaction graph can only reveal connections between transactions, not between addresses.
+The better a mixing service obfuscates the relation between input and output transaction the more anonymity it provides.
+An ideal transaction anonymizer would make it impossible for us to find any connection.
+While the taint analysis tool aims at measuring the “correlation” between two addresses, there is another notion of taint in the Bitcoin community which refers to the percentage of bitcoins, that come from a known theft or scam and have been blacklisted by popular exchange markets.
+For example, in 2012 the bitcoin exchange Mt.Gox froze accounts of customers, who owned bitcoins that could be directly related to such an incident [20].
+OnionBC5 is an online Bitcoin wallet accessible via Tor only.
+It offers the functionality to send transactions anonymously, for which it takes a fee of 3%6 with a minimum transaction size of 0.5 BTC (48 USD on 201307-12)7 .
+Furthermore, it offers an escrow service which can be used to delay Bitcoin payments for goods bought online until the goods have been delivered.
+Bitcoin Fog8 is another service only accessible via Tor.
+It allows generating up to 5 addresses for depositing bitcoins and takes a (random) fee between 1–3% of the transaction value.
+Bitcoins can be withdrawn to a maximum of 20 addresses, spread over a timespan of 6–96 hours with a minimum total of 0.2 BTC.
+BitLaundry9 is a simple mixing service, that, in contrast to OnionBC and Bitcoin Fog, does not allow to deposit bitcoins into a virtual wallet.
+Instead, the destination addresses, the number of outgoing transactions, and a time span have to be specified.
+A single-use address is generated to which the user must send at least 0.25 BTC.
+The mixing fee for BitLaundry is split into two parts.
+The first is 2.49% of the total, the second is 0.00249 BTC per outgoing transaction.
+Blockchain.info offers a service called Send Shared10 that uses a shared wallet to swap bitcoins between different users.
+It takes a mixing fee of 0.5%, making it the cheapest service in this comparison.
+Its minimum transaction size is 0.2 BTC.
+On 13 April 2013, the Bitcoin forum user BlindMixrDR announced a mixing service11 that would combine Bitcoin with a blind signature scheme.
+Unfortunately, the service and detailed information about the system are not available anymore.
+The mixing services evaluated in this study are either directly accessible via the Internet or require a connection through the  Tor2 network, a popular anonymous communication system based on a peer-to-peer mix network.
+Depending on the functionality offered, users either have to create an account or interact with the service via a web interface, where they fill in all necessary information and receive a (sometimes single-use) address to send bitcoins to.
+The account-based websites typically work like a virtual wallet, allowing to deposit and withdraw bitcoins.
+In order to analyze the services, we pay in small amounts of bitcoins that can be payed out once the input transaction is confirmed.
+Parameters that can be specified include the amount of bitcoins to withdraw, one or We have selected three services for our analysis: Bitcoin more destination addresses, the number of output transactions, Fog, BitLaundry and the Send Shared functionality of Blockand a time period over which the transactions should be spread.
+Table I displays a comparison of key features.
+Each process of mixing bitcoins in one of the services will be We exclude OnionBC from the analysis due to concerns referred to as an experiment.
+regarding the trustworthiness of the service.
+Its minimum For each experiment, we use one or multiple newly generated deposit requirement of 0.5 BTC is rather high, and as we destination addresses belonging to our own private Bitcoin were not able to find any positive reviews of it on the Bitcoin wallet.
+Once we receive the payment, we gather the relevant boards, we decided to avoid the risk of falling for a scam.
+block chain data using the API of Blockchain.info3 .
+We reconstruct the transaction graph by following the inputs of the IV.
+R ESULTS outgoing transaction, as described in Section II-A, and visualize We report the results of our experiments for each tested it using the open source software Gephi4 .
+Inspecting the service and then summarize our findings in Section IV-D.
+transaction graph, we try to understand how the service works and to identify patterns or special characteristics.
+Users can work Figure 5.
+Chain of payout transactions characteristic for Bitcoin Fog around this limitation by manually splitting a single transaction into multiple.
+We send 0.40012345 BTC into our online wallet and, 6 amount using three destination addresses, of which only two minutes later, use the shared wallet feature to send them to receive a transaction later on (i.
+e., one address we provided another address.
+As we cannot detect any special patterns in the the service with has not been used).
+transaction graph, we create eleven additional transactions in We can now analyze the transaction graph of the outgoing order to increase the chance of, for example, receiving multiple transactions.
+Building the graph reveals an interesting pattern: coins from the same address.
+both transactions t2 and t3 have only one large input transaction We are not able to find any direct connections between the with a size of about 474 BTC (66,298 USD on 2013-04-30).
+However, instead of twelve there The time difference between the transactions is only 15 minutes, are only eight separate graphs (cf.
+Figure 3), meaning that and as the graph in Figure 5 shows, there is only one transaction there are connections between multiple outputs.
+there exist hubs where a large number of transactions are We extend this graph, trying to identify the origin of the bundled into one transaction.
+We only find a few coinbase large transaction.
+After 1445 single-input transactions, there is transactions, which indicates that mainly the coins of other users a transaction14 that took place on 20 April 2013 and combines are used.
+The transactions that are connected to multiple output five big transactions with a total of 6,013 BTC (745,833 USD transactions suggest that transactions are bundled into larger on 2013-04-20).
+Following these 5 transactions and using ones and then split again for payouts.
+One example is shown a community detection algorithm [21], we can identify five in Figure 4, where red nodes represent output transactions and big communities in which a large number of transactions are green nodes represent transactions connected to multiple output bundled into one (cf.
+On the right side, they are transactions.
+Following the left green transaction, we find an connected by a few single-input chains.
+Probably, these chains address12 that bundles transactions to a total size of 2,000 BTC are used to pay out bitcoins to other users.
+We cut off the (247,640 USD on 2013-05-18), which is then split into eight graph at the edges of the communities.
+transactions with a size of around 250 BTC each, and then In one of the communities we find a transaction15 with a again into smaller transactions.
+The coins origin from an even larger Results: Although our input has been used by the service, it transaction16 that bundles a large number of inputs to a total of is not possible to find any direct connections between the input 50,000 BTC (613,500 USD on 2012-09-21).
+While we do not and output transactions.
+The service bundles a large number of know with certainty if these belong to the same service, the small transactions into larger ones, which are then split again, transactions show the same pattern of a long single-input chain making it difficult to infer the bitcoins’ origin.
+paying small amounts to many different Bitcoin addresses.
+We take a closer look at the first chain of single-input B.
+By comparing the size of a transaction with the Experiment: After creating an account for the service Bitcoin size of the previous one, we calculate the amount of bitcoins Fog, we obtain a newly generated address for deposits.
+As a that has been payed out in each transaction.
+The minimum first attempt, we send 0.3 BTC (43 USD on 2013-04-29) to payout amounts to 0.04239 BTC (6 USD on 2013-04-25), the this address (cf.
+As of 28 June 2013, almost two maximum to 717.94096 BTC (94948 USD on 2013-04-26).
+A week after the first experiment, we make a second The average payout size is 3.8328 BTC (548 USD on 2013-04- deposit of 0.31 BTC (33 USD on 2013-05-07).
+This time we 25) with a standard deviation of 24.5344 BTC (3510 USD on withdraw 0.21 BTC (23 USD on 2013-05-15), spread over two 2013-04-25) The distribution of the payout sizes is shown in transactions and two days.
+Again, we create the transaction the left part of Figure 7.
+Most transactions have a size between graph of the inbound transactions and see a long chain of 0.1 and 5 BTC, with a median of 0.80111 BTC.
+The large single input transactions.
+It originates from a transaction17 that, difference between median and mean can be ascribed to a few similar to the communities in the first experiment, combines large transactions.
+As the anonymity set for large transactions is small, it can be easier to trace those.
+In the graph, shown in Figure 8, there are 30 coinbase transactions with a total value of 683 BTC.
+If we increase the depth of the graph, this size increases.
+However we cannot determine whether they belong to the service or not.
+The transaction sizes range between 0.04 and 36.83 BTC (cf.
+right side of Figure 7), with an average transaction size of 1.89 BTC and a standard deviation of 3.72.
+Again, the median of 0.745 BTC is lower than the average due to some large output transactions.
+Similar to the first experiment, our input transaction has not been spent yet, making it impossible to find connections in the transaction graph.
+Results: The service Bitcoin Fog bundles a large number of small transactions into a small number of large transactions, which are then used to create all outgoing transactions.
+The input transactions, however, remain untouched for a long time.
+This way, the service prevents us from detecting any direct connections between the input and output transaction in the transaction graph.
+Even though the clear structure of the service might leave a possibility to decrease the anonymity of transactions using additional context information.
+This finding enables us to estimate the empirical distribution of the size of outgoing transactions.
+Cautious users can use it to choose a transaction size that fits the distribution, for example by random sampling, in the hope to defeat attackers who try to link transactions by matching amounts.
+Note that this defense can be difficult or impossible under budget constraints, i.
+e., if the user has only a small amount of bitcoins available.
+BitLaundry Experiment: The last service analyzed is BitLaundry.
+On 13 May 2013 we deposit 0.33 BTC (39 USD on 2013-05-13) in order to be transferred to a single address, split up into two transactions over a period of 2 days.
+Instead of two, we receive four transactions (cf.
+The first observation is that the payouts seem to take place at 10:45 p.m.
+and 12:15 a.m., which suggests the service does batch processing at specific times.
+Figure 9 shows the transaction graph visualizing the flow of the incoming transactions.
+The transactions are colored as follows: t8 = red, t9 = yellow, t10 = green, t11 = blue.
+In contrast to our experiment with Bitcoin Fog, we also find our deposit transaction t7 in the graph (colored black).
+All five transactions are connected to each other.
+A large part of the input transaction is forwarded to an address18 that received and sent about 18.45 BTC (2415 USD on 2013-05-25) over a timespan of 14 days.
+A small amount of 0.0244 BTC, 7.79% of the total amount, goes directly into t11 , which means that there is a direct connection between our input transaction and one of the output transactions in the transaction graph.
+The taint analysis of Blockchain.info also reports a strictly positive taint value.
+Several hubs combining multiple transactions can be found in the graph.
+Initially, we observe only one coinbase transaction.
+If we increase the the depth of the graph, the number of coinbase transactions increases.
+However, we do not know whether they belong to the service.
+And we conjecture that the service cannot draw on a large number of coinbase transactions, which would offer perfect transaction anonymity.
+We conduct two more experiments with BitLaundry in order to find out if, for example, low usage of the service might lead to another connection in the transaction graph.
+Therefore, we first create a transaction with a size of 0.31415 BTC, to be payed back in one transaction within one day.
+This experiment’s transaction graph does not reveal direct connections between input and output.
+After that, we pay 0.332211 BTC into the service, in order to be transferred within one day, spread over two transactions.
+This time, we do find a direct connection between the input t14 and the first output t15 in the transaction graph (cf.
+Figure 10), which results in a high taint value.
+The second output t16 is not connected to our input.
+Results: In the first experiment, we were able to find a connection between one output and our input.
+Although the direct link makes up only a small part of the transaction size, it is evidence for imperfect anonymization.
+The second experiment did not reveal any connections.
+However, in the last experiment the service directly used half of the input transaction to create an output transaction.
+Although our sample is not very large, it suggests that this service does not provide very good anonymity.
+A reason for this could be a low usage of the service as well as a lack of technical measures to ensure that users do not receive their input coins back.
+We can conclude that both Bitcoin Fog and Blockchain.info The risk-adjusted costs are even higher, because the risk that make it hard for an attacker to relate input and output one of the services goes bankrupt (e.
+g., it gets hacked and all transaction.
+In our analysis of Bitcoin Fog, we found a clear coins are stolen) or offline (stealing all coins that are in the structure which allowed us to understand how the service works.
+system) as well as the risk that transactions are not included This might make it easier for an attacker who has additional in the block chain have to be priced in as well.
+There have information available to detect outgoing transactions.
+We were been multiple incidents where large services were accused of not able to find any direct connections in the transaction graph stealing their user’s bitcoins, e.
+g., the shutdown of MyBitcoin of Blockchain.info.
+As the service provider also offers a popular in July 2011 [22] resulted in a loss of at around 78,740 BTC online Bitcoin wallet, in which the Send Shared functionality is (1,063,777 USD on 2011-07-29) [22] and the scam of Bitcoin integrated, the large user base probably adds to the anonymity Savings & Trust, which turned out to be a pyramid scheme of the mixing service.
+In the analysis of the service BitLaundry, [5], in a loss of at least 200,000 BTC (2,328,000 USD on we found direct connections in the transaction graph in two 2012-08-12).
+A detailed list of major thefts and scams can be of our three experiments.
+In the last one, we directly received found at [22].
+half of the coins we payed in.
+Thus, BitLaundry cannot be Our expenses for conducting this experiment have been considered to reliably increase anonymity.
+Altogether we spent around 0.08 BTC (8 USD On a more general note, two things are remarkable.
+First, on 2013-07-12) on service and transaction fees.
+some Bitcoin anonymizing services seem to deal with values V.
+R ELATED W ORK in the order of 6-digit dollar amounts.
+This is substantial and Bitcoin is not the first cryptographic cash system.
+In indicates a viable – though questionable – business model as well as ample demand for transaction anonymization.
+Second, 1985, Chaum [23] proposed cryptographic cash that allowed a particularity of transaction anonymization over conventional anonymous payments using blind signatures.
+Another idea mixes is the possibility to keep incoming transactions untouched for electronic currencies are credit networks, e.
+g., iOwe for a very long time (provided the service has sufficient [24].
+Payments are made with digital bonds that represent free capital), thereby stretching the anonymity set over time.
+a pledge to deliver a certain value or good in the future.
+This is a clear advantage of anonymous transaction systems Digital credit networks heavily rely on trust models to prevent over anonymous communication systems where the tolerable double spending and sybil attacks.
+The success of Bitcoin has spurred many derivatives.
+Zerocoin, proposed by Miers, message latency imposes an upper bound on the batch size.
+Combinations and Costs uses zero-knowledge proofs to deposit and withdraw special All three services pose the risk that the operator itself is an transactions with unlinkable inputs and outputs.
+attacker or colludes with one.
+In order to reduce this risk, it Several authors have studied the anonymity of Bitcoin.
+Ron would be possible to combine multiple services in a cascade.
+and Shamir [26] analyze statistical properties of the Bitcoin However, this comes at the cost of additional delay and higher transaction graph.
+Reid and Harrigan [12] analyze the network fees.
+We calculate the fees for using Bitcoin Fog, BitLaundry of Bitcoin users by combining addresses that are inputs ofmulti-input transactions and therefore must belong to the same sender.
+They use publicly available data, like forum posts including Bitcoin addresses, to identify users.
+Ober, Katzenbeisser, and Hamacher [27] analyze structural aspects of the transaction graph and draw implications on the anonymity of transactions.
+Androulaki, Karame, Roeschlin, et al.
+[28] study privacy implications of multi-input transactions and shadow addresses generated by the Bitcoin client for receiving change.
+They could identify 40% of the users in an artificial transaction graph based on (simulated) behavior.
+Meiklejohn, Pomarole, Jordan, et al.
+[13] identify a large number of intermediaries by interacting with them and using a change address heuristic to identify addresses of the same user.
+Using this dataset they analyze popular thefts and are able to relate payouts to popular exchanges.
+To the best of our knowledge, this paper documents the first study of Bitcoin transaction anonymizers.
+The idea of establishing anonymity by mixing messages of multiple users is due to Chaum [11].
+A popular anonymous communication system is The Onion Router (Tor), which anonymizes applications and users communication on the TCPlayer [29].
+Other relevant systems include AN.ON/JonDo [30].
+Attacks on mix networks are often performed using context or linkability information [31]–[34].
+Our starting point for this paper was to recall Bitcoin’s principle of pseudonymous accounts.
+Contrary to common belief, it permits certain AML measures by imposing regulation (such as the KYC principle) on the intermediaries who offer financial or real services in exchange for bitcoins.
+However, this approach is thwarted by the existence of transaction anonymizers.
+Intermediaries of this special kind operate within the Bitcoin system and are therefore hard to locate and presumably even harder to regulate.
+The core contribution of this study is a systematic analysis of three popular transaction anonymizers based on the transaction graph extracted from the block chain.
+Although our deanonymization attempts were not exactly the strongest conceivable (see Section VI-A below), the results lend support to the notion that budget-constrained cybercrime fighters are effectively set back by two of the three tested services.
+In the remainder of this discussion, we will point out ways forward along three dimensions: more powerful deanonymization (Section VI-A), new directions for regulation (Section VI-B), and some considerations on the viability of Bitcoin as a decentralized currency (Section VI-C).
+Our results likely overstate the level of anonymity provided by the analyzed services.
+For one thing, we do not consider auxiliary information from traffic analyses that would require realtime interception of (parts of) the communication network.
+It is likely that such measures are available for law enforcement of serious crimes.
+Possible targets include the communication with the transaction anonymizer, e.
+g., account setup and control of payout structure (to prevent this, Bitcoin Fog requires Tor as anonymous control channel), as well as the communication in Bitcoin’s peer-to-peer network.
+The latter might reveal IP address ranges and timing information related to the publication of suspect transactions before they are validated and included in the persistent block chain.
+This level of detail may help to identify devices, locations, and eventually people.
+In addition, we have not systematically exploited timing information and relations between Bitcoin transaction, addresses, and blocks; although this information is persistent and publicly available without access to realtime surveillance.
+All this suggests that our statements on the anonymity offered by the services should be interpreted as upper bounds.
+This view is supported by the general warning that users must fully trust the anonymizing services regarding the confidentiality (ideally, immediate deletion) of input–output relations and the willingness to return the temporarily entrusted values.
+In practice, criminals might have a hard time to identify trustworthy transaction anonymizers between other criminals setting up fake services and cybercrime fighters operating their own or taking over existing services as decoys.
+It remains an open research question if user-verifiable transaction anonymizers with provable anonymity and security guarantees can be built for the existing Bitcoin protocol.
+Regulatory Options  Recall from the introduction that KYC is only a first step that enables downstream activities such as blacklisting suspicious account holders.
+As Bitcoin accounts have weak identities at best, but all transaction records are public, for AML to be effective, it should blacklist transaction histories (i.
+e., bitcoins) rather than accounts or account holders.
+A good offline analogy is registering serial numbers of bank notes used to pay ransoms.
+There is some precedence in Bitcoin.
+In 2012, the Mt.Gox exchange began to reject bitcoins looted in major thefts or frauds [20], [35].
+Unsurprisingly, this behavior is fiercely debated in the Bitcoin community (e.
+g., [36]) because the A.
+Limitations of the Study blacklists are governed by powerful entities, making a dent in Our study uses reverse-engineering methods to understand the idea of complete decentralization of control.
+At the same the modes of operation of three popular transaction anonymiz- time, this offers a backdoor for regulation.
+We have carried out a series of experiments with probe in the Bitcoin ecosystem could be mandated by law to observe transactions and tried to establish relationships between inputs official blacklists of transaction prefixes.
+Combine this with and outputs using public information in the transaction graph.
+systematic undercover test purchases, which offer a relatively The insights gained from these experiments are not necessarily cheap and effective way of enforcement in each jurisdiction generalizable because the analyzed services may change their where a service is provisioned in exchange for bitcoins.
+mode of operation at any point in time.
+Moreover, due to limited It is easy to see that this regulation would affect the number of experiments, our results are of exploratory nature business model of transaction anonymizers.
+In the long run,coinbase transactions are rare, so every output of a transaction anonymizer has a history.
+Either transaction anonymizers reject blacklisted coins, the intended outcome, or all users sending clean (i.
+e., not blacklisted) bitcoins take the risk of getting blacklisted bitcoins in return.
+This leads to adverse selection: only owners of blacklisted bitcoins have nothing to lose and might keep using transaction anonymizers.
+Yet, if all inputs are blacklisted, so are all outputs.
+There remains nothing to gain from such services.
+Indeed, it seems that the only way to escape such regulation is to change the design towards a cryptographic currency that offers transactions without history.
+that collectors might ascribe higher value to bitcoins with a famous transaction history.
+For enthusiasts, a bitcoin involved in the 10,000 BTC pizza purchase in 2010 might be as valuable to own as, say, a dollar note provably spent by James Dean to buy his Porsche.
+We believe that it is just a matter of time until price spreads between bitcoins of different provenance appear in the marketplace.
+The bottom line is that the uniqueness of every bitcoin thwarts the very idea of money as a homogeneous commodity to serve as unit of account.
+Inventors of future cryptographic currencies should take note.
+Considering the long-term perspective of Bitcoin is relevant because it appears that regulators are currently facing the dilemma of finding the right level of intervention.
+While a tough policy against Bitcoin might indeed hamper cybercrime (or drive it elsewhere), it comes at the risk of rashly eradicating a platform that may unleash future innovation as legitimate businesses and consumers adopt (see [37] for payment innovations in general).
+Bitcoin’s relationship with the underground has striking parallels to another financial innovation: the first automatic teller machine was set out of operation in 1939 after just six months in service because it attracted clients who did not want to look into a clerk’s eyes – gamblers and prostitutes.
+It took until 1969 for the second attempt that throve [38, p.
+However, if the potential of Bitcoin for legitimate purposes is foreseeably limited from the outset, the opportunity costs of a tough policy are low.
+Now turning to the implications: Bitcoin set out to be a decentralized currency.
+Unlike earlier and commercially unsuccessful proposals for electronic cash [23], [39], [40], calling Bitcoin a “currency” can be justified because the system enforces an upper bound on money creation, which make bitcoins scarce and therefore valuable.
+More generally, economists define money by three functions: medium of exchange, store of value, and unit of account.
+Critics of Bitcoin debate the store of value function on grounds of the high volatility observable on Bitcoin exchanges and the built-in deflationary tendency.
+The latter may impair the medium of exchange function, because investors in bitcoin have incentives to hoard rather than spend [41].
+Our observation calls into question the last function standing.
+Every transaction has a different history.
+The fact that transaction anonymizers exchange the history for a fee implies that bitcoins with different histories have different value.
+Coinbase transactions, for example, should be valued highest because they are scarcest.
+They are an important resource required as input to make transactions provably untraceable.
+This effect is aggravated under the above-described policy of blacklisting transactions for AML, where “virgin” coinbase transactions have the lowest risk of being blacklisted at the time of conversion or spending.
+By contrast, bitcoins with known blacklisted transaction prefixes should have very little value, as they can only be used in the underground..

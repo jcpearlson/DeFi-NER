@@ -1,0 +1,168 @@
+The use of Bitcoins is increasing rapidly.
+Bitcoins are utilized in ecommerce to purchase both legal and illegal goods, they are transferred and traded and companies have invested their capital in the new digital currency.
+While the technical aspects of the system are well established, the legal framework remains unclear.
+Legislators all over the world are just starting to discover this new virtual phenomenon.
+This article illustrates selected legal challenges arising in the different fields of law (public, criminal and civil law).
+Particular attention is paid to the German situation while the US-American context is also considered.
+Since laws are always one step behind technological developments, governments are just starting to react to the challenges that new digital currencies pose.
+At the same time, the use of one of most popular virtual currencies, Bitcoin, is growing rapidly.
+Important features of the Bitcoin-system are the decentralized structure that is free of any governmental influence and the possibility to pseudonymously use the currency.
+Bitcoin transactions are relatively easy to verify when using the publicly available blockchain and, in contrast to other online payment services, transactions costs are almost zero.
+These characteristics are exploited in different ways.
+On the one hand, online shops, companies and private users profit from the fast and transparent way to sell and purchase goods, on the other hand, criminals make use of the pseudonymous and decentralized features.
+As a consequence, Bitcoins serve as a quasi-anonymous substitute for money in illegal activities.
+This development raises various legal questions.
+In Europe, Germany is one of the few states starting to regulate the Bitcoin-system.
+From a public law perspective (section 2), regulatory and tax law related issued play an important role.
+Offences such as money laundering, blackmail, theft or offences related to data are of great significance in criminal law (section 3).
+If Bitcoins are used in e-commerce, questions relating to the liability and enforcement in the context of civil law (section 4) are essential.
+In addition, since neither the criminal law, nor the civil law order is accustomed to dealing with virtual objects, fundamental questions relating to the enforcement of long-established legal rules arise.
+Therefore, this work’s aim is to give an overview of the different legal issues concerning Bitcoins under German (and briefly US-American) law, thereby illustrating the immense need for legal research.
+The article also shows first initiatives regulating Bitcoins in Germany.
+2 Public Law Public law typically establishes rules for the relationship between the government and its citizens.
+Since Bitcoins serve as an alternative currency and individuals start using Bitcoins to a greater extent, administrations, after a period of uncertainty, increasingly see the need to regulate and supervise the Bitcoin-system.
+In particular, as every Bitcoin user is a potential taxpayer and every trading platform earns money with Bitcoin-transactions, public law issues about Bitcoins arise particularly in the fields of regulatory law and tax law.
+2.1 Licensing Requirement (German Federal Financial Supervisory Agency) The initial question that must be posed in Bitcoin regulation is whether Bitcoin trading platform operators require a license by the financial supervisory agency.
+The state of New York, for instance, plans to introduce so a called BitLicence for companies trading with Bitcoins.1 The idea of the license is to protect consumer from online-fraud and to improve control over money-laundering activities related to Bitcoins.
+In Germany, virtual currency regulation already exists and follows from § 32 Section 1 of the German Banking Act (Kreditwesengesetz).
+According to this rule any person who conducts banking business or financial services in Germany commercially needs a written authorization by the German Federal Financial Supervisory Agency (GFFSA).
+§ 1 Sections 1a and 2 of the German Banking Act define what falls under the category of financial services.
+The rules specifically list issuing and accepting of financial instruments as a financial service.
+§ 1 Section 9 of the German Banking Act gives a list of the various financial instruments, which includes so called “Units of Account” (Rechnungseinheiten).
+In consequence, the GFFSA has classified “digital currencies”, in particular Bitcoins, as units of account.
+In addition, the agency 2 and some regional courts3 are of the opinion that companies do not have to have their place of business in Germany, but that serving German customers would make the licensing requirement applicable.
+Hence commercial Bitcoin platform operators – at least those established in Germany and/or those serving German customers – need a license from the GFFSA under German law.
+Conducting financial services without the required license is punishable with imprisonment or a fine (§ 54 Section 1 Nr.
+2 of the German Banking Act).
+In Germany the need for a license is directly derived from already existing laws.
+That is due to the fact that the German Banking Act’s definitions are defined in a very broad and abstract manner.
+Thus new rules for the licensing of Bitcoin businesses are not necessary under German regulatory law., Under US law the question additionally arises, if the Bitcoin system itself conforms with the law.
+The lawfulness is a preliminary issue before a decision about a Bitcoin license can be made.
+In Germany, it has not even been discussed whether a system of a decentral virtual currency is in principle lawful; Bitcoins have been integrated in the system of German regulatory law without ever problematizing this issue.
+In contrast the lawfulness of Bitcoins under US law has been controversial.
+The Department of Justice classified private currency systems like Bitcoins as a violation of federal law, because these currencies stand in competition with the official, governmental controlled currency.4 This point of view could be grounded on Section 2 of the Stamp Payments Act of 1862 which forbids to “make, issue, circulate, or pay out any note, check, memorandum, token, or other obligation for a less sum than $1, intended to circulate as money or to be received used in lieu of lawful money of the United States”.
+At first glance, considering the case law, Bitcoins seem to fall under this rule.5 But Grinberg argues that the act’s purpose was to prevent competition with US coins (considering the acute problem of inflation in the nineteenth century), so the rule is not applicable to Bitcoins.6 In accordance with this, the most recent comments on Bitcoins at a hearing of the US Senate mark a change of American public authorities’ opinion.
+7 In particular, Mythili Raman, an assistant attorney general at the Justice Department, said there to be many legal users of Bitcoins, which implies that the Bitcoin system itself is generally legal.8 In the same manner principal deputy assistant attorney general Peter Kadzik said, the FBI aproach was “guided by a recognition that online payment systems, both centralized and decentralized, offer legitimate financial services”.9 Ben Bernanke, chairman of the Federal Reserve, said, that the Federal Reserve intends neither to supervise nor regulate Bitcoin.10 Given the above, it seems that the lawfulness of the Bitcoin system is acknowledged under US law.
+It remains to be seen whether a licensing requirement for commercial Bitcoin services will be introduced in the US.
+2.2 Tax Law Related Questions The rapid rise of the Bitcoin exchange rate guaranties increasing attention from tax authorities.
+Two main contexts are of particular concern: First, financial authorities may have an interest in the taxation of earnings denominated in bitcoin, though tax policy and laws are not necessarily designed to take account of virtual profits.
+As Bitcoins are not recognized as traditional money, tax authorities are forced to develop new definitions to categorize Bitcoin revenue as taxable.
+Due to this “definition gap”, German tax authorities classify Bitcoins as an “economic asset” (Wirtschaftsgut) that is then subject to the income tax according to §§ 22, 23 of the German Income Tax Act (Einkommenssteuergesetz).
+In the US the Internal Revenue Code (IRC) includes the basic rules for taxation.
+According to Section 61 of the ICR “gross income means all income from whatever source derived”.
+Thus, the term “income” comprises various activities leading to an increase in wealth.
+Considering this, Bitcoins might be subject to the rules of the IRC.11 Similar to the German understanding, income includes any economic value received, irrespective of the form (virtual or physical existent) of that income.
+Second, sales taxes on profits of Bitcoin-transactions are also discussed in academia.
+In Germany, the distinction between private and commercial transactions plays a crucial role.
+Only transactions and online trading on a commercial basis are usually subject to sales tax, according to § 1 of the German Sales Tax Act (Umsatzsteuergesetz).
+Non-commercial users, when using Bitcoins as a method of payment or even in context with transactions of large Bitcoin exchange platforms such as Mt.
+Gox – are not obliged to pay sales tax.
+In the US, the question of sales tax on Bitcoin-transactions is currently subject to discussion.
+However, a final decision has not been reached yet.
+In the US, Bitcoins can be considered as “income” under US law.12 General taxation of Bitcoin revenue depends on whether Bitcoins are seen as property or as currency.13 Beyond the legal question of a tax obligation, authorities face difficulties in detecting taxable Bitcoin transactions and identifying the taxable persons, but this is rather a practical or technical than a legal problem.
+3 Criminal Law In the context of criminal law, Bitcoins are often used as a method of payment to disguise the origin of money illegally obtained.
+Bitcoin wallets also offer the possibility to receive payments more anonymously than transfers between normal bank accounts.
+Additionally, since Bitcoins can be used, like any other virtual currency, to purchase goods (in e-commerce or offline), they can be the target ofcriminal activities.
+However, as Bitcoins only exist in the virtual sphere, it is difficult to apply traditional criminal law provisions in this special context.
+3.1 Bitcoins as a Substitute for Money The pseudonymity of Bitcoin transactions makes it an attractive tool criminals can use for illegal activity.
+In comparison with regular money, the advantages of Bitcoins are twofold: there is neither a need to be personally present when receiving money, nor it is necessary to use bank accounts that are controlled and enable identification.
+The transfer of Bitcoins, sometimes after having used Bitcoin-mixers, is much harder for law enforcement to verify and control than the use of a normal bank account, even if an intermediary is used.
+Due to these characteristics, the use of Bitcoins – especially as a method of payment in the online environment or when buying illegal goods via anonymous networks – is becoming more and more popular.14 In addition, criminals use Bitcoins increasingly often as a method of payment when blackmailing individual computer users, companies or even public authorities.15 Criminals install malware on computers via email attachments.
+The virus is then hindering the persons concerned to access their data unless a ransom (of Bitcoins) is paid.
+The requested sum is usually not a very high one, thus many users decide to pay instead of waiting for the police to solve the problem.
+Recently, due to the rapid growth of the Bitcoin exchange rate, criminals even decided to reduce the sum to be paid.16 3.2 Money Laundering Bitcoins are suspected of being utilized in money laundering.17 It is possible to exchange money coming from illegal activities for Bitcoins and then disguise the origin of this money again, for instance with the help of Bitcoin-mixers.18 Different features of the Bitcoin-system play a role in this context: The traceability of Bitcointransfers is complicated and therefore it is very challenging for law enforcement to verify the origins of Bitcoins.
+Users can create a new password for each Bitcointransaction and are able to use a new synonym and randomly generate various new keys for transactions.
+In addition, due to its decentralized structure there are no general reporting duties that apply to the Bitcoin-system.
+While banks have to report to supervisory authorities and their financial operations are closely supervised19, Bitcoin transactions are far less controlled.
+Some specific events have aroused the suspicion that Bitcoins have been used to launder illegal money from tax offences.
+The most famous example is the very fast rise of the Bitcoin-exchange rate shortly before the compulsory bank levy on Cypriot capital in March 2013.20 At that moment, the Bitcoin exchange rate doubled within a few days and has not fallen beneath that value since.
+One explanation for that rapid rise could be the attempt of bank account holders to exchange their money into a seemingly anonymous currency to disguise the origin of that money and protect it from financial authorities.
+While this incident shows that Bitcoins can be potentially used for money laundering purposes, the liability for such an offence according to national law provisions is far from clear.
+In Germany, money-laundering regulations apply to every “economic asset” (§ 261 German Criminal Code, vermögenswerte Gegenstände).21 Whether Bitcoins actually qualify as this type of asset is, nonetheless, doubtful at best.
+When comparing Bitcoins to other money-laundering tools, it is possible to draw parallels to book money (Buchgeld) that exists – as Bitcoins do – only in a virtual sphere and that is subject to the German money laundering provision.
+However, an official authority has not yet recognized this interpretation.
+In the US, there is currently a discussion whether Bitcoin developers, e-wallet holders or Bitcoin users have to comply with the Bank Secrecy Act (BSA) and the regulations passed by the Financial Crimes Enforcement Network (FinCEN).22 Like in Germany, a final decision has not yet been reached.
+3.3 Offences Related to Data The creation of new Bitcoins requires an increasingly large amount of computing power.
+Therefore, Bitcoin mining is getting quite expensive due to high electricity costs and costly hardware.
+However, the situation is drastically altered if others bear the mining cost.
+One possibility is using botnets to support the generation of new Bitcoins through the secret use of infiltrated computers to aid in the mining process.23 Another possibility to illegally use Bitcoins is to exchange Bitcoins against botnets conducting a dDos-attack.24 Of course, the construction of botnets is subject to criminal law provisions, but most provisions relate to computer fraud or other data related crimes.25 However, the enforcement of such provisions is time-consuming anddifficult due to the quasi-anonymous features of the Bitcoin-System as described above.
+3.4 “Theft” of Bitcoins? If Bitcoins or Bitcoins users are the target of criminal activity, such as theft, the application of traditional criminal law provisions is not straightforward and legal recourse is unclear.
+Bitcoins are computer-generated and not physically existent.
+Such kind of immaterial object is not automatically part of national provisions protecting against theft.
+In Germany, for instance, only physical objects can be the object of theft.26 Other provisions protect against the manipulation of data or computer fraud (§§ 202a et seq.
+German Criminal Code), but such provisions were not necessarily designed to cover theft of virtual goods.
+§ 303a of the German Criminal Code, which protects the integrity of data, is occasionally used as alternative to prosecute such offences.
+Due to this uncertainty, there are very few cases available that demonstrate how the theft of virtual objects would be prosecuted.27 .
+Apart from such practical difficulties in enforcement, the features of Bitcoins lead to problems relating to the application of basic criminal law rules.
+However, the theft of virtual goods is growing and this development is profoundly challenging traditional criminal law.
+4 Civil Law Similar to criminal law, classifying Bitcoins under German civil law is also difficult due to their virtual nature.
+The German civil law system distinguishes special categories of objects, which can be covered by rights, namely physical objects, claims and a strictly limited number of other immaterial goods (IP rights).
+However, Bitcoins are neither physical objects nor are they claims because there is no issuer and a Bitcoin’s value is not covered by any guarantees.
+The only possible approach to classify Bitcoins under the currently existing list of IP rights is the German Copyright Act.
+This act protects works which represent a personal intellectual creation (§ 2 of the German Copyright Act (Urheberrechtsgesetz)), and contains special rules for the protection of software (§ 69c of the German Copyright Act).
+But Bitcoins are neither a personal intellectual creation (but the result of a software process) nor software (just the Bitcoin protocol is software).
+German civil law does not include any rules for the property of virtual goods comparable to the rules about exclusive property rights over physical objects.
+Given the analysis above, there does not seem to be a proper place for Bitcoins in the German legal system.
+Nevertheless the Bitcoin system plays a vital and growing role in online trading.
+There is an increasing number of Bitcoin users who mine, buy, hold and sell Bitcoins.
+And more and more e-commerce shops accept Bitcoin payments.
+But all participants are confronted with considerable legal uncertainty, as described below.
+4.1 E-commerce Since Bitcoins are used in e-commerce the following questions arise: Which types of contracts do exist between the parties of a Bitcoin transaction and which legal norms are applicable? Is there a repayment claim in the case of dispute? And what impact does the use of intermediaries have on the legal classification? The answers to these questions are difficult to find, in particular since German civil law is quite complex.
+First of all it has to be clarified that contracts which include Bitcoin transactions generally are legally effective in accordance with the fundamental principle of contractual freedom.
+But to answer the questions raised here it is necessary to identify the legal nature of Bitcoin contracts.
+If somebody buys a product in exchange for money this is classified as a contract of sale.
+It seems obvious this would cover a typical purchase paid for with Bitcoin.
+But a closer look at the legal norm that defines contracts of sale under German law (§ 433 of the German Cilvil Code (Bürgerliches Gesetzbuch)) yields a different conclusion.
+It defines a contract of sale as a contract that includes the duty to transfer the ownership of a movable thing in exchange for monetary payment.
+Therefore this designation does not apply because Bitcoins cannot be classified as money that is meant to be an official currency.
+It is characteristic of money that it is linked with a general duty of acceptance.28 But nobody is required to accept Bitcoins as payment instead of traditional money.
+The situation in which somebody buys Bitcoins in exchange for money cannot be classified as a conventional contract of sale either, because Bitcoins are not movable (physical) things; however, German law equates the sale of rights to the sale of movable things (§ 453 of the German Civil Code).
+So the rules about contracts of sale would be applicable to the discussed constellation if Bitcoins were rights.
+Right in this case is defined as an individual’s power to require an action or an omission from somebody else.
+Examples are pecuniary claims or copyrights.
+However, Bitcoins cannot be classified as rights.
+A Bitcoin is not a claim and in particular there is no one who is required to take Bitcoins in exchange for money or who grants Bitcoins a certain value.
+One cannot have a copyright in Bitcoins either.
+And one cannot own them in the sense of having an exclusive right.
+Another solution seems to be the classification as a contract of barter.29 German law equates such contracts to contracts of sale (§ 480 of the German Civil Code).
+Contracts of barter can include the exchange of movable things and rights.30 According to a very broad understanding,31 this can encompass other miscellaneousassets of value that can be legally transferred as well.
+However, contracts which include the transfer of Bitcoins in exchange for money cannot be classified as barter contracts, which are defined as exchanges without the use of money.
+The legal situation in the USA is similar.
+Barter contracts, which are covered under the American Uniform Contract Code (UCC)32, are contracts of exchange without the use of money as well.33 It could be argued, that the transfer of Bitcoins should be handled as an “atypical work and service contract”.34 This contract, correctly worded, would require the successful transfer of Bitcoins and not merely the attempt to transfer them.
+This stipulation however, does not help with the issue of contracts that deal with the purchase of physical goods using Bitcoins.
+Finally in legal literature there are numerous constructions that attempt to explain the legal nature of electronic money and contracts relating to it.35 But they are not applicable to Bitcoin transactions due to one big difference: financial institutions issue electronic money in such a way that transactions are completed directly between payer and payee (peer to peer) As mentioned above Bitcoin transactions cannot be easily assigned within the German system of contract types.
+4.2 Liability Furthermore it is unclear which of the participants in a Bitcoin transaction is liable in case of failure.
+One fundamental question concerns ensuring that the contractual risks are properly balanced between merchant and customer.
+What happens in the case of data loss or data misuse? To answer these questions it is necessary to classify the legal nature of Bitcoins and the contracts that include them.
+As mentioned above, there is currently no viable solution to this problem.
+Moreover Bitcoin users face a couple of practical problems respective to the enforcement of any claims.
+One example is the irreversibility of transactions.
+Bitcoin shares this feature with some other payment methods, indeed, but in contrast to these other (central) payment methods there is no central instance who can execute a reverse transaction in cases of mistakes.
+Thus, the payer carries the risk of transferring Bitcoins to an unknown payee or a wrong public key.
+4.3 Enforcement/Foreclosure Finally the legal situation of Bitcoins in the field of enforcement is unclear.
+It has to be clarified whether and, if so, how a creditor can seize a debtor’s Bitcoins (provided that he attains knowledge of it).
+The German Code of Civil Procedure includes a – conclusive – list of possible seizable assets.
+First there exists the ability to seize (and transfer) monetary claims (§§ 829, 835 of the German Code of Civil Procedure).
+But, as mentioned above, Bitcoins are not claims so this legal rule is not applicable.
+German law also recognizes the ability to seize physical objects, but Bitcoins are not physical objects.
+Hence the right to seize the data storage medium on which the debtor’s wallet is stored does not entitle the creditor to access and confiscate the Bitcoins connected to the wallet.
+§ 857 of the German Code of Civil Procedure, which allows the seizure of „other pecuniary rights“, suggests another possible type of seizure.
+This should serve as a catch-all provision but, as mentioned above, Bitcoins are not rights.
+So the legal status of Bitcoins in the area of enforcement remains uncertain as well.
+In US law, the nature of Bitcoins and the question of legal categorization in civil law related contexts seems to be just as challenging as in German law.
+It is, for instance, unclear whether Bitcoins are securities, commodities or a currency.36 If they are a security, other regulations, “including general antifraud rules”, would then be applicable.37 Narrow definitions in both, German and US law, plus the technical features of Bitcoins currently lead to the mentioned enforcement difficulties.
+It seems that current legal rules are not designed to handle a decentralized virtual currency like Bitcoins.
+Traditional laws lack the flexibility to adapt quickly to new technological contexts.
+The article illustrates that the virtual aspect of Bitcoins plays a crucial role.
+One could add that Bitcoins are just one example that shows the fundamental difficulties of the legal treatment of virtual objects.
+Data that only exist in a digital form is another prominent example.
+In Germany especially the criminal and civil law systems are by no means prepared for the challenges arising outside the traditional understanding of physically existent objects.
+In the US the lawfulness of the Bitcoin-system itself is subject to discussion.
+Only in regulatory and tax law related contexts, governments appear to be able to cope with the characteristics of the Bitcoin-system leading to an increase in regulation and supervision.
+From the users’ point of view, this development raises some concerns.
+There is a danger of imbalance, if only public law rules increase and civil as well as criminal law remain unable to adapt.
+Therefore, if the regulation of the Bitcoin-system increases, attention has to be paid to a balance between the different interests at stake.
+The table briefly summarizes the above-said.
+It shows which of the features of Bitcoins lead to problems in the different fields of law (public, criminal and civil law).
+The most important legal issues are mentioned and then linked to the characteristics of Bitcoins.
+The last row gives an outlook on a possible regulatory framework..

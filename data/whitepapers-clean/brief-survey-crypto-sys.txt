@@ -1,0 +1,289 @@
+Cryptocurrencies have emerged as important financial software systems.
+They rely on a secure distributed ledger data structure; mining is an integral part of such systems.
+Mining adds records of past transactions to the distributed ledger known as Blockchain, allowing users to reach secure, robust consensus for each transaction.
+Mining also introduces wealth in the form of new units of currency.
+Cryptocurrencies lack a central authority to mediate transactions because they were designed as peerto-peer systems.
+They rely on miners to validate transactions.
+Cryptocurrencies require strong, secure mining algorithms.
+In this paper we survey and compare and contrast current mining techniques as used by major Cryptocurrencies.
+We evaluate the strengths, weaknesses, and possible threats to each mining strategy.
+Overall, a perspective on how Cryptocurrencies mine, where they have comparable performance and assurance, and where they have unique threats and strengths are outlined.
+A Cryptocurrency is a peer-to-peer digital exchange system in which cryptography is used to generate and distribute currency units [1].
+This process requires distributed verification of transactions without a central authority.
+Transaction verification confirms transaction amounts, and whether the payer owns the currency they are trying to spend while ensuring that currency units are not spent twice.
+This verification process is called mining [2].
+Cryptocurrencies use a variety of mining technologies, according to their particular requirements.
+For instance, certain Cryptocurrencies focus on restricting the number of transactions validated per unit time, while others concentrate on achieving fast, lightweight services [3].
+Some mining algorithms are deliberately memory intensive; others are computationally expensive [4].
+In this paper, we survey Cryptocurrency mining systems and analyze their efficiency.
+Cryptocurrency systems considered in this paper are as follows: Bitcoin [5], Litecoin [6], Peercoin [7], Ethereum [8], Ripple [9], Namecoin [10], Auroracoin [11], Blackcoin [12], Dash [13], Decred [14], and Permacoin [15].
+These Cryptocurrencies are the most interesting, widely used, and with the greatest capital and transaction rates.
+Also, they showcase the major mining algorithms.
+The remainder of this paper is organized as follows: Section II defines relevant terms.
+Section III provides historical perspective and background.
+Section IV provides an overview of Blockchains [16].
+Section V overviews mining, while Section VI provides further details.
+Section VII discusses relevant Hash algorithms.
+Section VIII addresses problems encountered with Cryptocurrencies.
+Key terms used in this paper include the following: • Block: a data structure containing transaction data.
+• Blockchain: a public ledger of all transactions that have ever been executed [17].
+It consists of a distributed, chronological chain of blocks and constantly growing as completed blocks are added to it with a new set of records.
+Blocks comprise transactions and information from previous blocks.
+A unique linear path from the first block ever posted to the current block exists because every block includes the hash of the previous block.
+• Mining: a required verification step for a Cryptocurrency transaction and for adding transaction records to the public ledger (the Blockchain).
+Mining also introduces new Cryptocurrency units in the system [2].
+• Hash: a one-way function [18] that takes data of any size as input and produces a fixed length output.
+Hash computation should be fast and easy, while reversing the process should be expensive and difficult.
+Reversal should require a brute force algorithm.
+Any change in the input should propagate through the entire output, so that outputs for similar input have no predictable similarity.
+• Nonce: a number, usually chosen at random used once for a specific purpose then discarded.
+Nonce collisions, which happen when two randomly chosen nonces turn out to be the same, are ignored.
+• Fork: a quantity generated when two blocks are created a few seconds apart [17].
+Forks are resolved by adding the block received first to the Blockchain.
+Subsequent Blocks are added to the included Block.
+The first fully implemented decentralized Cryptocurrency was Bitcoin, published by Nakamoto in 2008-09 [5].
+Before this there were published articles about peer-to-peer currency systems but none were implemented.
+Following the success of Bitcoin, several others came into existence [19].
+Chaum created an anonymous electronic money system called eCash in 1983 [20].
+The key difference between eCash and Cryptocurrencies is that eCash was centralized (via banks).
+Software on the user’s local computer stored money digitally, which was cryptographically signed by a bank [20].
+PayPal is an Online Money Transfer System established in 1998 [21].
+PayPal provides users with an account, which can be linked with bank accounts and credit cards, and users can pay someone or receive payment through the PayPal accounts.
+PayPal does not have a its own currency.
+M-Pesa [22] was established by Vodafone initially in Africa, which later spread to other continents.
+M-Pesa is a mobile, online payment system in which the user can deposit money into an account stored in their cell phones and send PINsecured SMS texts to other users in order to send money [22].
+All these online monetary systems were based on fiat currencies [23], whereas a Cryptocurrency has its own currency.
+Cryptocurrencies work functionally as follows [19]: • The user has a wallet with a generated address.
+This address acts as a public key [24].
+• The wallet also contains a generated private key, which is used to sign transactions, proving ownership [24].
+• The payer sends money to the payee’s address, and signs it using the payer’s private key.
+• The transaction is verified by mining [2].
+B LOCKCHAIN OVERVIEW A Blockchain is a distributed public ledger of Cryptocurrency transactions [17].
+Each verified transaction is accumulated in a block [25].
+Each block consists of a variable number of verified transactions.
+The maximum size of a block is fixed in each Cryptocurrency system, providing an upper bound to the number of transactions included.
+For instance, the maximum size of a Bitcoin [5] block is 1MB.
+Figure 1 shows a simplified representation of a Bitcoin Blockchain.
+A Bitcoin Block consists of five fields [25]: • Magic number–which is fixed • Block size • Block Header–which contains the hash of the previous block, the time stamp, the block version number, the hash based on all the transactions in the block, and the nonce.
+• Transaction counter–which is the number of transactions included in the block.
+• Transactions–the enumerated set of verified transactions added by the block.
+The first block (“genesis block”) contains the first transactions of a given Cryptocurrency.
+The hash of the first block is passed forward to the miner, which uses it and generates a nonce to create a hash for the second block.
+Likewise, the hash of the third block contains the hashes of the first two blocks, and so on.
+Thus, a strict chronological link, or chain, is created from the genesis block to the current block through the inclusion of hashes.
+There is a single, unique path from the most recent block to that first block.
+This relationship makes it extremely difficult for an attacker to tamper with the information in a block, because all subsequent blocks would have to be regenerated, which would be detected because the final hash wouldn’t match [17].
+When two blocks are created at almost the same time, a fork occurs.
+The block created first according to the timestamp in the block header is accepted in the chain, and subsequent blocks link to the accepted block.
+Every Cryptocurrency system that we’ve studied incorporates a distributed public ledger called the Blockchain [16].
+A transaction is created when a payer sends some currency to a payee.
+Mining validates transactions and adds them to this public ledger.
+When a new transaction takes place, the miner checks if the currency belongs to the payer, or if the payer is trying to double spend [26].
+The ownership of the currency is available in the Blockchain.
+A malicious user may create multiple nodes and try to validate an invalid transaction.
+To prevent this, miners are required to solve a resourceintensive task.
+Resource intensiveness makes it expensive for a malicious user to create enough false identities to outnumber benign users and validate an invalid transaction.
+The resource-intensive task can be any of the following: • Proof of Work [27], which is an easily verifiable result of a resource intensive task that confirms that the task has been performed.
+• Proof of Stake [7], which requires the miner to show how much currency the miner owns in the system.
+• Proof of Retrievability [15], which requires the miner to show that the data he was given to store is intact and can be recovered at will.
+We are not aware of other proof methods at present.
+Details of these Proof systems are discussed below in section 6.
+Proof construction requires intensive use of memory and/or computational power.
+The proof requirement also restricts the number of transactions that can be validated (and consequently the number of blocks added to the ledger) in a given time period.
+This restriction is necessary because, with each block mined, new currency units—the total of which is finite—are  Figure 3.
+A simplified view of Proof of Work mining (adapted from [2])  produced.
+Thus, it is necessary to slow down the rate of the production to prevent untimely exhaustion.
+For example, in the case of Bitcoin, every block currently introduces 50 new Bitcoins in the system.
+The number of new Bitcoins introduced is halved every 210,000 blocks.
+Consequently, through simple geometric progression, there can be at most 21 million Bitcoins [28].
+If the number of Bitcoins mined per day were not restricted, the Bitcoin reserve would be exhausted far earlier than desired.
+After the limit is reached, the number of bits identifying a Bitcoin could be increased to create more units (this remains as a potential future event for Bitcoin).
+Here are the steps involved in mining: • A miner performs a resource-intensive task and produces a proof that the work has been done [27].
+This task prevents a malicious miner from forming false identities and manipulating.
+Figure 3 offers a simplified view.
+• The proof produced is verified to confirm that the task has been performed.
+• The miner then checks for the validity of the transactions, and if all the transactions in the block prove valid, the block is posted in the Blockchain [2].
+Requirements Mining is a brute-force algorithm and should be designed so that the number of blocks mined per day remains approximately constant in order to control the rate of introduction of new currencies, which are unlocked when a block is mined [28].
+The first miner to compute the proof gets to validate the block and earns the reward, which is a fraction of the unlocked currency.
+The Proof produced by the miner needs to be verified.
+This verification should be fast and easy.
+Technological overview Cryptocurrencies usually mine with one-way functions (e.g., hashes) [2].
+As input, the miner gets the hash of the previous blocks.
+He/she would have to choose a nonce, such that when the current hash and the nonce are hashed, the result follows a structure defined by the Cryptocurrency (e.g., Bitcoin requires that the output must have 0s in the N most significant bits [5]).
+Calculating an input from the hash is resource intensive, whereas verifying its correctness by calculating the hash is fast.
+Hash functions are designed in a way so that determining the input from the output is extremely time consuming so as to be intractable [18].
+The miner has to generate nonces and try hashing them with the given input until the requirements  are fulfilled [2].
+The computational complexity of the reverse hashing function is significantly higher than the hashing function since it is a brute force algorithm.
+Obtaining the correct nonce is resource-intensive as well as time consuming since it involves calculating a huge number of hashes, whereas verifying if indeed the nonce, when added to the hash of the previous block, produces a new hash that fulfills the requirements is a matter of one hash computation, and is fast [2].
+Proof of Stake systems are usually not used independently but rather are coupled with Proof of Work [29].
+Controversies A major flaw detected in the proof of work system was the 51% attack [30].
+If a single entity occupies more than half of the total mining hash-rate, then that entity would be able to manipulate the Blockchain at will.
+An attacker who controls more than 50% of the network’s computing power can, for the time that they are in control, exclude and modify the ordering of transactions.
+This allows the successful attacker to perform the following operations [31]: • Reverse transactions that they send.
+• Prevent some or all transactions from validation.
+• Prevent some or all other generators from getting any generations.
+While this is theoretically possible, it would require the attacker to have access to immense resources.
+Acquiring such resources would be expensive and the overall expense might well exceed the potential profit.
+However, to address this threat, Proof of Stake was introduced [32].
+The stake of a miner is the amount of currency unit that the miner possesses.
+In Proof of Stake, the mining capacity of a miner is restricted to the percentage of his or her stake [32].
+If the miner tries to validate an invalid transaction, their share would be forfeited.
+Also, as all transaction information is publicly stored in the ledger, a miner cannot hide their actual stake [32].
+Cryptocurrencies are also vulnerable to the Sybil Attack [33] in which one user takes on multiple identities.
+In the Sybil Attack, attackers populate the network with spurious clients controlled by them.
+They use them to gain a disproportionately large influence to the point where the number of malicious nodes are greater than the number of legitimate nodes [33].
+Attackers can perform the following exploits [34]: • Disconnect legitimate nodes from the network by Denial of Service by not relaying transaction information.
+• Selectively relay transaction information, exposing the victim to double spending [34].
+C RYPTOCURRENCY M INING M ETHODS There are many Cryptocurrency mining techniques in use.
+Figure 4 lists the major Cryptocurrencies and the mining algorithms they employ.
+Bitcoin: Bitcoin mining uses Proof of Work [5].
+The Proof of Work algorithm in use is called Hashcash [36].
+In Hashcash1 , the miner is required to find a nonce, which, when   hashed along with the hash of the previous blocks, would yield a hash with a specified number of zeroes at its front [36].
+The number of zeroes determine the difficulty metric.
+Mining a block is difficult because the SHA-256 hash of a block’s header must be lower than or equal to the target in order for the block to be accepted by the network [38].
+A target is a 256bit integer shared by all Bitcoin clients; the Lower the target, higher the difficulty.
+Mining is more efficient on GP-GPU than in CPUs [39].
+Application Specific Integrated Circuits (ASICs) [40] have also been developed to mine Bitcoin.
+Bitcoin mining works as follows [5]: The hash algorithm used is SHA256 [37].
+A miner selects transactions he/she wishes to verify.
+He/she uses transactions to build a Merkle Tree2 [41].
+Extracts root block hash from the Merkle tree.
+Adds a nonce, hashes the block header.
+Keeps incrementing the nonce and hashing until the desired result is obtained [2].
+This result is the Proof of Work [27].
+Other users agree/verify that the proof matches.
+Then the transaction is validated and new Bitcoins are introduced.
+Successful mining of coins using SHA-256 often requires hash rates at a gigahashes per second (GH/s) range or higher [39].
+The current average time needed to mine a Bitcoin Block with SHA-256 is ten minutes [2].
+2 A Merkle tree [41] is a data structure in which every non-leaf node is labeled with the hash of the labels or values (in case of leaves) of its child nodes.
+Hash trees allow efficient, secure verification of large data structures.
+Litecoin: Litecoin [6] was the first Cryptocurrency to use Scrypt [42] for mining.
+Scrypt was originally a key-derivation function (KDF) [42] developed by Percival and published in 2012.
+Scrypt’s strength lies in the time-memory trade off; that is, an attacker would need more memory to complete the attack faster, and Scrypt’s memory requirement makes it expensive, hence slowing down any attack [6].
+Scrypt has also been successfully implemented as a Proof-of-Work verification [42]; Litecoin was the first system to do so [6].
+The large memory requirements of Scrypt arise from a large vector of pseudo-random bit strings generated as part of the algorithm.
+Once the vector is generated, its elements are accessed in a pseudo-random order and combined to produce the derived key [42].
+As a Proof of Work, the key would have predefined characteristics and the miner would have to produce the sequence of bit strings that match the key [6].
+Scrypt is much newer/simpler/quicker yet also more secure than the SHA-2 series [43].
+While SHA is computationally intensive,Scrypt is memory intensive [43].
+Scrypt’s hash rates for successful coin mining generally range in the kilohashes per second (KH/s) or megahashes per second (MH/s) degrees of difficulty [42].
+Scrypt takes only about 2.5 minutes to mine a block with the same difficulty attributes [43].
+Peercoin: Peercoin [7] uses Proof of Work and introduces the concept of Proof of Stake in its mining system.
+For Proof of Work, its uses the double-SHA-256 algorithm [7].
+Proof of Stake also tries to reach a consensus and prevent double spending [7].
+Instead of requiring the miner (known as the prover in Peercoin [7]) to perform a certain amount of computational work, a Proof of Stake system requires the prover to show ownership of a certain amount of currency [7].
+Miners protect their own stake in this approach [7].
+With Proof of Stake, the resource compared is the amount of currency a miner holds [7] (e.g., one holding 1% of the Cryptocurrency can mine 1% of the “Proof of Stake blocks” [7]).
+Proof of Stake is highly energy efficient [32].
+It still has to have a block selection policy [32], inclusive of the following: • Randomized block selection, • Coin-age-based selection, • Velocity-based selection, and • Voting based selection.
+Proof of Stake, however, is said to be vulnerable to the Nothing-at-Stake Problem [32] in which miners have nothing to lose if they vote for a wrong or invalid transaction [32].
+Ethereum: Ethereum was crowdfunded in 2014 [8].
+Ethereum also relies on Proof of Work but it does not use a preexisting hash algorithm [8].
+The designers developed their own hashing algorithm, EtHash [8, 44] (see Section VII).
+The principal objective for constructing a new Proof of Work function instead of using an existing one was to mitigate the problem of mining centralization [45], in which a small group of hardware companies or mining operations can acquire a disproportionately large amount of power to impact or manipulate the network.
+EtHash is ASIC-resistant [44], and has the property of memory hardness (that is, it relies on how fast the memory can move data) [44].
+Ripple: Ripple [9] does not use mining in its truest sense.
+Released in 2012, it uses a trust-based system to attain consensus [9].
+The goal of consensus is for each server to apply the same set of transactions to the current ledger [9].
+A new ledger is created every few seconds and the last closed ledger contains a perfect record of all Ripple accounts and previous transactions [9].
+A transaction is any proposed change to the ledger; it can be introduced by any server in the network [9].
+Servers try to reach consensus about a set of transactions to apply to the ledger, creating a new last closed ledger [9].
+Namecoin: Namecoin [10] is known to be the first branch of Bitcoin.
+It is a branch in the sense that Namecoin utilizes the same code and mining algorithm as Bitcoin [10].
+Unlike Bitcoin, Namecoin can store data in its own Blockchain Transaction Database [10].
+The Bitcoin Blockchain shows the posted transactions only [17]; the related information is stored in a separate database [10].
+Auroracoin: Auroracoin [11] is from Iceland.
+It uses Scrypt (Proof of Work) as its mining algorithm [11].
+BlackCoin: BlackCoin [12] secures its network through a process called minting, which is a Proof of Stake system that validates a transaction in lesser time and is independent of Proof of Work [46].
+Dash: Dash [13] (formerly Darkcoin [47]) uses a system called Darksend to add transaction privacy.
+Unlike other Cryptocurrencies, transaction information is not public [47].
+It uses a new Proof of Work algorithm called X11 for mining [47] that is exclusive to Dash and is a chained hashing protocol [13].
+It is claimed to be more energy efficient than Scrypt [47].
+Decred: Decred [14] uses a hybrid Proof-of-Work/Proofof-Stake system with both miners and voters to achieve consensus.
+It uses Blake 256 [48] as its mining algorithm, which is a cryptographic hash function based on the ChaCha stream cipher [49].
+Permacoin: While Permacoin [15] is theoretical, without any known implementation at present, it introduces a new concept of Proof of Retrievability [15].
+This scheme requires that the miner store some useful information (of considerable size) and present a proof to the verifier that it exists.
+Permacoin relies on large memory capacity [15].
+The designers proposes using storage, rather than CPU cycles, to secure a Cryptocurrency network [15] while providing a useful way to back up certain data in the process.
+Instead of consuming cycles through Proof of Work, which has no intrinsic value beyond the proof itself [15], Miller et al want miners to store pieces of a large archive of data that is worth preserving [15].
+They suggest this can be achieved by having miners prove that they are storing those pieces of data [15].
+Miners still have to prove that they have solved a mathematical problem but it is much less computationally intensive [15], and is known as a scratch-off puzzle [15].
+The puzzle is based on a Floating Preimage Signature [15].
+The miners must refer to a section of code stored locally on their computer to solve the puzzle [15].
+If they successfully solve the problem, then the algorithm can deduce that they are storing that data (at least for a short time) [15].
+Thus, all miners must be storing a piece of the archived data to participate by mining Permacoin [15].
+These are the major Cryptocurrencies at present, which, as we described, employ a variety of mining algorithms.
+In this section, relevant Hash algorithms, namely: SHA 256: SHA 2 [50] is a set of Secure Hash Functions that has six algorithms, which produce digests (results) that are of different bit lengths.
+SHA 256, produces a digest of 256 bits [18].
+SHA 256 satisfies the requirement of unidirectional hashes (that is, any change in the input, however insignificant, leads to a completely different hash, and determining the input from the hash is practically impossible) [18].
+Also, the same input will always produce the same digest [18].
+SHA 256 pads input to convert its length to a multiple of 512 bits [50].
+Then, it divides the input into blocks of 512 bits each [50].
+The message blocks are processed one at a time, starting with a fixed initial value H 0 [50] , sequentially computing H i = H i−1 + ChM ai (H i−1 ) where Ch is the SHA-256 compression function and + means word-wise addition modulo 232 [50].
+H N becomes the hash [50].
+The compression function permutes and compresses the input block ans is a combination of bitwise logical operators, such as AND, OR, XOR, Complement, etc [50].
+In Figure 5, Ch and M a are the blockwise logical operators using XOR functions, and Σ0 and Σ1 are bitwise rotation operators [50].
+Doubled SHA 256 [37] is abbreviated as SHA256d.
+It is simply the SHA 256 hash performed twice serially [37].
+SHA256d is used as a mining hash to increase difficulty and mining time [37].
+In particular, Bitcoin uses SHA 256d [37] as its hash function, and the output is specified to have a certain characteristics.
+For example, the N most significant bits of the digest have to be zeroes.
+The miner has to come up with a nonce that, when appended to the hash of the previous block, yields a digest with this property.
+Other Cryptocurrencies, such  Figure 6.
+Modules of Scrypt (adopted from [42])  as Peercoin and Namecoin, that also use SHA256d, may pose different requirements in their outputs [7].
+Scrypt: Scrypt [42] was designed to be a Key-Derivation Function (KDF).
+All Key-Derivation Functions are resource intensive in order to mitigate large-scale custom hardware attacks [51].
+Scrypt takes an input and generates a large vector of pseudo-random bits.
+Since these vectors are generated at runtime, the algorithms require large memory.
+More memory leads to faster computation [51].
+Within the algorithm, there are two functions called Smix and Blockmix [42].
+Blockmix performs permutation operations on the input blocks using binary logic operands and, in each iteration, the output of the Blockmix is again processed in Smix, which performs bitwise permutations [42].
+Scrypt was modified for the purposes of mining.
+Since the original Scrypt uses pseudo-random bits, the outputs of the same input would be different.
+This makes it harder to verify.
+When Scrypt was used for KDF, there was no need for such verification [51].
+Figure 6 shows the different modules of Scrypt.
+EtHash: EtHash [44] is exclusive to Ethereum.
+It was designed to thwart the dominance of ASICs vis a vis CPUs and GPUs.The verification of correctness of this proof of work is fast, taking .01 seconds for a light client.
+The EtHash algorithm involves the following steps [44]: • •  •  •  There exists a seed that can be computed for each block from the data stored in the block headers.
+From the seed, a 16MB pseudo-random cache can be computed.
+EtHash uses its own Pseudo-Random Number Generator.
+From the cache, a 1GB dataset can be generated, such that each item in the dataset depends on only a few items from the cache.
+Mining involves selecting random elements of the dataset and hashing them together.
+Verification can be done with low memory by using the cache to regenerate the specific pieces of the dataset that is needed, so it is sufficient to store just the cache.
+Blake: Blake [52] is a cryptographic hash function based on the ChaCha stream cipher [49], but a permutation of the input block, XORed with fixed round constants, is added before each ChaCha round.
+X11: X11 [53] is a chained hashing algorithm, chaining 11 different algorithms together.
+These are: Blake [52], BMW [54], Groestl [55], JH [56], Keccak [57], Skein [58], Luffa [59], CubeHash [60], SHAvite [61], SIMD [62], and Echo [63].
+X11 is ASIC-resistant and is suitable for both CPU mining and GPU mining [53].
+CryptoNight: CryptoNight [64] is a memory-intensive hash function, resistant to ASIC, GPU and FPGA architectures.
+CryptoNight involves three steps, generating pseudorandom addresses in a scratchpad [64], read/write operations on the addresses [64], and performing bitwise XOR and shift functions on the scratchpad [64].
+SHA256 and Scrypt are the most popularly adopted mining algorithms with current Cryptocurrencies.
+Only a few Cryptocurrencies have developed their own mining algorithms.
+Existing Cryptocurrencies have faced various problems and security issues [65] thus far, including these: • There was a Bitcoin Exchange in Tokyo, known as Mt.
+It was developed in 2010 to help users exchange Bitcoins with regular currency.
+Gox had a security breach resulting in a momentary drop of the Bitcoin price to one cent [66].
+Although the price was soon restored and stabilized, many Bitcoins were lost.
+In 2011, they mistakenly sent over 2,500 Bitcoins to invalid addresses thereby exposing faults in their protocol [66].
+Gox handled 70% of bitcoin transactions in 2013 [66], they declared bankruptcy after 850,000 Bitcoins were stolen from their customers and the company itself [66] in a second hack.
+• Ethereum has a Decentralized Autonomous Organization (DAO) [45] in the Ethereum Blockchain that facilitates validation.
+Recently, the DAO was exposed to the Recursive Calling Vulnerability, in which an attacker called a function to split a transaction recursively and collected ether, the Ethereum currency [45].
+• There have been certain alternative Cryptocurrencies that have failed [67].
+Some of these weren’t sustained or elaborate efforts, including BBQCoin [68] and Solidcoin [68].
+Some others failed to take precautions and succumbed either to the 51% and/or Sybil Attacks [65].
+• Qubic was developed as an inspiration from Bitcoin, but without the disadvantages of Bitcoin.
+They proposed a network-based Proof of Work instead of a CPU-based one.
+However, Qubic wasn’t popular and was shut down [69].
+Technical weaknesses and flawsresulted in the failure of several Cryptocurrencies.
+The Cryptocurrencies that have prevailed thus far have had to overcome snags too.
+This paper compared, contrasted, and surveyed major Cryptocurrencies’ approaches to mining, as well as other properties and features of the systems.
+At present, major Cryptocurrencies use Proof of Work, Proof of Stake or a combination thereof for mining.
+While Proof of Work is resource intensive, Proof of Stake cannot act independently.
+A combination of the both is found to be effective.
+For Proof of Work, Cryptocurrencies use various Hash algorithms.
+A majority of these are CPU-intensive and the others are memory intensive.
+Typically memory-intensive hash functions have been found to be faster mining algorithms.
+Cryptocurrencies are experimenting with their mining protocols and algorithms to optimize their performance, and some are trying to identify alternatives to mining.
+This material is based upon work supported by the National Science Foundation under Grants Nos.
+Any opinions, findings, and conclusions or recommendations expressed in this material are those of the authors and do not necessarily reflect the views of the National Science Foundation.
+A thorough review of a late draft of this paper by Dr.
+Bangalore of UAB is kindly acknowledged..

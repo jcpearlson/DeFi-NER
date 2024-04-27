@@ -1,0 +1,260 @@
+Computing Arbitrary Functions of Encrypted Data  Suppose that you want to delegate the ability to process your data, without giving away access to it.
+We show that this separation is possible: we describe a “fully homomorphic” encryption scheme that keeps data private, but that allows a worker that does not have the secret decryption key to compute any (still encrypted) result of the data, even when the function of the data is very complex.
+In short, a third party can perform complicated processing of data without being able to see it.
+Among other things, this helps make cloud computing compatible with privacy.
+Is it possible to delegate processing of your data without giving away access to it? This question, which tests the tension between convenience and privacy, has always been important, but seems especially so now that we are headed toward widespread use of cloud computing.
+To put everything online “in the cloud,” unencrypted, is to risk an Orwellian future.
+For certain types of data, such as medical records, storing them off-site unencrypted may be illegal.
+On the other hand, encrypting one’s data seems to nullify the benefits of cloud computing.
+Unless I give the cloud my secret decryption key (sacrificing my privacy), what can I expect the cloud to do with my encrypted data except send it back to me, so that I can decrypt it and process it myself? Fortunately, this is a false dilemma, or at least convenience and privacy can be reconciled to a large extent.
+For data that is encrypted with an “ordinary” encryption scheme, it is virtually impossible for someone without the secret decryption key (such as the cloud) to manipulate the underlying data in any useful way.
+However, some encryption schemes are homomorphic or malleable.
+They let anyone manipulate (in a meaningful way) what is encrypted, even without knowing the secret key! In this paper, we describe the first fully homomorphic This paper draws from the STOC 2009 paper “Fully Homomorphic Encryption Using Ideal Lattices,” my thesis, and a recent manuscript co-authored with van Dijk, Halevi, and Vaikuntanathan.
+The cloud never sees any unencrypted data.
+If I want, I can even use the scheme to encrypt a description of f , so that the cloud does not even see what I am searching for.
+Rivest, Adleman, and Dertouzos [5] suggested that fully homomorphic encryption may be possible in 1978, shortly after the invention of the RSA cryptosystem [6], but were unable to find a secure scheme.
+As an application, they described our private cloud computing scenario above, though of course they used different terminology.
+There are many other applications.
+Homomorphic encryption is useful whenever it is acceptable if a response (e.g., to a search engine query) is encrypted.
+Below, we begin by describing homomorphic encryption in more detail.
+Then, we describe a concrete scheme due to van Dijk, Gentry, Halevi, and Vaikuntanathan, [9], which uses only simple integer operations, and is a conceptually simpler version of the first scheme by Gentry [3, 2], which uses lattices.
+Toward the end, we discuss the scheme’s (rather slow) performance.
+Throughout, we try to make the ideas more tangible by constantly returning to a physical analogy: a jewelry store owner, Alice, who wants her workers to process raw precious materials into intricately designed rings and necklaces, but who is afraid to give her workers complete access to the materials for fear of theft.
+At first, the notion of processing data without having access to it may seem paradoxical, even logically impossible.
+To convince you that there is no fallacy, and to give you some intuition about the solution, let us consider an analo-  gous problem in (a fictional version of) the “physical world.” Alice owns a jewelry store.
+She has raw precious materials – gold, diamonds, silver, etc.
+– that she wants her workers to assemble into intricately designed rings and necklaces.
+But she distrusts her workers and assumes that they will steal her jewels if given the opportunity.
+In other words, she wants her workers to process the materials into finished pieces, without giving them access to the materials.
+What does she do? Here is her plan.
+She uses a transparent impenetrable glovebox, secured by a lock for which only she has the key.
+She puts the raw precious materials inside the box, locks it, and gives it to a worker.
+Using the gloves, the worker assembles the ring or necklace inside the box.
+Since the box is impenetrable, the worker cannot get to the precious materials, and figures he might as well return the box to Alice, with the finished piece inside.
+Alice unlocks the box with her key and extracts the ring or necklace.
+In short, the worker processes the raw materials into a finished piece, without having true access to the materials.
+The locked impenetrable box, with raw precious materials inside, represents an encryption of the initial data m1 , .
+, mt , which can be accessed only with the secret decryption key.
+The gloves represent the homomorphism or malleability of the encryption scheme, which allows the raw data to be manipulated while it is inside the “encryption box.” The completed ring or necklace inside the box represents the encryption of f (m1 , .
+, mt ), the desired function of the initial data.
+Note that “lack of access” is represented by lack of physical access, as opposed to lack of visual access, to the jewels.
+(For an analogy that uses lack of visual access, consider a photograph developer’s darkroom.) Of course, Alice’s jewelry store is only an analogy.
+It does not represent some aspects of homomorphic encryption well, and taking it too literally may be more confusing than helpful.
+We discuss some flaws in the analogy at the end of this section, after we describe homomorphic encryption more formally.
+Despite its flaws, we return to the analogy throughout, since it motivates good questions, and represents some aspects of our solution quite well – most notably, “bootstrapping,” which we discuss in Section 4.
+2.2  Homomorphic Encryption: Functionality  An encryption scheme E has three algorithms: KeyGenE , EncryptE and DecryptE , all of which must be efficient – that is, run in time poly(λ), polynomial in a security parameter λ that specifies the bit-length of the keys.
+In a symmetric, or secret-key, encryption scheme, KeyGenE uses λ to generate a single key that is used in both EncryptE and DecryptE , first to map a message to a ciphertext, and then to map the ciphertext back to the message.
+In an asymmetric, or public-key, encryption scheme, KeyGenE uses λ to generate two keys – a public encryption key pk, which may be made available to everyone, and a secret decryption key sk.
+As a physical analogy for an asymmetric encryption scheme, one can think of Alice’s public key as a padlock, which she constructs and distributes, that can be locked without a key.
+Anyone can put a message inside a box secured by Alice’s padlock (encrypt), and mail it via a public channel to Alice, but only Alice has the key needed to unlock it (decrypt).
+A homomorphic encryption scheme can be either symmetric or asymmetric, but we will focus on the asymmetric case.
+It has a fourth algorithm EvaluateE , which is associated to a  set FE of permitted functions.
+For any function f in FE and any ciphertexts c1 , .
+, ct with ci ← EncryptE (pk, mi ), the algorithm EvaluateE (pk, f, c1 , .
+, ct ) outputs a ciphertext c that encrypts f (m1 , .
+, mt ) – i.e., such that DecryptE (sk, c) = f (m1 , .
+(For convenience, we will assume that f has one output.
+If f has k outputs, then EvaluateE outputs k ciphertexts that encrypt f (m1 , .
+, mt ) collectively.) As shorthand, we say that E can handle functions in FE .
+For a function f not in FE , there is no guarantee that EvaluateE will output anything meaningful.
+Typically EvaluateE is undefined for such a function.
+As described thus far, it is trivial to construct an encryption scheme that can handle all functions.
+Just define EvaluateE as follows: simply output c ← (f, c1 , .
+, ct ), without “processing” the ciphertexts at all.
+Modify DecryptE slightly: to decrypt c, decrypt c1 , .
+, ct to obtain m1 , .
+, mt , and then apply f to these messages.
+But this trivial solution obviously does not conform to the spirit of what we are trying to achieve – to delegate the data processing (while maintaining privacy).
+The trivial solution is as if, in Alice’s jewelry store, the worker simply sends the box (which need not have gloves) back to Alice without doing any work on the raw precious materials, and Alice unlocks the box, extracts the materials, and assembles the ring or necklace herself.
+So, how do we formalize what it means to delegate? Intuitively, the purpose of delegation is to reduce one’s workload.
+We can formalize this in terms of the running times (i.e., complexity) of the algorithms.
+Specifically, we require that decrypting c (the ciphertext output by EvaluateE ) takes the same amount of computation as decrypting c1 (a ciphertext output by EncryptE ).
+Moreover, we require that c is the same size as c1 .
+We refer to these as the compact ciphertexts requirement.
+Again, the size of c and the time needed to decrypt it do not grow with the complexity of f ; rather, they are completely independent of f (unless f has multiple outputs).
+Also, of course, the complexity of DecryptE , as well as the complexity of KeyGenE and EncryptE , must remain polynomial in λ.
+E is fully homomorphic if it can handle all functions, has compact ciphertexts, and EvaluateE is efficient in a way that we specify below.
+The trivial solution above certainly is not fully homomorphic, since the size of the ciphertext output by EvaluateE , as well as the time needed to decrypt it, depend on the function being evaluated.
+In terms of Alice’s jewelry store, our definition of fully homomorphic captures the bestcase scenario for Alice: her workers can assemble arbitrarily complicated pieces inside the box, but the work needed to assemble has no bearing on the work Alice needs to do to unlock the box and extract the piece.
+We want our fully homomorphic scheme to be efficient for the worker, as well.
+In particular, we want the complexity of EvaluateE – like the other algorithms of E – to depend only polynomially on the security parameter.
+But clearly its complexity must also depend on the function being evaluated.
+How do we measure the complexity of f ? Perhaps the most obvious measure is the running time Tf of a Turing machine that computes f .
+We use a related measure, the size Sf of a boolean circuit (i.e., the number of AND, OR, and NOT gates) that computes f .
+Any function that can be computed in Tf steps on a Turing machine can be expressed as a circuit with about Tf gates.
+More precisely, Sf < k · Tf · log Tf for some small constant k.
+Overall, we  say that EvaluateE is efficient if there is a polynomial g such that, for any function f that is represented by a circuit of size Sf , EvaluateE (pk, f, c1 , .
+, ct ) has complexity at most Sf · g(λ).
+The circuit representation of f is also useful because it breaks the computation of f down into simple steps – e.g., AND, OR, and NOT gates.
+Moreover, to evaluate these gates, it is enough to be able to add, subtract and multiply.
+(In fact, it is enough if we can add, subtract and multiply modulo 2.) In particular, for x, y ∈ {0, 1}, we have AND(x, y) = xy, OR(x, y) = 1 − (1 − x)(1 − y) and NOT(x) = 1 − x.
+So, to obtain a fully homomorphic encryption scheme, all we need is a scheme that operates on ciphertexts so as to add, subtract, and multiply the underlying messages, indefinitely.
+But is the circuit representation of f – or some arithmetized version of it in terms of addition, subtraction and multiplication – necessarily the most efficient way to evaluate f ? In fact, some functions, like binary search, take much longer on a Turing machine or circuit than on a random access machine.
+On a random access machine, a binary search algorithm on t ordered items only needs to “touch” O(log t) of its inputs.
+A moment’s thought shows that random-access speedups cannot work if the data is encrypted.
+Unless we know something a priori about the relationship between f and m1 , .
+, mt , the algorithm EvaluateE (pk, f, c1 , .
+, ct ) must touch all of the input ciphertexts, and therefore have complexity at least linear in the number of inputs.
+To put it another way, if EvaluateE (for some reason) did not touch the second half of the ciphertexts, this would leak information about the second half of the underlying messages – namely, their irrelevance in the computation of f – and this leakage would contradict the security of the encryption scheme.
+While EvaluateE must have running time at least linear in t as an unavoidable cost of the complete privacy that homomorphic encryption provides, a tradeoff is possible.
+If I am willing to reveal – e.g., in the cloud computing context – that the files that I want are contained in a certain 1% of my data, then I may help the cloud reduce its work by a factor of 100.
+Another artifact of using a fixed circuit representation of f is that the size of the output – i.e., the number of output wires in the circuit – must be fixed in advance.
+For example, when I request all of my files that contain a combination of keywords, I should also specify how much data I want retrieved – e.g., one megabyte.
+From my request, the cloud will generate a circuit for a function that outputs the first megabyte of the correct files, where that output is truncated (if too much of my data satisfies my request), or padded with zeros (if too little).
+A moment’s thought shows that this is also unavoidable.
+There is no way the cloud can avoid truncating or padding unless it knows something a priori about the relationship between the function and my data.
+2.3  Homomorphic Encryption: Security  In terms of security, the weakest requirement for an encryption scheme is one-wayness: given the public key pk and a ciphertext c that encrypts unknown message m under pk, it should be “hard” to output m.
+“Hard” means that any algorithm or “adversary” A that runs in poly(λ) time has a negligible probability of success over the choices of pk and m (i.e., the probability it outputs m is less than 1/λk for  any constant k).
+Nowadays, we typically require an encryption scheme to have a stronger security property, called semantic security against chosen-plaintext attacks (CPA) [4]: given a ciphertext c that encrypts either m0 or m1 , it is hard for an adversary to decide which, even if it is allowed to choose m0 and m1 .
+Here, “hard” means that if the adversary A runs in polynomial time and guesses correctly with probability 1/2 + , then , called A’s advantage, must be negligible.
+If this advantage is non-negligible, then we say (informally) that the adversary breaks the semantic security of the encryption scheme.
+If an encryption scheme is deterministic – i.e., if there is only one ciphertext that encrypts a given message – then it cannot be semantically secure.
+An attacker can easily tell whether c encrypts m0 , by running c0 ← Encrypt(pk, m0 ) and seeing if c and c0 are the same.
+A semantically secure encryption scheme must be probabilistic – i.e., there must be many ciphertexts that encrypt a given message, and EncryptE must choose one randomly according to some distribution.
+One can prove the (conditional) one-wayness or semantic security of an encryption scheme by reducing a hard problem to breaking the encryption scheme.
+For example, suppose one shows that if there is an efficient algorithm that breaks the encryption scheme, then this algorithm can be used as a subroutine in an efficient algorithm that factors large numbers.
+Then, under the assumption that factoring is hard – i.e., that no poly(λ)-time algorithm can factor λ-bit numbers – the reduction implies that the encryption scheme must be hard to break.
+Semantic security of a homomorphic encryption scheme is defined in the same way as for an ordinary encryption scheme, without reference to the EvaluateE algorithm.
+If we manage to prove a reduction – i.e., that an attacker that breaks E can be used to solve a hard problem like factoring – then this reduction holds whether or not E has an EvaluateE algorithm that works for a large set of functions.
+To understand the power of semantic security, let us reconsider our cloud computing application.
+Sometime after storing her encrypted files in the cloud, Alice wants the cloud to retrieve the files that have a certain combination of keywords.
+Suppose that in its response, the cloud sends ciphertexts that encrypt the first three files.
+Can’t the cloud just see that the first three encrypted files that it is storing for Alice happen to encrypt the same content as the three files that it sends to Alice? Not if the scheme is semantically secure.
+Even though some of the stored ciphertexts encrypt the same content as the sent ciphertexts, the cloud cannot see this, because semantic security guarantees that it is hard to tell whether two ciphertexts encrypt the same content.
+Intuitively, it seems like the EvaluateE algorithm should make E easier to break, simply because this additional algorithm gives the attacker more power.
+Or, to put it in terms of the physical analogy, one would think that the easiest way to get inside the glovebox is to cut through the gloves, and that, the more flexible the gloves are, the easier the glovebox is to compromise; this suggests that, the more malleable the encryption scheme is, the easier it is to break.
+There is some truth to this intuition.
+Researchers [1, 8] showed that if E is a deterministic fully homomorphic encryption scheme (or, more broadly, one for which it is easy to tell whether two ciphertexts encrypt the same thing), then E can be broken  in sub-exponential time, and in only polynomial time (i.e., efficiently) on a quantum computer.
+So, malleability seems to weaken the security of deterministic schemes.
+But these results do not apply to semantically secure schemes, such as ours.
+2.4  Some Flaws in the Physical Analogy  The physical analogy represents some aspects of homomorphic encryption poorly.
+For example, the physical analogy suggests that messages that are encrypted separately are in different “encryption boxes” and cannot interact.
+Of course, this interaction is precisely the purpose of homomorphic encryption.
+To fix the analogy, one may imagine that the gloveboxes have a one-way insertion slot like the mail bins used by the post office.
+Then, messages can be added to the same encryption box as they arrive.
+(Even this fix is not entirely satisfactory.) Another flaw is that the output f (m1 , .
+, mt ) may have significantly fewer bits than m1 , .
+, mt , whereas in the analogy (absent significant nuclear activity inside the glovebox) the conservation of mass dictates that the box will have at least as much material inside when the worker is done as when he started.
+Finally, in Alice’s jewelry store, even though a worker cannot extract the materials from a locked glovebox, he can easily tell whether or not a box contains a certain set of materials – i.e., the gloveboxes do not provide “semantic security.”  3.
+A SOMEWHAT HOMOMORPHIC ENCRYPTION SCHEME  On our way to fully homomorphic encryption, we begin by constructing a somewhat homomorphic encryption scheme E that can handle a limited class FE of permitted functions.
+EvaluateE (pk, f, c1 , .
+, ct ) does not work for functions f that are too complicated.
+Later, we will show to use E to obtain fully homomorphic encryption.
+3.1  Meanwhile in Alice’s Jewelry Store  After figuring out how to use locked gloveboxes to get her workers to process her precious materials into fancy rings and necklaces, Alice puts in an order with Acme Glovebox Company.
+Unfortunately, the gloveboxes she receives are defective.
+After a worker uses the gloves for one minute, the gloves stiffen and become unusable.
+But some of the fanciest pieces take up to an hour to assemble.
+Alice sues Acme, but meanwhile she wonders: Is there some way I can use these defective boxes to get the workers to securely assemble even the most complicated pieces? She notices that the boxes, while defective, do have a property that might be useful.
+As expected, they have a one-way insertion slot, like post office mail bins.
+But they are also flexible enough so that it is possible to put one box inside another through the slot.
+She wonders whether this property might play a role in the solution to her problem...
+3.2  Our Somewhat Homomorphic Scheme  Our somewhat homomorphic encryption scheme E, described below, is remarkably simple [9].
+We describe it first as a symmetric encryption scheme.
+As an example parameter setting, for security parameter λ, set N = λ, P = λ2 and Q = λ5 .
+How Homomorphic Is It?  What is the set of permitted functions that our homomorphic encryption scheme E can handle? To answer this question, we need to analyze how the noise grows as we add and multiply ciphertexts.
+EncryptE outputs  a fresh ciphertext with a small noise, at most N bits.
+As we AddE , SubE , or MultE ciphertexts, the output ciphertext becomes more noisy.
+Multiplication tends to increase the noise faster than addition or subtraction.
+In particular, for ciphertexts c1 and c2 with k1 - and k2 -bit noises, the ciphertext c ← c1 · c2 has (roughly) (k1 + k2 )-bit noise.
+E is already quite powerful.
+As an example, it can handle an elementary symmetric polynomial of degree d in t variables, as long as 2N d · dt < p/2, which is true (roughly) when d < P/(N · log t).
+For our suggested parameters, this degree can be quite large: λ/(log t) = Ω(λ/ log λ).
+That E can evaluate polynomials of such high degree makes it “homomorphic enough” for many applications.
+For example, it works well when f is a highly parallelizable function – e.g., a basic keyword search – in which case f has fairly low degree.
+Euclid showed that, given two integers x1 and x2 , it is easy to compute their greatest common divisor (gcd).
+But suppose that x1 = s1 + p · q1 and x2 = s2 + p · q2 are nearmultiples of p, with s1 and s2 much smaller than p.
+When p is only an approximate gcd, is it still possible to compute p efficiently – i.e., in time polynomial in the bit-lengths of x1 and x2 ? Not in general, as far as we know.
+In fact, if we sample si , p and qi with λ, λ2 , and λ5 bits (similar to our scheme E), then the approximate gcd problem seems to remain hard even if we are given arbitrarily many samples xi = si + p · qi , rather than just two.
+For these parameters, known attacks – including those using continued fractions and simultaneous diophantine approximation – take time essentially exponential in λ.
+Moreover, we can reduce the approximate gcd problem to the security of our somewhat homomorphic encryption scheme.
+That is, we can prove that an attacker cannot efficiently break the semantic security of our encryption scheme unless the approximate gcd problem is easy.
+One night, Alice dreams of immense riches, caverns piled high with silver, gold and diamonds.
+Then, a giant dragon devours the riches and begins to eat its own tail! She awakes with a feeling of peace.
+As she tries to make sense of her dream, she realizes that she has the solution to her problem.
+She knows how to use her defective boxes to securely delegate the assembly of even the most intricate pieces! Like before, she gives a worker a glovebox, box #1, containing the raw materials.
+But she also gives him several  additional gloveboxes, where box #2 contains (locked inside) the key to box #1, box #3 contains the key to box #2, and so on.
+To assemble an intricate design, the worker manipulates the materials in box #1 until the gloves stiffen.
+Then, he places box #1 inside box #2, where the latter box already contains a the key to box #1.
+Using the gloves for box #2, he opens box #1 with the key, extracts the partially assembled trinket, and continues the assembly within box #2 until its gloves stiffen.
+He then places box #2 inside box #3, and so on.
+When the worker finally finishes his assembly inside box #n, he hands the box to Alice.
+Of course, Alice observes, this trick does not work unless the worker can open box #i within box #(i + 1), and still have time to make a little bit of progress on the assembly, all before the gloves of box #(i + 1) stiffen.
+But as long as the unlocking operation (plus a little bit of assembly work) takes less than a minute, and as long as she has enough defective gloveboxes, then it is possible to assemble any piece, no matter how complicated!  In the analogy, the defective gloveboxes represent our somewhat homomorphic encryption scheme, which can perform Add, Sub, and Mult operations on ciphertexts for a little while – it can handle functions in a limited set FE – until the noise becomes too large.
+What we would like to do is use this somewhat homomorphic scheme to construct a fully homomorphic one.
+As before, box #1 with the precious materials inside represents the ciphertexts that encrypt the initial data.
+Box #(i+1) with the key for box i inside represents an encrypted secret decryption key – i.e., ski encrypted under pki+1 .
+In the analogy, Alice discovers that there is only one thing that her workers really need to be able to do in less than one minute with the gloves, aside from performing a very small operation on the piece: unlock box #i within box #(i + 1) and extract the piece.
+It will turn out that there is only one function that our scheme E really needs to be able to handle, with a tiny bit of room left over to perform one more Add, Sub, or Mult: the decryption function (which is like unlocking the “encryption box”).
+If E has this self-referential property of being able to handle its own decryption function (augmented by a single gate), we say that it is bootstrappable.
+As we will show, if E is bootstrappable, then one can use E to construct a fully homomorphic encryption scheme E † .
+Suppose that E is bootstrappable.
+In particular, suppose that E can handle the following four functions: the decryption function, expressed as a circuit DE of size polynomial in λ, as well as DE augmented by an Add, Sub, or Mult gate modulo 2.
+(DE augmented by Add consists of two copies of DE connected by an Add gate.) We will show that this is a complete set of circuits, in the sense that if these four circuits are in FE , then one can construct from E a scheme E † that is fully homomorphic.
+As a warm-up, suppose that ciphertext c1 encrypts the bit m under key pk1 .
+Suppose also that we have an encrypted secret key: let sk1 be a vector of ciphertexts that encrypt the bits of sk1 under pk2 via EncryptE (pk2 , sk1j ).
+Above, EvaluateE takes in the bits of sk1 and c1 , each encrypted under pk2 .
+Then, E is used to evaluate the decryption circuit homomorphically.
+As long as E can handle DE , the output c is an encryption under pk2 of DecryptE (sk1 , c1 ) = m.
+RecryptE therefore outputs a new encryption of m, but under pk2 .
+One fascinating thing about RecryptE is that the message m is doubly encrypted at one point, first under pk1 and next under pk2 .
+Ordinarily, the only thing one can do with a doubly-encrypted message is to peel off the outer encryption first, and then decrypt the inner layer.
+However, in RecryptE , the EvaluateE algorithm is used to remove the inner encryption, just like Alice unlocks box #i while it is inside box #(i + 1).
+It is also useful to imagine that E is our somewhat homomorphic encryption scheme from Section 3, and consider what RecryptE does to the noise of the ciphertexts.
+Evaluating DE removes the noise associated to the first ciphertext under pk1 (because, of course, decryption removes noise), but EvaluateE simultaneously introduces new noise while evaluating the ciphertexts under pk2 .
+As long as the new noise added is less than the old noise removed, we have made “progress.” A similar situation holds in Alice’s jewelry store.
+When the worker extracts the piece from the used-up glovebox #i, this process simultaneously uses up the gloves of box #(i + 1).
+We have made “progress” as long as the process does not leave box #(i + 1)’s gloves completely used-up.
+Of course, our goal is to perform actual operations on underlying messages, not merely to obtain a new encryption of the same message.
+Strictly speaking, E † does not quite meet our definition of fully homomorphic encryption, since the complexity of KeyGenE † grows linearly with the maximum circuit depth we want to evaluate.
+(Fortunately, EncryptE † and DecryptE † do not depend at all on the function f being evaluated.) However, suppose that E is not only bootstrappable, but also circular-secure – that is, it is “safe” to reveal the encryption of a secret key ski under its own associated public key pki .
+Then, we can simplify KeyGenE † .
+We do not need distinct public keys pki for each circuit level and an acyclic chain of encrypted secret keys.
+Instead, the public key in E † can consist merely of a single public key pk and a single encrypted secret key sk (sk under pk), where pk is associated to all levels of the circuit.
+This approach has the additional advantage that we do not need to decide beforehand the maximal circuit depth complexity of the functions that we want to be able to evaluate.
+For most encryption schemes, including our somewhat homomorphic scheme (as far as we know), revealing an encryption of sk under pk does not lead to any attack.
+However, it is typically difficult to prove that an encryption scheme is circular-secure.
+The issue of circular security also fits within our physical analogy.
+Suppose that a key is locked inside the very same box that the key could open from the outside.
+Is it possible to use the gloves and key to open the box from the inside? If so, it would be a strange lock.
+Similarly, encryption schemes that are insecure in this setting tend to be contrived.
+Is our somewhat homomorphic encryption scheme from Section 3 already bootstrappable? Can it handle its own decryption circuit? Unfortunately, as far as we can tell, E can almost handle DE , but not quite.
+So, we modify E slightly, constructing a new (but closely related) somewhat homomorphic scheme E ∗ that can handle essentially the same functions that E can, but whose decryption circuit is simple enough to make E ∗ bootstrappable.
+After her dream, Alice rushes to her store to see if her idea works.
+She locks box #1 and puts it inside box #2.
+Working with the gloves of box #2, she tries to unlock box #1 in less than one minute.
+The thickness of the gloves and the stickiness of the lock combine to make it impossible.
+She is despondent until she remembers that she has a special grease that makes her locks less sticky.
+This time, she locks box #3 and puts it inside box #4.
+She also puts her bottle of grease inside box #4.
+Working with the gloves of box #4, she squirts some grease on the lock and then tries to unlock it.
+But the gloves stiffen before she can finish.
+Then, she thinks: why didn’t I grease the box’s lock before putting it inside the other box? That way, I wouldn’t waste my valuable time with the gloves greasing the lock.
+She locks box #5, greases its lock, and then puts it inside box #6.
+Working with gloves, she tries the lock again.
+This time it works, despite the clumsiness of the gloves! At last, she has a system that lets her securely delegate the processing of her precious materials into arbitrarily complicated pieces! Her workers just need to apply the grease to each box before they put it inside the next box.
+She can hardly wait to put the system in place the following morning.
+We now know that FHE is possible.
+We already have the scheme presented here, the lattice-based scheme by Gentry [2, 3], and a recent scheme by Smart and Vercauteren [7].
+There is still work to be done toward making FHE truly practical.
+Currently, all known FHE schemes follow the blueprint above: construct a bootstrappable somewhat homomorphic encryption scheme E, and obtain FHE by running EvaluateE on E’s decryption function.
+But this approach is computationally expensive.
+Not only is the decryption function expressed (somewhat inefficiently) as a circuit, but then EvaluateE replaces each bit in this circuit with a large ciphertext that encrypts that bit.
+Perhaps someone will find a more efficient blueprint.
+The scheme presented here, while conceptually simpler, seems to be less efficient than the lattice-based scheme.
+To get 2λ security against known attacks – e.g., on the the approximate gcd problem – ciphertexts are λ5 · polylog(λ) bits, which leads to λ10 · polylog(λ) computation to evaluate the decryption function.
+The lattice-based scheme with comparable security has λ6 · polylog(λ) computation.
+This is high, but not totally unreasonable.
+Consider: to make RSA 2λ -secure against known attacks – in particular, against the number field sieve factoring algorithm – you need to use an RSA modulus with approximately λ3 bits.
+Then, RSA decryption involves exponentiation by a λ3 -bit exponent – i.e., about λ3 multiplications.
+Even if one uses fast Fourier multiplication, this exponentiation requires λ6 · polylog(λ) computation.
+Also, unlike RSA, the decryption function in our scheme is highly parallelizable, which may make an enormous difference in some implementations.
+The morning after her dream, Alice explains her glovebox solution to her workers.
+They are not happy, but they wish to remain employed.
+As the day progresses, it becomes clear that the gloveboxes are slowing down the pace of jewelry construction considerably.
+The main problem seems to be the thick gloves, which multiply the time needed for each assembly step.
+After a few days of low output, Alice curtails her use of the gloveboxes to pieces that contain the most valuable diamonds.
+Alice loses her suit against Acme Glovebox Company, because, as far as anyone knows in Alice’s parallel world, gloves in gloveboxes are always very stiff and stiffen completely after moderate use.
+The old judge explains this to her in a patronizing tone.
+But Alice refuses to give up.
+She hires a handsome young glovebox researcher, and tasks him with developing a glove flexible enough to permit the nimble assembly of jewels and unlocking of boxes, but sturdy enough to prevent the boxes from being easily compromised.
+The researcher, amazed at his good fortune, plunges into the problem..

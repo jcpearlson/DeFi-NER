@@ -1,0 +1,88 @@
+One of the most exciting ideas in cryptography in the past few decades, with the widest array of applications, is asymmetric encryption, or public key cryptography.
+Asymmetric encryption is the idea that an encryption scheme can be broken up into two parts, so that anyone can encrypt, but only someone who knows the secret key can decrypt.
+That contrasts with traditional cryptography, where the same key is required for encryption and decryption.
+The most famous example of public key cryptography is the RSA encryption scheme, invented by Ron Rivest, Adi Shamir, and Len Adleman.
+RSA is based on the idea that factoring large numbers is hard, even though multiplication is easy.
+To make a public key, Alice first picks two large primes, p and q, and multiplies them together to get n.
+She picks some d ∈ Uϕ(n) , which she keeps secret, and computes e ∈ Uϕ(n) such that ed ≡ 1 (mod ϕ(n)), which she publishes, along with the modulus n.
+Then to encrypt a message m ∈ Un for Alice, Bob computes the ciphertext c := me (mod n).
+Another common encryption scheme is Rabin encryption, which is based on the idea that extracting square roots modulo n is hard, unless you know how to factor n.
+Again, Alice chooses two large secret primes, p and q, and multiplies them together to get n, which she publishes.
+Generally, p and q are taken to be 3 modulo 4, but this is not a necessity.
+In addition to hiding data, public key cryptography is can be used for authentication.
+Imagine the following scenario: Alice sends a message to Bob, encrypted with Bob’s public key, but Mal, the malicious attacker, is sitting in the middle.
+Mal intercepts Alice’s message, which tells Bob to send her money, and in its place sends a message purporting to be from Alice, telling Bob to send the money to him.
+Bob has no way of knowing that the message he receives did not really come from Alice.
+So we want a way for Alice to assure Bob that the message he gets is really from her.
+What Alice can do is sign her message.
+That is, before encrypting her message M with Bob’s public key Eb , she applies a hash function f (a function that is computationally hard to invert) to M and decrypts f (M) with her own private key Da .
+So she sends Bob the pair (Eb (M)), Da (f (M))).
+When Bob gets it, he applies his private key Db to the message part, Alice’s public key Ea to the second part, and checks to make sure f (Db (Eb (M))) = Ea (Da (f (M))).
+Since we assume Mal does not know Alice’s private key and cannot invert f , Bob is now certain the message came from Alice: while Mal could have replaced the message, he could not have produced something that, when encrypted with Alice’s public key, gives a message with chosen hash value.
+One of the key features of the signing algorithm discussed in the last section is that Alice knows exactly what she is signing—she is signing it because she is the author of the message.
+But the idea of authentication applies to more situations that simply proving one is the author of a particular message.
+For example, let us consider an election.
+A voter who presents identification is actually authenticating two things: his or her identity, and the validity of his or her vote.
+A voter stepping into a voting booth takes care of both steps at once, but a person voting by mail or electronically could have the secrecy of his or her vote compromised.
+After all, if a ballot is mailed in an envelope with a return address, anyone processing the vote could simply note who it came from (assuming the US postal service will not mail letters with incorrect return addresses, of course).
+But if the election board permitted ballots to be mailed in unmarked envelopes, the potential for fraud rises.
+And if an election is conducted online, the link between a voter and his or her vote is stronger, and the potential for fraud in anonymous elections is much higher.
+Instead, we can imagine a protocol for voting that separates these authentication steps.
+In this scenario, Alice is a trustee, and any ballot she certifies valid will be counted.
+To vote, Bob first puts his ballot in a carbon paper-lined envelope1 , seals it, and then mails that to Alice in an outer envelope with his return address on it.
+Alice checks the voter rolls to make sure Bob is eligible to vote, takes out the inner envelope and signs it (without opening it), then mails it back to Bob (since she has his return address).
+Bob takes out his ballot and mails that anonymously to the vote counting center, and since the ballot has Alice’s signature on it, his vote is counted.
+And since Alice never saw his ballot, and the vote counters never saw his name, no one knows how he voted.
+Let us review the ideas and assumptions that make this work: • Bob can prove to Alice that he is who he says he is, and therefore has the right to vote.
+• No one can duplicate Alice’s signature.
+• Anyone can check that Alice’s signature is valid.
+• Bob can seal his carbon paper envelope in such a way that Alice is incapable of opening it.
+• The only difference between the ballot Bob sent to Alice and the ballot he mailed to the vote counters is Alice’s signature.
+Now we can try to translate this to the language of cryptography and electronic transactions.
+The first condition is simply the sort of authentication scheme we have already discussed.
+The second and third conditions require that Alice have a good signature scheme S ′ with a public inverse S.
+The fourth condition says that Bob has an encryption scheme Eb , with inverse Db known only to him.
+The last condition tells us that Eb and S ′ are compatible, in the sense that Db (S ′ (Eb (M))) = S ′ (M) for any message M.
+In short, if appropriate encryption and signature functions exist, we have the following protocol: 1.
+Bob applies Eb to his ballot B, and sends Eb (B) to Alice, using some sort of authentication scheme.
+Alice verifies Bob’s authentication, applies S ′ to Eb (B), and sends S ′ (Eb (B)) back to Bob.
+Bob applies Db to S ′ (Eb (B)) to get S ′ (B), and checks to make sure S(S ′ (B)) = B.
+This ensures that Mal has not replaced his ballot.
+Bob sends S ′ (M) to the vote counters, anonymously.
+To prevent multiple voting, the election board can require that ballots have a random component followed by the actual vote, so all the possible values S ′ (B) should be different.
+Then if the vote counters see multiple copies of a ballot, they know someone tried to commit vote ordinary paper and write on the carbon paper, the writing appears on the paper beneath.
+The same sort of idea can be used to construct a digital analogue of cash.
+The key property of cash is anonymity: when you take money out of the bank, the bank gives you the cash without knowing what you buy, and when you spend money, the merchant has no idea who you are.
+By contrast, when you buy something with a credit card online, you have to tell the merchant who you are, and you have to tell the credit card company who you are making a purchase from.
+The potential for invasion of privacy is immense.
+For the purposes of this construction, we will assume that all coins are worth a dollar.
+To withdraw a dollar from her account, Alice generates a coin C, applies a public hash function f , and masks the result by encrypting it with Ea .
+The bank signs Ea (f (C)) with S ′ and debits Alice’s bank account.
+Alice then computes Da (S ′ (Ea (f (C)))) to strip away her encryption, leaving her with S ′ (f (C)), and checks to make sure S(S ′ (f (C))) = f (C).
+To spend her dollar, Alice gives S ′ (f (C)) and C to a merchant.
+The merchant computes S(S ′ (f (C))) and compares that to f (C) to make sure the coin was actually signed by the bank (without the use of f , Alice could simply have taken a random X and presented the pair (X, S(X)) as a pair (S ′ (C), C)).
+Then the merchant sends S ′ (f (C)) and C to the bank, which checks the validity of the signature, pays the merchant, and puts C on a list of coins that have already been spent.
+This scheme preserves Alice’s anonymity and it lets the bank detect double-spending, but it provides no way to punish double-spenders.
+The only way Alice could be caught trying to double-spend is if the merchant is online and has the bank check her coin in real time.
+Jeremy talked about zero-knowledge proofs, which allow Alice to prove to Bob that she knows something, for example a square root modulo a composite n, while not revealing the information itself.
+David Chaum, Amos Fiat, and Moni Naor used similar ideas to build a digital cash protocol that lets Alice maintain her anonymity so long as she doesn’t cheat; the penalty for cheating is having her identity revealed.
+To begin with, the bank fixes a security parameter k that determines how likely it is to catch double-spenders—large k make it harder to cheat, and the probability that a cheater will be caught goes to 1 very quickly as k increases.
+Additionally, Alice has an account number u with an associated counter v (both Alice and the bank know the account number and the counter), and there are two functions f, g : Zn × Zn → Zn which are hard to invert.
+One of One problem with this scheme as written is that while the bank can figure out that Alice tried to defraud them, the bank can also forge transcripts to frame her.
+Thus, the bank cannot prove to anyone else that Alice was guilty.
+But assuming Alice has a digital signature scheme of her own, it is easy to modify the above protocol to protect her.
+When Alice is choosing her 4-tuples, she randomly chooses another k pairs of integers (zi′ , zi′′ ), and signs the concatenation .
+She gives that signed number to the bank.
+Additionally, when she is computing the values f (xi , yi), she replaces u with u k zi′ k zi′′ (and provides the appropriate values to the bank during the random verification phase).
+Thus, if the bank can provide k/2 + 1 correct pairs, it has proof that Alice cheated.
+The bank cannot change the given values of because it cannot break Alice’s signature.
+Even if we assume the bank can invert g, Alice only has to display her own pair to show that g has actually been broken.
+Thus, cryptography has given us a protocol for spending money online so that that money functions like cash does in the physical world.
+On an aesthetic level, this construction could be better.
+The generation of money is not truly zero-knowledge, because Alice overgenerates data and reveals some of it selectively to demonstrate that it is all correctly done.
+The compromised data is then thrown away, but it seems likely to me that a zero-knowledge verification protocol exists.
+On a more practical level, the construction I have given only allows for a single denomination.
+As not all prices are in dollar multiples, it seems that the number of transactions required, and the associated computational power and storage space, would be prohibitive.
+There are variants on this protocol that provide for digital cash in multiple denominations, though.
+Actually, the practicality is largely moot at this point because there is no infrastructure using digital cash.
+Chaum founded DigiCash to try to implement it, but the company went bankrupt some time ago..
